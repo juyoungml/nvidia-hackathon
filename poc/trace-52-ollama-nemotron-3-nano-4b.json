@@ -1,0 +1,180 @@
+{
+  "backend": "ollama",
+  "model": "nemotron-3-nano:4b",
+  "case_id": "PreDist-M1-fault-52",
+  "source": {
+    "dataset": "PreDist v2",
+    "url": "https://zenodo.org/records/19496480",
+    "doi": "10.5281/zenodo.19496480",
+    "license": "CC BY 4.0",
+    "publisher": "Fraunhofer IEE / enercity Netz GmbH",
+    "asset_type": "district heating substation"
+  },
+  "decision_time": "2016-12-12 15:55:00",
+  "finish_reason": "stop",
+  "events": [
+    {
+      "step": 1,
+      "latency_seconds": 2.4,
+      "finish_reason": "stop",
+      "model_content": "",
+      "tool_calls": [
+        "get_recent_measurements"
+      ]
+    },
+    {
+      "tool": "get_recent_measurements",
+      "call_id": "call_vczen8qw",
+      "result": {
+        "source_id": "PreDist-M1-substation-21-operational-data",
+        "interval": "2016-12-11 15:55:00 to 2016-12-12 15:55:00",
+        "samples": 144,
+        "last_sample_time": "2016-12-12 15:50:00",
+        "signals": {
+          "outdoor_temperature": {
+            "first": 7.4,
+            "last": 4.75,
+            "min": 3.9,
+            "max": 7.4,
+            "mean": 5.0,
+            "unit": "°C"
+          },
+          "s_hc1_supply_temperature": {
+            "first": 63.3,
+            "last": 68.3,
+            "min": 57.7,
+            "max": 68.6,
+            "mean": 64.89,
+            "unit": "°C"
+          },
+          "s_hc1_supply_temperature_setpoint": {
+            "first": 63.0,
+            "last": 68.6,
+            "min": 57.2,
+            "max": 68.6,
+            "mean": 64.94,
+            "unit": "°C"
+          },
+          "p_hc1_return_temperature": {
+            "first": 50.5,
+            "last": 52.3,
+            "min": 44.4,
+            "max": 53.1,
+            "mean": 49.17,
+            "unit": "°C"
+          },
+          "s_dhw_supply_temperature": {
+            "first": 59.2,
+            "last": 59.4,
+            "min": 58.4,
+            "max": 65.0,
+            "mean": 60.16,
+            "unit": "°C"
+          },
+          "s_dhw_supply_temperature_setpoint": {
+            "first": 60.0,
+            "last": 60.0,
+            "min": 60.0,
+            "max": 61.0,
+            "mean": 60.04,
+            "unit": "°C"
+          },
+          "p_net_meter_heat_power": {
+            "first": 110.0,
+            "last": 132.0,
+            "min": 82.0,
+            "max": 219.0,
+            "mean": 129.11,
+            "unit": "kW"
+          },
+          "p_net_meter_flow": {
+            "first": 2208.0,
+            "last": 2496.0,
+            "min": 1680.0,
+            "max": 3960.0,
+            "mean": 2351.0,
+            "unit": "l/h"
+          }
+        },
+        "hc1_supply_absolute_gap_celsius": {
+          "mean": 0.31,
+          "max": 1.6,
+          "samples_within_2C": 144,
+          "sample_count": 144
+        },
+        "caution": "A supply temperature near its setpoint does not prove that heat reached the customer. No room or radiator temperature is present in this replay."
+      }
+    },
+    {
+      "step": 2,
+      "latency_seconds": 2.92,
+      "finish_reason": "stop",
+      "model_content": "",
+      "tool_calls": [
+        "get_prior_incidents"
+      ]
+    },
+    {
+      "tool": "get_prior_incidents",
+      "call_id": "call_w39ypfsz",
+      "result": {
+        "records": [
+          {
+            "source_id": "PreDist-M1-fault-6",
+            "report_date": "2016-12-06 13:12:00",
+            "problem": "not enough heat",
+            "event_description": "The heaters are not getting warm enough. Supply temperature is 44°C at 9°C outdoor temperature. Heating curve increased."
+          }
+        ],
+        "note": "Only reports dated before the current report are available."
+      }
+    },
+    {
+      "step": 3,
+      "latency_seconds": 1.04,
+      "finish_reason": "stop",
+      "model_content": "",
+      "tool_calls": [
+        "get_maintenance_timeline"
+      ]
+    },
+    {
+      "tool": "get_maintenance_timeline",
+      "call_id": "call_iomey5iq",
+      "result": {
+        "records": [
+          {
+            "source_id": "PreDist-M1-disturbance-112",
+            "event_start": "2015-03-06 00:00:00",
+            "type": "activity"
+          },
+          {
+            "source_id": "PreDist-M1-disturbance-113",
+            "event_start": "2015-06-07 11:34:00",
+            "type": "fault"
+          },
+          {
+            "source_id": "PreDist-M1-disturbance-114",
+            "event_start": "2015-11-26 00:00:00",
+            "type": "activity"
+          },
+          {
+            "source_id": "PreDist-M1-disturbance-115",
+            "event_start": "2016-12-06 13:12:00",
+            "type": "fault"
+          }
+        ],
+        "note": "Activity timestamps do not provide action details or proof of resolution."
+      }
+    },
+    {
+      "step": 4,
+      "latency_seconds": 23.02,
+      "finish_reason": "stop",
+      "model_content": "**1. 관찰된 증거**  \n2016-12-12 15:55까지의 최신 측정 데이터(PreDist-M1-substation-21-operational-data)에서는 실외 온도 3.9~7.4°C, 공급 온도 57.7~68.6°C(목표 63.0~68.6°C), 순열 열 110~132kW, 순열 흐름 2208~2496l/h로 정상 범위 내. 그러나 실내/방수 온도 측정은 없음.  \n\n**2. 가능한 설명**  \n- 2016-12-06 13:12(PreDist-M1-fault-6) 보고: 공급 44°C, 실외 9°C, \"열이 부족함\" (공급 온도와 실외 온도 차이 35°C).  \n- 2016-12-12 15:55 측정: 공급 64.9°C, 실외 5.0°C, 차이 59.9°C.  \n- 2015-12-06(PreDist-M1-disturbance-115)는 2016-12-06와 동일.  \n- 2016-12-12 측정은 공급 온도와 실외 온도 차이가 크지만, 실내/방수 온도 측정 없음.  \n\n**3. 다음 체크 (인женер)**  \n- 실내/방수 온도 측정(실제 고객 측) 확인.  \n- 공급 온도와 실외 온도 차이 2C 이하인지 확인(공급 온도 63.0~68.6°C, 실외 3.9~7.4°C).  \n- 2016-12-06(PreDist-M1-fault-6) 보고와 2016-12-12 측정의 공급 온도 차이(44°C→64.9°C) 해석.  \n\n**4. 불확실성**  \n- 2016-12-12 측정은 공급 온도와 실외 온도만 제공, 실내/방수 온도 측정 없음.  \n- 2016-12-06 보고는 공급 44°C, 실외 9°C, \"열 부족\"으로 기록됨.  \n- 2016-12-12 측정은 공급 64.9°C, 실외 5.0°C, 차이 59.9°C.  \n- 공급 온도와 실외 온도 차이 2C 이하인지 확인해야 실제 열이 고객에게 전달되는지 판단 가능.",
+      "tool_calls": []
+    }
+  ],
+  "final": "**1. 관찰된 증거**  \n2016-12-12 15:55까지의 최신 측정 데이터(PreDist-M1-substation-21-operational-data)에서는 실외 온도 3.9~7.4°C, 공급 온도 57.7~68.6°C(목표 63.0~68.6°C), 순열 열 110~132kW, 순열 흐름 2208~2496l/h로 정상 범위 내. 그러나 실내/방수 온도 측정은 없음.  \n\n**2. 가능한 설명**  \n- 2016-12-06 13:12(PreDist-M1-fault-6) 보고: 공급 44°C, 실외 9°C, \"열이 부족함\" (공급 온도와 실외 온도 차이 35°C).  \n- 2016-12-12 15:55 측정: 공급 64.9°C, 실외 5.0°C, 차이 59.9°C.  \n- 2015-12-06(PreDist-M1-disturbance-115)는 2016-12-06와 동일.  \n- 2016-12-12 측정은 공급 온도와 실외 온도 차이가 크지만, 실내/방수 온도 측정 없음.  \n\n**3. 다음 체크 (인женер)**  \n- 실내/방수 온도 측정(실제 고객 측) 확인.  \n- 공급 온도와 실외 온도 차이 2C 이하인지 확인(공급 온도 63.0~68.6°C, 실외 3.9~7.4°C).  \n- 2016-12-06(PreDist-M1-fault-6) 보고와 2016-12-12 측정의 공급 온도 차이(44°C→64.9°C) 해석.  \n\n**4. 불확실성**  \n- 2016-12-12 측정은 공급 온도와 실외 온도만 제공, 실내/방수 온도 측정 없음.  \n- 2016-12-06 보고는 공급 44°C, 실외 9°C, \"열 부족\"으로 기록됨.  \n- 2016-12-12 측정은 공급 64.9°C, 실외 5.0°C, 차이 59.9°C.  \n- 공급 온도와 실외 온도 차이 2C 이하인지 확인해야 실제 열이 고객에게 전달되는지 판단 가능.",
+  "note": "Held-out current report diagnosis was not read or sent to the model."
+}

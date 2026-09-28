@@ -4,6 +4,6 @@
 
 This repository is a clean-room hackathon project. It contains only original code, attributed public references and records, and clearly labeled team-authored scenario text. It must not contain employer or customer source material.
 
-The project is in the strategy and feasibility stage. See [STRATEGY.md](STRATEGY.md) for the product strategy, [DATA_SOURCES.md](DATA_SOURCES.md) for public data candidates, and [PLAN.md](PLAN.md) for experiments and the submission schedule.
+The first public-data POC has run. Read [POC_RESULT.md](POC_RESULT.md) and its trace before extending the demo. See [STRATEGY.md](STRATEGY.md) for the product strategy, [DATA_SOURCES.md](DATA_SOURCES.md) for public data candidates, and [PLAN.md](PLAN.md) for the remaining experiments.
 
 The competition's online submission closes on **2026-09-28 at 23:59 KST**. Every member of a 2–5 person team must submit an individual application; one application includes the team's service portfolio.

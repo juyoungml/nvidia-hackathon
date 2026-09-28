@@ -1,0 +1,9 @@
+{
+  "case_id": "PreDist-M1-fault-52",
+  "source": "https://zenodo.org/records/19496480",
+  "not_available_to_agent": true,
+  "report_date": "2016-12-12 15:55:00",
+  "event_description": "Optimization of controller parameters led to insufficient supply for heating. Control system reset. Air in circulation for DHW, vented.",
+  "fault_label": "Control unit: Incorrect parameterisation",
+  "note": "Published report fields are retrospective; they are not a real-time ground truth at the decision time."
+}
