@@ -33,8 +33,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "2374982da417c27d61043d983c54aa8b0fa4f507d02ef290b07fcdb5ade2150c",
-      "bytes": 6994
+      "sha256": "60d8f5c20691396780ee9a3f9b3a8ef5bd3d269513efc3ecb4887526d3805fe8",
+      "bytes": 7289
     },
     {
       "path": "STRATEGY.md",
@@ -938,13 +938,13 @@
     },
     {
       "path": "submission/FORM_DRAFT.md",
-      "sha256": "1d8d6835f065bc4751cbc0a68f9e4503add21d680a3bf68f7e058b948a42281c",
-      "bytes": 3900
+      "sha256": "74e2ad9b1c4a65bef6f6f0eeeae5597be2fd3cd7e68c32384c70dbc12d0113ca",
+      "bytes": 3966
     },
     {
       "path": "submission/REPORT.md",
-      "sha256": "d6764eaea0311fa6955088c81bae7b878972a09feb864359286302effa07259e",
-      "bytes": 15508
+      "sha256": "5fdf975645e69c20e8ab6098803d9265d24df72beff8a5e02fd21b05949c8427",
+      "bytes": 16585
     },
     {
       "path": "submission/REVIEW_RESPONSE.md",
@@ -963,18 +963,18 @@
     },
     {
       "path": "submission/slides/Plant_Reliability_Agent_submission.pptx",
-      "sha256": "529b7f258f59a5c5b0685f90715af66e78ba2e8d0713d601ca788d6d4fb7d4ce",
-      "bytes": 298598
+      "sha256": "451502ed5be5f72aada665efd13ba435beb38b606bf109600d806a07fa30ee03",
+      "bytes": 299189
     },
     {
       "path": "submission/slides/VALIDATION.md",
-      "sha256": "7cd6600dfdea74090f8da0ea25647297d9d5cd664395757ba288f101d89a1c4a",
+      "sha256": "6b9cdc5cb9993102f2de59895aa38fb97dcc27fce9d72f8ed0ac5579193c4074",
       "bytes": 2495
     },
     {
       "path": "submission/slides/build_deck.py",
-      "sha256": "3c2f25711ae89b6c5d707d40c99b4d3817d59a0b0f82c7852fec90a8426a652c",
-      "bytes": 33700
+      "sha256": "c580db7fa57471099f1defa94072da0e829aa499debca60484fa08a146def209",
+      "bytes": 32686
     },
     {
       "path": "tests/test_claude_code.py",
@@ -1143,8 +1143,8 @@
     },
     {
       "path": "web/index.html",
-      "sha256": "fb47b820d0ff21b821ec5e650763b1bcf85bd3b4cfe92bf21041288d1f5c7d16",
-      "bytes": 25120
+      "sha256": "3c2d0b023834f89175f7b4f00dd3d8edeaa0a69c3a13c4c547f3c1efa47f3b83",
+      "bytes": 26211
     },
     {
       "path": "web/investigation.css",

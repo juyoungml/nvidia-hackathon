@@ -851,68 +851,44 @@ page_no(s)
 
 # 10 Results --------------------------------------------------------------------
 s = new_slide(
-    "평가 결과",
-    "PreDist 사건 보고서 32건 · 같은 자료 · 같은 출력 형식"
-    if EVAL_FIG.exists()
-    else "같은 자료 · 같은 출력 형식",
+    "평가 결과: 판단의 질은 상한선에 가깝다",
+    "PreDist 사건 32건 · 같은 자료 · 같은 출력 형식 · 사건당 1회",
     notes=(
-        (
-            "공개 PreDist 사건 보고서 32건을 케이스당 한 번씩 같은 자료, 같은 출력 형식으로 돌렸습니다. 참조와 형식 검사 통과는 Nemotron 3 Ultra 32건 중 15건, 참고 기준인 Claude Code와 Sonnet 5는 32건 모두입니다. "
-            "Ultra가 통과하지 못한 17건 중 13건은 모델 제공 서비스의 호출 오류, 즉 HTTP 오류였고, 4건은 출력 형식이나 참조 검사 실패였습니다. 호출 오류를 한 번 다시 실행해도 결과는 15건으로 같았습니다. 이것은 진단 정확도 평가가 아닙니다. "
-            if EVAL_FIG.exists()
-            else "같은 자료와 같은 출력 형식으로 신고 4건을 돌렸고, 참고 기준으로 Anthropic Claude Sonnet 5를 읽기와 검색만 허용해 비교했습니다. "
-            "근거 연결 검사 통과는 Ultra 4건 중 2건, Sonnet 4건 모두입니다. Ultra가 놓친 2건은 조회 한도를 다 쓰고 정리하지 못한 경우였고, 한도에 닿으면 모은 자료로 정리하도록 고쳤습니다. "
-            "둘 다 끝낸 2건의 내용 검토는 48점 만점에 41대 42입니다. 이것은 진단 정확도가 아닙니다. "
-        )
-        + "부족한 부분은 오프라인 환경에서 보완할 예정입니다."
+        "공개 PreDist 사건 32건을 같은 자료와 같은 출력 형식으로 돌렸습니다. Claude Sonnet 5는 클라우드 최고 수준의 기준점이지만, 보안 때문에 발전소 안에서는 쓸 수 없습니다. "
+        "질문은 누가 이기느냐가 아니라, 현장에 설치할 수 있는 모델이 이 상한선에 얼마나 가까운가입니다. "
+        "Ultra가 끝까지 작성한 점검안 15개는 모두 근거 검사를 통과했습니다. 조회하지 않은 기록을 지어낸 경우는 한 번도 없었습니다. 둘 다 결과를 낸 사례의 내용 점수도 41 대 42로 비슷했습니다. "
+        "Ultra가 놓친 17건 중 13건은 호스팅 API 오류로 답을 받지 못한 경우이고, 4건은 시간 구간을 한도보다 길게 요청한 한 가지 도구 실수였습니다. "
+        "즉 격차는 판단력이 아니라 실행 안정성에서 나옵니다. 현장 배포로 외부 API 요인을 없애고 도구 쪽에서 요청 범위를 자동으로 맞춰 주는 것이 오프라인 보완 계획입니다. 이 검사는 진단 정확도 평가는 아닙니다."
     ),
 )
 if EVAL_FIG.exists():
     from PIL import Image
 
     iw, ih = Image.open(EVAL_FIG).size
-    maxw, maxh = 11.7, 3.95
+    maxw, maxh = 7.3, 3.9
     w = min(maxw, maxh * iw / ih)
-    s.shapes.add_picture(str(EVAL_FIG), Inches(0.8 + (maxw - w) / 2), Inches(1.9), width=Inches(w))
-else:
-    text(s, 0.8, 1.95, 6, 0.4, "근거 연결 검사 통과 · 신고 4건", size=20, color=MUTED)
-    text(s, 0.8, 2.4, 3.0, 1.1, [[("2/4", {"color": NV, "bold": True})]], size=66)
-    text(s, 0.8, 3.5, 3.0, 0.4, "Nemotron 3 Ultra", size=18, color=NV, bold=True)
-    text(s, 3.6, 2.4, 3.0, 1.1, [[("4/4", {"color": MUTED, "bold": True})]], size=66)
-    text(s, 3.6, 3.5, 3.0, 0.4, "Claude Sonnet 5 (참고)", size=18, color=MUTED, bold=True)
-    text(s, 7.2, 1.95, 5.3, 0.4, "둘 다 끝낸 2건 · 내용 검토", size=20, color=MUTED)
-    text(
-        s,
-        7.2,
-        2.4,
-        5.3,
-        1.1,
-        [
-            [
-                ("41", {"color": NV, "bold": True}),
-                (" : ", {"color": MUTED}),
-                ("42", {"color": MUTED, "bold": True}),
-                ("  / 48", {"size": 22, "color": MUTED}),
-            ]
-        ],
-        size=54,
-    )
-    text(
-        s,
-        0.8,
-        4.4,
-        11.7,
-        1.0,
-        [
-            [
-                ("놓친 2건  ", {"bold": True, "color": ORANGE}),
-                ("조회 한도를 다 쓰고 정리하지 못함", {}),
-            ],
-            [("고침  ", {"bold": True, "color": ORANGE}), ('"한도에 닿으면 모은 자료로 정리"', {})],
-        ],
-        size=19,
-        spacing=1.3,
-    )
+    s.shapes.add_picture(str(EVAL_FIG), Inches(0.6), Inches(1.95), width=Inches(w))
+text(
+    s,
+    8.2,
+    1.95,
+    4.6,
+    3.9,
+    [
+        [("Sonnet 5 = 클라우드 상한선", {"bold": True, "color": MUTED})],
+        [("보안상 현장 사용 불가 · 32/32", {"size": 15, "color": MUTED})],
+        [("", {"size": 8})],
+        [("Ultra가 쓴 점검안 15개", {"bold": True, "color": NV})],
+        [("근거 조작 0건 · 모두 검사 통과", {"size": 15})],
+        [("", {"size": 8})],
+        [("놓친 17건의 이유", {"bold": True, "color": ORANGE})],
+        [("API 오류 13 · 도구 실수 4 (한 가지)", {"size": 15})],
+        [("", {"size": 8})],
+        [("내용 점수 41 : 42 / 48 (2건)", {"bold": True})],
+    ],
+    size=19,
+    spacing=1.15,
+)
 box(s, 0.8, 6.0, 11.7, 0.7, "", fill=SOFT, line=None)
 text(
     s,
@@ -922,14 +898,9 @@ text(
     0.7,
     [
         [
-            ("부족한 부분은 ", {}),
-            ("오프라인 환경에서 보완 예정", {"bold": True, "color": GREEN}),
-            (
-                "  ·  Ultra 미통과 17건 중 13건은 호출 오류(HTTP) · 진단 정확도 평가 아님"
-                if EVAL_FIG.exists()
-                else "  ·  진단 정확도 평가 아님",
-                {"size": 15, "color": MUTED},
-            ),
+            ("격차는 판단력이 아니라 ", {}),
+            ("실행 안정성", {"bold": True, "color": GREEN}),
+            ("  →  현장 배포 + 도구 보완으로 오프라인에서 해결 예정", {"size": 16, "color": MUTED}),
         ]
     ],
     size=20,

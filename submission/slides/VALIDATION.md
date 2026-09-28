@@ -2,7 +2,7 @@
 
 Final presentation: `Plant_Reliability_Agent_submission.pptx`
 
-- SHA-256: `529b7f258f59a5c5b0685f90715af66e78ba2e8d0713d601ca788d6d4fb7d4ce`
+- SHA-256: `451502ed5be5f72aada665efd13ba435beb38b606bf109600d806a07fa30ee03`
 - Slides: 12, 16:9, each with Korean speaker notes. Diagrams are native, editable PowerPoint shapes.
 - Built by `build_deck.py` with python-pptx (`uv run --with python-pptx python submission/slides/build_deck.py`). `build_deck.mjs` is superseded.
 - 2026-09-28 story rebuild: 문제(다운타임 비용) → 자료 분산 → 보안 제약·현장 설치(Nemotron + DGX Spark) → System 1/System 2 → System 1 설계 부하 → 공개 데이터 → 사례 29 → 에이전트 결과 → 구조·NVIDIA 기술 → 평가 → 다음 단계.
