@@ -4,10 +4,24 @@ const layer = $("#bbox-layer");
 let hotspots = [];
 
 const statusNames = {
-  observed: "공개 관측",
-  missing: "추가 확인",
-  context: "계통 맥락",
+  observed: "공개 기록 있음",
+  missing: "추가 확인 필요",
+  context: "이해를 돕는 구성",
 };
+
+// hotspots.json keeps its original wording; show plainer words on the page.
+function plain(text) {
+  return String(text || "")
+    .replace(/bbox는 수동 예시/g, "위치 상자는 사람이 직접 표시")
+    .replace(/원본 P&ID 또는 모델 탐지 결과 아님/g, "실제 설비 도면이나 AI 탐지 결과 아님")
+    .replace(/이 POC에/g, "이 예시 자료에")
+    .replace(/팀 제작 계통도/g, "팀이 직접 그린 예시 도면")
+    .replace(/팀 제작 예시 계통도/g, "팀이 직접 그린 예시 도면")
+    .replace(/예시 계통$/g, "예시 구성")
+    .replace(/공개 관측/g, "공개 기록 있음")
+    .replace(/계측 필드/g, "계측 항목")
+    .replace(/밸브 개도/g, "밸브 열림 정도");
+}
 
 function makeElement(tag, className, content) {
   const element = document.createElement(tag);
@@ -28,15 +42,15 @@ function selectHotspot(id) {
     }
   });
 
-  $("#detail-status").textContent = item.status_label || statusNames[item.status];
+  $("#detail-status").textContent = plain(item.status_label) || statusNames[item.status];
   $("#detail-status").className = `status-badge ${item.status}`;
   $("#detail-title").textContent = item.title;
   $("#detail-subtitle").textContent = item.subtitle;
   $("#detail-value").textContent = item.value;
-  $("#detail-known").textContent = item.known;
-  $("#detail-unknown").textContent = item.unknown;
-  $("#detail-source").textContent = item.source;
-  $("#detail-provenance").textContent = item.provenance;
+  $("#detail-known").textContent = plain(item.known);
+  $("#detail-unknown").textContent = plain(item.unknown);
+  $("#detail-source").textContent = plain(item.source);
+  $("#detail-provenance").textContent = plain(item.provenance);
 }
 
 function renderHotspots(items) {
@@ -59,7 +73,7 @@ function renderHotspots(items) {
     const box = makeElement("button", `bbox ${item.status}`);
     box.type = "button";
     box.dataset.hotspot = item.id;
-    box.setAttribute("aria-label", `도면 위치: ${item.title}, ${item.status_label}`);
+    box.setAttribute("aria-label", `도면 위치: ${item.title}, ${plain(item.status_label) || statusNames[item.status]}`);
     const [x, y, width, height] = item.bbox;
     box.style.left = `${x * 100}%`;
     box.style.top = `${y * 100}%`;
@@ -126,14 +140,14 @@ async function main() {
     renderHotspots(items);
     renderTrend(replay.measurement_window.rows);
   } catch (error) {
-    $("#trend-plot").textContent = `${error.message} 저장소 루트에서 HTTP 서버를 실행해 주세요.`;
+    $("#trend-plot").textContent = `${error.message} 웹 서버를 통해 이 페이지를 열어 주세요.`;
   }
 }
 
 $("#outcome-toggle").addEventListener("click", () => {
   const panel = $("#outcome-panel");
   panel.hidden = !panel.hidden;
-  $("#outcome-toggle").textContent = panel.hidden ? "사후 보고서 열기" : "사후 보고서 닫기";
+  $("#outcome-toggle").textContent = panel.hidden ? "나중에 밝혀진 결과 보기" : "나중에 밝혀진 결과 닫기";
 });
 
 main();

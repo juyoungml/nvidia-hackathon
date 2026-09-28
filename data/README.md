@@ -1,4 +1,19 @@
-# PreDist public-data replay
+# 사건 입력 데이터 (PreDist public-data replay)
+
+System 2 (원인 조사, 구현)가 읽는 사건 입력입니다. 모두 공개 [PreDist v2](https://zenodo.org/records/19496480)(CC BY 4.0, Fraunhofer IEE / enercity Netz GmbH)에서 만든 조각이며, 각 파일은 결정 시각(신고 시각) 이전의 계측 24시간과 과거 기록만 담습니다. 같은 신고의 사후 진단·조치·고장 라벨은 `evaluation/held-out-*.json`과 `evaluation/holdout-outcomes/`에 분리되어 모델 입력과 도구 결과에 들어가지 않습니다.
+
+| 파일 | 설비 | 처음 쓰인 곳 |
+|---|---|---|
+| `replay-52.json`, `replay-62.json`, `replay-32.json` | 서브스테이션 21 | 초기 POC, 데모(사례 52) |
+| `holdout-60.json`, `holdout-63.json` | 4, 7 | 첫 비교 파일럿 |
+| `holdout-3.json`, `holdout-13.json` | 12, 24 | 다음 비교 |
+| `holdout-37.json`, `holdout-5.json` | 19, 11 | Cycle 3 |
+| `holdout-29.json`, `holdout-47.json` | 17, 28 | Cycle 4 새 사건 ([PROTOCOL](../evaluation/cycle4/PROTOCOL.md)), 데모(사례 29) |
+| `derived-no-report-20161210.json`, `derived-missing-measurements-52.json` | 21 | 인위적으로 만든 점검용 입력 (실제 사건 아님) |
+
+32건 평가(Cycle 5)의 입력은 같은 형식으로 [`evaluation/cycle5/cases/`](../evaluation/cycle5/cases/)에 따로 있습니다. 아래는 각 묶음의 선택 규칙과 재생성 방법입니다(영문).
+
+## Substation 21 replays
 
 `replay-52.json` is an attributed slice of [PreDist v2](https://zenodo.org/records/19496480), DOI [10.5281/zenodo.19496480](https://doi.org/10.5281/zenodo.19496480), licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The data were published by Fraunhofer IEE and enercity Netz GmbH. The original dataset authors should be credited in any presentation or redistribution.
 

@@ -1,37 +1,33 @@
-# Public data anchors and provenance
+# 데이터 출처와 라이선스
 
-Reviewed 2026-09-28 KST. Dataset metadata and licenses below come from the publishers' own pages unless otherwise stated. PreDist v2 replay 52 has been ingested and executed; additional same-asset cases are being evaluated. The original candidate table below records selection-time findings, not current completion status.
+이 저장소는 공개 데이터만 사용합니다. 회사·고객 자료는 입력, 검색 대상, 평가 대상 어디에도 쓰지 않습니다.
 
-## Catchphrase
+## 사용한 데이터
 
-**에너지 설비의 알람을, 근거 있는 다음 점검으로.**
+| 데이터 | 쓰임 | 라이선스 | 비고 |
+|---|---|---|---|
+| [PreDist v2](https://zenodo.org/records/19496480) (DOI [10.5281/zenodo.19496480](https://doi.org/10.5281/zenodo.19496480)), Fraunhofer IEE / enercity Netz GmbH | System 2 데모와 평가의 모든 사건: 계측, 고장 신고, 장애·정비 기록, 센서 정의 | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | 지역난방 서브스테이션 93곳. 발전소가 아니므로 그렇게 표현하지 않습니다. |
+| 미국 DOE *Improving Steam System Performance* Figure 1 | 웹 소개 페이지의 도면 탐색 예시 | 미국 정부 공공 저작물 | PreDist 설비와 무관한 일반 계통도입니다. [web/assets/SOURCES.md](../web/assets/SOURCES.md) |
 
-English: **From energy-asset alarms to evidence-backed next checks.**
+사건 입력의 구성, 선택 규칙, 원본 CSV 해시와 재생성 방법은 [../data/README.md](../data/README.md)에 있습니다. 32건 평가의 사건 선택 규칙은 [../evaluation/cycle5/PROTOCOL.md](../evaluation/cycle5/PROTOCOL.md)에 있습니다.
 
-This promises a reviewable investigation step, not automatic plant control or a proven root cause. If the submitted demo uses only wind turbines, name that asset type in the subtitle: “공개 풍력 설비 데이터로 검증한 조사 에이전트.”
+## 재생(replay) 원칙
 
-## Candidates
+1. 실제 공개 신고 하나를 고르고 출처 URL, 데이터 버전, 라이선스, 설비 ID, 신고 시각을 기록합니다.
+2. 결정 시각을 신고 시각으로 두고, 그 이전에 존재한 기록만 에이전트에게 줍니다.
+3. 같은 신고의 사후 진단·조치·고장 라벨은 `evaluation/`에 분리하고 모델 입력과 도구 결과에 넣지 않습니다.
+4. 과거 신고의 서술이 당시 운영자에게 실제로 보였는지는 PreDist가 보장하지 않으므로, 과거 맥락으로만 취급합니다.
+5. 모델 호출(hosted NVIDIA API)에는 공개 사건과 거기서 파생한 사실만 보내고, 출처를 표시합니다.
 
-| Source | Public evidence that can be joined | License / accessibility | Fit and limit |
-| --- | --- | --- | --- |
-| [EDP Wind Farm 1](https://edp.com/en/innovation/data) | Turbine SCADA, operation/alarm logs, confirmed failure logbook for the same wind farm. The [IEA Wind inventory](https://iea-wind.org/wp-content/uploads/2024/07/EDP-OpenData-Details.pdf) describes 23 failure records, 256,231 operation-log rows, and 10-minute signals over the training period. | Individual EDP pages state [CC BY-SA 4.0](https://edp.com/en/innovation/data/wind-farm-1-record-failure-history-2016). A [2017 failure XLSX](https://edp.com/sites/default/files/document/2025-04/opendata-wind-failures-2017.xlsx) responds successfully; some current SCADA/log download links redirect to inaccessible pages, so the entire set is **not yet access-verified**. | Best match to an electricity-generation investigation if all three sources can be fetched and joined. Confirm turbine IDs, timestamps, and an episode before choosing it. Attribute EDP and observe ShareAlike when redistributing adapted data. |
-| [PreDist v2](https://zenodo.org/records/19496480) | Measurements from 93 district-heating substations, incident fault reports, disturbances, corrective/preventive maintenance activities, normal-event examples. | Open Zenodo archive, 266.8 MB. The [Zenodo record API](https://zenodo.org/api/records/19496480) identifies the license as CC BY 4.0. | Strongest fallback for a multi-source *energy equipment* case. It is district heating, not an electric generating station; describe it accurately. |
-| [MetroPT-3](https://archive.ics.uci.edu/dataset/791/metropt%203%20dataset) | Real compressor pressure, oil temperature, motor current, and valve signals with published failure and maintenance intervals. | UCI explicitly states CC BY 4.0; 208.3 MB download. | Operationally easy fallback, but the equipment is a metro-train compressor rather than an energy asset. Use only if the energy sources fail the access/quality gate and adjust the catchphrase. |
-| [EDP thermal boiler units](https://edp.com/en/innovation/data/boiler-unit-y-year-xxx4) | Real thermal-generation process readings at 1-minute frequency. | EDP states CC BY-SA 4.0; data are anonymized by year. | Domain fit is excellent, but no linked failure/maintenance ground truth was verified. Use for background or a separate signal demo, not to invent incident labels. |
-| [Hill of Towie wind farm](https://zenodo.org/records/22662930) | 10-minute SCADA and alarm logs, descriptions, turbine metadata, and shutdown-duration data. | Publisher states CC BY 4.0. Annual archives are about 1.4–1.6 GB each. | Provenance is clear but large for today's deadline; alarm logs alone do not certify a root cause. Secondary fallback. |
+## 검토했지만 쓰지 않은 후보
 
-## Recommended decision gate
+2026-09-28 데이터 선정 당시 함께 검토한 공개 데이터입니다. 라이선스는 당시 각 게시처 페이지 기준입니다.
 
-**Try EDP first for 45 minutes.** Obtain one time-aligned SCADA slice, operation-log slice, and confirmed failure row for the same turbine. Check the exact license and file URLs. If the signals/logs remain inaccessible or mismatched, use PreDist and pitch the first demo as energy-equipment investigation rather than power-plant fault diagnosis. MetroPT-3 is a final fallback with a change of asset label. Avoid joining records from different plants as if they describe one incident.
+| 후보 | 내용 | 라이선스 | 쓰지 않은 이유 |
+|---|---|---|---|
+| [EDP Wind Farm 1](https://edp.com/en/innovation/data) | 풍력 터빈 SCADA, 운전·알람 로그, 고장 기록 | CC BY-SA 4.0 | 일부 SCADA·로그 다운로드 링크에 접근할 수 없어 같은 터빈의 자료를 결합하지 못함 |
+| [EDP thermal boiler units](https://edp.com/en/innovation/data/boiler-unit-y-year-xxx4) | 화력 보일러 1분 공정값 | CC BY-SA 4.0 | 연결된 고장·정비 기록이 없음 |
+| [Hill of Towie wind farm](https://zenodo.org/records/22662930) | 10분 SCADA, 알람 로그, 정지 기록 | CC BY 4.0 | 연간 1.4–1.6GB로 일정 안에 다루기 큼 |
+| [MetroPT-3](https://archive.ics.uci.edu/dataset/791/metropt%203%20dataset) | 지하철 압축기 신호와 고장·정비 구간 | CC BY 4.0 | 에너지 설비가 아님 |
 
-The [Mendeley metadata description of EDP](https://data.mendeley.com/datasets/zjxjnjp3xs/1) reports eight files with SCADA, event logs, and failure logs. This is useful for field inventory, but it is not proof that those files can be downloaded from the current EDP portal. The original EDP license governs original EDP data even when a secondary index uses a different metadata license.
-
-## Replay protocol
-
-1. Select a real public equipment episode and record source URL, dataset version, license, turbine/substation ID, and timestamp.
-2. Set a decision time **before** the confirmed failure or later maintenance report. Give the agent only records that existed by then. Keep later reports as held-out evaluation evidence.
-3. Keep source labels visible: `observed telemetry`, `published operation log`, `published later outcome`, and `team-authored scenario wrapper`.
-4. Use a short, clearly authored operator question only to start the replay; do not present it as an actual historical ticket.
-5. Score source citation, relevant tool calls, conflict detection, useful next check, and justified abstention. A later failure label can assess component-family prioritization, but it does not prove the proposed inspection would have worked in the real plant.
-
-No private employer/customer record is a seed, prompt, retrieval source, or evaluation target. Public source data used through NVIDIA's hosted endpoint must be attributed and checked against the endpoint's trial terms. Store only a small attributed replay slice in the demo repository if its license permits it; otherwise provide an acquisition script and hashes.
+PreDist v2는 계측, 신고, 정비 기록이 같은 설비 단위로 결합되어 있어 다중 소스 조사 시연에 가장 적합했습니다.

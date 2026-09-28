@@ -3,3 +3,8 @@
 .glossary{max-width:1440px;margin:12px auto 0;padding:16px 5%;display:flex;gap:28px;align-items:start;font-size:12px}.glossary>strong{flex:none;padding-top:2px}.glossary dl{margin:0;display:grid;grid-template-columns:repeat(5,1fr);gap:18px;flex:1}.glossary dt{font-weight:700;margin-bottom:4px}.glossary dd{margin:0;line-height:1.6;opacity:.75}
 @media(max-width:950px){.glossary{flex-direction:column;gap:10px}.glossary dl{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.glossary dl{grid-template-columns:1fr}}
 .inspector-summary .orig,.fact-orig{display:block;margin-top:10px;font-size:11px;line-height:1.6;opacity:.6;font-family:'IBM Plex Mono',monospace}
+.comparison-latest{margin:34px 0 0;padding:18px 20px;border:1px solid #638475;background:#1f463c;font-size:13px;line-height:1.9;color:#dfeadb}
+.comparison-latest b{color:#fff}
+.comparison-latest a{color:#c6dba9;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+footer{flex-wrap:wrap;row-gap:10px}
+@media(max-width:600px){.top-right{gap:14px}.home small{display:none}}

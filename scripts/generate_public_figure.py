@@ -1,5 +1,15 @@
-"""Draw the public PreDist case-29 paired temperature series for the landing."""
+"""Draw the public PreDist case-29 paired temperature series for the landing.
 
+Renders ``data/holdout-29.json`` (supply temperature vs. setpoint) to
+``web/assets/system2-case29-trend.png``. Requires ``rsvg-convert`` (librsvg)
+on PATH. Takes no options.
+
+Usage::
+
+    uv run python scripts/generate_public_figure.py
+"""
+
+import argparse
 import json
 import subprocess
 from html import escape
@@ -11,6 +21,7 @@ TARGET = ROOT / "web/assets/system2-case29-trend.png"
 
 
 def main() -> None:
+    argparse.ArgumentParser(description=__doc__.splitlines()[0]).parse_args()
     case = json.loads(SOURCE.read_text())
     rows = case["measurement_window"]["rows"]
     assert len(rows) == 144

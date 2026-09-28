@@ -24,7 +24,8 @@ plt.rcParams["axes.unicode_minus"] = False
 
 ARMS = (
     ("ultra", "Ultra\n1차 시도", "#b5d77a"),
-    ("ultra_with_provider_rerun", "Ultra\nAPI 오류 재실행(최대 3회)", "#76b900"),
+    ("ultra_with_provider_rerun", "Ultra\nAPI 오류 재실행", "#76b900"),
+    ("ultra-clip", "Ultra\n도구 보정 후", "#3f7d00"),
     ("sonnet", "Claude Code +\nSonnet 5", "#8a8a8a"),
 )
 
@@ -32,10 +33,8 @@ ARMS = (
 def main() -> None:
     result = json.loads((HERE / "results.json").read_text())
     cases = result["cases"]
-    fig = plt.figure(figsize=(11, 4.6), dpi=200)
-    grid = fig.add_gridspec(
-        3, 2, width_ratios=[1.2, 2.6], height_ratios=[1, 1, 1], wspace=0.12, hspace=0.9
-    )
+    fig = plt.figure(figsize=(11, 5.6), dpi=200)
+    grid = fig.add_gridspec(len(ARMS), 2, width_ratios=[1.2, 2.6], wspace=0.12, hspace=1.0)
 
     ax = fig.add_subplot(grid[:, 0])
     labels, rates, texts, colors = [], [], [], []
@@ -52,9 +51,9 @@ def main() -> None:
             bar.get_x() + bar.get_width() / 2, bar.get_height() + 2, text, ha="center", fontsize=11
         )
     ax.set_ylim(0, 110)
-    ax.set_ylabel("참조·형식 검사 통과율 (%)")
+    ax.set_ylabel("근거 연결 검사 통과율 (%)")
     ax.spines[["top", "right"]].set_visible(False)
-    ax.tick_params(axis="x", labelsize=7.5)
+    ax.tick_params(axis="x", labelsize=7)
 
     # Per-case rows: 1 pass, 0 fail, -1 provider error, nan not run
     order = sorted(cases, key=lambda c: int(c["report_id"]))
@@ -88,14 +87,14 @@ def main() -> None:
     ]
     fig.legend(
         handles,
-        ["통과", "계약/참조 실패", "제공자 오류(HTTP)", "미완료"],
+        ["통과", "형식·근거 실패", "API 오류(HTTP)", "미실행"],
         loc="upper right",
         ncol=4,
         fontsize=8.5,
         frameon=False,
         bbox_to_anchor=(0.9, 0.95),
     )
-    fig.suptitle("Cycle 5: PreDist 사건 32건 — 조사 계획 출력의 참조·형식 검사", fontsize=12)
+    fig.suptitle("PreDist 사건 32건 — 근거 연결 검사 통과", fontsize=12)
     out = ROOT / "figures" / "eval-cycle5.png"
     fig.savefig(out, bbox_inches="tight", facecolor="white")
     shutil.copy(out, ROOT / "web" / "assets" / "eval-cycle5.png")

@@ -60,7 +60,7 @@ def main() -> None:
             "exposure": "prior_exposed" if rid in PRIOR_EXPOSED else "fresh",
             "arms": {},
         }
-        for arm in ("ultra", "sonnet", "ultra-rerun", "ultra-rerun2", "ultra-rerun3"):
+        for arm in ("ultra", "sonnet", "ultra-rerun", "ultra-rerun2", "ultra-rerun3", "ultra-clip"):
             path = HERE / "traces" / f"{arm}-{rid}.json"
             if arm.startswith("ultra-rerun") and not path.exists():
                 continue
@@ -113,7 +113,7 @@ def main() -> None:
         "scope": "single run per arm/case; reference/format contract check, not diagnostic accuracy",
         "summary": {
             arm: {"all": agg(arm, cases), "fresh_only": agg(arm, fresh)}
-            for arm in ("ultra", "ultra_with_provider_rerun", "sonnet")
+            for arm in ("ultra", "ultra_with_provider_rerun", "ultra-clip", "sonnet")
         },
         "excluded": [m for m in manifest if m["status"] != "eligible"],
         "cases": cases,

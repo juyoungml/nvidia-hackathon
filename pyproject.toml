@@ -1,9 +1,23 @@
 [project]
-name = "plant-reliability-agent-poc"
+name = "plant-reliability-agent"
 version = "0.1.0"
-description = "Public-data replay for the NVIDIA Korea Agentic AI Hackathon"
+description = "Locally deployable NVIDIA Nemotron agent that runs the first investigation of a plant equipment report and returns evidence-linked next checks, replayed on public PreDist district-heating data."
+readme = "README.md"
 requires-python = ">=3.12,<3.15"
+authors = [{ name = "Team Sona" }]
+keywords = ["nvidia", "nemotron", "agent", "predictive-maintenance", "district-heating"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Private :: Do Not Upload",
+]
 dependencies = []
+
+[project.urls]
+Homepage = "http://juyoung.site/nvidia-hackathon/"
+Repository = "https://github.com/juyoungml/nvidia-hackathon"
 
 [dependency-groups]
 dev = [

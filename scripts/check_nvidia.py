@@ -1,7 +1,17 @@
-"""Verify an NVIDIA hosted NIM key without printing it."""
+"""Verify an NVIDIA hosted NIM key without printing it.
+
+Reads ``NVIDIA_API_KEY`` from a dotenv file (default ``.env`` in the current
+directory), sends one tiny chat completion to the hosted NIM endpoint and
+prints the HTTP status, model and reply as JSON. Exits 1 on an HTTP error.
+
+Usage::
+
+    uv run python scripts/check_nvidia.py [--env-file .env]
+"""
 
 from __future__ import annotations
 
+import argparse
 import json
 import pathlib
 import urllib.error
@@ -16,7 +26,15 @@ def load_key(path: pathlib.Path = pathlib.Path(".env")) -> str:
 
 
 def main() -> None:
-    key = load_key()
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument(
+        "--env-file",
+        type=pathlib.Path,
+        default=pathlib.Path(".env"),
+        help="dotenv file containing NVIDIA_API_KEY (default: .env)",
+    )
+    args = parser.parse_args()
+    key = load_key(args.env_file)
     if not key:
         raise RuntimeError("NVIDIA_API_KEY is empty")
     payload = {

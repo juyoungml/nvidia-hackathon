@@ -224,6 +224,7 @@ PUBLIC_FILES = (
     "tests/test_rate_limit.py",
     "tests/test_replay.py",
     "tests/test_runtime.py",
+    "tests/test_scripts_cli.py",
     "tests/test_submission_bundle.py",
     "tests/test_system2.py",
     "tests/test_system2_cycle.py",

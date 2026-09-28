@@ -1,5 +1,15 @@
-"""Export a small, source-linked public replay for the static System 2 demo."""
+"""Export a small, source-linked public replay for the static System 2 demo.
 
+Reads the frozen case traces listed in ``CASES`` and writes
+``web/assets/system2-<case>.json`` with only the cited facts, checks and tool
+calls the static demo needs. Takes no options.
+
+Usage::
+
+    uv run python scripts/export_submission_demo.py
+"""
+
+import argparse
 import json
 from pathlib import Path
 
@@ -72,6 +82,11 @@ def export(case: str, source: Path) -> None:
     print(f"{target.relative_to(ROOT)}: {len(checks)} checks, {len(selected_ids)} cited facts")
 
 
-if __name__ == "__main__":
+def main() -> None:
+    argparse.ArgumentParser(description=__doc__.splitlines()[0]).parse_args()
     for case, source in CASES.items():
         export(case, source)
+
+
+if __name__ == "__main__":
+    main()

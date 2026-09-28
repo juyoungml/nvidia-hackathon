@@ -1,21 +1,38 @@
+# Secrets: keep .env local; .env.example is the documented template.
 .env
 .env.*
 !.env.example
+
+# Python
 __pycache__/
-.pytest_cache/
+*.py[cod]
 .venv/
-.artifacts/
-node_modules/
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
 dist/
 build/
+*.egg-info/
+
+# Local run artifacts and scratch
+.artifacts/
+tmp/
 *.db
 *.sqlite*
+
+# Editors / OS
 .DS_Store
+.idea/
+.vscode/
+
+# Tooling
+node_modules/
+.claude/worktrees/
+
+# Never commit private data
 private/
 customer-data/
 company-data/
 submission/drafts/
-
-# Rendered PDF QA intermediates
-/tmp/
-tmp/

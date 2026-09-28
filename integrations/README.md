@@ -1,4 +1,17 @@
-# NeMo Agent Toolkit public replay integration
+# NVIDIA 연동
+
+System 2 (원인 조사, 구현)에 붙인 NVIDIA 도구의 연동 코드와 실행 기록입니다. 전체 구조는 [docs/architecture.md](../docs/architecture.md)를 보세요.
+
+| 연동 | 상태 | 문서·기록 |
+|---|---|---|
+| NeMo Agent Toolkit 1.8.0: 읽기 도구 6종 실행 (`--read-backend nat`) | 구현 (선택 경로). 모델 루프는 `poc/live_investigation.py`가 담당 | [NAT_LIVE.md](NAT_LIVE.md), [동등성 기록](nat-live-smoke.json), [사례 52 실행](nat-live-case52.json) |
+| NeMo Agent Toolkit: 초기 도구 4종 고정 순서 replay | 이전 시험 (모델 호출 없음) | 아래 설명, [trace.json](trace.json) |
+| OpenShell 0.1.2: 읽기만 허용, 쓰기·외부 연결 차단 | 공개 fixture로 별도 시험, 조사 루프에는 미적용 | [openshell-README.md](openshell-README.md), [trace](openshell-trace.json) |
+| Nemotron 3 Ultra 구조화 출력 확인 | 단순 스키마 제약 수용 확인 | 아래 설명, [probe 기록](structured-output-probe.json) |
+
+NAT 의존성은 프로젝트 환경과 분리된 `.artifacts/nat-venv`에 [requirements.lock](requirements.lock)으로 설치합니다.
+
+## NeMo Agent Toolkit public replay integration (초기 4종, 영문)
 
 `nat_replay.py` registers the four existing read-only `poc.run.run_tool` readers as the `public_predist_tools` function group. `public_predist_replay_workflow` invokes the three tools used by the saved Ultra investigation in a fixed order. This is a **deterministic NAT tool execution**, not a NAT model agent run or a new Nemotron inference. The saved [Ultra trace](../poc/trace-52-nvidia-nemotron-3-ultra-550b-a55b.json) remains the evidence of model-selected tool calls. The NAT replay checks that the same public evidence readers can be registered and executed by the toolkit.
 

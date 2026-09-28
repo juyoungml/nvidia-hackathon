@@ -1,43 +1,97 @@
-# System 2 조사 구조
+# 시스템 구조
 
-현재 제출 경로는 사건 발생 후 근거를 조회하는 조사 보조다. 공개 사건을 당시 정보로 재생하며, 자동 제어나 지속 감시는 수행하지 않는다.
+Plant Reliability Agent는 두 단계로 설계했습니다.
 
-## 실행 단계와 경계
+- **System 1 (상시 감시, 계획)**: 설비 계측을 계속 보고 이상 후보를 알람으로 올립니다.
+- **System 2 (원인 조사, 구현)**: 신고나 알람이 들어오면 필요한 자료를 골라 읽어 점검안을 쓰고, **근거 연결 검사**를 통과한 점검안만 엔지니어에게 넘깁니다.
 
-| 단계 | 입력·처리 | 출력·경계 |
+이 저장소에서 구현·평가한 것은 System 2이며, 자동 제어나 설정 변경은 하지 않습니다.
+
+![전체 구조: 현장 데이터, System 1 상시 감시(계획), System 2 원인 조사(구현)](assets/architecture.png)
+
+실선은 구현·데모, 점선은 설계·계획, 녹색 테두리는 NVIDIA 기술입니다. 원본 벡터는 [assets/architecture.svg](assets/architecture.svg)입니다.
+
+## 구현 범위
+
+| 구성 요소 | 상태 | 근거 |
 |---|---|---|
-| 사건 설정 | 공개 replay의 설비 ID, 신고와 결정 시각 | 현재 사건의 사후 진단·조치 제외 |
-| 계획 | hosted NIM Nemotron Ultra가 읽기 도구 선택 | 최대 6회 계획 요청, 유효 인자·시점 범위 검사 |
-| 조회 | 계측·이전 사건·정비 타임라인·신호 정의·시간별 관측·편차 구간 | source ID·field·time·value가 있는 원본 사실 |
-| 관측 반환 | 조회 결과를 Ultra 문맥에 추가 | 추가 조회 또는 종료 선택 |
-| 최종 생성 | 같은 실행에서 실제 조회한 사실로 native schema 점검안 생성 | 최대 3개 점검, 점검당 4개 근거, 최대 12개 고유 사실 |
-| 구성·검수 | 선택한 참조의 합집합에서 관측 목록 구성 | ID·한도·참조 검사, 시간·수치 검수 경고 |
-| 사람 검토 | 원본 관측과 모델의 설명을 함께 표시 | 현장 확인이 필요한 상태와 다음 점검, 자동 설정 변경 없음 |
+| System 2 조사 루프 (Nemotron 3 Ultra, hosted NIM) | 구현·평가 | [poc/live_investigation.py](../poc/live_investigation.py), [32건 평가](../evaluation/cycle5/RESULTS.md) |
+| 읽기 전용 도구 6종 | 구현 | [poc/evidence_contract.py](../poc/evidence_contract.py), [poc/temporal_tools.py](../poc/temporal_tools.py) |
+| NeMo Agent Toolkit 1.8.0 도구 실행 경로 | 구현 (선택) | [integrations/NAT_LIVE.md](../integrations/NAT_LIVE.md) |
+| 근거 연결 검사 | 구현 | [poc/evidence_contract.py](../poc/evidence_contract.py) |
+| OpenShell 0.1.2 격리 실행 | 공개 fixture로 별도 시험, 조사 루프에는 미적용 | [integrations/openshell-README.md](../integrations/openshell-README.md) |
+| System 1: 시계열 전처리 → Nemotron Nano → 알람 | 계획 | [capacity-model.md](capacity-model.md) |
+| NeMo Retriever 도면·문서 검색 | 계획 | — |
 
-## 모델과 도구의 연결
+## 데이터 소스
 
-`poc/live_investigation.py`가 계획 요청·도구 반환·최종 생성을 관리한다. `direct` backend는 공개 Python reader를 호출한다. `nat` backend는 같은 reader를 NeMo Agent Toolkit 1.8.0 FunctionGroup과 workflow를 통해 실행한다. NAT가 전체 모델 오케스트레이션을 수행한다고 표현하지 않는다.
+설계상 현장 데이터는 네 가지입니다.
 
-[직접/NAT 동등성 시험](../integrations/nat-live-smoke.json)은 6개 reader의 반환값과 사실 해시를 대조한다. [실제 NAT 개발 실행](../integrations/nat-live-case52.json)은 모델이 선택한 6개 조회와 native 최종 생성의 연결을 확인한다. 이 실행은 고정 Cycle 4 점수에 추가하지 않는다. 설치와 재현은 [NAT_LIVE.md](../integrations/NAT_LIVE.md)를 따른다.
+| 소스 | 내용 | 현재 데모 |
+|---|---|---|
+| 도면 문서 | P&ID, 로직 다이어그램 | 미사용 (NeMo Retriever 계획) |
+| TM | 기술 메모, 과거 이상 신고 | PreDist 과거 고장 신고(`faults.csv`)로 대체 |
+| WO | 작업 지시, 정비 기록 | PreDist 장애·정비 기록(`disturbances.csv`)으로 대체 |
+| 트렌드 | 센서 시계열 | PreDist 계측 (신고 전 24시간, 10분 간격) |
 
-## 종료와 실패 처리
+데모는 공개 PreDist v2의 계측·고장 신고·정비 기록만 사용합니다. 출처와 라이선스는 [data-sources.md](data-sources.md)와 [../data/README.md](../data/README.md)에 있습니다.
 
-`explicit_finish_v1`은 모델의 명시적 종료 도구 호출 후에만 최종 계획을 만든다. 고정 Cycle 4의 두 실패는 6개 유효 조회 후 종료 요청 슬롯이 남지 않아 발생했다.
+## System 2 (원인 조사, 구현)
 
-`bounded_finalize_v2`는 유효 조회를 마친 뒤 계획 한도가 끝난 경우 기존 총 예산 6+1 안에서 최종 생성을 수행한다. `planning_cap_handoff`, `investigation_budget_exhausted`와 검토 안내를 기록한다. 이 상태는 근거 충분성을 보장하지 않는다. 잘못된 인자·시점 위반·공급자 오류는 결과를 보류한다.
+### 실행 단계
 
-## 근거 검증의 범위
+| 단계 | 처리 | 경계 |
+|---|---|---|
+| 사건 설정 | 공개 사건 입력(`data/*.json`)에서 설비 ID, 신고 분류, 결정 시각을 읽음 | 현재 사건의 사후 진단·조치는 입력에서 제외 |
+| 계획 | Nemotron 3 Ultra가 도구를 골라 호출 | 계획 요청 최대 6회, 인자·시점 범위를 검사하고 잘못된 요청은 결과 보류 |
+| 조회 | 선택된 도구가 공개 자료를 읽음 | 결정 시각 이전 자료만, 각 결과는 source ID·필드·시각·값이 있는 사실(fact)로 변환 |
+| 최종 생성 | 같은 실행에서 조회한 사실만으로 구조화된 점검안 작성 | 점검 2~3개, 점검당 근거 1~4개, 고유 근거 최대 12개 |
+| 근거 연결 검사 | 점검안의 ID·한도·인용을 검사 | 실패하면 점검안을 표시하지 않음 |
+| 엔지니어 검토 | 점검안과 원본 기록을 함께 표시 | 현장 확인이 필요한 항목만 제안, 자동 설정 변경 없음 |
 
-프로그램이 표시하는 관측은 원본 값과 연결된다. 모델은 점검 이유를 작성한다. 근거 ID의 유효성, 단위나 시각 토큰 일치 여부만으로 설명 전체의 사실성을 판정할 수는 없다. 검수 경고와 별도 내용 평가를 제시하며, 원본 trace를 사후 수정하지 않는다.
+### 읽기 전용 도구 6종
 
-시점별 paired reading과 편차 구간은 극값을 시간 변화로 오해하지 않도록 조사할 자료를 제공한다. 2°C는 설명용 편차 임계값이다. 운전 정상 범위·고장 임계값·인과관계로 사용하지 않는다. 최대 24개 행의 구간 조회와 결측·불규칙 간격 표시를 적용한다.
+| 도구 | 읽는 자료 |
+|---|---|
+| `get_recent_measurements` | 신고 전 계측 요약 |
+| `get_signal_definitions` | 센서 정의 (1차측/2차측, 난방/급탕 구분, 정상 범위 부재 명시) |
+| `get_prior_incidents` | 같은 설비의 과거 신고 |
+| `get_maintenance_timeline` | 같은 설비의 장애·정비 기록 (시각이 해결을 뜻하지 않음을 명시) |
+| `get_temporal_episodes` | 공급온도·설정값 편차 구간과 정확한 시작·끝 값 |
+| `query_measurement_window` | 지정 시간 창의 계측 행 (최대 24행, 더 긴 요청은 최근 24행으로 잘라 반환하고 잘림을 표시) |
+
+2°C 편차 기준은 설명용이며 운전 정상 범위나 고장 임계값이 아닙니다. 모델에는 "공급온도가 설정값을 따른다고 실내 난방이 된 것은 아니다" 같은 데이터 한계 목록도 함께 주어, 점검안에 데이터로 알 수 없는 것을 표시하게 합니다.
+
+### 모델과 도구의 연결
+
+`poc/live_investigation.py`가 계획 요청, 도구 실행, 최종 생성을 관리합니다. Ultra 호출은 NVIDIA hosted NIM의 chat completions API(`integrate.api.nvidia.com`)로 보냅니다.
+
+- `--read-backend direct`: 도구를 Python 함수로 직접 호출합니다.
+- `--read-backend nat`: 같은 도구를 NeMo Agent Toolkit 1.8.0의 function group(`public_predist_live_tools`)과 workflow로 실행합니다. NAT는 선택된 도구를 실행할 뿐 모델 루프를 돌리지 않습니다.
+
+[직접/NAT 동등성 기록](../integrations/nat-live-smoke.json)은 도구 6종의 반환값과 사실 해시가 두 경로에서 같음을 확인합니다. [NAT 개발 실행 기록](../integrations/nat-live-case52.json)은 모델이 고른 조회 6회가 NAT로 실행되고 최종 점검안까지 이어지는 것을 보여 줍니다. 이 실행은 평가 점수에 포함하지 않습니다.
+
+### 종료 정책
+
+`--handoff-policy`는 필수입니다.
+
+- `explicit_finish_v1`: 모델이 `finish_investigation`을 호출했을 때만 최종 점검안을 만듭니다.
+- `bounded_finalize_v2`: 위에 더해, 유효한 조회로 계획 한도 6회를 모두 쓴 경우에도 모은 자료로 최종 점검안을 한 번 요청합니다. 이때 `planning_cap_handoff`와 `investigation_budget_exhausted`를 기록하며, 근거가 충분하다는 뜻은 아닙니다.
+
+잘못된 도구 인자, 시점 위반, API 오류는 결과를 보류합니다. API 오류는 `NVIDIA_HTTP_RETRIES`로 같은 요청을 재시도할 수 있습니다(HTTP 429/500/502/503).
+
+### 근거 연결 검사의 범위
+
+검사는 점검안이 스키마에 맞는지, 인용한 근거 ID가 이번 실행에서 실제로 조회한 사실인지, 필요한 자료를 읽었는지를 확인합니다. 시각·수치 표현이 인용 사실과 어긋나 보이면 검토 경고를 붙이지만 이는 휴리스틱입니다. 인용이 설명을 실제로 뒷받침하는지, 진단이 맞는지는 판정하지 않으며 원본 trace는 사후 수정하지 않습니다.
+
+## System 1 (상시 감시, 계획)
+
+트렌드 데이터를 시계열 전처리로 요약해 이상 후보를 만들고, Nemotron Nano가 후보를 선별·우선순위화해 알람 또는 조사 요청을 System 2로 넘기는 구조입니다. 현재 구현은 없으며, 5만 신호 × 100ms 기준 처리량과 호출 예산 가정은 [capacity-model.md](capacity-model.md)에 있습니다.
 
 ## 데이터·보안
 
-회사·고객 자료를 사용하지 않는다. hosted 요청은 공개 PreDist 사건과 공개 자료에서 파생한 사실만 포함한다. 키는 로컬 `.env`에 보관하고 release allowlist에서 제외한다. 로컬 서버는 공개 파일만 제공한다. 제출 패키지는 비밀 패턴·개인 경로 검사와 깨끗한 압축 해제 후 시험을 거친다.
-
-OpenShell은 공개 fixture의 읽기·쓰기·직접 TCP 정책을 별도 시험한 상태다. 전체 모델 루프의 파일·네트워크 보호나 사내 배포를 검증하지 않았다. 권한별 사내 검색과 실제 설비 연결은 후속 운영 설계다.
-
-## 후속 구조
-
-System 1의 지속 감시와 24시간 전 선제 대응, Nano 검색 재정렬, NeMo Retriever 인덱싱은 현재 제출 경로의 필수 단계가 아니다. 충분한 후보 자료·측정 과제·성능 근거를 확보한 후 추가한다. DOE 증기 계통도는 독립 문서 예시이고 PreDist와 자동 연결되지 않는다.
+- 회사·고객 자료를 쓰지 않습니다. hosted 요청에는 공개 PreDist 사건과 거기서 파생한 사실만 들어갑니다.
+- API 키는 로컬 `.env`에만 두며 git과 제출 ZIP에서 제외합니다.
+- 로컬 데모 서버는 localhost에만 바인딩하고 공개 파일만 제공합니다.
+- OpenShell은 공개 fixture에 대해 허용된 읽기 통과와 읽기·쓰기·직접 TCP 차단을 확인한 별도 시험입니다. 전체 조사 루프나 사내 배포의 보호를 검증한 것은 아닙니다.
+- 설계상 목표는 현장 내부(DGX Spark 등) 배포이며, 그림의 "Ultra 기준 3~4대"는 추정입니다.
