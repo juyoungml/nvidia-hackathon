@@ -47,25 +47,27 @@ python3 scripts/serve_demo.py --port 8771
              [엔지니어]  검토 후 현장 확인
 ```
 
-1차측/2차측 유량, 공급온도/실내 온도처럼 헷갈리기 쉬운 구분은 도구 단계에서 처리합니다. 자세한 설계는 [ARCHITECTURE.md](ARCHITECTURE.md)에 있습니다.
+1차측/2차측 유량, 공급온도/실내 온도처럼 헷갈리기 쉬운 구분은 도구 단계에서 처리합니다. 자세한 설계는 [docs/architecture.md](docs/architecture.md)에 있습니다.
 
 | NVIDIA 기술 | 맡은 일 | 상태 | 확인할 곳 |
 |---|---|---|---|
-| Nemotron 3 Ultra (NIM) | 도구 6종 중 무엇을 읽을지 고르고, 결과를 비교해 구조화된 점검안 작성 | 모든 데모의 핵심 경로 | [ARCHITECTURE.md](ARCHITECTURE.md) |
+| Nemotron 3 Ultra (NIM) | 도구 6종 중 무엇을 읽을지 고르고, 결과를 비교해 구조화된 점검안 작성 | 모든 데모의 핵심 경로 | [docs/architecture.md](docs/architecture.md) |
 | NeMo Agent Toolkit 1.8.0 | 읽기 도구 6종 등록·실행 (계획 루프는 자체 Python) | 연동 완료 (`--read-backend nat`) | [NAT 연동](integrations/NAT_LIVE.md) |
 | OpenShell 0.1.2 | 허용된 읽기만 통과, 쓰기·외부 연결 차단 | 별도 시험 완료 (전체 경로에는 미적용) | [OpenShell 시험](integrations/openshell-README.md) |
-| Nemotron Nano, NeMo Retriever | 상시 감시·재정렬, 문서·도면 검색 | 계획 | [ARCHITECTURE.md](ARCHITECTURE.md) |
+| Nemotron Nano, NeMo Retriever | 상시 감시·재정렬, 문서·도면 검색 | 계획 | [docs/architecture.md](docs/architecture.md) |
 
 ## 저장소 구성
 
 | 경로 | 내용 |
 |---|---|
 | `poc/` | 에이전트 본체: 조사 루프(`live_investigation.py`), 시점별 도구, 근거 연결 규칙 |
-| `evaluation/` | 비교 실험 스크립트와 결과 ([4건 비교](evaluation/cycle4/RESULTS.md), [내용 평가](evaluation/readiness/content-review/v2/CONTENT_RESULTS.md)) |
+| `evaluation/` | 비교 실험 스크립트와 결과 ([32건 평가](evaluation/cycle5/RESULTS.md), [4건 비교](evaluation/cycle4/RESULTS.md), [내용 평가](evaluation/readiness/content-review/v2/CONTENT_RESULTS.md)) |
 | `integrations/` | NeMo Agent Toolkit 연동, OpenShell 정책과 실행 기록 |
 | `web/` | 정적 데모 화면 (소개, System 2 조사 화면) |
 | `data/` | 공개 PreDist v2에서 만든 사건 입력 JSON ([설명](data/README.md)) |
-| `submission/` | 보고서, 발표 슬라이드, 데모 영상, 제출 안내 ([SUBMISSION_GUIDE.md](submission/SUBMISSION_GUIDE.md)) |
+| `submission/` | 보고서, 발표 슬라이드, 제출 안내, 제출 ZIP 빌더 ([SUBMISSION_GUIDE.md](submission/SUBMISSION_GUIDE.md)) |
+| `docs/` | 구조 설명, System 1 처리량 계산, 데이터 출처, 준비 과정 메모(`docs/archive/`) ([목차](docs/README.md)) |
+| `figures/` | 평가 결과 그림 |
 | `tests/` | 데이터·접근 경계·조회 예산·근거 참조 회귀 시험 |
 | `scripts/` | 데모 서버, 사건 입력 생성, NVIDIA API 확인 등 보조 스크립트 |
 

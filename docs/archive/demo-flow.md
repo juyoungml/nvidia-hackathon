@@ -7,8 +7,8 @@
 | 순서 | 심사위원에게 보여줄 행동 | 핵심 문장 | 현재 상태 |
 | --- | --- | --- | --- |
 | 1. Signal watch | 신고와 24시간 계측을 비교하고 사건을 선택 | 센서가 정상처럼 보여도 고객 신고가 조사 이유가 된다. 작은 Nemotron Nano 또는 규칙이 좁은 선별 질문을 맡는다. | 설계. 실시간 ingest·Nano 선별 미구현 |
-| 2. Evidence map | [현재 UI](web/index.html)에서 TT-21을 누른 뒤 고객 측 점선 bbox 선택 | 관측한 설비측 공급과 모르는 고객측 열전달을 같은 도면에서 분리한다. | 실행 가능한 UI. bbox는 수동 지정, 도면은 예시 |
-| 3. Ultra investigation | [저장된 trace](poc/trace-52-nvidia-nemotron-3-ultra-550b-a55b.json)의 세 읽기 전용 도구 호출과 출처 확인 | Ultra는 원인 단정보다 출처가 있는 다음 점검을 만든다. 알려지지 않은 신호 태그는 경고로 남긴다. | 공개 사건 한 건 실행 |
+| 2. Evidence map | [현재 UI](../../web/index.html)에서 TT-21을 누른 뒤 고객 측 점선 bbox 선택 | 관측한 설비측 공급과 모르는 고객측 열전달을 같은 도면에서 분리한다. | 실행 가능한 UI. bbox는 수동 지정, 도면은 예시 |
+| 3. Ultra investigation | [저장된 trace](../../poc/trace-52-nvidia-nemotron-3-ultra-550b-a55b.json)의 세 읽기 전용 도구 호출과 출처 확인 | Ultra는 원인 단정보다 출처가 있는 다음 점검을 만든다. 알려지지 않은 신호 태그는 경고로 남긴다. | 공개 사건 한 건 실행 |
 | 4. Engineer review | 제안·근거·결측을 보고 승인 또는 수정 | 현장 조치의 최종 판단은 사람에게 있다. | 설계. 승인 워크플로 미구현 |
 | 5. Economics bench | 기준선과 agent-assisted 식별 시간을 비교 | 식별 시간은 실험으로 측정하고 MWh·금액은 가정을 분리해 계산한다. | 설계. 실측 개선치 없음 |
 

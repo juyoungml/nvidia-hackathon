@@ -1,7 +1,7 @@
 # 온라인 신청서 초안
 
 서비스명: **Plant Reliability Agent** (가칭)
-팀명: 제출 전 입력 필요
+팀명: **Sona**
 팀원: 2~5인 구성 및 각 구성원의 개별 신청 확인 필요
 
 ## 해결하고자 했던 문제 — 300자 내외
@@ -26,6 +26,6 @@ Plant Reliability Agent는 두 부분으로 설계했습니다. System 1은 항�
 
 파일 하나, 최대 100 MB. 최종 System2 ZIP에는 코드·공개 데모·발표 슬라이드·설명 Markdown·실행 근거를 함께 넣습니다. README부터 확인할 수 있으며 API 키 없이 저장 실행을 탐색합니다. 실제 API 재실행은 별도 키와 인증이 필요합니다. 이전 PDF·영상은 최신 제출 파일로 사용하지 않습니다.
 
-파일명은 제출 전에 `NVIDIA 해커톤_실제팀명_Plant Reliability Agent.zip`으로 변경합니다. private GitHub 링크만 단독 제출하지 않습니다. 선택 URL은 외부 접근을 실제 확인한 주소가 있을 때만 입력합니다. 현재 localhost 주소는 심사위원에게 공유할 공개 URL이 아닙니다.
+제출 파일: `submission/NVIDIA 해커톤_Sona_Plant Reliability Agent.zip`. 데모 URL: http://juyoung.site/nvidia-hackathon/ · 저장소: https://github.com/juyoungml/nvidia-hackathon
 
 이 문서는 입력 초안이며 신청 완료가 아닙니다. 개인정보 동의와 각 구성원의 신청은 직접 진행해야 합니다.

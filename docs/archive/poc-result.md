@@ -1,8 +1,8 @@
 # Current result checkpoint — 2026-09-28
 
-The current evidence is [evaluation/results/README.md](evaluation/results/README.md) and its preserved trace set: three actual PreDist complaints on the same substation and two separately labeled derived probes. Local Nano schema-v2 triage and hosted Ultra run end to end. The three real complaints all escalated, just as the keyword rule did. The no-report probe produced an invented service-loss rationale, so Nano's incremental value is not established. Citation coverage is incomplete: case 52 omits the measurement source and case 32 omits the current complaint source. No undefined tags in the four investigation answers does not imply full grounding.
+The current evidence is [evaluation/results/README.md](../../evaluation/results/README.md) and its preserved trace set: three actual PreDist complaints on the same substation and two separately labeled derived probes. Local Nano schema-v2 triage and hosted Ultra run end to end. The three real complaints all escalated, just as the keyword rule did. The no-report probe produced an invented service-loss rationale, so Nano's incremental value is not established. Citation coverage is incomplete: case 52 omits the measurement source and case 32 omits the current complaint source. No undefined tags in the four investigation answers does not imply full grounding.
 
-NAT 1.8.0 executed a separate deterministic replay of three registered public tools. [OpenShell 0.1.2](integrations/openshell-README.md) enforced allowed reading and denied file read/write/direct TCP in an isolated public-fixture test. Neither result means the full model pipeline runs under NAT or OpenShell. The original one-case notes below are preserved as history; latest results supersede their completion status.
+NAT 1.8.0 executed a separate deterministic replay of three registered public tools. [OpenShell 0.1.2](../../integrations/openshell-README.md) enforced allowed reading and denied file read/write/direct TCP in an isolated public-fixture test. Neither result means the full model pipeline runs under NAT or OpenShell. The original one-case notes below are preserved as history; latest results supersede their completion status.
 
 # POC result — public energy-equipment incident replay
 
@@ -25,12 +25,12 @@ At the report time, a customer says there is no heat, but the published sensor a
 - Dataset: [PreDist v2](https://zenodo.org/records/19496480), CC BY 4.0, manufacturer 1, district-heating substation 21.
 - Decision time: 2016-12-12 15:55; reported problem category: `no heat`.
 - Agent-visible: 144 measurements in the preceding 24 hours, prior incident report dated 2016-12-06, and earlier disturbance timestamps.
-- Held out: the current incident's retrospective diagnosis and remedy in [held-out-52.json](evaluation/held-out-52.json). The agent code reads only [replay-52.json](data/replay-52.json).
+- Held out: the current incident's retrospective diagnosis and remedy in [held-out-52.json](../../evaluation/held-out-52.json). The agent code reads only [replay-52.json](../../data/replay-52.json).
 - No employer/customer data or source repository was used. This is a district-heating substation, not an electric power station.
 
 ## What ran
 
-The [POC runner](poc/run.py) called `nvidia/nemotron-3-ultra-550b-a55b` through NVIDIA's hosted NIM API. The model called three read-only tools: `get_recent_measurements`, `get_prior_incidents`, and `get_maintenance_timeline`. Its [saved trace](poc/trace-52-nvidia-nemotron-3-ultra-550b-a55b.json) records the model/tool sequence and cited source IDs. The three model requests took 12.8 seconds in this single run; this is an observation, not a latency benchmark.
+The [POC runner](../../poc/run.py) called `nvidia/nemotron-3-ultra-550b-a55b` through NVIDIA's hosted NIM API. The model called three read-only tools: `get_recent_measurements`, `get_prior_incidents`, and `get_maintenance_timeline`. Its [saved trace](../../poc/trace-52-nvidia-nemotron-3-ultra-550b-a55b.json) records the model/tool sequence and cited source IDs. The three model requests took 12.8 seconds in this single run; this is an observation, not a latency benchmark.
 
 The output correctly identified the key evidence gap: the measured secondary heating supply follows its setpoint (mean absolute gap 0.31 °C; 144/144 samples within 2 °C), but there is no room/radiator temperature or secondary circuit flow to prove that heat reached the customer. It cited the earlier report that the heating curve was raised on 2016-12-06 and suggested checking customer-side conditions. It did not consistently prioritize the controller settings that the later report identified.
 
@@ -39,7 +39,7 @@ The later report records an incorrect controller parameter setting and a reset. 
 ## Failures observed
 
 - Initial Nemotron 3.5 Lightning hosted tool-call request returned an agent service error; Nemotron 3 Super returned HTTP 500. Plain text authentication with Lightning succeeded. This may be endpoint/runtime-specific, and it is not evidence that the models lack tool-call capability.
-- Local Nemotron 3 Nano 4B called tools but produced an invalid comparison between outdoor and supply temperatures. That [trace](poc/trace-52-ollama-nemotron-3-nano-4b.json) is retained as a failure case.
+- Local Nemotron 3 Nano 4B called tools but produced an invalid comparison between outdoor and supply temperatures. That [trace](../../poc/trace-52-ollama-nemotron-3-nano-4b.json) is retained as a failure case.
 - The first Ultra draft confused primary and secondary signal names and speculated about component faults. We changed tool outputs to include explicit side labels and prohibited unsupported component claims. The current trace is better, but it still suggests `s_hc1_flow` and `s_hc1_valve_position` tags that are not in the published feature list. These must be phrased as **measurements to obtain**, not existing signals. The runner now flags undefined signal names.
 
 These failures are why the product needs source-aware tool schemas and an output check before any external claim. One successful case does not establish reliability.

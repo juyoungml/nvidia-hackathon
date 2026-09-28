@@ -1,7 +1,7 @@
 {
-  "archive": "submission/NVIDIA_해커톤_팀명미정_Plant_Reliability_Agent_System2.zip",
-  "zip_bytes": 2331119,
-  "zip_sha256": "1448daa9e4491c280c3b76e0fb3d35495acfb58b2ddd73222fe59e7cabd78dbe",
+  "archive": "submission/NVIDIA 해커톤_Sona_Plant Reliability Agent.zip",
+  "zip_bytes": 2325669,
+  "zip_sha256": "84af59d8f1d58644dd81595db6cc1a64c9a99917d831f64c1ff9bcb17d630f96",
   "public_http": [
     "/web/",
     "/web/system2.html",
@@ -30,7 +30,7 @@
   "excluded_new_outcome_directory": "evaluation/holdout-outcomes/",
   "archive_entries": 232,
   "manifest_files_verified": 231,
-  "manifest_sha256": "9c3f01b86c0a27447c9a224d5fe61be8cdbd629727c8de81f3725f01175db97c",
+  "manifest_sha256": "f0d1c000f05bb950fb84f930ebb26ec718b110ada3fc141f184433a59be6d8ab",
   "markdown_links": "pass",
   "clean_extract_http": "pass",
   "clean_extract_unittest": [

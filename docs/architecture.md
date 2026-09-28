@@ -18,7 +18,7 @@
 
 `poc/live_investigation.py`가 계획 요청·도구 반환·최종 생성을 관리한다. `direct` backend는 공개 Python reader를 호출한다. `nat` backend는 같은 reader를 NeMo Agent Toolkit 1.8.0 FunctionGroup과 workflow를 통해 실행한다. NAT가 전체 모델 오케스트레이션을 수행한다고 표현하지 않는다.
 
-[직접/NAT 동등성 시험](integrations/nat-live-smoke.json)은 6개 reader의 반환값과 사실 해시를 대조한다. [실제 NAT 개발 실행](integrations/nat-live-case52.json)은 모델이 선택한 6개 조회와 native 최종 생성의 연결을 확인한다. 이 실행은 고정 Cycle 4 점수에 추가하지 않는다. 설치와 재현은 [NAT_LIVE.md](integrations/NAT_LIVE.md)를 따른다.
+[직접/NAT 동등성 시험](../integrations/nat-live-smoke.json)은 6개 reader의 반환값과 사실 해시를 대조한다. [실제 NAT 개발 실행](../integrations/nat-live-case52.json)은 모델이 선택한 6개 조회와 native 최종 생성의 연결을 확인한다. 이 실행은 고정 Cycle 4 점수에 추가하지 않는다. 설치와 재현은 [NAT_LIVE.md](../integrations/NAT_LIVE.md)를 따른다.
 
 ## 종료와 실패 처리
 

@@ -16,20 +16,20 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_OUTPUT = ROOT / "submission/NVIDIA_해커톤_팀명미정_Plant_Reliability_Agent_System2.zip"
+DEFAULT_OUTPUT = ROOT / "submission/NVIDIA 해커톤_Sona_Plant Reliability Agent.zip"
 MANIFEST_NAME = "submission/RELEASE_MANIFEST.json"
 MAX_ZIP_BYTES = 100 * 1024 * 1024
 # Every release input is named here. Keep outcomes, private run directories and old media out.
 PUBLIC_FILES = (
     "README.md",
-    "ARCHITECTURE.md",
-    "CAPACITY_MODEL.md",
-    "DATA_SOURCES.md",
-    "DEMO_FLOW.md",
-    "POC_RESULT.md",
-    "PLAN.md",
-    "STRATEGY.md",
-    "WORKING_BRIEF.md",
+    "docs/architecture.md",
+    "docs/capacity-model.md",
+    "docs/data-sources.md",
+    "docs/archive/demo-flow.md",
+    "docs/archive/poc-result.md",
+    "docs/archive/plan.md",
+    "docs/archive/strategy.md",
+    "docs/archive/working-brief.md",
     "pyproject.toml",
     "uv.lock",
     "data/README.md",
@@ -198,11 +198,9 @@ PUBLIC_FILES = (
     "evaluation/cycle5/run_cycle5.py",
     "evaluation/cycle5/summarize.py",
     "evaluation/cycle5/make_figure.py",
-    "submission/CASE_STORY.md",
     "submission/DEMO_SCRIPT.md",
     "submission/FORM_DRAFT.md",
     "submission/REPORT.md",
-    "submission/REVIEW_RESPONSE.md",
     "submission/SUBMISSION_GUIDE.md",
     "submission/build_bundle.py",
     "submission/slides/Plant_Reliability_Agent_submission.pptx",

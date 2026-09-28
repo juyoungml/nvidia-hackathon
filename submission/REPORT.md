@@ -22,7 +22,7 @@ NVIDIA 스택: Nemotron 3 Ultra(NIM)가 도구를 고르고 점검안을 쓰며,
 |---|---|---|
 | 하는 일 | 트렌드 데이터를 늘 보고 이상을 알린다 | 문제가 생기면 도면·TM·WO·트렌드를 연결해 원인 파악을 돕고, 다음 점검을 근거와 함께 제안한다 |
 | 요구 | 신호 5만 개 × 0.1초 = 초당 50만 관측값, 낮은 지연, 작은 모델(Nemotron Nano 등) | 여러 자료를 깊게 읽고 추론, 근거 추적 |
-| 상태 | 설계와 이전 소규모 실험 단계([처리량 모델](../CAPACITY_MODEL.md), [이전 Nano 실험](../web/investigation.html)) | **이번에 구현·평가한 부분** (Nemotron 3 Ultra) |
+| 상태 | 설계와 이전 소규모 실험 단계([처리량 모델](../docs/capacity-model.md), [이전 Nano 실험](../web/investigation.html)) | **이번에 구현·평가한 부분** (Nemotron 3 Ultra) |
 
 왜 나눴나: 상시 감시는 빠르고 가벼워야 하고, 원인 조사는 깊게 읽어야 한다. 초당 50만 관측값은 큰 모델에 그대로 보낼 수 없다. 시계열 코드가 이상 후보를 추리고, 작은 모델이 우선순위를 정하고, 큰 모델은 선별된 사건만 조사한다. 처리량 모델의 예시 가정(측정 아님)에서는 모든 구간을 Ultra로 보내면 분당 6,000 요청, 전처리와 Nano 선별 후에는 분당 약 6 요청이다.
 
@@ -111,10 +111,10 @@ Ultra가 놓친 2건은 모두 조회 6회를 다 쓰고 나서 조사 종료를
 
 | 기술 | 이 프로젝트에서 맡은 일 | 상태 | 확인할 곳 |
 |---|---|---|---|
-| **Nemotron 3 Ultra** (NVIDIA NIM 호스팅 API, `nvidia/nemotron-3-ultra-550b-a55b`) | 에이전트의 두뇌. 읽기 전용 도구 6종 중 무엇을 부를지 고르고(tool calling), 최대 6번의 계획 요청으로 결과를 비교한 뒤, 최종 점검안을 JSON 스키마 구조화 출력으로 쓴다. 모든 요청·도구 결과·근거 검사를 기록한다. | 모든 데모 실행의 핵심 경로 | [실행 코드](../poc/live_investigation.py), [사례 52 기록](../poc/trace-52-nvidia-nemotron-3-ultra-550b-a55b.json), [구조](../ARCHITECTURE.md) |
+| **Nemotron 3 Ultra** (NVIDIA NIM 호스팅 API, `nvidia/nemotron-3-ultra-550b-a55b`) | 에이전트의 두뇌. 읽기 전용 도구 6종 중 무엇을 부를지 고르고(tool calling), 최대 6번의 계획 요청으로 결과를 비교한 뒤, 최종 점검안을 JSON 스키마 구조화 출력으로 쓴다. 모든 요청·도구 결과·근거 검사를 기록한다. | 모든 데모 실행의 핵심 경로 | [실행 코드](../poc/live_investigation.py), [사례 52 기록](../poc/trace-52-nvidia-nemotron-3-ultra-550b-a55b.json), [구조](../docs/architecture.md) |
 | **NeMo Agent Toolkit (NAT) 1.8.0** | 읽기 도구 6종을 등록하고 실행한다. 키 없이 도는 동등성 시험에서 직접 호출과 결과가 같았고, 별도 사례 52 개발 실행에서 모델이 고른 6번의 조회를 NAT가 실행했으며 점검안이 근거 검사를 통과했다. 계획 루프 자체는 우리 Python 코드다. | 연동 완료 (선택 backend `--read-backend nat`) | [NAT 연동](../integrations/NAT_LIVE.md), [동등성 기록](../integrations/nat-live-smoke.json), [사례 52 기록](../integrations/nat-live-case52.json) |
 | **OpenShell 0.1.2** | 공개 시험 자료로 정책을 따로 시험했다. 허용된 읽기는 통과하고, 비허용 읽기·쓰기·직접 TCP 연결은 막혔다. 전체 추론 경로에는 아직 적용하지 않았다. | 별도 시험 완료 | [시험 설명](../integrations/openshell-README.md), [정책](../integrations/openshell-policy.yaml), [기록](../integrations/openshell-trace.json) |
-| **Nemotron Nano**, **NeMo Retriever** | Nano는 System 1로서 많은 신호를 상시 감시하고 관련 자료를 재정렬하는 역할, Retriever는 문서·도면 검색 역할로 계획했다. 이전 Nano 분류 실험 기록은 남아 있지만 주 경로에는 없다. | 계획 | [구조](../ARCHITECTURE.md), [이전 Nano 실험](../poc/trace-52-ollama-nemotron-3-nano-4b.json) |
+| **Nemotron Nano**, **NeMo Retriever** | Nano는 System 1로서 많은 신호를 상시 감시하고 관련 자료를 재정렬하는 역할, Retriever는 문서·도면 검색 역할로 계획했다. 이전 Nano 분류 실험 기록은 남아 있지만 주 경로에는 없다. | 계획 | [구조](../docs/architecture.md), [이전 Nano 실험](../poc/trace-52-ollama-nemotron-3-nano-4b.json) |
 
 API 키와 회사·고객 자료는 제출물에 없다. PreDist는 CC BY 4.0 공개 데이터다. DOE 증기 계통도는 공개 도면 탐색 예시로만 넣었고 PreDist 설비와는 관계가 없다.
 

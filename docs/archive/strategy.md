@@ -1,8 +1,8 @@
 # 전략 — System 2 조사 보조를 먼저 검증한다
 
-> **제출 패키지 갱신:** 사용자가 코드·랜딩·발표자료의 완성을 요청해 [현재 작업 계획](evaluation/readiness/WORKPLAN.md)으로 범위를 확장했다. 아래 내용은 이전 전략·검토 기록이다. 구현·수치의 최신 기준은 README, submission/REPORT.md와 Cycle 4 및 별도 NAT 개발 실행이다. 이전 “UI·발표 작업 보류” 방침은 이번 요청으로 해제됐다.
+> **제출 패키지 갱신:** 사용자가 코드·랜딩·발표자료의 완성을 요청해 [현재 작업 계획](../../evaluation/readiness/WORKPLAN.md)으로 범위를 확장했다. 아래 내용은 이전 전략·검토 기록이다. 구현·수치의 최신 기준은 README, submission/REPORT.md와 Cycle 4 및 별도 NAT 개발 실행이다. 이전 “UI·발표 작업 보류” 방침은 이번 요청으로 해제됐다.
 
-2026-09-28 사용자 결정. [WORKING_BRIEF.md](WORKING_BRIEF.md)는 범위, [PLAN.md](PLAN.md)는 실행 계약, [마크다운 보고서](submission/REPORT.md)는 내용 검토의 기준이다.
+2026-09-28 사용자 결정. [docs/archive/working-brief.md](working-brief.md)는 범위, [docs/archive/plan.md](plan.md)는 실행 계약, [마크다운 보고서](../../submission/REPORT.md)는 내용 검토의 기준이다.
 
 ## 현재의 제품 약속
 

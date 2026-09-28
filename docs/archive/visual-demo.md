@@ -1,6 +1,6 @@
 # 도면·bbox 시각 데모
 
-현재 상태: [로컬 UI](web/index.html)는 공개 PreDist 사건과 직접 그린 **예시 서브스테이션 계통도**를 연결한다. 가운데 도면의 bbox나 왼쪽 근거 행을 누르면 오른쪽에 출처, 관측값, 부족한 값이 함께 바뀐다. 근거 카드의 문장과 bbox는 팀이 공개 자료를 읽고 수동 작성했으며, 현재 Nemotron 실행 기록에서 자동 생성한 결과가 아니다. 실제 고객 P&ID나 모델이 추출한 bbox를 사용했다는 주장도 하지 않는다.
+현재 상태: [로컬 UI](../../web/index.html)는 공개 PreDist 사건과 직접 그린 **예시 서브스테이션 계통도**를 연결한다. 가운데 도면의 bbox나 왼쪽 근거 행을 누르면 오른쪽에 출처, 관측값, 부족한 값이 함께 바뀐다. 근거 카드의 문장과 bbox는 팀이 공개 자료를 읽고 수동 작성했으며, 현재 Nemotron 실행 기록에서 자동 생성한 결과가 아니다. 실제 고객 P&ID나 모델이 추출한 bbox를 사용했다는 주장도 하지 않는다.
 
 ## 심사위원에게 보여줄 20초 흐름
 
@@ -13,7 +13,7 @@
 
 ## bbox 계약
 
-[hotspots.json](web/hotspots.json)은 `id`, `title`, `status`, `[x, y, width, height]` 정규화 좌표, `source`, `provenance`, `known`, `unknown`을 가진다. 현재 좌표는 자체 제작 SVG에 수동으로 그렸다. 화면 크기가 달라져도 이미지와 bbox가 같은 종횡비로 확대된다. `observed`, `missing`, `context`는 색과 텍스트로 함께 구분한다. 클릭한 bbox와 근거 목록 행이 같은 ID를 선택해야 한다.
+[hotspots.json](../../web/hotspots.json)은 `id`, `title`, `status`, `[x, y, width, height]` 정규화 좌표, `source`, `provenance`, `known`, `unknown`을 가진다. 현재 좌표는 자체 제작 SVG에 수동으로 그렸다. 화면 크기가 달라져도 이미지와 bbox가 같은 종횡비로 확대된다. `observed`, `missing`, `context`는 색과 텍스트로 함께 구분한다. 클릭한 bbox와 근거 목록 행이 같은 ID를 선택해야 한다.
 
 실제 문서로 옮길 때는 `document_id`, `page`, 원본 너비·높이, 좌표계, 추출 모델/버전, OCR 문자열, 연결한 설비·태그, 신뢰도, 사람 검토 상태를 추가한다. **OCR bbox → 태그 연결 → 특정 고장 근거**는 서로 다른 주장이다. 모델이 찾은 상자가 실제 설비를 가리키는지 사람이 검토할 수 있어야 한다.
 
