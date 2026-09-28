@@ -30,3 +30,16 @@ Among Ultra runs that actually reached the model without a provider error, 16/21
 - Model and harness differ between arms; no causal attribution to either.
 - 11 of 32 cases were exposed in earlier cycles; fresh-only numbers are shown separately.
 - Cases now include non-heating complaints (DHW, leakage, noise, other); the tool surface is still the heating-circuit-oriented bundle.
+
+
+## Update after Amendment D (2026-09-29 00:0x KST)
+
+The 11 Ultra cases that had never reached the model were rerun with 1 worker, 12 requests/min and transport-level retry on HTTP 429/500/502/503 (Amendment D). All 11 produced a model result: 10 passed, 1 (case 40) failed with the same `window contains more than 24 rows` tool error.
+
+| | Pass | NVIDIA API errors | Real failures | Fresh 21 |
+|---|---:|---:|---:|---:|
+| Ultra, first attempt | 15/32 | 13 | 4 | 11/21 |
+| Ultra, after API-error reruns (A–D) | **26/32 (81%)** | 0 | 6 (all >24-row window requests: 5, 11, 40, 47, 62, 64) | 18/21 |
+| Claude Code + Sonnet 5 | 32/32 | 0 | 0 | 21/21 |
+
+All 26 plans Ultra completed passed the reference check (no fabricated citations). Ultra wall times after reruns include API back-off waits and are not comparable to Sonnet's. `results.json` and `figures/eval-cycle5.png` are regenerated from all traces.

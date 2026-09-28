@@ -3,8 +3,8 @@
   "files": [
     {
       "path": "README.md",
-      "sha256": "19b9eebe9fd6c4cf42ef60cbffb720e56de90a4938b5f4a4fd0ff7687d20f931",
-      "bytes": 7703
+      "sha256": "21d3cc1eddb683e40effcb5cdb56d2a21f6529ce03f5b01808dae9fce1aeaddd",
+      "bytes": 7681
     },
     {
       "path": "data/README.md",
@@ -363,13 +363,13 @@
     },
     {
       "path": "evaluation/cycle5/PROTOCOL.md",
-      "sha256": "aab3b16c2a7434ad879c4be269c0b1eee351bf83ae7ca469055fb158b87dbb82",
-      "bytes": 4194
+      "sha256": "40726c19e90fbc25b26131683134ed73d1c9cfaff1b705b9905fd3902dec30ec",
+      "bytes": 5380
     },
     {
       "path": "evaluation/cycle5/RESULTS.md",
-      "sha256": "74b999a4665bde007886678bf9b4cedba76b4f5ce2ee7a3efc2f16a7bc76feb2",
-      "bytes": 3397
+      "sha256": "a475a171653887ed5b0aa5b78af56725c295ae355ad37526686ac0dcd36abee3",
+      "bytes": 4304
     },
     {
       "path": "evaluation/cycle5/case-manifest.json",
@@ -378,23 +378,23 @@
     },
     {
       "path": "evaluation/cycle5/make_figure.py",
-      "sha256": "9dff99b269bd81c871d85614c60c8ec52840cc09a1b7f6c36801b045ebf91f2e",
-      "bytes": 4053
+      "sha256": "ba6d0f22fb930337ec900fb2d2cd87b4914ce04abae9851fd487bb82072267b5",
+      "bytes": 4047
     },
     {
       "path": "evaluation/cycle5/results.json",
-      "sha256": "6ba6c2d72648be436e6328cc20425ae87ebd6149ef6c7161bb0d932af7bd9cf5",
-      "bytes": 83577
+      "sha256": "61c55c3bb47b638b3badc23dff648ad4f163f169a12bfa0ba12ff4b995f4d63c",
+      "bytes": 90449
     },
     {
       "path": "evaluation/cycle5/run_cycle5.py",
-      "sha256": "38c6b1e2937b5872e01224f2077ee0c10d0185d10d3f1eaeb89b8e0f7486938c",
-      "bytes": 9736
+      "sha256": "d3be973b8d4c2c55e12c011dbbd18aa851d6c5b1304c70827c71c7e0e0552b2d",
+      "bytes": 9783
     },
     {
       "path": "evaluation/cycle5/summarize.py",
-      "sha256": "0b53ad37cccd55526efef4688b87d83bdfc8938e9335c8ae94ba59e4358f0961",
-      "bytes": 5436
+      "sha256": "3d8da3336efaa7651beb08131aaede13d4b1f3cd74a5ae36ba649fd3e285d4f2",
+      "bytes": 5468
     },
     {
       "path": "evaluation/domain_mcp.py",
@@ -733,8 +733,8 @@
     },
     {
       "path": "figures/eval-cycle5.png",
-      "sha256": "c683473d2c83fb06b3851a40b1efbc3ce8d2c26b6a5a0a45bd607c4a2887ede2",
-      "bytes": 102533
+      "sha256": "1f778c59eb9003b041485896205f110a2848ab9c3ab74cfc840f14d6d889c703",
+      "bytes": 102039
     },
     {
       "path": "integrations/NAT_LIVE.md",
@@ -858,8 +858,8 @@
     },
     {
       "path": "poc/live_investigation.py",
-      "sha256": "8b90e08fc8e7220b1a551c5cd4195c09e38e4e2900797dac1ffb7049da0108c2",
-      "bytes": 29141
+      "sha256": "1e3f396c3ddfea3dc048b001e31619b987741391938d9326374e8f004dd94638",
+      "bytes": 29495
     },
     {
       "path": "poc/rate_limit.py",
@@ -948,8 +948,8 @@
     },
     {
       "path": "submission/REPORT.md",
-      "sha256": "95e346767d594409ee2802c279647dec9578ddb3f69c138f5569ee746dcdcce0",
-      "bytes": 16600
+      "sha256": "9564d0b72f53fb8e7ec710f4f8dae0fe71e71463fada8f6f212d7dbb4b0f4d43",
+      "bytes": 16068
     },
     {
       "path": "submission/SUBMISSION_GUIDE.md",
@@ -963,18 +963,18 @@
     },
     {
       "path": "submission/slides/Plant_Reliability_Agent_submission.pptx",
-      "sha256": "4f447cf6f8083cb8388178bbf681b43576a8f92009f818d3095fbe4d5c7feb66",
-      "bytes": 517559
+      "sha256": "c46dc5398dfc9b873326e56f95ac5104903c1d596df1d67a6320c558bcd176f7",
+      "bytes": 517250
     },
     {
       "path": "submission/slides/VALIDATION.md",
-      "sha256": "b29d7c09104de45188a835e3b06750a910428891287051f4f740046307236aef",
+      "sha256": "6b9b698444cc095b71c394e6875cfa598ef03e513c9c04c4351615b4f77d1929",
       "bytes": 2500
     },
     {
       "path": "submission/slides/build_deck.py",
-      "sha256": "0a8f98fb5692a717eb833d0c48130cbf95ec16adfb2ada44dd1c48e9e0e9e088",
-      "bytes": 33846
+      "sha256": "d2ab9155eb80bfa7e24ae76f8e550b62c5c54aa657487f532fa40ca7b24a809e",
+      "bytes": 34261
     },
     {
       "path": "tests/test_claude_code.py",
@@ -1108,8 +1108,8 @@
     },
     {
       "path": "web/assets/eval-cycle5.png",
-      "sha256": "c683473d2c83fb06b3851a40b1efbc3ce8d2c26b6a5a0a45bd607c4a2887ede2",
-      "bytes": 102533
+      "sha256": "1f778c59eb9003b041485896205f110a2848ab9c3ab74cfc840f14d6d889c703",
+      "bytes": 102039
     },
     {
       "path": "web/assets/predist-record.png",
@@ -1148,8 +1148,8 @@
     },
     {
       "path": "web/index.html",
-      "sha256": "9af9ea0ae292ec2623d38052239c2c21493dadacc4e560ef49321552fc308722",
-      "bytes": 26816
+      "sha256": "a8727b54f229723c7d29efdbc766e97c7bcd2c8069c3d19105b18d06de2c5553",
+      "bytes": 26355
     },
     {
       "path": "web/investigation.css",
@@ -1168,8 +1168,8 @@
     },
     {
       "path": "web/landing.css",
-      "sha256": "4e6def6a8c0955ab1c60b1ac2113df4e790887c735f890b5d2a8c6daa29be8be",
-      "bytes": 19919
+      "sha256": "50e64e1206af40fd460e7c4de2fca11d1102a064c37effaeb466700d84ea4101",
+      "bytes": 20323
     },
     {
       "path": "web/landing.js",

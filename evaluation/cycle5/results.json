@@ -1,6 +1,6 @@
 {
   "cycle": "cycle5",
-  "protocol_sha256": "aab3b16c2a7434ad879c4be269c0b1eee351bf83ae7ca469055fb158b87dbb82",
+  "protocol_sha256": "40726c19e90fbc25b26131683134ed73d1c9cfaff1b705b9905fd3902dec30ec",
   "scope": "single run per arm/case; reference/format contract check, not diagnostic accuracy",
   "summary": {
     "ultra": {
@@ -33,26 +33,26 @@
       "all": {
         "attempted": 32,
         "completed_runs": 32,
-        "valid_output": 16,
-        "pass": 16,
-        "pass_rate_of_completed": 0.5,
-        "provider_errors": 11,
-        "pass_rate_excluding_provider_errors": 0.762,
-        "budget_exhausted": 6,
-        "median_wall_seconds": 28.5,
-        "median_tool_calls": 5.5
+        "valid_output": 26,
+        "pass": 26,
+        "pass_rate_of_completed": 0.812,
+        "provider_errors": 0,
+        "pass_rate_excluding_provider_errors": 0.812,
+        "budget_exhausted": 11,
+        "median_wall_seconds": 59.5,
+        "median_tool_calls": 6.0
       },
       "fresh_only": {
         "attempted": 21,
         "completed_runs": 21,
-        "valid_output": 12,
-        "pass": 12,
-        "pass_rate_of_completed": 0.571,
-        "provider_errors": 7,
+        "valid_output": 18,
+        "pass": 18,
+        "pass_rate_of_completed": 0.857,
+        "provider_errors": 0,
         "pass_rate_excluding_provider_errors": 0.857,
-        "budget_exhausted": 4,
-        "median_wall_seconds": 27.7,
-        "median_tool_calls": 6
+        "budget_exhausted": 7,
+        "median_wall_seconds": 56.2,
+        "median_tool_calls": 7
       }
     },
     "sonnet": {
@@ -233,21 +233,36 @@
           "model": "nvidia/nemotron-3-ultra-550b-a55b",
           "cost_usd": null
         },
-        "ultra_with_provider_rerun": {
-          "trace": "evaluation/cycle5/traces/ultra-rerun2-3.json",
-          "trace_sha256": "0b43a3a5a1d5781830ca0d777a87c5e91fb86b38fbea83a2953bbac1a4717b23",
-          "completed_with_output": false,
-          "reference_format_pass": false,
-          "validation_status": "invalid",
-          "failure_reason": "NVIDIA API HTTP 429",
-          "provider_error": true,
-          "tool_calls": 0,
-          "wall_seconds": 0.22,
+        "ultra-rerun3": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun3-3.json",
+          "trace_sha256": "3257367e2d0d389faf0e4f1f927acff92bf6f8c618128e5b3bc93d5dd30261c9",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 8,
+          "wall_seconds": 98.775,
           "budget_exhausted": false,
-          "finish_reason": null,
+          "finish_reason": "explicit_finish_tool",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun3-3.json",
+          "trace_sha256": "3257367e2d0d389faf0e4f1f927acff92bf6f8c618128e5b3bc93d5dd30261c9",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 8,
+          "wall_seconds": 98.775,
+          "budget_exhausted": false,
+          "finish_reason": "explicit_finish_tool",
           "model": "nvidia/nemotron-3-ultra-550b-a55b",
           "cost_usd": null,
-          "attempts": 3
+          "attempts": 4
         }
       }
     },
@@ -677,21 +692,36 @@
           "model": "nvidia/nemotron-3-ultra-550b-a55b",
           "cost_usd": null
         },
+        "ultra-rerun3": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun3-15.json",
+          "trace_sha256": "1556e1c9f39ad519fe89c6119a01b192ec294625142bb9f4d856c80f594003b6",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 171.853,
+          "budget_exhausted": true,
+          "finish_reason": "planning_cap_handoff",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
         "ultra_with_provider_rerun": {
-          "trace": "evaluation/cycle5/traces/ultra-rerun2-15.json",
-          "trace_sha256": "fc7854abe6d2c3216e62cae1949fbb393250fa52bbb3d2bd89a4b7c50e05cc88",
-          "completed_with_output": false,
-          "reference_format_pass": false,
-          "validation_status": "invalid",
-          "failure_reason": "NVIDIA API HTTP 429",
-          "provider_error": true,
-          "tool_calls": 0,
-          "wall_seconds": 1.674,
-          "budget_exhausted": false,
-          "finish_reason": null,
+          "trace": "evaluation/cycle5/traces/ultra-rerun3-15.json",
+          "trace_sha256": "1556e1c9f39ad519fe89c6119a01b192ec294625142bb9f4d856c80f594003b6",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 171.853,
+          "budget_exhausted": true,
+          "finish_reason": "planning_cap_handoff",
           "model": "nvidia/nemotron-3-ultra-550b-a55b",
           "cost_usd": null,
-          "attempts": 3
+          "attempts": 4
         }
       }
     },
@@ -764,21 +794,36 @@
           "model": "nvidia/nemotron-3-ultra-550b-a55b",
           "cost_usd": null
         },
+        "ultra-rerun3": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun3-23.json",
+          "trace_sha256": "befef8b2d2777f1179f6fec4a6813a0e317964f4642b2f08f0aef3e3bb0f6c13",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 152.664,
+          "budget_exhausted": true,
+          "finish_reason": "planning_cap_handoff",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
         "ultra_with_provider_rerun": {
-          "trace": "evaluation/cycle5/traces/ultra-rerun2-23.json",
-          "trace_sha256": "5c7d6e16f1bf07abd956e3e91ba02e32bb3fc49e023abd6d785b7944e455cffe",
-          "completed_with_output": false,
-          "reference_format_pass": false,
-          "validation_status": "invalid",
-          "failure_reason": "NVIDIA API HTTP 429",
-          "provider_error": true,
-          "tool_calls": 0,
-          "wall_seconds": 1.856,
-          "budget_exhausted": false,
-          "finish_reason": null,
+          "trace": "evaluation/cycle5/traces/ultra-rerun3-23.json",
+          "trace_sha256": "befef8b2d2777f1179f6fec4a6813a0e317964f4642b2f08f0aef3e3bb0f6c13",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 152.664,
+          "budget_exhausted": true,
+          "finish_reason": "planning_cap_handoff",
           "model": "nvidia/nemotron-3-ultra-550b-a55b",
           "cost_usd": null,
-          "attempts": 3
+          "attempts": 4
         }
       }
     },
@@ -908,21 +953,36 @@
           "model": "nvidia/nemotron-3-ultra-550b-a55b",
           "cost_usd": null
         },
-        "ultra_with_provider_rerun": {
-          "trace": "evaluation/cycle5/traces/ultra-rerun2-29.json",
-          "trace_sha256": "03b4edf329690e8d40923b8c57e9403c1d73c42373a7b507740140e4fc4b4d6b",
-          "completed_with_output": false,
-          "reference_format_pass": false,
-          "validation_status": "invalid",
-          "failure_reason": "NVIDIA API HTTP 429",
-          "provider_error": true,
-          "tool_calls": 0,
-          "wall_seconds": 1.805,
+        "ultra-rerun3": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun3-29.json",
+          "trace_sha256": "e1660fb4f15ca87021394ff0b935ce380e2990fe81b306509c6b2e44b7414ad8",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 7,
+          "wall_seconds": 102.742,
           "budget_exhausted": false,
-          "finish_reason": null,
+          "finish_reason": "explicit_finish_tool",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun3-29.json",
+          "trace_sha256": "e1660fb4f15ca87021394ff0b935ce380e2990fe81b306509c6b2e44b7414ad8",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 7,
+          "wall_seconds": 102.742,
+          "budget_exhausted": false,
+          "finish_reason": "explicit_finish_tool",
           "model": "nvidia/nemotron-3-ultra-550b-a55b",
           "cost_usd": null,
-          "attempts": 3
+          "attempts": 4
         }
       }
     },
@@ -1166,21 +1226,36 @@
           "model": "nvidia/nemotron-3-ultra-550b-a55b",
           "cost_usd": null
         },
+        "ultra-rerun3": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun3-37.json",
+          "trace_sha256": "f3af823bfefdbe25cbe60f7091d6a8df80501ff72984dc02dc4be51f335129d5",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 130.931,
+          "budget_exhausted": true,
+          "finish_reason": "planning_cap_handoff",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
         "ultra_with_provider_rerun": {
-          "trace": "evaluation/cycle5/traces/ultra-rerun2-37.json",
-          "trace_sha256": "f23f611f5dd28e57dd47fd1cd732f5f36e7a11d38c6ef9726103279ef0b1a8c1",
-          "completed_with_output": false,
-          "reference_format_pass": false,
-          "validation_status": "invalid",
-          "failure_reason": "NVIDIA API HTTP 429",
-          "provider_error": true,
-          "tool_calls": 0,
-          "wall_seconds": 1.696,
-          "budget_exhausted": false,
-          "finish_reason": null,
+          "trace": "evaluation/cycle5/traces/ultra-rerun3-37.json",
+          "trace_sha256": "f3af823bfefdbe25cbe60f7091d6a8df80501ff72984dc02dc4be51f335129d5",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 130.931,
+          "budget_exhausted": true,
+          "finish_reason": "planning_cap_handoff",
           "model": "nvidia/nemotron-3-ultra-550b-a55b",
           "cost_usd": null,
-          "attempts": 3
+          "attempts": 4
         }
       }
     },
@@ -1310,21 +1385,36 @@
           "model": "nvidia/nemotron-3-ultra-550b-a55b",
           "cost_usd": null
         },
-        "ultra_with_provider_rerun": {
-          "trace": "evaluation/cycle5/traces/ultra-rerun2-40.json",
-          "trace_sha256": "1c8ebb8e279519ab8427f81ae18950cf44c83b4231e132abfab2ac5f06db1b79",
+        "ultra-rerun3": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun3-40.json",
+          "trace_sha256": "621bbe44d17aa819c7430c2327cfb0289470a931c684821a1a1b4f1f627bf9df",
           "completed_with_output": false,
           "reference_format_pass": false,
           "validation_status": "invalid",
-          "failure_reason": "NVIDIA API HTTP 429",
-          "provider_error": true,
-          "tool_calls": 0,
-          "wall_seconds": 1.677,
+          "failure_reason": "window contains more than 24 rows",
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 85.921,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun3-40.json",
+          "trace_sha256": "621bbe44d17aa819c7430c2327cfb0289470a931c684821a1a1b4f1f627bf9df",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "window contains more than 24 rows",
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 85.921,
           "budget_exhausted": false,
           "finish_reason": null,
           "model": "nvidia/nemotron-3-ultra-550b-a55b",
           "cost_usd": null,
-          "attempts": 3
+          "attempts": 4
         }
       }
     },
@@ -1397,21 +1487,36 @@
           "model": "nvidia/nemotron-3-ultra-550b-a55b",
           "cost_usd": null
         },
-        "ultra_with_provider_rerun": {
-          "trace": "evaluation/cycle5/traces/ultra-rerun2-44.json",
-          "trace_sha256": "295f491394537fc489052149139d81215669ee3a16a4d73817f33bf2c8585d0c",
-          "completed_with_output": false,
-          "reference_format_pass": false,
-          "validation_status": "invalid",
-          "failure_reason": "NVIDIA API HTTP 429",
-          "provider_error": true,
-          "tool_calls": 0,
-          "wall_seconds": 1.765,
+        "ultra-rerun3": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun3-44.json",
+          "trace_sha256": "448dc6948d88dd8e3beed9800b47b587e925f25a7855625bd5d5a94c831374f1",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 7,
+          "wall_seconds": 67.132,
           "budget_exhausted": false,
-          "finish_reason": null,
+          "finish_reason": "explicit_finish_tool",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun3-44.json",
+          "trace_sha256": "448dc6948d88dd8e3beed9800b47b587e925f25a7855625bd5d5a94c831374f1",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 7,
+          "wall_seconds": 67.132,
+          "budget_exhausted": false,
+          "finish_reason": "explicit_finish_tool",
           "model": "nvidia/nemotron-3-ultra-550b-a55b",
           "cost_usd": null,
-          "attempts": 3
+          "attempts": 4
         }
       }
     },
@@ -1712,21 +1817,36 @@
           "model": "nvidia/nemotron-3-ultra-550b-a55b",
           "cost_usd": null
         },
-        "ultra_with_provider_rerun": {
-          "trace": "evaluation/cycle5/traces/ultra-rerun2-53.json",
-          "trace_sha256": "7ec49679510822e23d88cbe085b4f90c7188c53d9d934a8375265fcda34e3e15",
-          "completed_with_output": false,
-          "reference_format_pass": false,
-          "validation_status": "invalid",
-          "failure_reason": "NVIDIA API HTTP 429",
-          "provider_error": true,
-          "tool_calls": 0,
-          "wall_seconds": 1.812,
+        "ultra-rerun3": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun3-53.json",
+          "trace_sha256": "9152251d2be7c2acabee85cbed996c3b7e9f0f8e015e94b6293fdff355b4c6c6",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 8,
+          "wall_seconds": 201.681,
           "budget_exhausted": false,
-          "finish_reason": null,
+          "finish_reason": "explicit_finish_tool",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun3-53.json",
+          "trace_sha256": "9152251d2be7c2acabee85cbed996c3b7e9f0f8e015e94b6293fdff355b4c6c6",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 8,
+          "wall_seconds": 201.681,
+          "budget_exhausted": false,
+          "finish_reason": "explicit_finish_tool",
           "model": "nvidia/nemotron-3-ultra-550b-a55b",
           "cost_usd": null,
-          "attempts": 3
+          "attempts": 4
         }
       }
     },
@@ -1856,21 +1976,36 @@
           "model": "nvidia/nemotron-3-ultra-550b-a55b",
           "cost_usd": null
         },
+        "ultra-rerun3": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun3-60.json",
+          "trace_sha256": "91a4c8f1530dad229f0ff4dbdd85c154d5ab79e37928edd1c79ecf4524969154",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 235.018,
+          "budget_exhausted": true,
+          "finish_reason": "planning_cap_handoff",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
         "ultra_with_provider_rerun": {
-          "trace": "evaluation/cycle5/traces/ultra-rerun2-60.json",
-          "trace_sha256": "4e070b8f3099760114fa667eafbd7fd39e134ac6f85bbed77e69d026a9f899e4",
-          "completed_with_output": false,
-          "reference_format_pass": false,
-          "validation_status": "invalid",
-          "failure_reason": "NVIDIA API HTTP 429",
-          "provider_error": true,
-          "tool_calls": 0,
-          "wall_seconds": 1.729,
-          "budget_exhausted": false,
-          "finish_reason": null,
+          "trace": "evaluation/cycle5/traces/ultra-rerun3-60.json",
+          "trace_sha256": "91a4c8f1530dad229f0ff4dbdd85c154d5ab79e37928edd1c79ecf4524969154",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 235.018,
+          "budget_exhausted": true,
+          "finish_reason": "planning_cap_handoff",
           "model": "nvidia/nemotron-3-ultra-550b-a55b",
           "cost_usd": null,
-          "attempts": 3
+          "attempts": 4
         }
       }
     },
@@ -2171,21 +2306,36 @@
           "model": "nvidia/nemotron-3-ultra-550b-a55b",
           "cost_usd": null
         },
+        "ultra-rerun3": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun3-67.json",
+          "trace_sha256": "d0145dd72b643cf6d210e2e02210fbf597085681c99b25726fdb7a18556a8c8c",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 191.653,
+          "budget_exhausted": true,
+          "finish_reason": "planning_cap_handoff",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
         "ultra_with_provider_rerun": {
-          "trace": "evaluation/cycle5/traces/ultra-rerun2-67.json",
-          "trace_sha256": "b658769edc066a1dd0b251bd675aa362986bdd96552b1ee82fa9eb0d9f0838b9",
-          "completed_with_output": false,
-          "reference_format_pass": false,
-          "validation_status": "invalid",
-          "failure_reason": "NVIDIA API HTTP 500",
-          "provider_error": true,
-          "tool_calls": 0,
-          "wall_seconds": 1.934,
-          "budget_exhausted": false,
-          "finish_reason": null,
+          "trace": "evaluation/cycle5/traces/ultra-rerun3-67.json",
+          "trace_sha256": "d0145dd72b643cf6d210e2e02210fbf597085681c99b25726fdb7a18556a8c8c",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 191.653,
+          "budget_exhausted": true,
+          "finish_reason": "planning_cap_handoff",
           "model": "nvidia/nemotron-3-ultra-550b-a55b",
           "cost_usd": null,
-          "attempts": 3
+          "attempts": 4
         }
       }
     },
@@ -2258,21 +2408,36 @@
           "model": "nvidia/nemotron-3-ultra-550b-a55b",
           "cost_usd": null
         },
-        "ultra_with_provider_rerun": {
-          "trace": "evaluation/cycle5/traces/ultra-rerun2-69.json",
-          "trace_sha256": "308182e50298e1c0eb29814f0ae2875115b233b6a4729f4fc84fc6653ac5b30c",
-          "completed_with_output": false,
-          "reference_format_pass": false,
-          "validation_status": "invalid",
-          "failure_reason": "NVIDIA API HTTP 429",
-          "provider_error": true,
-          "tool_calls": 0,
-          "wall_seconds": 1.57,
+        "ultra-rerun3": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun3-69.json",
+          "trace_sha256": "11e6eb7fb38bf0437eb148ac1ab9dbe9971ae5235f61e72c87169ae2512a4b4f",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 7,
+          "wall_seconds": 56.187,
           "budget_exhausted": false,
-          "finish_reason": null,
+          "finish_reason": "explicit_finish_tool",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun3-69.json",
+          "trace_sha256": "11e6eb7fb38bf0437eb148ac1ab9dbe9971ae5235f61e72c87169ae2512a4b4f",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 7,
+          "wall_seconds": 56.187,
+          "budget_exhausted": false,
+          "finish_reason": "explicit_finish_tool",
           "model": "nvidia/nemotron-3-ultra-550b-a55b",
           "cost_usd": null,
-          "attempts": 3
+          "attempts": 4
         }
       }
     }

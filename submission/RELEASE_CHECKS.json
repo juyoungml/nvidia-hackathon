@@ -1,7 +1,7 @@
 {
   "archive": "submission/NVIDIA 해커톤_Sona_Plant Reliability Agent.zip",
-  "zip_bytes": 2765154,
-  "zip_sha256": "c0060be6cd4cd21a99850cc44ab91cc0b107357168513e8fab8113c37837a01c",
+  "zip_bytes": 2765418,
+  "zip_sha256": "e8c31d3e3445dfa67bea07ac235f2e395adb1ab7cdd17a19d76c2f026268034e",
   "public_http": [
     "/web/",
     "/web/system2.html",
@@ -30,7 +30,7 @@
   "excluded_new_outcome_directory": "evaluation/holdout-outcomes/",
   "archive_entries": 232,
   "manifest_files_verified": 231,
-  "manifest_sha256": "c484b024e70de16353b069d6832782dbe7f9e2eea1b217cbcb02fc70240e1ea5",
+  "manifest_sha256": "a7bcc449b59660953bc9894c0638e8740a60f11aae992745fda9b5f6494f7abc",
   "markdown_links": "pass",
   "clean_extract_http": "pass",
   "clean_extract_unittest": [
