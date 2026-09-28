@@ -1,0 +1,360 @@
+{
+  "basic_summaries": [
+    {
+      "case": 3,
+      "final": "At 2015-12-01 10:56:00, the reported problem was no heat [PreDist-M1-fault-3-problem-only].\nThe preceding measurement window contains 144 rows; s_hc1_supply_temperature versus s_hc1_supply_temperature_setpoint has mean absolute gap 0.56 °C across 144 paired rows [PreDist-M1-substation-12-operational-data].\nThis evidence cannot establish heat delivery to the customer's rooms. A human engineer should obtain customer-side temperature and secondary heating-circuit flow, and check the controller parameter-change record. The present cause remains unknown.",
+      "method": "deterministic_search_and_summary",
+      "note": "Deterministic basic summary from existing template; no model inference; case 3 was development-exposed, 29 is no longer fresh after cycle 4.",
+      "source": "data/holdout-3.json"
+    },
+    {
+      "case": 29,
+      "final": "At 2019-01-09 14:18:00, the reported problem was no heat [PreDist-M1-fault-29-problem-only].\nThe preceding measurement window contains 144 rows; s_hc1_supply_temperature versus s_hc1_supply_temperature_setpoint has mean absolute gap 2.16 °C across 144 paired rows [PreDist-M1-substation-17-operational-data].\nThis evidence cannot establish heat delivery to the customer's rooms. A human engineer should obtain customer-side temperature and secondary heating-circuit flow, and check the controller parameter-change record. The present cause remains unknown.",
+      "method": "deterministic_search_and_summary",
+      "note": "Deterministic basic summary from existing template; no model inference; case 3 was development-exposed, 29 is no longer fresh after cycle 4.",
+      "source": "data/holdout-29.json"
+    }
+  ],
+  "cycle3_prior_duplicated_list_domain_outputs": [
+    {
+      "exact_union": false,
+      "missing_references": [],
+      "observation_count": 12,
+      "original_validation": "valid",
+      "parseable": true,
+      "reference_count": 6,
+      "trace": "evaluation/cycle3/traces/domain-13.json",
+      "trace_sha256": "38ceb995bb1000088a86a3a74581571083eb1c9f11fba544cd6116c21e78fb71"
+    },
+    {
+      "exact_union": false,
+      "missing_references": [
+        "F-049bb1c6bbed",
+        "F-289fc5cf4914",
+        "F-2ff6575b4d65",
+        "F-37c78c517194"
+      ],
+      "observation_count": 12,
+      "original_validation": "invalid",
+      "parseable": true,
+      "reference_count": 8,
+      "trace": "evaluation/cycle3/traces/domain-3.json",
+      "trace_sha256": "45ad9abb75acf1320428014070226c4bcc0c0115eb3ab66b072e40300c2df0a4"
+    },
+    {
+      "exact_union": false,
+      "missing_references": [],
+      "observation_count": 12,
+      "original_validation": "valid",
+      "parseable": true,
+      "reference_count": 8,
+      "trace": "evaluation/cycle3/traces/domain-37.json",
+      "trace_sha256": "913188b413947ba8591da591780ba072c8352260e99761f9c70c769239c09880"
+    },
+    {
+      "exact_union": false,
+      "missing_references": [
+        "F-00c59ade0871",
+        "F-12b0dc3012c4",
+        "F-327c2abbdcfd",
+        "F-8ed165aa72d8",
+        "F-c507baa5efdb"
+      ],
+      "observation_count": 12,
+      "original_validation": "invalid",
+      "parseable": true,
+      "reference_count": 8,
+      "trace": "evaluation/cycle3/traces/domain-5.json",
+      "trace_sha256": "de9f6739b2337bf3593d4af34dbea30c4022115d5be94cae854192a54303ec1e"
+    },
+    {
+      "exact_union": false,
+      "missing_references": [
+        "F-8ece65de9685",
+        "F-b94b6c2ec90e"
+      ],
+      "observation_count": 12,
+      "original_validation": "invalid",
+      "parseable": true,
+      "reference_count": 10,
+      "trace": "evaluation/cycle3/traces/domain-52.json",
+      "trace_sha256": "ed93c7c6ea8645f8225c5cd6e869a6d609d11f1a7b8ac6ea39bd1e544adb7571"
+    },
+    {
+      "exact_union": false,
+      "missing_references": [],
+      "observation_count": 12,
+      "original_validation": "valid",
+      "parseable": true,
+      "reference_count": 4,
+      "trace": "evaluation/cycle3/traces/domain-60.json",
+      "trace_sha256": "1369f97fbde41dc4a22180de650e433670095acc09fd2cca232b9c7d4dcd242f"
+    },
+    {
+      "exact_union": false,
+      "missing_references": [
+        "F-8543e92b0c09",
+        "F-8b4aa49e516a",
+        "F-97ec1ee13138",
+        "F-b2a706025880",
+        "F-f5d1722b5f67"
+      ],
+      "observation_count": 12,
+      "original_validation": "invalid",
+      "parseable": true,
+      "reference_count": 8,
+      "trace": "evaluation/cycle3/traces/domain-63.json",
+      "trace_sha256": "93be76234fbe5f13341400862c807352a8b2005bf77da952364d5d884a4e191b"
+    }
+  ],
+  "cycle4_all_cases": [
+    {
+      "arm": "domain",
+      "case": 52,
+      "failure_reason": "planning_request_limit",
+      "trace": "evaluation/cycle4/traces/domain-52.json",
+      "trace_sha256": "288a4049a47295f37050b06bb202c2c945784418edc0a404f2eacd3f1bc10b3a",
+      "valid": false
+    },
+    {
+      "arm": "general",
+      "case": 52,
+      "check_count_depending_on_temporal_facts": 0,
+      "injected_old_style_one_id_deletion": {
+        "deleted_id": "F-49c6415537c0",
+        "label": "synthetic structural mutation, not model output",
+        "missing_reference_count": 1
+      },
+      "missing_references": [],
+      "observation_count": 12,
+      "observation_equals_reference_union": true,
+      "reference_count": 12,
+      "temporal_by_check": [
+        {
+          "check_id": "C-room-impact",
+          "cited_temporal_fact_ids": []
+        },
+        {
+          "check_id": "C-secondary-flow",
+          "cited_temporal_fact_ids": []
+        },
+        {
+          "check_id": "C-maintenance",
+          "cited_temporal_fact_ids": []
+        }
+      ],
+      "temporal_reference_count": 0,
+      "temporal_removal_label": "synthetic evidence removal; original rationale unchanged; no quality counterfactual",
+      "trace": "evaluation/cycle4/traces/general-52.json",
+      "trace_sha256": "536f8ad3fe2dcb9db021a962629478b537a82e59f482885fa910c659628f81a9",
+      "valid": true
+    },
+    {
+      "arm": "domain",
+      "case": 3,
+      "check_count_depending_on_temporal_facts": 2,
+      "injected_old_style_one_id_deletion": {
+        "deleted_id": "F-ef44adf80dfa",
+        "label": "synthetic structural mutation, not model output",
+        "missing_reference_count": 1
+      },
+      "missing_references": [],
+      "observation_count": 9,
+      "observation_equals_reference_union": true,
+      "reference_count": 9,
+      "temporal_by_check": [
+        {
+          "check_id": "C-room-impact",
+          "cited_temporal_fact_ids": [
+            "F-4098c97a65e8"
+          ]
+        },
+        {
+          "check_id": "C-secondary-flow",
+          "cited_temporal_fact_ids": []
+        },
+        {
+          "check_id": "C-controls",
+          "cited_temporal_fact_ids": [
+            "F-ccc2bdf03f71",
+            "F-e89ab81fc037",
+            "F-f25f57f42a4e"
+          ]
+        }
+      ],
+      "temporal_reference_count": 4,
+      "temporal_removal_label": "synthetic evidence removal; original rationale unchanged; no quality counterfactual",
+      "trace": "evaluation/cycle4/traces/domain-3.json",
+      "trace_sha256": "bc28965a875591404e7eb944722242ef32c036a27d9cd82f15815495856e89b7",
+      "valid": true
+    },
+    {
+      "arm": "general",
+      "case": 3,
+      "check_count_depending_on_temporal_facts": 1,
+      "injected_old_style_one_id_deletion": {
+        "deleted_id": "F-ef44adf80dfa",
+        "label": "synthetic structural mutation, not model output",
+        "missing_reference_count": 1
+      },
+      "missing_references": [],
+      "observation_count": 12,
+      "observation_equals_reference_union": true,
+      "reference_count": 12,
+      "temporal_by_check": [
+        {
+          "check_id": "C-room-impact",
+          "cited_temporal_fact_ids": [
+            "F-4098c97a65e8"
+          ]
+        },
+        {
+          "check_id": "C-secondary-flow",
+          "cited_temporal_fact_ids": []
+        },
+        {
+          "check_id": "C-maintenance",
+          "cited_temporal_fact_ids": []
+        }
+      ],
+      "temporal_reference_count": 1,
+      "temporal_removal_label": "synthetic evidence removal; original rationale unchanged; no quality counterfactual",
+      "trace": "evaluation/cycle4/traces/general-3.json",
+      "trace_sha256": "f16b0886144f01106155586e52afb4a58df0fa02276f944de5c92667f888e208",
+      "valid": true
+    },
+    {
+      "arm": "domain",
+      "case": 29,
+      "check_count_depending_on_temporal_facts": 1,
+      "injected_old_style_one_id_deletion": {
+        "deleted_id": "F-2561c2910892",
+        "label": "synthetic structural mutation, not model output",
+        "missing_reference_count": 1
+      },
+      "missing_references": [],
+      "observation_count": 7,
+      "observation_equals_reference_union": true,
+      "reference_count": 7,
+      "temporal_by_check": [
+        {
+          "check_id": "C-room-impact",
+          "cited_temporal_fact_ids": []
+        },
+        {
+          "check_id": "C-secondary-flow",
+          "cited_temporal_fact_ids": []
+        },
+        {
+          "check_id": "C-controls",
+          "cited_temporal_fact_ids": [
+            "F-4358be1c86b0",
+            "F-7a89fa9dc1f8",
+            "F-890221c11956"
+          ]
+        }
+      ],
+      "temporal_reference_count": 3,
+      "temporal_removal_label": "synthetic evidence removal; original rationale unchanged; no quality counterfactual",
+      "trace": "evaluation/cycle4/traces/domain-29.json",
+      "trace_sha256": "bed825b820387e336c34e9f77a95e123d6ec551e073841590ee56ec9ff85eb2e",
+      "valid": true
+    },
+    {
+      "arm": "general",
+      "case": 29,
+      "check_count_depending_on_temporal_facts": 1,
+      "injected_old_style_one_id_deletion": {
+        "deleted_id": "F-2561c2910892",
+        "label": "synthetic structural mutation, not model output",
+        "missing_reference_count": 1
+      },
+      "missing_references": [],
+      "observation_count": 12,
+      "observation_equals_reference_union": true,
+      "reference_count": 12,
+      "temporal_by_check": [
+        {
+          "check_id": "C-room-impact",
+          "cited_temporal_fact_ids": [
+            "F-8aa57c6cd28a"
+          ]
+        },
+        {
+          "check_id": "C-secondary-flow",
+          "cited_temporal_fact_ids": []
+        },
+        {
+          "check_id": "C-maintenance",
+          "cited_temporal_fact_ids": []
+        }
+      ],
+      "temporal_reference_count": 1,
+      "temporal_removal_label": "synthetic evidence removal; original rationale unchanged; no quality counterfactual",
+      "trace": "evaluation/cycle4/traces/general-29.json",
+      "trace_sha256": "878fe7c4f68868b2234dc12a83a17ea6d93900e37219020683534f31064becbe",
+      "valid": true
+    },
+    {
+      "arm": "domain",
+      "case": 47,
+      "failure_reason": "planning_request_limit",
+      "trace": "evaluation/cycle4/traces/domain-47.json",
+      "trace_sha256": "4d4ba8ffe5d39c2d09360cc43738e9cb0637f0657e5008f29602a92ca397c6b7",
+      "valid": false
+    },
+    {
+      "arm": "general",
+      "case": 47,
+      "check_count_depending_on_temporal_facts": 2,
+      "injected_old_style_one_id_deletion": {
+        "deleted_id": "F-3a27b9449800",
+        "label": "synthetic structural mutation, not model output",
+        "missing_reference_count": 1
+      },
+      "missing_references": [],
+      "observation_count": 12,
+      "observation_equals_reference_union": true,
+      "reference_count": 12,
+      "temporal_by_check": [
+        {
+          "check_id": "C-room-impact",
+          "cited_temporal_fact_ids": [
+            "F-0b207659e888",
+            "F-10ae9c53439c",
+            "F-89616bd4de51"
+          ]
+        },
+        {
+          "check_id": "C-secondary-flow",
+          "cited_temporal_fact_ids": []
+        },
+        {
+          "check_id": "C-sensor",
+          "cited_temporal_fact_ids": [
+            "F-27681b04232c",
+            "F-2efa8efb9a88",
+            "F-3af652576546",
+            "F-e02b39221d77"
+          ]
+        }
+      ],
+      "temporal_reference_count": 7,
+      "temporal_removal_label": "synthetic evidence removal; original rationale unchanged; no quality counterfactual",
+      "trace": "evaluation/cycle4/traces/general-47.json",
+      "trace_sha256": "0264847b7005636b6213349646abec91d02d2b1bb666c7db387e1ead2cb5ccbb",
+      "valid": true
+    }
+  ],
+  "cycle4_primary_success": {
+    "domain": {
+      "denominator": 4,
+      "valid": 2
+    },
+    "general": {
+      "denominator": 4,
+      "valid": 4
+    }
+  },
+  "scope": "offline frozen-output audit; injected removals are synthetic, no diagnosis/field benefit measured"
+}

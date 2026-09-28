@@ -1,0 +1,54 @@
+{
+  "toolkit": "nvidia-nat",
+  "toolkit_version": "1.8.0",
+  "execution": "six registered live readers through NAT workflow; no model inference",
+  "case_id": "PreDist-M1-fault-52",
+  "public_input_sha256": "fb859f0439dd9fe3e9d8d5fce25f28b1a689a9dca2dc433b5547bb4c18935a13",
+  "checks": [
+    {
+      "reader": "get_recent_measurements",
+      "arguments": {},
+      "equal_to_direct": true,
+      "fact_count": 31,
+      "result_and_facts_sha256": "0c298313c5302abf4fa00fa598a5753cbbb690c2058abe5a83589d5023a2487c"
+    },
+    {
+      "reader": "get_prior_incidents",
+      "arguments": {},
+      "equal_to_direct": true,
+      "fact_count": 3,
+      "result_and_facts_sha256": "18585f0f155dcbca7ed9fc38bc17ba990a32994aa735508dd90ad1fea12d2e0a"
+    },
+    {
+      "reader": "get_maintenance_timeline",
+      "arguments": {},
+      "equal_to_direct": true,
+      "fact_count": 8,
+      "result_and_facts_sha256": "550a7943929b61db91b58dca6f7eaa94bc0843d1f7379194f135bea970426646"
+    },
+    {
+      "reader": "get_signal_definitions",
+      "arguments": {},
+      "equal_to_direct": true,
+      "fact_count": 0,
+      "result_and_facts_sha256": "2abfff2c8c426f24ec560ac03223c4998e23d37adc22cb8e7d27617174589fce"
+    },
+    {
+      "reader": "get_temporal_episodes",
+      "arguments": {},
+      "equal_to_direct": true,
+      "fact_count": 3,
+      "result_and_facts_sha256": "16dba4092b6d8949ca5c5c0720afb127afe9afc7263a363eea61b4d78461bb4e"
+    },
+    {
+      "reader": "query_measurement_window",
+      "arguments": {
+        "start": "2016-12-11 16:00:00",
+        "end": "2016-12-11 16:20:00"
+      },
+      "equal_to_direct": true,
+      "fact_count": 3,
+      "result_and_facts_sha256": "ff323fb155c84e53884db9c7cd02930e7ac4b7a0473857160f3ba356f7f7859c"
+    }
+  ]
+}

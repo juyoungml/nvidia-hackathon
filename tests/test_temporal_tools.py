@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import copy
 import json
 import unittest
 from pathlib import Path
@@ -12,6 +13,7 @@ from poc.temporal_tools import (
     query_window,
     temporal_episodes,
     temporal_facts,
+    validate_public_replay,
     window_facts,
 )
 
@@ -35,6 +37,22 @@ class TemporalToolTests(unittest.TestCase):
             )
         with self.assertRaisesRegex(ValueError, "ISO"):
             query_window(replay, start="not-a-date", end=replay["measurement_window"]["end"])
+
+    def test_public_replay_rejects_later_source_records(self) -> None:
+        for field, value in (
+            ("measurement", {"timestamp": "2099-01-01"}),
+            ("prior_fault", {"report_date": "2099-01-01"}),
+            ("prior_disturbance", {"event_start": "2099-01-01"}),
+        ):
+            replay = copy.deepcopy(self.replay)
+            if field == "measurement":
+                replay["measurement_window"]["rows"].append(value)
+            elif field == "prior_fault":
+                replay["prior_faults"].append(value)
+            else:
+                replay["prior_disturbances"].append(value)
+            with self.subTest(field=field), self.assertRaisesRegex(ValueError, "decision|window"):
+                validate_public_replay(replay)
 
     def test_query_facts_are_subset_of_full_public_window(self) -> None:
         full = permitted_window_fields(self.replay)

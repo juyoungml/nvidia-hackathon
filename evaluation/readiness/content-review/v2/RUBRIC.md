@@ -1,0 +1,12 @@
+# Blinded complete-check content review, v2
+
+Fixed before v2 packet generation on 2026-09-28. Review each check as it was **displayed**: canonical check action text, model-authored rationale, cited pre-decision facts, and displayed limits. Score four criteria separately, each 0–2 (maximum 8 per check):
+
+| Criterion | 0 | 1 | 2 |
+|---|---|---|---|
+| Factual and time grounding | A material numeric, time, trend, completeness, or causal claim is contradicted or unsupported by the **cited facts** | Main observation is supported but some material detail is imprecise or lacks a direct citation | Every material observation is supported with right value, field role and time window; no unsupported cause claim |
+| Component meaning | Confuses primary/secondary side, setpoint/measured supply, or supply/customer-room delivery | Relationship mostly right but an important distinction is unclear | Correctly distinguishes relevant components and inference limits |
+| Actionable check | Complete displayed check gives no concrete verification or asks for unavailable/unsafe determination | Names a check but leaves method, target, or decision value vague | Canonical action text plus rationale specify feasible measurement, record, or inspection and why it addresses a stated uncertainty |
+| Calibrated uncertainty | States fault/cause or benefit as established without evidence | Some caution, but overstates or omits an important limit | Displayed check and limits explicitly bound what is unknown and avoid unsupported fault attribution |
+
+For grounding, **an existing fact ID or a displayed limit alone earns no credit** for a material numeric, time, trend, or inventory claim. Use the cited fact text/value and timestamp. A missing citation for a material claim requires 0 and `missing_grounding=true`, with the unsupported words quoted. Displayed limits are part of uncertainty context; they cannot retroactively supply a missing measurement or complete source inventory. Do not use outcomes or post-event labels. Record reviewer type and independently verified plant expertise. Score each of 12 checks equally, three checks per packet (24 maximum), each paired case 48 maximum, each source arm 48 maximum after reveal. Cases 3 and 29 are the two originally valid pairs; keep original four-case failures in the separate primary denominator. This is an internal content screen, not diagnosis accuracy or field utility.

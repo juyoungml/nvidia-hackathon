@@ -244,6 +244,45 @@ class LiveInvestigationTests(unittest.TestCase):
         flags = temporal_review_flags(plan, evidence)
         self.assertEqual(flags[0]["times"], ["1:00"])
 
+    def test_quantity_review_flags_uncited_measurement_without_rewriting(self) -> None:
+        evidence = {
+            "facts": [
+                {
+                    "id": "F-one",
+                    "source_field": "temporal.window_pair",
+                    "text": "Paired supply 63.9 °C",
+                    "value": {"sample": {"supply_c": 63.9, "setpoint_c": 64.0}},
+                    "interval": "2016-12-12 10:00:00",
+                }
+            ]
+        }
+        rationale = "Supply 63.9 °C at 10:00 and 80 kW power; verify room impact."
+        plan = {
+            "next_checks": [
+                {"id": "C-room-impact", "because_fact_ids": ["F-one"], "rationale": rationale}
+            ]
+        }
+        flags = temporal_review_flags(plan, evidence)
+        quantity = [
+            flag for flag in flags if flag["code"] == "rationale_quantity_not_in_cited_facts"
+        ]
+        self.assertEqual(quantity[0]["quantities"], ["80 kw"])
+        self.assertEqual(plan["next_checks"][0]["rationale"], rationale)
+
+    def test_quantity_review_checks_both_ends_of_range(self) -> None:
+        evidence = {"facts": [{"id": "F-one", "source_field": "x", "value": 3960.0}]}
+        plan = {
+            "next_checks": [
+                {
+                    "id": "C-secondary-flow",
+                    "because_fact_ids": ["F-one"],
+                    "rationale": "Primary meter flow was 1680-3960 l/h.",
+                }
+            ]
+        }
+        flags = temporal_review_flags(plan, evidence)
+        self.assertEqual(flags[0]["quantities"], ["1680 l/h"])
+
     def test_invalid_tool_arguments_stop_without_final_inference(self) -> None:
         body = {
             "choices": [

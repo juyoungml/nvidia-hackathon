@@ -1,0 +1,40 @@
+{
+  "archive": "submission/NVIDIA_해커톤_팀명미정_Plant_Reliability_Agent_System2.zip",
+  "zip_bytes": 2134901,
+  "zip_sha256": "dcabd334512075c5fdf2326bbe32bef216ddaaa3c3671207bad491bc96214d8b",
+  "public_http": [
+    "/web/",
+    "/web/system2.html",
+    "/web/system2.css",
+    "/web/system2.js",
+    "/web/assets/system2-29.json",
+    "/web/assets/system2-52.json",
+    "/web/assets/system2-case29-trend.png",
+    "/submission/slides/Plant_Reliability_Agent_submission.pptx"
+  ],
+  "denied_http": [
+    "/.env",
+    "/evaluation/holdout-outcomes/holdout-29.json",
+    "/web/secret.json",
+    "/evaluation/cycle4/results.json",
+    "/evaluation/held-out-32.json",
+    "/evaluation/held-out-52.json",
+    "/evaluation/held-out-62.json"
+  ],
+  "isolated_public_retrospective_labels": [
+    "evaluation/held-out-32.json",
+    "evaluation/held-out-52.json",
+    "evaluation/held-out-62.json"
+  ],
+  "excluded_new_outcome_directory": "evaluation/holdout-outcomes/",
+  "archive_entries": 232,
+  "manifest_files_verified": 231,
+  "manifest_sha256": "7e4bf64923a2496acbe64fe66c750b4d135ae2771615a1f0bb80d51ad1413a55",
+  "markdown_links": "pass",
+  "clean_extract_http": "pass",
+  "clean_extract_unittest": [
+    "Ran 105 tests in 3.040s",
+    "OK (skipped=2)"
+  ],
+  "clean_extract_live_cli_help": "pass"
+}

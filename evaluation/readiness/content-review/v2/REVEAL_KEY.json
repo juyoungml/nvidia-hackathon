@@ -1,0 +1,29 @@
+{
+  "labels": {
+    "Q56769be9": {
+      "arm": "domain",
+      "case": 29,
+      "trace": "evaluation/cycle4/traces/domain-29.json",
+      "trace_sha256": "bed825b820387e336c34e9f77a95e123d6ec551e073841590ee56ec9ff85eb2e"
+    },
+    "Q5e28db05": {
+      "arm": "domain",
+      "case": 3,
+      "trace": "evaluation/cycle4/traces/domain-3.json",
+      "trace_sha256": "bc28965a875591404e7eb944722242ef32c036a27d9cd82f15815495856e89b7"
+    },
+    "Qa176cd2a": {
+      "arm": "general",
+      "case": 3,
+      "trace": "evaluation/cycle4/traces/general-3.json",
+      "trace_sha256": "f16b0886144f01106155586e52afb4a58df0fa02276f944de5c92667f888e208"
+    },
+    "Qed762431": {
+      "arm": "general",
+      "case": 29,
+      "trace": "evaluation/cycle4/traces/general-29.json",
+      "trace_sha256": "878fe7c4f68868b2234dc12a83a17ea6d93900e37219020683534f31064becbe"
+    }
+  },
+  "scope": "original valid paired cycle-4 traces; complete displayed checks"
+}

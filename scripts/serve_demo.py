@@ -9,10 +9,36 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-WEB_ROOT = ROOT / "web"
-WEB_SUFFIXES = {".html", ".css", ".js", ".json", ".svg", ".png", ".jpg", ".jpeg", ".webp"}
-EXACT_FILES = {
+PUBLIC_FILES = {
+    "web/index.html",
+    "web/evidence.html",
+    "web/investigation.html",
+    "web/system2.html",
+    "web/app.js",
+    "web/landing.js",
+    "web/investigation.js",
+    "web/system2.js",
+    "web/style.css",
+    "web/landing.css",
+    "web/investigation.css",
+    "web/system2.css",
+    "web/hotspots.json",
+    "web/plant-detailed.svg",
+    "web/substation.svg",
+    "web/assets/doe-steam-figure-1.png",
+    "web/assets/doe-steam-page-3.png",
+    "web/assets/predist-record.png",
+    "web/assets/predist-trend.png",
+    "web/assets/system2-29.json",
+    "web/assets/system2-52.json",
+    "web/assets/system2-case29-trend.png",
+    "README.md",
+    "ARCHITECTURE.md",
+    "DATA_SOURCES.md",
     "POC_RESULT.md",
+    "submission/CASE_STORY.md",
+    "submission/SUBMISSION_GUIDE.md",
+    "submission/slides/Plant_Reliability_Agent_submission.pptx",
     "data/replay-52.json",
     "poc/trace-52-pipeline.json",
     "poc/trace-52-nvidia-nemotron-3-ultra-550b-a55b.json",
@@ -31,16 +57,14 @@ def resolve_demo_path(raw_target: str) -> Path | None:
     if not parts or any(part in {".", ".."} or part.startswith(".") for part in parts):
         return None
     relative = Path(*parts)
-    if relative.as_posix() not in EXACT_FILES:
-        if not (parts[0] == "web" and relative.suffix.lower() in WEB_SUFFIXES):
-            return None
+    if relative.as_posix() not in PUBLIC_FILES:
+        return None
     candidate = ROOT / relative
-    # The resolved path check also rejects symlinks pointing outside the allowed web subtree.
-    if not candidate.is_file() or candidate.is_symlink():
+    if not candidate.is_file() or any(
+        (ROOT / Path(*parts[:index])).is_symlink() for index in range(1, len(parts) + 1)
+    ):
         return None
     resolved = candidate.resolve()
-    if parts[0] == "web" and not resolved.is_relative_to(WEB_ROOT.resolve()):
-        return None
     if not resolved.is_relative_to(ROOT.resolve()):
         return None
     return resolved

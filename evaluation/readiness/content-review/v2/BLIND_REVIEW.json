@@ -1,0 +1,138 @@
+{
+  "reviewer_type": "AI content reviewer",
+  "independently_verified_plant_expertise": false,
+  "scope": "Complete displayed checks in the four anonymous packets, using only RUBRIC.md and PACKETS.json; internal content screen, not diagnosis accuracy or field utility.",
+  "criteria_order": ["factual_time_grounding", "component_meaning", "actionable_check", "calibrated_uncertainty"],
+  "packets": [
+    {
+      "label": "Q5e28db05",
+      "case": 3,
+      "total": 20,
+      "maximum": 24,
+      "checks": [
+        {
+          "id": "C-room-impact",
+          "scores": [2, 2, 2, 2],
+          "total": 8,
+          "missing_grounding": false,
+          "unsupported_claim": null,
+          "reason": "The 10:56 no-heat report and 10:50 secondary supply reading of 33.5 °C are cited. The room/radiator measurement directly tests the delivery uncertainty, and the displayed limit preserves that distinction."
+        },
+        {
+          "id": "C-secondary-flow",
+          "scores": [0, 2, 2, 2],
+          "total": 6,
+          "missing_grounding": true,
+          "unsupported_claim": "Primary network flow ~958 l/h and heat power ~43 kW are present",
+          "reason": "The cited primary-flow endpoints and minimum do not directly establish the stated approximate flow summary, and no cited heat-power fact supports 43 kW. The check correctly asks for separate secondary-flow measurement against a relevant range without attributing a fault."
+        },
+        {
+          "id": "C-controls",
+          "scores": [0, 2, 2, 2],
+          "total": 6,
+          "missing_grounding": true,
+          "unsupported_claim": "Setpoint dropped from ~60 °C to ~32 °C between 11:00 and 15:30",
+          "reason": "The 15:00 gap of 13.7 °C is cited, but the cited episode begins at 14:50 with a 45.9 °C setpoint; it does not support the 11:00 or approximately 60 °C claim. A timestamped controller-record review is feasible and does not assert a cause."
+        }
+      ]
+    },
+    {
+      "label": "Qa176cd2a",
+      "case": 3,
+      "total": 20,
+      "maximum": 24,
+      "checks": [
+        {
+          "id": "C-room-impact",
+          "scores": [0, 2, 2, 2],
+          "total": 6,
+          "missing_grounding": true,
+          "unsupported_claim": "a falling 33.2C setpoint",
+          "reason": "The cited last setpoint is 33.2 °C and the paired last reading supports close tracking, but no cited earlier setpoint establishes a falling trend. The room/radiator check addresses the explicit delivery limit."
+        },
+        {
+          "id": "C-secondary-flow",
+          "scores": [0, 2, 2, 2],
+          "total": 6,
+          "missing_grounding": true,
+          "unsupported_claim": "Only primary network meter flow readings are available for the window",
+          "reason": "The citations establish several primary-flow readings but cannot establish a complete inventory of available data. The check distinguishes primary from secondary flow and requests direct secondary measurement and a design comparison."
+        },
+        {
+          "id": "C-maintenance",
+          "scores": [2, 2, 2, 2],
+          "total": 8,
+          "missing_grounding": false,
+          "unsupported_claim": null,
+          "reason": "Both cited activity dates precede the report. Checking records and completion evidence is concrete, and the rationale treats past activity as unconfirmed rather than as this event's cause."
+        }
+      ]
+    },
+    {
+      "label": "Q56769be9",
+      "case": 29,
+      "total": 21,
+      "maximum": 24,
+      "checks": [
+        {
+          "id": "C-room-impact",
+          "scores": [1, 2, 2, 2],
+          "total": 7,
+          "missing_grounding": false,
+          "unsupported_claim": null,
+          "reason": "The report time and last secondary-supply value are cited, but the last-value fact supplies a 24-hour window rather than the precise sample time; 'while' is temporally imprecise. The proposed room/radiator verification and delivery limit are appropriate."
+        },
+        {
+          "id": "C-secondary-flow",
+          "scores": [0, 2, 2, 2],
+          "total": 6,
+          "missing_grounding": true,
+          "unsupported_claim": "Supply temperature near setpoint",
+          "reason": "No setpoint fact is cited for this check. The cited first outdoor temperature is 8.55 °C, so approximately 10 °C is also loose. Secondary-flow measurement against a design range still addresses delivery uncertainty without claiming a fault."
+        },
+        {
+          "id": "C-controls",
+          "scores": [2, 2, 2, 2],
+          "total": 8,
+          "missing_grounding": false,
+          "unsupported_claim": null,
+          "reason": "The cited episodes support multiple descriptive gaps above 2 °C and a 13.4 °C maximum. Reviewing timestamped settings, alarms, and changes is concrete and does not treat the descriptive threshold as a proven fault limit."
+        }
+      ]
+    },
+    {
+      "label": "Qed762431",
+      "case": 29,
+      "total": 22,
+      "maximum": 24,
+      "checks": [
+        {
+          "id": "C-room-impact",
+          "scores": [2, 2, 2, 2],
+          "total": 8,
+          "missing_grounding": false,
+          "unsupported_claim": null,
+          "reason": "The 14:18 report and 14:10 paired 63.9 °C supply/63.8 °C setpoint are cited. The check verifies room/radiator conditions while explicitly preserving the supply-versus-room distinction."
+        },
+        {
+          "id": "C-secondary-flow",
+          "scores": [2, 2, 2, 2],
+          "total": 8,
+          "missing_grounding": false,
+          "unsupported_claim": null,
+          "reason": "The cited 144 samples and 90 within 2 °C support 54 exceeding 2 °C; the cited maximum is 13.4 °C. Direct secondary-flow measurement against a design range addresses the remaining delivery question."
+        },
+        {
+          "id": "C-maintenance",
+          "scores": [0, 2, 2, 2],
+          "total": 6,
+          "missing_grounding": true,
+          "unsupported_claim": "Only two prior 'activity' timeline entries from Dec 2015 are on file",
+          "reason": "The citations support two dated activity entries, but not that these are the only entries on file. The record and completion check is concrete, and the rationale leaves their relevance to the 2019 report unresolved."
+        }
+      ]
+    }
+  ],
+  "case_totals": {"3": {"score": 40, "maximum": 48}, "29": {"score": 43, "maximum": 48}},
+  "overall": {"score": 83, "maximum": 96}
+}

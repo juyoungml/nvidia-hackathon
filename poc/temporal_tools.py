@@ -19,6 +19,25 @@ WINDOW_FIELDS = (
 MAX_WINDOW_ROWS = 24
 
 
+def validate_public_replay(replay: dict) -> None:
+    """Reject source records crossing the case's decision-time boundary."""
+    cutoff = _timestamp(replay["decision_time"])
+    window = replay["measurement_window"]
+    start, end = _timestamp(window["start"]), _timestamp(window["end"])
+    if not start <= end <= cutoff:
+        raise ValueError("measurement window exceeds decision cutoff")
+    for row in window["rows"]:
+        stamp = _timestamp(row["timestamp"])
+        if not start <= stamp <= end:
+            raise ValueError("measurement row exceeds public pre-decision window")
+    for record in replay.get("prior_faults", []):
+        if _timestamp(record["report_date"]) >= cutoff:
+            raise ValueError("prior report is not earlier than decision time")
+    for record in replay.get("prior_disturbances", []):
+        if _timestamp(record["event_start"]) >= cutoff:
+            raise ValueError("prior disturbance is not earlier than decision time")
+
+
 def _timestamp(value: object) -> dt.datetime:
     if not isinstance(value, str):
         raise ValueError("timestamp must be an ISO string")

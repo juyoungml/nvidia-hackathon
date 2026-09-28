@@ -1,0 +1,140 @@
+{
+  "reviewer": {
+    "type": "AI reviewer",
+    "expertise_independently_verified": false,
+    "scope": "Blinded content screening of the four supplied packets for cases 3 and 29; no arm or outcome inference",
+    "rubric": "RUBRIC.md",
+    "criteria_order": ["grounding", "component_meaning", "actionability", "uncertainty"],
+    "maximum_per_check": 8
+  },
+  "packets": [
+    {
+      "label": "Paa639619",
+      "case": 3,
+      "checks": [
+        {
+          "id": "C-room-impact",
+          "scores": {"grounding": 2, "component_meaning": 2, "actionability": 2, "uncertainty": 2},
+          "total": 8,
+          "missing_grounding": false,
+          "reason": "The 10:56 no-heat report and 10:50 secondary supply of 33.5 °C are cited with the right roles and times. Measuring room or radiator temperatures and mapping the affected area would test delivery beyond the substation; no cause is asserted."
+        },
+        {
+          "id": "C-secondary-flow",
+          "scores": {"grounding": 0, "component_meaning": 2, "actionability": 2, "uncertainty": 2},
+          "total": 6,
+          "missing_grounding": true,
+          "missing_support": "The claim 'heat power ~43 kW' has no cited heat-power fact. The cited flow values are primary-network readings of 966.0, 952.88, and 919.0 l/h; none supports the power value.",
+          "reason": "The unsupported power figure forces zero grounding. The check correctly separates primary flow from unknown secondary flow, asks for a direct secondary measurement, and treats delivery as unconfirmed."
+        },
+        {
+          "id": "C-controls",
+          "scores": {"grounding": 0, "component_meaning": 2, "actionability": 2, "uncertainty": 1},
+          "total": 5,
+          "missing_grounding": true,
+          "missing_support": "The claim 'Setpoint dropped from ~60 °C to ~32 °C between 11:00 and 15:30' lacks a cited 11:00 or ~60 °C setpoint. The cited episode starts at 14:50 with setpoint 45.9 °C and supports 32.0 °C at 15:00 and 15:30.",
+          "reason": "The 13.7 °C gap at 15:00 is cited accurately, and reviewing timestamped controller records with an engineer is feasible. It does not explicitly state that the observed gap and setpoint changes do not establish a control fault."
+        }
+      ],
+      "total": 19,
+      "maximum": 24
+    },
+    {
+      "label": "Pef137f64",
+      "case": 3,
+      "checks": [
+        {
+          "id": "C-room-impact",
+          "scores": {"grounding": 0, "component_meaning": 2, "actionability": 0, "uncertainty": 2},
+          "total": 4,
+          "missing_grounding": true,
+          "missing_support": "The phrase 'a falling 33.2C setpoint' asserts a trend, but the citations give only the last setpoint of 33.2 °C and the 10:50 paired reading; no earlier setpoint is cited.",
+          "reason": "The 33.5 °C supply and 33.2 °C setpoint are supported, and the rationale correctly limits supply tracking as evidence of room heat. It stops at saying delivery is unconfirmed; it does not ask for a concrete room or radiator measurement."
+        },
+        {
+          "id": "C-secondary-flow",
+          "scores": {"grounding": 0, "component_meaning": 2, "actionability": 2, "uncertainty": 2},
+          "total": 6,
+          "missing_grounding": true,
+          "missing_support": "The completeness claim 'Only primary network meter flow readings are available for the window' is not established by citing four primary-flow summaries alone; no cited inventory or explicit absence of secondary-flow data is provided.",
+          "reason": "It correctly distinguishes primary and secondary flow. A direct secondary-flow reading compared with the design range is a clear verification, and the unsupplied range is acknowledged."
+        },
+        {
+          "id": "C-maintenance",
+          "scores": {"grounding": 2, "component_meaning": 2, "actionability": 2, "uncertainty": 2},
+          "total": 8,
+          "missing_grounding": false,
+          "reason": "The cited activity entries are dated 2014-10-21 and 2015-07-08, both before the 2015-12-01 report. Checking completion records addresses their unknown status, and the rationale explicitly avoids treating earlier activity as this event's cause."
+        }
+      ],
+      "total": 18,
+      "maximum": 24
+    },
+    {
+      "label": "P8119cb42",
+      "case": 29,
+      "checks": [
+        {
+          "id": "C-room-impact",
+          "scores": {"grounding": 2, "component_meaning": 2, "actionability": 2, "uncertainty": 2},
+          "total": 8,
+          "missing_grounding": false,
+          "reason": "The 14:18 report and 14:10 paired secondary supply/setpoint reading of 63.9/63.8 °C are cited exactly. Room or radiator temperature would test heat delivery beyond supply tracking without presuming a fault."
+        },
+        {
+          "id": "C-secondary-flow",
+          "scores": {"grounding": 2, "component_meaning": 2, "actionability": 2, "uncertainty": 2},
+          "total": 8,
+          "missing_grounding": false,
+          "reason": "The 24-hour cited summaries show 144 samples, 90 within 2 °C, hence 54 outside 2 °C, and a 13.4 °C maximum absolute gap. Measuring secondary flow against a design range addresses delivery that supply temperature alone cannot establish."
+        },
+        {
+          "id": "C-maintenance",
+          "scores": {"grounding": 0, "component_meaning": 2, "actionability": 1, "uncertainty": 2},
+          "total": 5,
+          "missing_grounding": true,
+          "missing_support": "The claim 'Only two prior activity timeline entries from Dec 2015 are on file' is a completeness claim unsupported by two cited event entries; no cited record inventory shows there are only two.",
+          "reason": "Both cited entries are indeed activity events dated 2015-12-01 and 2015-12-02, preceding the 2019-01-09 report. Verification of relevance and completion is appropriate, but no specific record or inspection method is named."
+        }
+      ],
+      "total": 21,
+      "maximum": 24
+    },
+    {
+      "label": "Pd1d3ec43",
+      "case": 29,
+      "checks": [
+        {
+          "id": "C-room-impact",
+          "scores": {"grounding": 1, "component_meaning": 2, "actionability": 2, "uncertainty": 2},
+          "total": 7,
+          "missing_grounding": false,
+          "reason": "The 14:18 report and last secondary-supply value of 63.9 °C are cited, but 'while ... reads' blurs the reading's time: the cited last-value summary gives only a 24-hour window, not an exact sample time. Room/radiator temperatures and affected-area scope are concrete checks, with delivery left unconfirmed."
+        },
+        {
+          "id": "C-secondary-flow",
+          "scores": {"grounding": 0, "component_meaning": 2, "actionability": 2, "uncertainty": 2},
+          "total": 6,
+          "missing_grounding": true,
+          "missing_support": "The claim 'Supply temperature near setpoint' has no cited setpoint reading. The outdoor-temperature citation is the first value, 8.55 °C, which is also imprecisely restated as '~10°C' without a matching time.",
+          "reason": "The rationale distinguishes supply temperature from secondary-circuit flow and asks for a direct flow measurement. It presents heat-delivery capacity as something to confirm, not as established."
+        },
+        {
+          "id": "C-controls",
+          "scores": {"grounding": 2, "component_meaning": 2, "actionability": 2, "uncertainty": 1},
+          "total": 7,
+          "missing_grounding": false,
+          "reason": "The cited episodes show multiple absolute supply/setpoint gaps above 2 °C and a 13.4 °C gap at 2019-01-09 07:40. Timestamped controller settings and parameter changes are a concrete review target. The rationale does not acknowledge that 2 °C is a descriptive convention rather than a verified operating limit."
+        }
+      ],
+      "total": 20,
+      "maximum": 24
+    }
+  ],
+  "case_totals": [
+    {"case": 3, "total": 37, "maximum": 48},
+    {"case": 29, "total": 41, "maximum": 48}
+  ],
+  "overall": {"total": 78, "maximum": 96},
+  "interpretation_limit": "These are content-screening scores for supplied checks, not diagnosis accuracy, expert validation, all-case success, or evidence about any source arm."
+}

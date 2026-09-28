@@ -1,0 +1,114 @@
+{
+  "blind_review_sha256_before_reveal": "a62becf0b6ea51a09f76bc58c05415bcd8be8baecd12c7d5eb955a2dc6546e7b",
+  "development_handoff_52": "Separate post-run development confirmation; excluded from primary and paired scores",
+  "fixed_cycle4_all_case_contract_success": {
+    "domain": {
+      "denominator": 4,
+      "failed_cases": [
+        52,
+        47
+      ],
+      "valid": 2
+    },
+    "general": {
+      "denominator": 4,
+      "failed_cases": [],
+      "valid": 4
+    }
+  },
+  "limit": "AI screening without independently verified plant expertise; no diagnosis accuracy or model/harness superiority claim",
+  "packets_sha256_before_review": "580bf00669cb453ab88b671f4d0e5ab874c4ca25275731c1b94fd5877fca7aa3",
+  "paired_content_totals": {
+    "domain": {
+      "cases": [
+        3,
+        29
+      ],
+      "maximum": 48,
+      "score": 39
+    },
+    "general": {
+      "cases": [
+        3,
+        29
+      ],
+      "maximum": 48,
+      "score": 39
+    }
+  },
+  "paired_valid_outputs_only": [
+    {
+      "arm": "domain",
+      "blind_label": "Paa639619",
+      "case": 3,
+      "maximum": 24,
+      "missing_grounding_checks": [
+        {
+          "check_id": "C-secondary-flow",
+          "unsupported_claim": "The claim 'heat power ~43 kW' has no cited heat-power fact. The cited flow values are primary-network readings of 966.0, 952.88, and 919.0 l/h; none supports the power value."
+        },
+        {
+          "check_id": "C-controls",
+          "unsupported_claim": "The claim 'Setpoint dropped from ~60 °C to ~32 °C between 11:00 and 15:30' lacks a cited 11:00 or ~60 °C setpoint. The cited episode starts at 14:50 with setpoint 45.9 °C and supports 32.0 °C at 15:00 and 15:30."
+        }
+      ],
+      "score": 19
+    },
+    {
+      "arm": "general",
+      "blind_label": "Pef137f64",
+      "case": 3,
+      "maximum": 24,
+      "missing_grounding_checks": [
+        {
+          "check_id": "C-room-impact",
+          "unsupported_claim": "The phrase 'a falling 33.2C setpoint' asserts a trend, but the citations give only the last setpoint of 33.2 °C and the 10:50 paired reading; no earlier setpoint is cited."
+        },
+        {
+          "check_id": "C-secondary-flow",
+          "unsupported_claim": "The completeness claim 'Only primary network meter flow readings are available for the window' is not established by citing four primary-flow summaries alone; no cited inventory or explicit absence of secondary-flow data is provided."
+        }
+      ],
+      "score": 18
+    },
+    {
+      "arm": "general",
+      "blind_label": "P8119cb42",
+      "case": 29,
+      "maximum": 24,
+      "missing_grounding_checks": [
+        {
+          "check_id": "C-maintenance",
+          "unsupported_claim": "The claim 'Only two prior activity timeline entries from Dec 2015 are on file' is a completeness claim unsupported by two cited event entries; no cited record inventory shows there are only two."
+        }
+      ],
+      "score": 21
+    },
+    {
+      "arm": "domain",
+      "blind_label": "Pd1d3ec43",
+      "case": 29,
+      "maximum": 24,
+      "missing_grounding_checks": [
+        {
+          "check_id": "C-secondary-flow",
+          "unsupported_claim": "The claim 'Supply temperature near setpoint' has no cited setpoint reading. The outdoor-temperature citation is the first value, 8.55 °C, which is also imprecisely restated as '~10°C' without a matching time."
+        }
+      ],
+      "score": 20
+    }
+  ],
+  "reviewer": {
+    "criteria_order": [
+      "grounding",
+      "component_meaning",
+      "actionability",
+      "uncertainty"
+    ],
+    "expertise_independently_verified": false,
+    "maximum_per_check": 8,
+    "rubric": "RUBRIC.md",
+    "scope": "Blinded content screening of the four supplied packets for cases 3 and 29; no arm or outcome inference",
+    "type": "AI reviewer"
+  }
+}

@@ -14,7 +14,9 @@ This keeps toolkit dependencies out of the project environment and requires no A
 
 Verified on macOS arm64 with Python 3.12.11 and `nvidia-nat` 1.8.0: all three calls completed; `uv pip check` passed. The output digest for the current replay data was `6d27290042d0f83afd1d2cfbad40245d200568b8c030269b4962016bb164e1bc`. The digest changes if public replay data changes. No inference endpoint was called.
 
-OpenShell was assessed only for local feasibility. This host is macOS arm64 with Docker 29.7.2 running, which [NVIDIA's support matrix](https://docs.nvidia.com/openshell/latest/reference/support-matrix.html) lists as a supported Docker Desktop setup. The `openshell` and `nemoclaw` commands are absent. No gateway, sandbox, policy, or denied-egress test was run, so there is no OpenShell enforcement evidence yet. An actual policy test would require a separately configured local gateway and sandbox, inspection of the effective policy, and both allowed and denied network probes. Do not describe this integration as OpenShell protected.
+The separate [OpenShell local probe](openshell-README.md) exercised a temporary sandbox with public fixtures. Its [trace](openshell-trace.json) records an allowed read and denied read, write, and direct TCP connection. That sandbox was not attached to the investigation or model endpoint, so it is not evidence that the live workflow runs under OpenShell.
+
+The [live NAT path](NAT_LIVE.md) registers all six current public readers. Each model-selected read can execute through NAT, with the same result and fact construction as the direct path. [The local smoke record](nat-live-smoke.json) checks all six readers without a model call. The older fixed three-reader workflow above remains a separate replay.
 
 References: [NAT custom function groups](https://docs.nvidia.com/nemo/agent-toolkit/latest/extend/custom-components/custom-functions/function-groups.html), [custom functions](https://docs.nvidia.com/nemo/agent-toolkit/latest/extend/custom-components/custom-functions/functions.html), and [workflow execution](https://docs.nvidia.com/nemo/agent-toolkit/latest/run-workflows/about-running-workflows.html).
 

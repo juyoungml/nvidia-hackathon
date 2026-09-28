@@ -1,0 +1,719 @@
+{
+  "packets": [
+    {
+      "case": 3,
+      "checks": [
+        {
+          "canonical_check_text": "Verify affected room or radiator temperatures and the scope of the reported heating loss.",
+          "cited_facts": [
+            {
+              "id": "F-ef44adf80dfa",
+              "interval": "2015-12-01 10:56:00",
+              "source_field": "problem",
+              "source_id": "PreDist-M1-fault-3-problem-only",
+              "text": "Reported problem: no heat (2015-12-01 10:56:00)",
+              "unit": "",
+              "value": "no heat"
+            },
+            {
+              "id": "F-b7507a067c23",
+              "interval": "2015-11-30 10:56:00 to 2015-12-01 10:56:00",
+              "source_field": "signals.s_hc1_supply_temperature.last",
+              "source_id": "PreDist-M1-substation-12-operational-data",
+              "text": "secondary_heating_circuit_supply_temperature_c last: 33.5 °C (2015-11-30 10:56:00 to 2015-12-01 10:56:00)",
+              "unit": "°C",
+              "value": 33.5
+            },
+            {
+              "id": "F-4098c97a65e8",
+              "interval": "2015-12-01 10:50:00",
+              "source_field": "temporal.paired_last",
+              "source_id": "PreDist-M1-substation-12-operational-data",
+              "text": "last at 2015-12-01 10:50:00: secondary supply 33.5 °C, setpoint 33.2 °C, absolute gap 0.3 °C",
+              "unit": "°C",
+              "value": {
+                "interval": "2015-12-01 10:50:00",
+                "sample": {
+                  "absolute_gap_c": 0.3,
+                  "row_index": 143,
+                  "setpoint_c": 33.2,
+                  "supply_c": 33.5,
+                  "timestamp": "2015-12-01 10:50:00"
+                }
+              }
+            }
+          ],
+          "id": "C-room-impact",
+          "model_rationale": "Reported 'no heat' at 10:56 while secondary supply temperature was 33.5 °C at 10:50; need to verify actual room or radiator temperatures and scope of heating loss."
+        },
+        {
+          "canonical_check_text": "Measure secondary heating circuit flow and compare it with the relevant design or operating range.",
+          "cited_facts": [
+            {
+              "id": "F-37c78c517194",
+              "interval": "2015-11-30 10:56:00 to 2015-12-01 10:56:00",
+              "source_field": "signals.p_net_meter_flow.first",
+              "source_id": "PreDist-M1-substation-12-operational-data",
+              "text": "primary_network_meter_flow_l_per_hour first: 966.0 l/h (2015-11-30 10:56:00 to 2015-12-01 10:56:00)",
+              "unit": "l/h",
+              "value": 966.0
+            },
+            {
+              "id": "F-2ff6575b4d65",
+              "interval": "2015-11-30 10:56:00 to 2015-12-01 10:56:00",
+              "source_field": "signals.p_net_meter_flow.last",
+              "source_id": "PreDist-M1-substation-12-operational-data",
+              "text": "primary_network_meter_flow_l_per_hour last: 952.88 l/h (2015-11-30 10:56:00 to 2015-12-01 10:56:00)",
+              "unit": "l/h",
+              "value": 952.88
+            },
+            {
+              "id": "F-1ed886413efb",
+              "interval": "2015-11-30 10:56:00 to 2015-12-01 10:56:00",
+              "source_field": "signals.p_net_meter_flow.min",
+              "source_id": "PreDist-M1-substation-12-operational-data",
+              "text": "primary_network_meter_flow_l_per_hour min: 919.0 l/h (2015-11-30 10:56:00 to 2015-12-01 10:56:00)",
+              "unit": "l/h",
+              "value": 919.0
+            }
+          ],
+          "id": "C-secondary-flow",
+          "model_rationale": "Primary network flow ~958 l/h and heat power ~43 kW are present, but secondary circuit flow is unknown; must measure secondary flow to confirm delivery to the heating circuit."
+        },
+        {
+          "canonical_check_text": "Review timestamped controller settings, alarms, and parameter changes with an engineer.",
+          "cited_facts": [
+            {
+              "id": "F-e89ab81fc037",
+              "interval": "2015-11-30 14:50:00 to 2015-11-30 15:30:00",
+              "source_field": "temporal.episode.1",
+              "source_id": "PreDist-M1-substation-12-operational-data",
+              "text": "Episode 1, 2015-11-30 14:50:00 to 2015-11-30 15:30:00, 5 consecutive paired samples with absolute gap > 2.0 °C; first at 2015-11-30 14:50:00: secondary supply 52.75 °C, setpoint 45.9 °C, absolute gap 6.85 °C; last at 2015-11-30 15:30:00: secondary supply 36.5 °C, setpoint 32.0 °C, absolute gap 4.5 °C; peak at 2015-11-30 15:00:00: secondary supply 45.7 °C, setpoint 32.0 °C, absolute gap 13.7 °C",
+              "unit": "°C",
+              "value": {
+                "first": {
+                  "absolute_gap_c": 6.85,
+                  "row_index": 23,
+                  "setpoint_c": 45.9,
+                  "supply_c": 52.75,
+                  "timestamp": "2015-11-30 14:50:00"
+                },
+                "interval": "2015-11-30 14:50:00 to 2015-11-30 15:30:00",
+                "last": {
+                  "absolute_gap_c": 4.5,
+                  "row_index": 27,
+                  "setpoint_c": 32.0,
+                  "supply_c": 36.5,
+                  "timestamp": "2015-11-30 15:30:00"
+                },
+                "peak": {
+                  "absolute_gap_c": 13.7,
+                  "row_index": 24,
+                  "setpoint_c": 32.0,
+                  "supply_c": 45.7,
+                  "timestamp": "2015-11-30 15:00:00"
+                },
+                "rule": {
+                  "operator": ">",
+                  "status": "descriptive prior-POC convention; not a verified operational limit",
+                  "threshold_c": 2.0
+                },
+                "sample_count": 5
+              }
+            },
+            {
+              "id": "F-ccc2bdf03f71",
+              "interval": "2015-11-30 15:00:00",
+              "source_field": "temporal.window_pair",
+              "source_id": "PreDist-M1-substation-12-operational-data",
+              "text": "Paired reading at 2015-11-30 15:00:00: secondary supply 45.7 °C, setpoint 32.0 °C, absolute gap 13.7 °C",
+              "unit": "°C",
+              "value": {
+                "interval": "2015-11-30 15:00:00",
+                "sample": {
+                  "absolute_gap_c": 13.7,
+                  "setpoint_c": 32.0,
+                  "supply_c": 45.7,
+                  "timestamp": "2015-11-30 15:00:00"
+                }
+              }
+            },
+            {
+              "id": "F-f25f57f42a4e",
+              "interval": "2015-11-30 15:30:00",
+              "source_field": "temporal.window_pair",
+              "source_id": "PreDist-M1-substation-12-operational-data",
+              "text": "Paired reading at 2015-11-30 15:30:00: secondary supply 36.5 °C, setpoint 32.0 °C, absolute gap 4.5 °C",
+              "unit": "°C",
+              "value": {
+                "interval": "2015-11-30 15:30:00",
+                "sample": {
+                  "absolute_gap_c": 4.5,
+                  "setpoint_c": 32.0,
+                  "supply_c": 36.5,
+                  "timestamp": "2015-11-30 15:30:00"
+                }
+              }
+            }
+          ],
+          "id": "C-controls",
+          "model_rationale": "Setpoint dropped from ~60 °C to ~32 °C between 11:00 and 15:30 with a 13.7 °C supply/setpoint gap at 15:00; review timestamped controller settings and parameter changes with an engineer."
+        }
+      ],
+      "displayed_limits": [
+        {
+          "id": "L-no-room-evidence",
+          "text": "Supply temperature tracking its setpoint does not establish heat delivery to rooms."
+        },
+        {
+          "id": "L-no-normal-range",
+          "text": "No normal operating range is supplied for heat power or flow."
+        }
+      ],
+      "label": "Q5e28db05",
+      "source": "original valid cycle-4 displayed plan"
+    },
+    {
+      "case": 3,
+      "checks": [
+        {
+          "canonical_check_text": "Verify affected room or radiator temperatures and the scope of the reported heating loss.",
+          "cited_facts": [
+            {
+              "id": "F-ef44adf80dfa",
+              "interval": "2015-12-01 10:56:00",
+              "source_field": "problem",
+              "source_id": "PreDist-M1-fault-3-problem-only",
+              "text": "Reported problem: no heat (2015-12-01 10:56:00)",
+              "unit": "",
+              "value": "no heat"
+            },
+            {
+              "id": "F-b7507a067c23",
+              "interval": "2015-11-30 10:56:00 to 2015-12-01 10:56:00",
+              "source_field": "signals.s_hc1_supply_temperature.last",
+              "source_id": "PreDist-M1-substation-12-operational-data",
+              "text": "secondary_heating_circuit_supply_temperature_c last: 33.5 °C (2015-11-30 10:56:00 to 2015-12-01 10:56:00)",
+              "unit": "°C",
+              "value": 33.5
+            },
+            {
+              "id": "F-2a7e55330ddf",
+              "interval": "2015-11-30 10:56:00 to 2015-12-01 10:56:00",
+              "source_field": "signals.s_hc1_supply_temperature_setpoint.last",
+              "source_id": "PreDist-M1-substation-12-operational-data",
+              "text": "secondary_heating_circuit_supply_setpoint_c last: 33.2 °C (2015-11-30 10:56:00 to 2015-12-01 10:56:00)",
+              "unit": "°C",
+              "value": 33.2
+            },
+            {
+              "id": "F-4098c97a65e8",
+              "interval": "2015-12-01 10:50:00",
+              "source_field": "temporal.paired_last",
+              "source_id": "PreDist-M1-substation-12-operational-data",
+              "text": "last at 2015-12-01 10:50:00: secondary supply 33.5 °C, setpoint 33.2 °C, absolute gap 0.3 °C",
+              "unit": "°C",
+              "value": {
+                "interval": "2015-12-01 10:50:00",
+                "sample": {
+                  "absolute_gap_c": 0.3,
+                  "row_index": 143,
+                  "setpoint_c": 33.2,
+                  "supply_c": 33.5,
+                  "timestamp": "2015-12-01 10:50:00"
+                }
+              }
+            }
+          ],
+          "id": "C-room-impact",
+          "model_rationale": "Reported 'no heat' while secondary supply ended at 33.5C closely tracking a falling 33.2C setpoint; supply tracking setpoint does not confirm room/radiator heat delivery."
+        },
+        {
+          "canonical_check_text": "Measure secondary heating circuit flow and compare it with the relevant design or operating range.",
+          "cited_facts": [
+            {
+              "id": "F-37c78c517194",
+              "interval": "2015-11-30 10:56:00 to 2015-12-01 10:56:00",
+              "source_field": "signals.p_net_meter_flow.first",
+              "source_id": "PreDist-M1-substation-12-operational-data",
+              "text": "primary_network_meter_flow_l_per_hour first: 966.0 l/h (2015-11-30 10:56:00 to 2015-12-01 10:56:00)",
+              "unit": "l/h",
+              "value": 966.0
+            },
+            {
+              "id": "F-2ff6575b4d65",
+              "interval": "2015-11-30 10:56:00 to 2015-12-01 10:56:00",
+              "source_field": "signals.p_net_meter_flow.last",
+              "source_id": "PreDist-M1-substation-12-operational-data",
+              "text": "primary_network_meter_flow_l_per_hour last: 952.88 l/h (2015-11-30 10:56:00 to 2015-12-01 10:56:00)",
+              "unit": "l/h",
+              "value": 952.88
+            },
+            {
+              "id": "F-1ed886413efb",
+              "interval": "2015-11-30 10:56:00 to 2015-12-01 10:56:00",
+              "source_field": "signals.p_net_meter_flow.min",
+              "source_id": "PreDist-M1-substation-12-operational-data",
+              "text": "primary_network_meter_flow_l_per_hour min: 919.0 l/h (2015-11-30 10:56:00 to 2015-12-01 10:56:00)",
+              "unit": "l/h",
+              "value": 919.0
+            },
+            {
+              "id": "F-ef0806f0363a",
+              "interval": "2015-11-30 10:56:00 to 2015-12-01 10:56:00",
+              "source_field": "signals.p_net_meter_flow.max",
+              "source_id": "PreDist-M1-substation-12-operational-data",
+              "text": "primary_network_meter_flow_l_per_hour max: 995.0 l/h (2015-11-30 10:56:00 to 2015-12-01 10:56:00)",
+              "unit": "l/h",
+              "value": 995.0
+            }
+          ],
+          "id": "C-secondary-flow",
+          "model_rationale": "Only primary network meter flow readings are available for the window; secondary/customer circuit flow needs direct measurement against a design range, none of which is supplied."
+        },
+        {
+          "canonical_check_text": "Check maintenance records and actual completion evidence for relevant prior work.",
+          "cited_facts": [
+            {
+              "id": "F-289fc5cf4914",
+              "interval": null,
+              "source_field": "event_start",
+              "source_id": "PreDist-M1-disturbance-57",
+              "text": "event_start: 2014-10-21 00:00:00",
+              "unit": "",
+              "value": "2014-10-21 00:00:00"
+            },
+            {
+              "id": "F-968d9ef3b286",
+              "interval": null,
+              "source_field": "type",
+              "source_id": "PreDist-M1-disturbance-57",
+              "text": "type: activity",
+              "unit": "",
+              "value": "activity"
+            },
+            {
+              "id": "F-049bb1c6bbed",
+              "interval": null,
+              "source_field": "event_start",
+              "source_id": "PreDist-M1-disturbance-58",
+              "text": "event_start: 2015-07-08 00:00:00",
+              "unit": "",
+              "value": "2015-07-08 00:00:00"
+            },
+            {
+              "id": "F-49f94c12e2cd",
+              "interval": null,
+              "source_field": "type",
+              "source_id": "PreDist-M1-disturbance-58",
+              "text": "type: activity",
+              "unit": "",
+              "value": "activity"
+            }
+          ],
+          "id": "C-maintenance",
+          "model_rationale": "Logged prior activity events (2014-10-21 and 2015-07-08) predate this report; confirm completion evidence since a prior report/activity does not establish this event's cause."
+        }
+      ],
+      "displayed_limits": [
+        {
+          "id": "L-no-room-evidence",
+          "text": "Supply temperature tracking its setpoint does not establish heat delivery to rooms."
+        },
+        {
+          "id": "L-primary-flow",
+          "text": "Primary meter flow is not secondary/customer circuit flow."
+        },
+        {
+          "id": "L-no-normal-range",
+          "text": "No normal operating range is supplied for heat power or flow."
+        },
+        {
+          "id": "L-prior-not-current",
+          "text": "A prior report does not establish the cause of this event."
+        },
+        {
+          "id": "L-retrospective",
+          "text": "Prior report narratives may not have been available at the decision time."
+        }
+      ],
+      "label": "Qa176cd2a",
+      "source": "original valid cycle-4 displayed plan"
+    },
+    {
+      "case": 29,
+      "checks": [
+        {
+          "canonical_check_text": "Verify affected room or radiator temperatures and the scope of the reported heating loss.",
+          "cited_facts": [
+            {
+              "id": "F-2561c2910892",
+              "interval": "2019-01-09 14:18:00",
+              "source_field": "problem",
+              "source_id": "PreDist-M1-fault-29-problem-only",
+              "text": "Reported problem: no heat (2019-01-09 14:18:00)",
+              "unit": "",
+              "value": "no heat"
+            },
+            {
+              "id": "F-9d94db391585",
+              "interval": "2019-01-08 14:18:00 to 2019-01-09 14:18:00",
+              "source_field": "signals.s_hc1_supply_temperature.first",
+              "source_id": "PreDist-M1-substation-17-operational-data",
+              "text": "secondary_heating_circuit_supply_temperature_c first: 65.6 °C (2019-01-08 14:18:00 to 2019-01-09 14:18:00)",
+              "unit": "°C",
+              "value": 65.6
+            },
+            {
+              "id": "F-e09c62badaec",
+              "interval": "2019-01-08 14:18:00 to 2019-01-09 14:18:00",
+              "source_field": "signals.s_hc1_supply_temperature.last",
+              "source_id": "PreDist-M1-substation-17-operational-data",
+              "text": "secondary_heating_circuit_supply_temperature_c last: 63.9 °C (2019-01-08 14:18:00 to 2019-01-09 14:18:00)",
+              "unit": "°C",
+              "value": 63.9
+            }
+          ],
+          "id": "C-room-impact",
+          "model_rationale": "Reported 'no heat' at 14:18 while secondary supply reads 63.9°C; must verify actual room/radiator temperatures and scope of heating loss."
+        },
+        {
+          "canonical_check_text": "Measure secondary heating circuit flow and compare it with the relevant design or operating range.",
+          "cited_facts": [
+            {
+              "id": "F-9d94db391585",
+              "interval": "2019-01-08 14:18:00 to 2019-01-09 14:18:00",
+              "source_field": "signals.s_hc1_supply_temperature.first",
+              "source_id": "PreDist-M1-substation-17-operational-data",
+              "text": "secondary_heating_circuit_supply_temperature_c first: 65.6 °C (2019-01-08 14:18:00 to 2019-01-09 14:18:00)",
+              "unit": "°C",
+              "value": 65.6
+            },
+            {
+              "id": "F-e09c62badaec",
+              "interval": "2019-01-08 14:18:00 to 2019-01-09 14:18:00",
+              "source_field": "signals.s_hc1_supply_temperature.last",
+              "source_id": "PreDist-M1-substation-17-operational-data",
+              "text": "secondary_heating_circuit_supply_temperature_c last: 63.9 °C (2019-01-08 14:18:00 to 2019-01-09 14:18:00)",
+              "unit": "°C",
+              "value": 63.9
+            },
+            {
+              "id": "F-79ad1258bffd",
+              "interval": "2019-01-08 14:18:00 to 2019-01-09 14:18:00",
+              "source_field": "signals.outdoor_temperature.first",
+              "source_id": "PreDist-M1-substation-17-operational-data",
+              "text": "outdoor_temperature_c first: 8.55 °C (2019-01-08 14:18:00 to 2019-01-09 14:18:00)",
+              "unit": "°C",
+              "value": 8.55
+            }
+          ],
+          "id": "C-secondary-flow",
+          "model_rationale": "Supply temperature near setpoint but outdoor temp ~10°C; need secondary circuit flow measurement to confirm heat delivery capacity."
+        },
+        {
+          "canonical_check_text": "Review timestamped controller settings, alarms, and parameter changes with an engineer.",
+          "cited_facts": [
+            {
+              "id": "F-7a89fa9dc1f8",
+              "interval": "2019-01-08 14:40:00 to 2019-01-08 15:00:00",
+              "source_field": "temporal.episode.1",
+              "source_id": "PreDist-M1-substation-17-operational-data",
+              "text": "Episode 1, 2019-01-08 14:40:00 to 2019-01-08 15:00:00, 3 consecutive paired samples with absolute gap > 2.0 °C; first at 2019-01-08 14:40:00: secondary supply 70.3 °C, setpoint 59.4 °C, absolute gap 10.9 °C; last at 2019-01-08 15:00:00: secondary supply 66.8 °C, setpoint 69.1 °C, absolute gap 2.3 °C; peak at 2019-01-08 14:40:00: secondary supply 70.3 °C, setpoint 59.4 °C, absolute gap 10.9 °C",
+              "unit": "°C",
+              "value": {
+                "first": {
+                  "absolute_gap_c": 10.9,
+                  "row_index": 2,
+                  "setpoint_c": 59.4,
+                  "supply_c": 70.3,
+                  "timestamp": "2019-01-08 14:40:00"
+                },
+                "interval": "2019-01-08 14:40:00 to 2019-01-08 15:00:00",
+                "last": {
+                  "absolute_gap_c": 2.3,
+                  "row_index": 4,
+                  "setpoint_c": 69.1,
+                  "supply_c": 66.8,
+                  "timestamp": "2019-01-08 15:00:00"
+                },
+                "peak": {
+                  "absolute_gap_c": 10.9,
+                  "row_index": 2,
+                  "setpoint_c": 59.4,
+                  "supply_c": 70.3,
+                  "timestamp": "2019-01-08 14:40:00"
+                },
+                "rule": {
+                  "operator": ">",
+                  "status": "descriptive prior-POC convention; not a verified operational limit",
+                  "threshold_c": 2.0
+                },
+                "sample_count": 3
+              }
+            },
+            {
+              "id": "F-4358be1c86b0",
+              "interval": "2019-01-09 07:30:00 to 2019-01-09 07:50:00",
+              "source_field": "temporal.episode.7",
+              "source_id": "PreDist-M1-substation-17-operational-data",
+              "text": "Episode 7, 2019-01-09 07:30:00 to 2019-01-09 07:50:00, 3 consecutive paired samples with absolute gap > 2.0 °C; first at 2019-01-09 07:30:00: secondary supply 67.0 °C, setpoint 62.8 °C, absolute gap 4.2 °C; last at 2019-01-09 07:50:00: secondary supply 64.7 °C, setpoint 57.45 °C, absolute gap 7.25 °C; peak at 2019-01-09 07:40:00: secondary supply 70.3 °C, setpoint 56.9 °C, absolute gap 13.4 °C",
+              "unit": "°C",
+              "value": {
+                "first": {
+                  "absolute_gap_c": 4.2,
+                  "row_index": 103,
+                  "setpoint_c": 62.8,
+                  "supply_c": 67.0,
+                  "timestamp": "2019-01-09 07:30:00"
+                },
+                "interval": "2019-01-09 07:30:00 to 2019-01-09 07:50:00",
+                "last": {
+                  "absolute_gap_c": 7.25,
+                  "row_index": 105,
+                  "setpoint_c": 57.45,
+                  "supply_c": 64.7,
+                  "timestamp": "2019-01-09 07:50:00"
+                },
+                "peak": {
+                  "absolute_gap_c": 13.4,
+                  "row_index": 104,
+                  "setpoint_c": 56.9,
+                  "supply_c": 70.3,
+                  "timestamp": "2019-01-09 07:40:00"
+                },
+                "rule": {
+                  "operator": ">",
+                  "status": "descriptive prior-POC convention; not a verified operational limit",
+                  "threshold_c": 2.0
+                },
+                "sample_count": 3
+              }
+            },
+            {
+              "id": "F-890221c11956",
+              "interval": "2019-01-09 12:30:00 to 2019-01-09 12:40:00",
+              "source_field": "temporal.episode.12",
+              "source_id": "PreDist-M1-substation-17-operational-data",
+              "text": "Episode 12, 2019-01-09 12:30:00 to 2019-01-09 12:40:00, 2 consecutive paired samples with absolute gap > 2.0 °C; first at 2019-01-09 12:30:00: secondary supply 64.7 °C, setpoint 56.8 °C, absolute gap 7.9 °C; last at 2019-01-09 12:40:00: secondary supply 67.7 °C, setpoint 70.0 °C, absolute gap 2.3 °C; peak at 2019-01-09 12:30:00: secondary supply 64.7 °C, setpoint 56.8 °C, absolute gap 7.9 °C",
+              "unit": "°C",
+              "value": {
+                "first": {
+                  "absolute_gap_c": 7.9,
+                  "row_index": 133,
+                  "setpoint_c": 56.8,
+                  "supply_c": 64.7,
+                  "timestamp": "2019-01-09 12:30:00"
+                },
+                "interval": "2019-01-09 12:30:00 to 2019-01-09 12:40:00",
+                "last": {
+                  "absolute_gap_c": 2.3,
+                  "row_index": 134,
+                  "setpoint_c": 70.0,
+                  "supply_c": 67.7,
+                  "timestamp": "2019-01-09 12:40:00"
+                },
+                "peak": {
+                  "absolute_gap_c": 7.9,
+                  "row_index": 133,
+                  "setpoint_c": 56.8,
+                  "supply_c": 64.7,
+                  "timestamp": "2019-01-09 12:30:00"
+                },
+                "rule": {
+                  "operator": ">",
+                  "status": "descriptive prior-POC convention; not a verified operational limit",
+                  "threshold_c": 2.0
+                },
+                "sample_count": 2
+              }
+            }
+          ],
+          "id": "C-controls",
+          "model_rationale": "Multiple episodes show supply/setpoint gaps >2°C (up to 13.4°C); review timestamped controller settings and parameter changes with an engineer."
+        }
+      ],
+      "displayed_limits": [
+        {
+          "id": "L-no-room-evidence",
+          "text": "Supply temperature tracking its setpoint does not establish heat delivery to rooms."
+        },
+        {
+          "id": "L-no-normal-range",
+          "text": "No normal operating range is supplied for heat power or flow."
+        }
+      ],
+      "label": "Q56769be9",
+      "source": "original valid cycle-4 displayed plan"
+    },
+    {
+      "case": 29,
+      "checks": [
+        {
+          "canonical_check_text": "Verify affected room or radiator temperatures and the scope of the reported heating loss.",
+          "cited_facts": [
+            {
+              "id": "F-2561c2910892",
+              "interval": "2019-01-09 14:18:00",
+              "source_field": "problem",
+              "source_id": "PreDist-M1-fault-29-problem-only",
+              "text": "Reported problem: no heat (2019-01-09 14:18:00)",
+              "unit": "",
+              "value": "no heat"
+            },
+            {
+              "id": "F-8aa57c6cd28a",
+              "interval": "2019-01-09 14:10:00",
+              "source_field": "temporal.paired_last",
+              "source_id": "PreDist-M1-substation-17-operational-data",
+              "text": "last at 2019-01-09 14:10:00: secondary supply 63.9 °C, setpoint 63.8 °C, absolute gap 0.1 °C",
+              "unit": "°C",
+              "value": {
+                "interval": "2019-01-09 14:10:00",
+                "sample": {
+                  "absolute_gap_c": 0.1,
+                  "row_index": 143,
+                  "setpoint_c": 63.8,
+                  "supply_c": 63.9,
+                  "timestamp": "2019-01-09 14:10:00"
+                }
+              }
+            },
+            {
+              "id": "F-e09c62badaec",
+              "interval": "2019-01-08 14:18:00 to 2019-01-09 14:18:00",
+              "source_field": "signals.s_hc1_supply_temperature.last",
+              "source_id": "PreDist-M1-substation-17-operational-data",
+              "text": "secondary_heating_circuit_supply_temperature_c last: 63.9 °C (2019-01-08 14:18:00 to 2019-01-09 14:18:00)",
+              "unit": "°C",
+              "value": 63.9
+            },
+            {
+              "id": "F-ce77d5b8d31f",
+              "interval": "2019-01-08 14:18:00 to 2019-01-09 14:18:00",
+              "source_field": "signals.s_hc1_supply_temperature_setpoint.last",
+              "source_id": "PreDist-M1-substation-17-operational-data",
+              "text": "secondary_heating_circuit_supply_setpoint_c last: 63.8 °C (2019-01-08 14:18:00 to 2019-01-09 14:18:00)",
+              "unit": "°C",
+              "value": 63.8
+            }
+          ],
+          "id": "C-room-impact",
+          "model_rationale": "Customer reported no heat at 14:18, but the last paired reading (14:10) shows secondary supply 63.9°C essentially matching setpoint 63.8°C; room/radiator temperature is needed to confirm actual heat delivery loss."
+        },
+        {
+          "canonical_check_text": "Measure secondary heating circuit flow and compare it with the relevant design or operating range.",
+          "cited_facts": [
+            {
+              "id": "F-ab6d426b35a4",
+              "interval": "2019-01-08 14:18:00 to 2019-01-09 14:18:00",
+              "source_field": "supply_setpoint_absolute_gap.max",
+              "source_id": "PreDist-M1-substation-17-operational-data",
+              "text": "Secondary supply/setpoint absolute gap max: 13.4 °C (2019-01-08 14:18:00 to 2019-01-09 14:18:00)",
+              "unit": "°C",
+              "value": 13.4
+            },
+            {
+              "id": "F-4092a4788be7",
+              "interval": "2019-01-08 14:18:00 to 2019-01-09 14:18:00",
+              "source_field": "supply_setpoint_absolute_gap.samples_within_2C",
+              "source_id": "PreDist-M1-substation-17-operational-data",
+              "text": "Secondary supply/setpoint absolute gap samples_within_2C: 90 (2019-01-08 14:18:00 to 2019-01-09 14:18:00)",
+              "unit": "",
+              "value": 90
+            },
+            {
+              "id": "F-75716f8dd7a7",
+              "interval": "2019-01-08 14:18:00 to 2019-01-09 14:18:00",
+              "source_field": "supply_setpoint_absolute_gap.mean",
+              "source_id": "PreDist-M1-substation-17-operational-data",
+              "text": "Secondary supply/setpoint absolute gap mean: 2.16 °C (2019-01-08 14:18:00 to 2019-01-09 14:18:00)",
+              "unit": "°C",
+              "value": 2.16
+            },
+            {
+              "id": "F-eb95a90d5a35",
+              "interval": "2019-01-08 14:18:00 to 2019-01-09 14:18:00",
+              "source_field": "supply_setpoint_absolute_gap.sample_count",
+              "source_id": "PreDist-M1-substation-17-operational-data",
+              "text": "Secondary supply/setpoint absolute gap sample_count: 144 (2019-01-08 14:18:00 to 2019-01-09 14:18:00)",
+              "unit": "",
+              "value": 144
+            }
+          ],
+          "id": "C-secondary-flow",
+          "model_rationale": "Supply/setpoint gap exceeded 2°C on 54 of 144 samples (max 13.4°C) over the window; secondary circuit flow (not just supply temperature) should be measured against design range to assess delivery."
+        },
+        {
+          "canonical_check_text": "Check maintenance records and actual completion evidence for relevant prior work.",
+          "cited_facts": [
+            {
+              "id": "F-b4e1b9ebb5ad",
+              "interval": null,
+              "source_field": "event_start",
+              "source_id": "PreDist-M1-disturbance-82",
+              "text": "event_start: 2015-12-01 00:00:00",
+              "unit": "",
+              "value": "2015-12-01 00:00:00"
+            },
+            {
+              "id": "F-ec71f6202c19",
+              "interval": null,
+              "source_field": "type",
+              "source_id": "PreDist-M1-disturbance-82",
+              "text": "type: activity",
+              "unit": "",
+              "value": "activity"
+            },
+            {
+              "id": "F-74634022d721",
+              "interval": null,
+              "source_field": "event_start",
+              "source_id": "PreDist-M1-disturbance-83",
+              "text": "event_start: 2015-12-02 00:00:00",
+              "unit": "",
+              "value": "2015-12-02 00:00:00"
+            },
+            {
+              "id": "F-51bf36ec3eff",
+              "interval": null,
+              "source_field": "type",
+              "source_id": "PreDist-M1-disturbance-83",
+              "text": "type: activity",
+              "unit": "",
+              "value": "activity"
+            }
+          ],
+          "id": "C-maintenance",
+          "model_rationale": "Only two prior 'activity' timeline entries from Dec 2015 are on file; their relevance and completion status relative to this Jan 2019 report need verification."
+        }
+      ],
+      "displayed_limits": [
+        {
+          "id": "L-no-room-evidence",
+          "text": "Supply temperature tracking its setpoint does not establish heat delivery to rooms."
+        },
+        {
+          "id": "L-primary-flow",
+          "text": "Primary meter flow is not secondary/customer circuit flow."
+        },
+        {
+          "id": "L-no-normal-range",
+          "text": "No normal operating range is supplied for heat power or flow."
+        },
+        {
+          "id": "L-prior-not-current",
+          "text": "A prior report does not establish the cause of this event."
+        },
+        {
+          "id": "L-retrospective",
+          "text": "Prior report narratives may not have been available at the decision time."
+        }
+      ],
+      "label": "Qed762431",
+      "source": "original valid cycle-4 displayed plan"
+    }
+  ],
+  "rubric": "RUBRIC.md",
+  "scope": "original valid paired cases 3 and 29; complete displayed checks; no outcomes or arm labels"
+}

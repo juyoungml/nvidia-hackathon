@@ -1,0 +1,11 @@
+# Offline evidence-composition and temporal-dependency audit
+
+Fixed before generating audit outputs on 2026-09-28. This is a deterministic audit of frozen artifacts, not a new model run or a causal estimate of diagnosis quality. Do not edit the original traces, use outcomes or held-out labels, or pool the post-run case-52 development fix with the fixed cycle-4 comparison.
+
+Primary denominator is all four cycle-4 cases per arm. A missing/withheld plan is a failure, never silently dropped. Paired content comparisons use only cases 3 and 29, the two cases where both arms returned valid plans, and report this selection. Case 52's later `bounded_finalize_v2` run is a separate development observation.
+
+For every stored cycle-4 valid plan, compute the ordered unique union of its check references and compare it with its stored observation IDs. Also inspect the earlier cycle-3 output's independently authored observation list against its check references, when parseable. These are different runs and corpora; any cross-cycle difference is descriptive. As an explicit structural counterfactual, remove one cited ID from a copy of the old-style observation list and test whether reference closure fails; the same stored check references passed through the union composer cannot omit that ID. Label the deletion as injected, and never report its success/failure as a model result.
+
+For temporal dependency, identify stored references whose `source_field` begins `temporal.`. Remove those facts from a copy of the evidence catalog without changing any plan text, and count check references and rationales needing re-review. This detects dependence on temporal facts, not what the model would have written without temporal tools. Review the original temporal claims against actual cited timestamps and values. The existence of a fact ID or temporal file read does not establish support. A threshold of 2°C is descriptive, not a fault threshold.
+
+Content-review packets use the exact original valid cycle-4 check text and its cited source facts, shuffled behind anonymous labels. A reviewer receives the rubric and packet without the mapping key, scores each check, and records quoted rationale claims that its cited facts do not support. No root-cause or post-event label is supplied. The reveal key stays separate until review scores are recorded.

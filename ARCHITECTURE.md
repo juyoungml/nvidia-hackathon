@@ -1,66 +1,43 @@
-# System 1 / System 2 architecture
+# System 2 조사 구조
 
-Status: design outline, 2026-09-28. Solid descriptions of the current POC and proposed production design are kept separate. The diagrams show logical components, not a claim that the production stack has been deployed.
+현재 제출 경로는 사건 발생 후 근거를 조회하는 조사 보조다. 공개 사건을 당시 정보로 재생하며, 자동 제어나 지속 감시는 수행하지 않는다.
 
-## Current hackathon POC — implemented
+## 실행 단계와 경계
 
-```mermaid
-flowchart LR
-    publicData["Public PreDist replay"] --> readTools["Read-only Python tools"]
-    readTools --> agentLoop["Bounded POC agent loop"]
-    agentLoop <-->|"Public case only"| hostedUltra["NVIDIA-hosted Nemotron 3 Ultra"]
-    agentLoop --> evidencePacket["Cited next-check packet and tool trace"]
-    heldOut["Later published outcome"] -.->|"Evaluation only"| reviewer["Reviewer"]
-    evidencePacket --> reviewer
-```
+| 단계 | 입력·처리 | 출력·경계 |
+|---|---|---|
+| 사건 설정 | 공개 replay의 설비 ID, 신고와 결정 시각 | 현재 사건의 사후 진단·조치 제외 |
+| 계획 | hosted NIM Nemotron Ultra가 읽기 도구 선택 | 최대 6회 계획 요청, 유효 인자·시점 범위 검사 |
+| 조회 | 계측·이전 사건·정비 타임라인·신호 정의·시간별 관측·편차 구간 | source ID·field·time·value가 있는 원본 사실 |
+| 관측 반환 | 조회 결과를 Ultra 문맥에 추가 | 추가 조회 또는 종료 선택 |
+| 최종 생성 | 같은 실행에서 실제 조회한 사실로 native schema 점검안 생성 | 최대 3개 점검, 점검당 4개 근거, 최대 12개 고유 사실 |
+| 구성·검수 | 선택한 참조의 합집합에서 관측 목록 구성 | ID·한도·참조 검사, 시간·수치 검수 경고 |
+| 사람 검토 | 원본 관측과 모델의 설명을 함께 표시 | 현장 확인이 필요한 상태와 다음 점검, 자동 설정 변경 없음 |
 
-The [saved run](poc/trace-52-nvidia-nemotron-3-ultra-550b-a55b.json) demonstrates hosted Ultra calling three read-only tools on public data. The held-out outcome is not an agent tool. The POC does not continuously ingest a live stream, run NeMo Agent Toolkit, enforce OpenShell policy, or connect to plant controls.
+## 모델과 도구의 연결
 
-## Target architecture — to test
+`poc/live_investigation.py`가 계획 요청·도구 반환·최종 생성을 관리한다. `direct` backend는 공개 Python reader를 호출한다. `nat` backend는 같은 reader를 NeMo Agent Toolkit 1.8.0 FunctionGroup과 workflow를 통해 실행한다. NAT가 전체 모델 오케스트레이션을 수행한다고 표현하지 않는다.
 
-```mermaid
-flowchart LR
-    subgraph site["Site-controlled environment"]
-        trends["Historian / SCADA read-only feed"] --> quality["Timestamp and signal quality checks"]
-        quality --> trendDetector["System 1A: trend and alarm candidate"]
-        trendDetector --> decisionGate["System 1B: typed escalation decision"]
-        reports["Existing alarm or operator report"] --> decisionGate
-        decisionGate <-->|"Fast local inference"| nanoNim["On-prem Nemotron Nano"]
-        decisionGate -->|"Candidate with evidence IDs"| eventLedger["Event ledger"]
-        eventLedger -->|"Selected event"| systemTwo["System 2: bounded investigation agent"]
-        systemTwo <-->|"Scoped read requests"| evidenceApi["Read-only evidence tools"]
-        evidenceApi --> sourceStore["Local trends, records, and references"]
-        systemTwo <-->|"inference.local"| shellGateway["OpenShell gateway and policy"]
-        shellGateway <-->|"Approved local route"| ultraNim["On-prem Nemotron Ultra"]
-        systemTwo --> resultGate["Citation, action, and uncertainty checks"]
-        resultGate --> engineer["Engineer review and approval"]
-        eventLedger --> valueMeter["Identification-time and loss ledger"]
-        engineer --> valueMeter
-    end
-```
+[직접/NAT 동등성 시험](integrations/nat-live-smoke.json)은 6개 reader의 반환값과 사실 해시를 대조한다. [실제 NAT 개발 실행](integrations/nat-live-case52.json)은 모델이 선택한 6개 조회와 native 최종 생성의 연결을 확인한다. 이 실행은 고정 Cycle 4 점수에 추가하지 않는다. 설치와 재현은 [NAT_LIVE.md](integrations/NAT_LIVE.md)를 따른다.
 
-System 1 continuously processes trends, existing alarms, and operator reports. Stage 1A checks the signal stream and produces an anomaly candidate. A deterministic baseline should be measured before trying a time-series model such as [NVIDIA NV-Tesseract-AD](https://developer.nvidia.com/blog/advancing-anomaly-detection-for-industry-applications-with-nvidia-nv-tesseract-ad/). Stage 1B uses rules or a small local Nemotron Nano for bounded questions about a candidate or report: should it be escalated, does the report conflict with telemetry, is there enough evidence, and how urgent is review? Its output is a typed decision with the asset, time window, quality flags, and source IDs, not a root-cause verdict. Code validates the decision shape and applies thresholds; a model-provided confidence is not assumed calibrated. An operator report may escalate even when the monitored signal appears normal; the current PreDist case makes this important. Escalation to System 2 is bounded by priority, alert volume, and inference budget.
+## 종료와 실패 처리
 
-[TypeSafe AI's Jev](https://typesafe.ai/blog/introducing-system-one-models-and-jev) is an **architectural analogy**, not a dependency: fast, narrow decisions that software can validate and route. This project's proposed fast lane is a small NVIDIA Nemotron model or ordinary code. No Jev API call or TypeSafe account is required. The tradeoff to test is whether adding an intelligent routing layer improves overall time, cost, and missed-event rate rather than merely making the agent system more complex.
+`explicit_finish_v1`은 모델의 명시적 종료 도구 호출 후에만 최종 계획을 만든다. 고정 Cycle 4의 두 실패는 6개 유효 조회 후 종료 요청 슬롯이 남지 않아 발생했다.
 
-System 2 runs only for a selected event. Nemotron Ultra is the high-capability candidate for public-data experiments. An on-premises Ultra deployment requires appropriate data-center GPU capacity; [NVIDIA describes Ultra as the multi-GPU tier](https://github.com/NVIDIA-NeMo/Nemotron). DGX Spark is a potential site for a smaller local Nemotron tier, not an assumed Ultra host. The agent may consult trends, historical incidents, procedures, and an economics calculator through scoped read-only tools. It emits a cited investigation packet and asks a human to approve any operational action.
+`bounded_finalize_v2`는 유효 조회를 마친 뒤 계획 한도가 끝난 경우 기존 총 예산 6+1 안에서 최종 생성을 수행한다. `planning_cap_handoff`, `investigation_budget_exhausted`와 검토 안내를 기록한다. 이 상태는 근거 충분성을 보장하지 않는다. 잘못된 인자·시점 위반·공급자 오류는 결과를 보류한다.
 
-## What makes the target secure
+## 근거 검증의 범위
 
-| Boundary | Intended control | Evidence still needed |
-| --- | --- | --- |
-| Plant data | Keep historian, maintenance records, documents, and retrieval index inside the site network. Send only public data to the current hosted trial API. | Inspect the actual tool payload and outbound requests. |
-| Agent tools | Expose named read-only queries with asset/time limits. Do not expose equipment-control or arbitrary shell tools to this workflow. | Positive and denied tool-call tests. |
-| Runtime | Run System 2 inside a restricted OpenShell sandbox with default-deny egress, scoped filesystem access, and host-side credentials. NVIDIA's [security guide](https://docs.nvidia.com/nemoclaw/user-guide/deepagents/security/best-practices) says inference routes through `inference.local`; the agent does not hold the upstream API key. | A real sandbox run, policy snapshot, and denied egress test. |
-| Inference | For private plant data, route to an approved local model endpoint. The hosted Ultra trial is only for licensed public demo data. | Verify chosen model, host, capacity, route, and data policy. |
-| Fast decision lane | Keep Nano inference and event packets in the site boundary. Validate typed output in code; use rules when the model is uncertain or unavailable. | Measure false escalation, missed events, latency, cost, and behavior when Nano fails. |
-| Output | Require source IDs for claims, flag undefined signals, distinguish observed data from hypotheses, and keep actions behind engineer approval. | Automated citation/action checks plus expert review. |
-| Audit | Record event time, model/version, tool calls, source IDs, policy decisions, human decision, and eventual outcome without copying confidential text into public logs. | End-to-end trace review and retention policy. |
+프로그램이 표시하는 관측은 원본 값과 연결된다. 모델은 점검 이유를 작성한다. 근거 ID의 유효성, 단위나 시각 토큰 일치 여부만으로 설명 전체의 사실성을 판정할 수는 없다. 검수 경고와 별도 내용 평가를 제시하며, 원본 trace를 사후 수정하지 않는다.
 
-For the planned security test, choose NemoClaw's **Restricted** policy tier, decline web-search and messaging presets, permit only the scoped evidence endpoint and managed local inference route, and inspect the **effective** policy after startup. Exclude any baseline hosted-inference egress that remains available for the selected agent. NVIDIA's [network-policy guide](https://docs.nvidia.com/nemoclaw/latest/user-guide/openclaw/reference/network-policies) notes that the default Balanced tier enables broader package and web presets and that baseline rules remain under Restricted unless explicitly excluded. A sandbox with broad egress would not establish the private-data boundary this design requires. The test should prove a legitimate read succeeds while direct external inference and an unlisted destination are denied. This is a test plan, not an enforcement result.
+시점별 paired reading과 편차 구간은 극값을 시간 변화로 오해하지 않도록 조사할 자료를 제공한다. 2°C는 설명용 편차 임계값이다. 운전 정상 범위·고장 임계값·인과관계로 사용하지 않는다. 최대 24개 행의 구간 조회와 결측·불규칙 간격 표시를 적용한다.
 
-NVIDIA's [industrial-alarm reference architecture](https://developer.nvidia.com/blog/building-an-analysis-ai-agent-for-industrial-alarm-management-with-nvidia-nemotron/) combines a per-alarm evidence agent, specialist tools, NeMo Agent Toolkit, and OpenShell. Our proposed distinction is a measured **System 1 → System 2 escalation** tied to identification time and an explicit plant-economics value ledger. We should demonstrate that distinction rather than claim originality from the generic per-alarm agent pattern.
+## 데이터·보안
 
-## Economic measurement boundary
+회사·고객 자료를 사용하지 않는다. hosted 요청은 공개 PreDist 사건과 공개 자료에서 파생한 사실만 포함한다. 키는 로컬 `.env`에 보관하고 release allowlist에서 제외한다. 로컬 서버는 공개 파일만 제공한다. 제출 패키지는 비밀 패턴·개인 경로 검사와 깨끗한 압축 해제 후 시험을 거친다.
 
-The local Plant Economics Bench separates **macro opportunity** from **micro identification time**. This hackathon architecture would record `anomaly/alert time → first correct identification → preparation → physical recovery`, together with whether output was actually constrained. Those observations can later inform the macro model's `T_I` and recoverable MWh calculation. No number from the one-case POC proves annual savings. Private raw TM text, identifiers, and plant trends stay out of this repository and hosted inference.
+OpenShell은 공개 fixture의 읽기·쓰기·직접 TCP 정책을 별도 시험한 상태다. 전체 모델 루프의 파일·네트워크 보호나 사내 배포를 검증하지 않았다. 권한별 사내 검색과 실제 설비 연결은 후속 운영 설계다.
+
+## 후속 구조
+
+System 1의 지속 감시와 24시간 전 선제 대응, Nano 검색 재정렬, NeMo Retriever 인덱싱은 현재 제출 경로의 필수 단계가 아니다. 충분한 후보 자료·측정 과제·성능 근거를 확보한 후 추가한다. DOE 증기 계통도는 독립 문서 예시이고 PreDist와 자동 연결되지 않는다.

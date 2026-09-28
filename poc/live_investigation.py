@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import copy
 import hashlib
 import json
@@ -9,6 +10,7 @@ import re
 import time
 import urllib.error
 import urllib.request
+from pathlib import Path
 
 from poc.constrained_composer import assemble_selection, plan_schema
 from poc.evidence_contract import (
@@ -26,13 +28,20 @@ from poc.temporal_tools import (
     query_window,
     temporal_episodes,
     temporal_facts,
+    validate_public_replay,
     window_facts,
 )
 
 TEMPORAL_TOOLS = ("get_temporal_episodes", "query_measurement_window")
 FINISH_TOOL = "finish_investigation"
 HANDOFF_POLICIES = ("explicit_finish_v1", "bounded_finalize_v2")
+READ_BACKENDS = ("direct", "nat")
 TIME_OF_DAY_PATTERN = re.compile(r"(?<!\d)(?:[01]?\d|2[0-3]):[0-5]\d(?!\d)")
+QUANTITY_PATTERN = re.compile(
+    r"(?<![\w:])~?(\d+(?:\.\d+)?)(?:\s*[-–]\s*(\d+(?:\.\d+)?))?"
+    r"\s*(°\s*C|kWh|kW|l/h|%|samples?)(?!\w)",
+    re.IGNORECASE,
+)
 LIVE_TASK = (
     "Given this asset's reported problem at decision_time, inspect the available public "
     "evidence at or before that time and propose a plan with only limit_ids and next_checks. "
@@ -91,6 +100,7 @@ def _evidence_with_facts(base: dict, facts: list[dict]) -> dict:
 
 def build_live_bundle(replay: dict, temporal_enabled: bool = True) -> dict:
     """Shared permitted corpus for both live comparators; no hidden outcomes or paths."""
+    validate_public_replay(replay)
     tool_results = {name: run_tool(name, replay) for name in SOURCE_TOOLS}
     evidence = build_evidence(replay, tool_results)
     report_id = replay["current_report"]["source_id"]
@@ -263,6 +273,16 @@ def _nvidia_request(payload: dict, key: str) -> tuple[dict, float]:
     return body, round(time.monotonic() - started, 3)
 
 
+def _numeric_values(value: object) -> list[float]:
+    if type(value) in (int, float):
+        return [float(value)]
+    if isinstance(value, dict):
+        return [number for child in value.values() for number in _numeric_values(child)]
+    if isinstance(value, list):
+        return [number for child in value for number in _numeric_values(child)]
+    return []
+
+
 def temporal_review_flags(plan: dict, evidence: dict) -> list[dict]:
     """Heuristic human review only; never changes the model's rationale or score."""
     facts = {fact["id"]: fact for fact in evidence["facts"]}
@@ -307,6 +327,28 @@ def temporal_review_flags(plan: dict, evidence: dict) -> list[dict]:
                     "times": unsupported_times,
                 }
             )
+        cited_numbers = [number for fact in cited for number in _numeric_values(fact.get("value"))]
+        unsupported_quantities = []
+        for match in QUANTITY_PATTERN.finditer(rationale):
+            for claimed_number in (match.group(1), match.group(2)):
+                if claimed_number is None:
+                    continue
+                claim = float(claimed_number)
+                decimals = len(claimed_number.partition(".")[2])
+                tolerance = 0.5 * 10**-decimals + 1e-9
+                if not any(abs(claim - value) <= tolerance for value in cited_numbers):
+                    unsupported_quantities.append(f"{claimed_number} {match.group(3).lower()}")
+        if unsupported_quantities:
+            flags.append(
+                {
+                    "code": "rationale_quantity_not_in_cited_facts",
+                    "severity": "human_review",
+                    "check_id": check["id"],
+                    "fact_ids": check["because_fact_ids"],
+                    "quantities": unsupported_quantities,
+                    "note": "Numeric match is heuristic; it does not verify sensor, unit, or claim meaning.",
+                }
+            )
         if (
             any(word in rationale for word in trend_words)
             and cited
@@ -332,6 +374,7 @@ def run_live_case(
     temporal_enabled: bool = True,
     max_planning_requests: int = 6,
     handoff_policy: str = "explicit_finish_v1",
+    read_backend: str = "direct",
 ) -> dict:
     """Run at most six planner requests plus one final native-schema request."""
     if not key:
@@ -340,7 +383,20 @@ def run_live_case(
         raise ValueError("planning request limit must be between 1 and 6")
     if handoff_policy not in HANDOFF_POLICIES:
         raise ValueError("unknown handoff policy")
+    if read_backend not in READ_BACKENDS:
+        raise ValueError("unknown read backend")
+    validate_public_replay(replay)
+    reader = None
+    if read_backend == "nat":
+        from integrations.live_nat_adapter import NatLiveReader
+
+        reader = NatLiveReader()
     bundle = bundle or build_live_bundle(replay, temporal_enabled=temporal_enabled)
+    if (
+        bundle["temporal_enabled"] != temporal_enabled
+        or bundle["evidence"]["case_id"] != replay["case_id"]
+    ):
+        raise ValueError("live bundle does not match requested case and temporal policy")
     started = time.monotonic()
     trace = {
         "method": (
@@ -353,6 +409,8 @@ def run_live_case(
         "corpus_sha256": bundle["corpus_sha256"],
         "file_sha256": bundle["file_sha256"],
         "temporal_enabled": temporal_enabled,
+        "read_backend": read_backend,
+        "nat_version": reader.version if reader else None,
         "planner_requests": [],
         "tool_calls": [],
         "finish_reason": None,
@@ -454,7 +512,11 @@ def run_live_case(
                     done = True
                     trace["finish_reason"] = "explicit_finish_tool"
                 else:
-                    result, new_facts = _read_tool(replay, name, args, temporal_enabled)
+                    result, new_facts = (
+                        reader.read(replay, name, args, temporal_enabled)
+                        if reader
+                        else _read_tool(replay, name, args, temporal_enabled)
+                    )
                     read_this_turn = True
                     read_names.add(name)
                     evidence = _evidence_with_facts(evidence, new_facts)
@@ -479,6 +541,7 @@ def run_live_case(
                         "call_id": call_id,
                         "arguments": args,
                         "response": tool_response,
+                        "executor": read_backend,
                     }
                 )
                 messages.append(
@@ -591,3 +654,66 @@ def run_live_case(
         trace["display"] = withheld_display(str(error))
     trace["wall_seconds"] = round(time.monotonic() - started, 3)
     return trace
+
+
+def main() -> None:
+    """Run one public replay without changing the frozen comparison protocol."""
+    root = Path(__file__).resolve().parents[1]
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--case", required=True, help="JSON filename under data/")
+    parser.add_argument("--output", required=True, type=Path, help="new trace JSON path")
+    parser.add_argument("--read-backend", choices=READ_BACKENDS, default="direct")
+    parser.add_argument("--handoff-policy", choices=HANDOFF_POLICIES, required=True)
+    parser.add_argument("--max-planning-requests", type=int, default=6)
+    parser.add_argument("--no-temporal", action="store_true")
+    parser.add_argument("--model", default=ULTRA_MODEL)
+    args = parser.parse_args()
+    case_path = (root / "data" / args.case).resolve()
+    if case_path.parent != root / "data" or case_path.suffix != ".json":
+        parser.error("--case must name a JSON file directly under data/")
+    if args.output.exists():
+        parser.error("--output already exists; choose a new trace path")
+    if args.output.resolve().is_relative_to(root / "evaluation" / "cycle4"):
+        parser.error("--output cannot write into frozen cycle4 artifacts")
+    replay = json.loads(case_path.read_text())
+    temporal_enabled = not args.no_temporal
+    bundle = build_live_bundle(replay, temporal_enabled=temporal_enabled)
+    from scripts.check_nvidia import load_key
+
+    key = load_key(root / ".env")
+    trace = run_live_case(
+        replay,
+        bundle=bundle,
+        key=key,
+        model=args.model,
+        temporal_enabled=temporal_enabled,
+        max_planning_requests=args.max_planning_requests,
+        handoff_policy=args.handoff_policy,
+        read_backend=args.read_backend,
+    )
+    trace["run_context"] = {
+        "kind": "development_integration_smoke",
+        "input_file": f"data/{case_path.name}",
+        "input_sha256": hashlib.sha256(case_path.read_bytes()).hexdigest(),
+        "scope": "Independent live run; not part of frozen cycle4 comparison",
+    }
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    with args.output.open("x", encoding="utf-8") as stream:
+        stream.write(_json(trace))
+    print(
+        _json(
+            {
+                "output": str(args.output),
+                "case_id": replay["case_id"],
+                "display_status": trace["display"]["status"],
+                "finish_reason": trace["finish_reason"],
+                "read_backend": args.read_backend,
+                "review_flag_count": len(trace["review_flags"]),
+            }
+        ),
+        end="",
+    )
+
+
+if __name__ == "__main__":
+    main()

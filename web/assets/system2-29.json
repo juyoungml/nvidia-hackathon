@@ -1,0 +1,262 @@
+{
+  "case": "29",
+  "case_id": "PreDist-M1-fault-29",
+  "decision_time": "2019-01-09 14:18:00",
+  "model": "nvidia/nemotron-3-ultra-550b-a55b",
+  "method": "live-system2-plan-first-v1",
+  "source_trace": "evaluation/cycle4/traces/domain-29.json",
+  "source_corpus_sha256": "a17073c5ba9da5af60fecc9cd7974ef24f58afba94b199cabd74d57ee0ce6639",
+  "status": "reference_checked",
+  "finish_reason": "explicit_finish_tool",
+  "development_only": false,
+  "budget_exhausted": false,
+  "review_notes": [],
+  "postrun_review": {
+    "kind": "independent_ai_content_screen",
+    "source": "evaluation/readiness/content-review/v2/CONTENT_RESULTS.md",
+    "expert_validated": false,
+    "by_check": {
+      "C-secondary-flow": [
+        "점검 이유의 '공급온도가 설정값에 가깝다'는 비교에는 설정값 근거가 인용되지 않았습니다.",
+        "'외기온 약 10°C'는 구간 첫 값 8.55°C를 시각 없이 부정확하게 요약했습니다."
+      ]
+    }
+  },
+  "observed_fact_ids": [
+    "F-2561c2910892",
+    "F-9d94db391585",
+    "F-e09c62badaec",
+    "F-79ad1258bffd",
+    "F-7a89fa9dc1f8",
+    "F-4358be1c86b0",
+    "F-890221c11956"
+  ],
+  "facts": {
+    "F-2561c2910892": {
+      "id": "F-2561c2910892",
+      "source_id": "PreDist-M1-fault-29-problem-only",
+      "source_field": "problem",
+      "interval": "2019-01-09 14:18:00",
+      "value": "no heat",
+      "unit": "",
+      "text": "Reported problem: no heat (2019-01-09 14:18:00)"
+    },
+    "F-4358be1c86b0": {
+      "id": "F-4358be1c86b0",
+      "source_id": "PreDist-M1-substation-17-operational-data",
+      "source_field": "temporal.episode.7",
+      "interval": "2019-01-09 07:30:00 to 2019-01-09 07:50:00",
+      "value": {
+        "interval": "2019-01-09 07:30:00 to 2019-01-09 07:50:00",
+        "sample_count": 3,
+        "first": {
+          "row_index": 103,
+          "timestamp": "2019-01-09 07:30:00",
+          "supply_c": 67.0,
+          "setpoint_c": 62.8,
+          "absolute_gap_c": 4.2
+        },
+        "last": {
+          "row_index": 105,
+          "timestamp": "2019-01-09 07:50:00",
+          "supply_c": 64.7,
+          "setpoint_c": 57.45,
+          "absolute_gap_c": 7.25
+        },
+        "peak": {
+          "row_index": 104,
+          "timestamp": "2019-01-09 07:40:00",
+          "supply_c": 70.3,
+          "setpoint_c": 56.9,
+          "absolute_gap_c": 13.4
+        },
+        "rule": {
+          "operator": ">",
+          "threshold_c": 2.0,
+          "status": "descriptive prior-POC convention; not a verified operational limit"
+        }
+      },
+      "unit": "°C",
+      "text": "Episode 7, 2019-01-09 07:30:00 to 2019-01-09 07:50:00, 3 consecutive paired samples with absolute gap > 2.0 °C; first at 2019-01-09 07:30:00: secondary supply 67.0 °C, setpoint 62.8 °C, absolute gap 4.2 °C; last at 2019-01-09 07:50:00: secondary supply 64.7 °C, setpoint 57.45 °C, absolute gap 7.25 °C; peak at 2019-01-09 07:40:00: secondary supply 70.3 °C, setpoint 56.9 °C, absolute gap 13.4 °C"
+    },
+    "F-79ad1258bffd": {
+      "id": "F-79ad1258bffd",
+      "source_id": "PreDist-M1-substation-17-operational-data",
+      "source_field": "signals.outdoor_temperature.first",
+      "interval": "2019-01-08 14:18:00 to 2019-01-09 14:18:00",
+      "value": 8.55,
+      "unit": "°C",
+      "text": "outdoor_temperature_c first: 8.55 °C (2019-01-08 14:18:00 to 2019-01-09 14:18:00)"
+    },
+    "F-7a89fa9dc1f8": {
+      "id": "F-7a89fa9dc1f8",
+      "source_id": "PreDist-M1-substation-17-operational-data",
+      "source_field": "temporal.episode.1",
+      "interval": "2019-01-08 14:40:00 to 2019-01-08 15:00:00",
+      "value": {
+        "interval": "2019-01-08 14:40:00 to 2019-01-08 15:00:00",
+        "sample_count": 3,
+        "first": {
+          "row_index": 2,
+          "timestamp": "2019-01-08 14:40:00",
+          "supply_c": 70.3,
+          "setpoint_c": 59.4,
+          "absolute_gap_c": 10.9
+        },
+        "last": {
+          "row_index": 4,
+          "timestamp": "2019-01-08 15:00:00",
+          "supply_c": 66.8,
+          "setpoint_c": 69.1,
+          "absolute_gap_c": 2.3
+        },
+        "peak": {
+          "row_index": 2,
+          "timestamp": "2019-01-08 14:40:00",
+          "supply_c": 70.3,
+          "setpoint_c": 59.4,
+          "absolute_gap_c": 10.9
+        },
+        "rule": {
+          "operator": ">",
+          "threshold_c": 2.0,
+          "status": "descriptive prior-POC convention; not a verified operational limit"
+        }
+      },
+      "unit": "°C",
+      "text": "Episode 1, 2019-01-08 14:40:00 to 2019-01-08 15:00:00, 3 consecutive paired samples with absolute gap > 2.0 °C; first at 2019-01-08 14:40:00: secondary supply 70.3 °C, setpoint 59.4 °C, absolute gap 10.9 °C; last at 2019-01-08 15:00:00: secondary supply 66.8 °C, setpoint 69.1 °C, absolute gap 2.3 °C; peak at 2019-01-08 14:40:00: secondary supply 70.3 °C, setpoint 59.4 °C, absolute gap 10.9 °C"
+    },
+    "F-890221c11956": {
+      "id": "F-890221c11956",
+      "source_id": "PreDist-M1-substation-17-operational-data",
+      "source_field": "temporal.episode.12",
+      "interval": "2019-01-09 12:30:00 to 2019-01-09 12:40:00",
+      "value": {
+        "interval": "2019-01-09 12:30:00 to 2019-01-09 12:40:00",
+        "sample_count": 2,
+        "first": {
+          "row_index": 133,
+          "timestamp": "2019-01-09 12:30:00",
+          "supply_c": 64.7,
+          "setpoint_c": 56.8,
+          "absolute_gap_c": 7.9
+        },
+        "last": {
+          "row_index": 134,
+          "timestamp": "2019-01-09 12:40:00",
+          "supply_c": 67.7,
+          "setpoint_c": 70.0,
+          "absolute_gap_c": 2.3
+        },
+        "peak": {
+          "row_index": 133,
+          "timestamp": "2019-01-09 12:30:00",
+          "supply_c": 64.7,
+          "setpoint_c": 56.8,
+          "absolute_gap_c": 7.9
+        },
+        "rule": {
+          "operator": ">",
+          "threshold_c": 2.0,
+          "status": "descriptive prior-POC convention; not a verified operational limit"
+        }
+      },
+      "unit": "°C",
+      "text": "Episode 12, 2019-01-09 12:30:00 to 2019-01-09 12:40:00, 2 consecutive paired samples with absolute gap > 2.0 °C; first at 2019-01-09 12:30:00: secondary supply 64.7 °C, setpoint 56.8 °C, absolute gap 7.9 °C; last at 2019-01-09 12:40:00: secondary supply 67.7 °C, setpoint 70.0 °C, absolute gap 2.3 °C; peak at 2019-01-09 12:30:00: secondary supply 64.7 °C, setpoint 56.8 °C, absolute gap 7.9 °C"
+    },
+    "F-9d94db391585": {
+      "id": "F-9d94db391585",
+      "source_id": "PreDist-M1-substation-17-operational-data",
+      "source_field": "signals.s_hc1_supply_temperature.first",
+      "interval": "2019-01-08 14:18:00 to 2019-01-09 14:18:00",
+      "value": 65.6,
+      "unit": "°C",
+      "text": "secondary_heating_circuit_supply_temperature_c first: 65.6 °C (2019-01-08 14:18:00 to 2019-01-09 14:18:00)"
+    },
+    "F-e09c62badaec": {
+      "id": "F-e09c62badaec",
+      "source_id": "PreDist-M1-substation-17-operational-data",
+      "source_field": "signals.s_hc1_supply_temperature.last",
+      "interval": "2019-01-08 14:18:00 to 2019-01-09 14:18:00",
+      "value": 63.9,
+      "unit": "°C",
+      "text": "secondary_heating_circuit_supply_temperature_c last: 63.9 °C (2019-01-08 14:18:00 to 2019-01-09 14:18:00)"
+    }
+  },
+  "limits": [
+    {
+      "id": "L-no-room-evidence",
+      "text": "Supply temperature tracking its setpoint does not establish heat delivery to rooms."
+    },
+    {
+      "id": "L-no-normal-range",
+      "text": "No normal operating range is supplied for heat power or flow."
+    }
+  ],
+  "checks": [
+    {
+      "id": "C-room-impact",
+      "text": "Verify affected room or radiator temperatures and the scope of the reported heating loss.",
+      "rationale": "Reported 'no heat' at 14:18 while secondary supply reads 63.9°C; must verify actual room/radiator temperatures and scope of heating loss.",
+      "fact_ids": [
+        "F-2561c2910892",
+        "F-9d94db391585",
+        "F-e09c62badaec"
+      ]
+    },
+    {
+      "id": "C-secondary-flow",
+      "text": "Measure secondary heating circuit flow and compare it with the relevant design or operating range.",
+      "rationale": "Supply temperature near setpoint but outdoor temp ~10°C; need secondary circuit flow measurement to confirm heat delivery capacity.",
+      "fact_ids": [
+        "F-9d94db391585",
+        "F-e09c62badaec",
+        "F-79ad1258bffd"
+      ]
+    },
+    {
+      "id": "C-controls",
+      "text": "Review timestamped controller settings, alarms, and parameter changes with an engineer.",
+      "rationale": "Multiple episodes show supply/setpoint gaps >2°C (up to 13.4°C); review timestamped controller settings and parameter changes with an engineer.",
+      "fact_ids": [
+        "F-7a89fa9dc1f8",
+        "F-4358be1c86b0",
+        "F-890221c11956"
+      ]
+    }
+  ],
+  "tool_calls": [
+    {
+      "name": "get_recent_measurements",
+      "arguments": {}
+    },
+    {
+      "name": "get_signal_definitions",
+      "arguments": {}
+    },
+    {
+      "name": "get_prior_incidents",
+      "arguments": {}
+    },
+    {
+      "name": "get_maintenance_timeline",
+      "arguments": {}
+    },
+    {
+      "name": "get_temporal_episodes",
+      "arguments": {}
+    },
+    {
+      "name": "query_measurement_window",
+      "arguments": {
+        "end": "2019-01-09 14:18:00",
+        "start": "2019-01-09 13:00:00"
+      }
+    },
+    {
+      "name": "finish_investigation",
+      "arguments": {}
+    }
+  ],
+  "wall_seconds": 19.646
+}

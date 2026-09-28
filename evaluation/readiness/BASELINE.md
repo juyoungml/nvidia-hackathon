@@ -1,0 +1,28 @@
+# Submission readiness baseline
+
+Provisional author audit, 2026-09-28, against the fixed [RUBRIC.md](RUBRIC.md). This is **not** the required two-reviewer conservative score or a prediction of judges' scores. It uses the repository state and frozen cycle-4 results available at this checkpoint; concurrent packaging, web, and report edits need separate final verification. Target: at least 85/100, **each area at least 18/25**, and every mandatory gate passed. The provisional score is **48/100** (15 / 13 / 7 / 13); no area reaches 18.
+
+| Area and item | Score | Evidence credited | Largest remaining gap |
+|---|---:|---|---|
+| N1 Nemotron investigation /8 | 6 | [Cycle-4 traces](../cycle4/RESULTS.md) contain real bounded Ultra tool investigations and valid final plans in 2/4 cases. | Two cases stopped before final generation at the planning request cap; original per-request message snapshots have a logging defect. |
+| N2 NAT integration /6 | 2 | [NAT fixed replay](../../integrations/README.md) registered four public readers and executed three. | NAT did not participate in the latest model-selected investigation path; fixed replay caps this item at 3. |
+| N3 data/execution boundary /6 | 4 | Public-only pre-decision corpus, bounded readers, and [OpenShell fixture policy test](../../integrations/openshell-README.md) show local allow/deny behavior. | OpenShell does not protect the full model loop; clean package secret/source audit still needed. |
+| N4 roles/observability /5 | 3 | [Architecture](../../ARCHITECTURE.md) and traces distinguish model, tool, replay, and failures. | Original request snapshot bug limits exact request reconstruction; usage/trace presentation needs final synchronization. |
+| **NVIDIA depth** | **15/25** | | **3 points below area floor.** |
+| V1 problem and real incident /6 | 5 | [Report](../../submission/REPORT.md) and [case story](../../submission/CASE_STORY.md) connect a public district-heating complaint to a concrete check. | Operator/workflow evidence and power-plant transfer remain limited. |
+| V2 useful checks /6 | 2 | Source-linked checks are available in valid plans. | No independent blinded expert content verdict yet; cycle-4 [temporal review](../cycle4/temporal-review.json) flags an unsupported time claim. Author/AI review is capped at 4. |
+| V3 honest comparison /8 | 5 | [Fixed protocol/results](../cycle4/PROTOCOL.md) preserve same permitted information and 2/4 versus 4/4 with failures; post-run case-52 fix is separate. | Model and harness both differ; content verdict and component ablation were absent at baseline. A basic summary is a narrow template, not an operator or optimized agent. |
+| V4 industrial value /5 | 1 | Measurement ambitions are described in [report](../../submission/REPORT.md). | No measured operator time, field outcome, economics, or actual user validation. |
+| **Practical value** | **13/25** | | **5 points below area floor.** |
+| C1 clean package reproduction /6 | 2 | [Lockfile](../../uv.lock), [bundle builder](../../submission/build_bundle.py), and an older ZIP exist. | Current ZIP is an older content snapshot; clean-extract, keyless demo, live instructions, secret and size checks need final gate. |
+| C2 landing/demo /6 | 3 | [Web landing](../../web/index.html), investigation page and replay assets exist. | Latest run/failure display, working links, two-minute story, and mobile/desktop visual checks need final proof. |
+| C3 slides /6 | 0 | A [PDF report](../../submission/Plant_Reliability_Agent_review.pdf) and video exist. | No editable slide deck with notes and full-slide render inspection was found. |
+| C4 quality/synchronization /7 | 2 | Cycle-4 report records Ruff, Vulture and 98 unittest passes for that change. | Final code, web, report, PDF, ZIP and form have not all passed the synchronized package gate. |
+| **Completeness** | **7/25** | | **11 points below area floor.** |
+| O1 equipment semantics /5 | 4 | Public tools and checks distinguish primary flow, secondary supply/setpoint, and unobserved room delivery. | Independent expert verification of component meaning remains open. |
+| O2 temporal boundary /6 | 4 | [Temporal protocol](../cycle4/PROTOCOL.md) and tests include paired timestamps, gap episodes, cutoffs and missing-data behavior. | Some final rationale citations do not support their exact temporal claims. |
+| O3 claim-to-source grounding /8 | 3 | Valid plans carry fact IDs to checks; the post-run author audit flags case 3's unsupported 11:00 reference. | Existence checks do not establish sentence-level support; no independent full content review yet. |
+| O4 isolated contribution /6 | 2 | [Earlier and current cycles](../cycle4/RESULTS.md) expose duplicated-list failures and an integrated change. | Different runs/configurations do not isolate composition or temporal tools' effect; frozen offline audit is structural only. |
+| **Originality/customization** | **13/25** | | **5 points below area floor.** |
+
+**Mandatory gates at baseline:** The public-only source design and explicit replay/live distinction have documentation, but the final ZIP/clean extract, link and slide visual audit, final regression, and full factual-grounding review are unverified. The two Ultra failures are disclosed; case-52 development fix is separate. No diagnosis accuracy, field-time saving, 24-hour prevention, general harness superiority, or full-stack security benefit is established. Team registration/individual consent are administrative tasks outside this technical score. Do not mark readiness complete until the gates and two independent reviews are recorded in `SCORECARD.md`.

@@ -1,0 +1,103 @@
+{
+  "blind_review_sha256_before_reveal": "eb2c91ff3da870b309bc93db768aaf3a2baf984f7db9bbf90e67dde876c7f1f6",
+  "development_handoff_52": "Separate post-run development confirmation; excluded from primary and paired scores",
+  "fixed_cycle4_all_case_contract_success": {
+    "domain": {
+      "denominator": 4,
+      "failed_cases": [
+        52,
+        47
+      ],
+      "valid": 2
+    },
+    "general": {
+      "denominator": 4,
+      "failed_cases": [],
+      "valid": 4
+    }
+  },
+  "independently_verified_plant_expertise": false,
+  "limit": "AI content screen without verified plant expertise; no diagnosis accuracy or model/harness superiority claim",
+  "packets_sha256_before_review": "b6b906712190b46e42a7bb7ebb47398f89ea850f08e5ab83c62b3e79f2a67c07",
+  "paired_content_totals": {
+    "domain": {
+      "cases": [
+        3,
+        29
+      ],
+      "maximum": 48,
+      "score": 41
+    },
+    "general": {
+      "cases": [
+        3,
+        29
+      ],
+      "maximum": 48,
+      "score": 42
+    }
+  },
+  "paired_valid_outputs_only": [
+    {
+      "arm": "domain",
+      "blind_label": "Q5e28db05",
+      "case": 3,
+      "maximum": 24,
+      "missing_grounding_checks": [
+        {
+          "check_id": "C-secondary-flow",
+          "unsupported_claim": "Primary network flow ~958 l/h and heat power ~43 kW are present"
+        },
+        {
+          "check_id": "C-controls",
+          "unsupported_claim": "Setpoint dropped from ~60 °C to ~32 °C between 11:00 and 15:30"
+        }
+      ],
+      "score": 20
+    },
+    {
+      "arm": "general",
+      "blind_label": "Qa176cd2a",
+      "case": 3,
+      "maximum": 24,
+      "missing_grounding_checks": [
+        {
+          "check_id": "C-room-impact",
+          "unsupported_claim": "a falling 33.2C setpoint"
+        },
+        {
+          "check_id": "C-secondary-flow",
+          "unsupported_claim": "Only primary network meter flow readings are available for the window"
+        }
+      ],
+      "score": 20
+    },
+    {
+      "arm": "domain",
+      "blind_label": "Q56769be9",
+      "case": 29,
+      "maximum": 24,
+      "missing_grounding_checks": [
+        {
+          "check_id": "C-secondary-flow",
+          "unsupported_claim": "Supply temperature near setpoint"
+        }
+      ],
+      "score": 21
+    },
+    {
+      "arm": "general",
+      "blind_label": "Qed762431",
+      "case": 29,
+      "maximum": 24,
+      "missing_grounding_checks": [
+        {
+          "check_id": "C-maintenance",
+          "unsupported_claim": "Only two prior 'activity' timeline entries from Dec 2015 are on file"
+        }
+      ],
+      "score": 22
+    }
+  ],
+  "reviewer_type": "AI content reviewer"
+}

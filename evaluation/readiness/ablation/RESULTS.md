@@ -1,0 +1,17 @@
+# Frozen-output offline ablation findings
+
+Reproduce with `uv run python -m evaluation.readiness.ablation.build` from the repository root. [Protocol](PROTOCOL.md), [builder](build.py), and [machine-readable results](results.json) give every input trace path and SHA-256. No hosted inference was used. The generated summaries use the existing deterministic template in `evaluation/evaluate.py`; they are not human/operator or general-model baselines.
+
+| Set | Stored result | Interpretation |
+|---|---:|---|
+| Fixed cycle-4 Ultra path | 2/4 valid | Cases 52 and 47 exhausted the planner request cap before final generation; both remain failures. |
+| Fixed cycle-4 Sonnet path | 4/4 valid | Output-contract/reference success only; no diagnosis verdict. |
+| Cycle-4 valid plans, both paths | 6/6 observation lists exactly equal ordered unique check-reference union | The composer closes the duplicated-list mismatch by construction, provided a valid plan and source facts. It cannot prove the cited sentences. |
+| Earlier cycle-3 domain raw outputs | 4/7 parseable plans cite check facts absent from their independently written observation list | Different runs and evidence contracts; this is evidence of the former structural failure mode, not a causal improvement estimate. |
+| Injected one-ID deletion in a copy of each valid plan's observation list | 6/6 copies lose reference closure; recomposition restores it | Synthetic mutation of stored output, **not** a model run or observed error rate. |
+
+Temporal citations occur in 5/6 valid cycle-4 plans. The two valid Ultra plans cite 4 temporal facts across 2 checks in case 3 and 3 facts in 1 check in case 29. The Sonnet plans cite temporal facts in case 3 (1 fact, 1 check), case 29 (1 fact, 1 check), and case 47 (7 facts, 2 checks); case 52 cites none. Sonnet could reach the same underlying temporal facts through its fact catalog, so opening a separate temporal file is the wrong exposure metric. Removing temporal facts from a copy of the catalog leaves these checks with missing cited support, while leaving their original words unchanged. It does **not** show what either model would have written without temporal evidence.
+
+The template's basic summaries for paired cases 3 and 29 state the report, 144 paired rows, mean absolute supply/setpoint gaps of **0.56°C** and **2.16°C**, and generic checks for room temperature, secondary flow, and controller records. They provide a narrow reference for what a non-model summary can say, but offer no check-specific fact IDs or timestamped episode rationale. This absence alone is not evidence that a model plan is more useful. The complete displayed-check [v2 content packets](../content-review/v2/PACKETS.json) and [rubric](../content-review/v2/RUBRIC.md) are the appropriate content screen; the [v1 packet erratum](../content-review/ERRATUM.md) records the earlier omission.
+
+The original [cycle-4 temporal review](../../cycle4/temporal-review.json) already flags a case-3 claim of a setpoint value at 11:00 that its cited facts do not show; those facts begin later. Another case-3 rationale mentions heat power near 43 kW while citing only primary-flow facts. These are author-identified grounding concerns, not a completed independent review. The earlier 2°C gap convention describes episodes; it is not a validated fault threshold. The post-run [case-52 handoff fix](../../cycle4/development/handoff-v2-case52.json) produced a valid development plan and is excluded from every primary rate above.

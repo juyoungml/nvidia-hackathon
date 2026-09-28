@@ -1,0 +1,242 @@
+{
+  "case": "52",
+  "case_id": "PreDist-M1-fault-52",
+  "decision_time": "2016-12-12 15:55:00",
+  "model": "nvidia/nemotron-3-ultra-550b-a55b",
+  "method": "live-system2-plan-first-handoff-v2",
+  "source_trace": "evaluation/cycle4/development/handoff-v2-case52.json",
+  "source_corpus_sha256": "21f0904d11810d01fd1d91074784ad6c90c09744d5098b2df4d3852bd5d54bdf",
+  "status": "reference_checked",
+  "finish_reason": "planning_cap_handoff",
+  "development_only": true,
+  "budget_exhausted": true,
+  "review_notes": [
+    "Native final plan requested after six valid read turns reached the planning cap; the investigator did not explicitly finish or attest sufficiency."
+  ],
+  "postrun_review": null,
+  "observed_fact_ids": [
+    "F-46253c9e467c",
+    "F-49c6415537c0",
+    "F-93b39b46d22e",
+    "F-10916c0bc905",
+    "F-27e89a2c6343",
+    "F-59bbecd029bb",
+    "F-9d409be42c6f",
+    "F-7e13b852054c",
+    "F-07339eea770e",
+    "F-9db9d7f33910",
+    "F-6bf6b4e4abd3",
+    "F-51e906859d6a"
+  ],
+  "facts": {
+    "F-07339eea770e": {
+      "id": "F-07339eea770e",
+      "source_id": "PreDist-M1-substation-21-operational-data",
+      "source_field": "signals.s_hc1_supply_temperature_setpoint.first",
+      "interval": "2016-12-11 15:55:00 to 2016-12-12 15:55:00",
+      "value": 63.0,
+      "unit": "°C",
+      "text": "secondary_heating_circuit_supply_setpoint_c first: 63.0 °C (2016-12-11 15:55:00 to 2016-12-12 15:55:00)"
+    },
+    "F-10916c0bc905": {
+      "id": "F-10916c0bc905",
+      "source_id": "PreDist-M1-substation-21-operational-data",
+      "source_field": "temporal.window_pair",
+      "interval": "2016-12-12 15:30:00",
+      "value": {
+        "interval": "2016-12-12 15:30:00",
+        "sample": {
+          "timestamp": "2016-12-12 15:30:00",
+          "supply_c": 68.6,
+          "setpoint_c": 68.5,
+          "absolute_gap_c": 0.1
+        }
+      },
+      "unit": "°C",
+      "text": "Paired reading at 2016-12-12 15:30:00: secondary supply 68.6 °C, setpoint 68.5 °C, absolute gap 0.1 °C"
+    },
+    "F-27e89a2c6343": {
+      "id": "F-27e89a2c6343",
+      "source_id": "PreDist-M1-substation-21-operational-data",
+      "source_field": "signals.p_net_meter_flow.first",
+      "interval": "2016-12-11 15:55:00 to 2016-12-12 15:55:00",
+      "value": 2208.0,
+      "unit": "l/h",
+      "text": "primary_network_meter_flow_l_per_hour first: 2208.0 l/h (2016-12-11 15:55:00 to 2016-12-12 15:55:00)"
+    },
+    "F-46253c9e467c": {
+      "id": "F-46253c9e467c",
+      "source_id": "PreDist-M1-fault-52-problem-only",
+      "source_field": "problem",
+      "interval": "2016-12-12 15:55:00",
+      "value": "no heat",
+      "unit": "",
+      "text": "Reported problem: no heat (2016-12-12 15:55:00)"
+    },
+    "F-49c6415537c0": {
+      "id": "F-49c6415537c0",
+      "source_id": "PreDist-M1-substation-21-operational-data",
+      "source_field": "signals.s_hc1_supply_temperature.first",
+      "interval": "2016-12-11 15:55:00 to 2016-12-12 15:55:00",
+      "value": 63.3,
+      "unit": "°C",
+      "text": "secondary_heating_circuit_supply_temperature_c first: 63.3 °C (2016-12-11 15:55:00 to 2016-12-12 15:55:00)"
+    },
+    "F-51e906859d6a": {
+      "id": "F-51e906859d6a",
+      "source_id": "PreDist-M1-substation-21-operational-data",
+      "source_field": "temporal.paired_last",
+      "interval": "2016-12-12 15:50:00",
+      "value": {
+        "interval": "2016-12-12 15:50:00",
+        "sample": {
+          "row_index": 143,
+          "timestamp": "2016-12-12 15:50:00",
+          "supply_c": 68.3,
+          "setpoint_c": 68.6,
+          "absolute_gap_c": 0.3
+        }
+      },
+      "unit": "°C",
+      "text": "last at 2016-12-12 15:50:00: secondary supply 68.3 °C, setpoint 68.6 °C, absolute gap 0.3 °C"
+    },
+    "F-59bbecd029bb": {
+      "id": "F-59bbecd029bb",
+      "source_id": "PreDist-M1-substation-21-operational-data",
+      "source_field": "signals.p_net_meter_flow.last",
+      "interval": "2016-12-11 15:55:00 to 2016-12-12 15:55:00",
+      "value": 2496.0,
+      "unit": "l/h",
+      "text": "primary_network_meter_flow_l_per_hour last: 2496.0 l/h (2016-12-11 15:55:00 to 2016-12-12 15:55:00)"
+    },
+    "F-6bf6b4e4abd3": {
+      "id": "F-6bf6b4e4abd3",
+      "source_id": "PreDist-M1-substation-21-operational-data",
+      "source_field": "temporal.paired_first",
+      "interval": "2016-12-11 16:00:00",
+      "value": {
+        "interval": "2016-12-11 16:00:00",
+        "sample": {
+          "row_index": 0,
+          "timestamp": "2016-12-11 16:00:00",
+          "supply_c": 63.3,
+          "setpoint_c": 63.0,
+          "absolute_gap_c": 0.3
+        }
+      },
+      "unit": "°C",
+      "text": "first at 2016-12-11 16:00:00: secondary supply 63.3 °C, setpoint 63.0 °C, absolute gap 0.3 °C"
+    },
+    "F-7e13b852054c": {
+      "id": "F-7e13b852054c",
+      "source_id": "PreDist-M1-substation-21-operational-data",
+      "source_field": "signals.p_net_meter_flow.max",
+      "interval": "2016-12-11 15:55:00 to 2016-12-12 15:55:00",
+      "value": 3960.0,
+      "unit": "l/h",
+      "text": "primary_network_meter_flow_l_per_hour max: 3960.0 l/h (2016-12-11 15:55:00 to 2016-12-12 15:55:00)"
+    },
+    "F-93b39b46d22e": {
+      "id": "F-93b39b46d22e",
+      "source_id": "PreDist-M1-substation-21-operational-data",
+      "source_field": "signals.s_hc1_supply_temperature.last",
+      "interval": "2016-12-11 15:55:00 to 2016-12-12 15:55:00",
+      "value": 68.3,
+      "unit": "°C",
+      "text": "secondary_heating_circuit_supply_temperature_c last: 68.3 °C (2016-12-11 15:55:00 to 2016-12-12 15:55:00)"
+    },
+    "F-9d409be42c6f": {
+      "id": "F-9d409be42c6f",
+      "source_id": "PreDist-M1-substation-21-operational-data",
+      "source_field": "signals.p_net_meter_flow.min",
+      "interval": "2016-12-11 15:55:00 to 2016-12-12 15:55:00",
+      "value": 1680.0,
+      "unit": "l/h",
+      "text": "primary_network_meter_flow_l_per_hour min: 1680.0 l/h (2016-12-11 15:55:00 to 2016-12-12 15:55:00)"
+    },
+    "F-9db9d7f33910": {
+      "id": "F-9db9d7f33910",
+      "source_id": "PreDist-M1-substation-21-operational-data",
+      "source_field": "signals.s_hc1_supply_temperature_setpoint.last",
+      "interval": "2016-12-11 15:55:00 to 2016-12-12 15:55:00",
+      "value": 68.6,
+      "unit": "°C",
+      "text": "secondary_heating_circuit_supply_setpoint_c last: 68.6 °C (2016-12-11 15:55:00 to 2016-12-12 15:55:00)"
+    }
+  },
+  "limits": [
+    {
+      "id": "L-no-room-evidence",
+      "text": "Supply temperature tracking its setpoint does not establish heat delivery to rooms."
+    },
+    {
+      "id": "L-primary-flow",
+      "text": "Primary meter flow is not secondary/customer circuit flow."
+    }
+  ],
+  "checks": [
+    {
+      "id": "C-room-impact",
+      "text": "Verify affected room or radiator temperatures and the scope of the reported heating loss.",
+      "rationale": "Reported 'no heat' at decision time; secondary supply tracks setpoint (63-68°C) but room/radiator temperatures are unmeasured, so delivery to spaces is unverified.",
+      "fact_ids": [
+        "F-46253c9e467c",
+        "F-49c6415537c0",
+        "F-93b39b46d22e",
+        "F-10916c0bc905"
+      ]
+    },
+    {
+      "id": "C-secondary-flow",
+      "text": "Measure secondary heating circuit flow and compare it with the relevant design or operating range.",
+      "rationale": "Only primary network meter flow (1680-3960 l/h) is available; secondary heating circuit flow is not measured, so heat delivery capacity cannot be assessed.",
+      "fact_ids": [
+        "F-27e89a2c6343",
+        "F-59bbecd029bb",
+        "F-9d409be42c6f",
+        "F-7e13b852054c"
+      ]
+    },
+    {
+      "id": "C-controls",
+      "text": "Review timestamped controller settings, alarms, and parameter changes with an engineer.",
+      "rationale": "Setpoint rose from 63.0°C to 68.6°C over the window; review timestamped controller settings/alarms with an engineer to confirm if changes were automatic or manual.",
+      "fact_ids": [
+        "F-07339eea770e",
+        "F-9db9d7f33910",
+        "F-6bf6b4e4abd3",
+        "F-51e906859d6a"
+      ]
+    }
+  ],
+  "tool_calls": [
+    {
+      "name": "get_recent_measurements",
+      "arguments": {}
+    },
+    {
+      "name": "get_temporal_episodes",
+      "arguments": {}
+    },
+    {
+      "name": "get_prior_incidents",
+      "arguments": {}
+    },
+    {
+      "name": "get_maintenance_timeline",
+      "arguments": {}
+    },
+    {
+      "name": "get_signal_definitions",
+      "arguments": {}
+    },
+    {
+      "name": "query_measurement_window",
+      "arguments": {
+        "end": "2016-12-12 15:55:00",
+        "start": "2016-12-12 14:00:00"
+      }
+    }
+  ],
+  "wall_seconds": 27.811
+}
