@@ -1,96 +1,109 @@
-# Plan — feasibility, demo, submission
+# 재검토 계획 — 기능 추가에서 증거 확보로
 
-## 현재 체크포인트 — 2026-09-28 15:04 KST
+**2026-09-28 15:15 KST 기준.** 기존 계획을 대체한다. 사용자 제공 공고의 마감은 오늘 23:59이며, 22:30까지 개인별 제출을 시작하는 목표를 유지한다. 현재 문서는 계획 재검토 결과이며 아래 실험을 완료했다는 보고가 아니다.
 
-- 랜딩 동결. 실제 DOE PDF 도면 탐색, PreDist 자료 이미지, 이야기 흐름을 로컬 구현하고 `fb69788`로 저장·push했다.
-- Nano→Ultra 실제 연결: 로컬 Nano 4B의 schema-v2 선별 + hosted Ultra. 공개 사건 52·62·32 실행과 파생 무신고·계측 제거 시험을 보존했다.
-- 중요한 실패: 무신고 시험에서 Nano가 서비스 중단 신고를 만들어 조사 요청. 사례 52의 계측 출처와 사례 32의 현재 신고 출처 누락. 미정의 태그 0개는 완전한 근거 검증을 뜻하지 않는다.
-- NAT 1.8.0: 공개 도구 4개 등록, 별도 고정 워크플로 3개 호출 성공. 전체 모델 루프 통합 아님.
-- OpenShell 0.1.2: 독립 공개 fixture에서 읽기 허용과 비허용 읽기·쓰기·직접 TCP 차단을 확인. 고객 데이터·모델 API·host workspace는 연결하지 않았고 테스트 자원 정리. 모델 루프 보호 검증 아님.
-- 제출 준비: 안전한 localhost 데모 서버, 저장 trace 재생 UI, 폼 문구, PDF/ZIP 빌더, 8쪽 기술 보고서 개정·전 페이지 시각 검수 완료. 111초 저장 trace 설명 영상 완성. 팀명/인원은 미확정, 서비스명은 사용자 승인 임시명.
-- 품질: 23개 단위 테스트와 Ruff/Vulture/JS 문법 검사 통과. 제출 ZIP은 별도 추출 환경에서 접근·차단 경로를 최종 검수한다.
-- 여전히 미검증: 지속 스트리밍, 자동 문서·도면 인덱싱, 실험 간 통계적 우월성, 현장 진단 정확도·식별 시간·경제 효과. 후속 설계와 제출 주장에 명확히 구분.
-- 마감은 사용자 제공 공고 기준 오늘 23:59 KST. 남은 제출 작업: 최종 PDF·영상·ZIP 검수, 코드·문서 저장, 팀명·팀원 확인 후 전원 개별 폼 제출. Google Form은 아직 제출하지 않았다.
+## 1. 전략적 판단
 
-## 오늘의 순서
+사용자 제공 58/100 평가는 항목별 25점이라는 가정하의 진단이다. 실제 배점 또는 예선 통과 확률로 취급하지 않는다. 지적의 핵심은 타당하다. 실행은 있지만 비교 우위가 없다.
 
-1. 팀 2~5인과 계정·팀명을 확정한다. 전원 개별 신청이 필요하다.
-2. [DATA_SOURCES.md](DATA_SOURCES.md)의 공개 데이터 접근성과 라이선스를 확인하고, 실제 관측 사건 하나를 고른다.
-3. 그 사건의 당시 자료만 도구로 연결해 Nemotron의 실제 도구 호출을 시험한다.
-4. 정상/상충/근거 부족 세 경우를 검증한다.
-5. 시간 여유가 있을 때만 NeMo Agent Toolkit과 NemoClaw/OpenShell 통합을 시도한다.
-6. 22:30 KST까지 제출 PDF와 링크를 검수하고 팀원별 제출을 시작한다.
+제출의 핵심 주장은 **“공개 사건의 근거를 조회하고 다음 점검을 제안하는 조사 보조”**로 유지한다. 50,000개 신호·100ms는 단계적 처리 구조의 설계 부하로 추가한다. 현재 데이터가 이 부하를 처리했다거나 Nano가 규칙을 이겼다고 말하지 않는다.
 
-## 공개 사건 재생과 평가
+Nano를 두는 이유를 단지 작은 모델이라는 설명으로 끝내지 않는다. 원시 신호 전처리와 맥락 선별을 분리하고, 동일 전처리 이후 규칙 대비 Nano의 증분 기여를 시험한다. 수치와 가정은 [CAPACITY_MODEL.md](CAPACITY_MODEL.md)에 있다.
 
-첫 사건은 공개 데이터의 실제 관측 구간을 기준으로 고른다. 같은 데이터에서 정상 구간, 모순이 있는 구간, 정보가 부족한 구간을 찾는다. 공개 자료만으로 특정 조건을 만들 수 없으면 팀 작성 시나리오라고 명시하고 실측 평가와 분리한다.
+## 2. 유지·중단·재배치
 
-| 사건 | 숨겨진 조건 | 기대 행동 |
-| --- | --- | --- |
-| 정상 | 공개된 당시 신호와 사건 기록이 함께 해석 가능 | 관련 도구를 호출하고 출처가 있는 점검 순서를 제시 |
-| 상충 | 당시 신호와 로그가 서로 다른 설명을 시사 | 충돌을 명시하고 추가 확인을 요청; 단정 금지 |
-| 근거 부족 | 필요한 기록이 없거나 품질이 낮음 | 없는 근거를 만들지 않고 결론 보류 |
+| 결정 | 내용 |
+|---|---|
+| 유지 | 공개 자료만 사용, 현재 사후 진단 분리, trace·실패 보존, 읽기 도구, 사람이 최종 판단 |
+| 중단 | 랜딩·PDF 미관 반복, 새로운 3D/브랜드 작업, 고장 유형을 급하게 대량 생성 |
+| 재배치 | DOE 도면은 보조 예시. 실제 모델 입력·선별·도구 결과·누락과 실패를 발표 앞부분에 배치 |
+| 검증 후 결정 | Nano의 기본 경로 채택, 자동 도면 인덱싱, 전체 NAT/OpenShell 통합 |
+| 철회할 주장 | 현재 현장 식별 시간 단축, 규칙 대비 우월성, 같은 설비 도면·계측의 자동 연결 |
 
-각 사건에 작성자가 별도 `expected_behavior`를 두고, 이후의 확인된 장애 보고를 에이전트에게 숨긴 상태에서 모델을 실행한다. 가능하면 각 사건을 2~3회 반복하고 동일 질문에 대한 단순 검색+요약 기준선도 실행한다. 기록할 지표는 필요한 도구 호출, 근거 ID의 정확성, 모순 발견, 결론 보류, 안전 경계, 소요 시간이다. 시험 수가 적으므로 일반적인 현장 정확도나 통계적 우월성으로 해석하지 않는다.
+## 3. 세 가지 질문을 별도로 푼다
 
-NeMo Agent Toolkit을 연결하면 [공식 `nat eval` 기능](https://docs.nvidia.com/nemo/agent-toolkit/latest/workflows/evaluate.html)으로 중간 단계와 실행 설정을 저장한다. 시간이 허락하면 trajectory 평가와 프로파일러도 켠다. 모델 평가 점수만 의존하지 않고 사건별 규칙 검사를 함께 둔다. 핵심 사건은 공개 기록에서 선정하고, 팀이 만든 질문·주석은 원천 기록과 분리한다.
+| 질문 | 필요한 증거 | 현재 답 |
+|---|---|---|
+| 왜 단계적으로 처리하나? | 입력량·큐·처리율·지연·호출 예산 | 50만 관측값/초의 산술 모델, 부하 실측은 없음 |
+| 왜 규칙 외에 Nano가 필요한가? | 같은 후보·같은 기준에서 미탐·근거 오류·조사 요청 수·비용 비교 | 3건에서 규칙과 같음. 무신고 시험에서 잘못된 이유 생성 |
+| 왜 고정 요약 외에 Ultra가 필요한가? | 주장 근거 타당성·점검 우선순위·불필요한 점검의 독립 평가 | 호출 실행은 확인. 사용자 가치 비교는 없음 |
 
-Planning date: 2026-09-28 KST. Deadline: **23:59 KST today**. Keep at least one hour of buffer for form upload, team-member applications, and link checks. The local clock was 10:49 KST when planning began; recheck time before scheduling work.
+**추가 발견:** 현재 Ultra 프롬프트는 계측과 이전 신고 도구 호출을 요구한다. 두 도구를 호출한 사실은 자율적 계획의 독립 증거가 아니다. 적응적 조회의 가치를 주장하려면 선택지가 있는 다른 사건에서 필요한 도구를 고르는지를 별도로 시험해야 한다.
 
-## Immediate prerequisites
+## 4. 실행 순서와 완료 조건
 
-- Confirm a **2–5 person team**, team name, and who will submit the representative portfolio. Every member must complete their own form. This is an eligibility gate, not a coding task.
-- Confirm which GitHub account/organization and NVIDIA account the team will use. This repository starts private under `juyoungml`; publish only a reviewed clean-room deliverable if public access is needed for judges.
-- Confirm whether a Linux/NVIDIA GPU host is already available. Do not make NemoClaw or local NIM setup the critical path without one.
+### P0 — 제품 약속에 직접 충돌하는 오류
 
-## Experiments, in order
+**A. 주장–근거 출력 계약 (우선 60–75분)**
 
-| ID | Trial | Evidence to save | Pass condition | Time box / fallback |
-| --- | --- | --- | --- | --- |
-| E0 | Check one joinable public episode from EDP within 45 minutes; if unavailable, inspect PreDist. | Exact file URLs, license, timestamp/asset joins, held-out outcome. | One asset has sensor, event, and outcome records that can be replayed without future leakage. | 45 min; use documented fallback and keep the asset description accurate. |
-| E1 | Call two available Nemotron models with an attributed public snapshot and two function schemas. | Model IDs, request/response shape with secrets removed, latency, tool-call arguments. | At least one model reliably emits valid calls and a useful follow-up. | 60–90 min; choose the better model and stop comparison. |
-| E2 | Implement read-only tools over a small, attributed slice of the selected public dataset. | Data provenance note, tool schemas, sample outputs. | Every returned claim has a record ID; no company file is present and the future outcome stays hidden. | 90 min; use local JSON/SQLite and deterministic matching. |
-| E3 | Run a complete agent investigation with a conflicting record. | Full trajectory: plan, calls, outputs, final packet. | Model uses 2+ tools, notices the conflict, and asks for a physical check before concluding. | 2–3 h; simplify the interface before reducing the evidence behavior. |
-| E4 | Test three cases: normal, conflicting, missing evidence. | Expected vs actual results, observed failures. | No invented source citation; missing evidence is acknowledged; no direct equipment control instruction. | 60 min; fix only failures that affect the core demo. |
-| E5 | Try NeMo Agent Toolkit integration. | Runnable config, version, trace. | E3 still passes through the toolkit. | 90 min; retain a truthful custom loop if integration fails. |
-| E6 | Try NemoClaw/OpenShell only on an available supported host. | Policy, denied action, audit trace, host/runtime details. | A real blocked action is visible and normal read-only calls still work. | 60–90 min after core demo; otherwise document the future deployment design honestly. |
+- 사실 관측, 한계, 제안 행동을 구조적으로 분리한다. 사실에는 원본 `fact_id` 또는 출처와 필드를 참조하도록 한다.
+- 숫자·시점·태그는 도구 결과와 대조한다. 형식 검사, 출처 존재 검사, 주장 의미 지지 검사를 구분한다.
+- 잘못된 출처를 출력 뒤에서 임의로 붙여 통과시키지 않는다. 근거가 없으면 해당 사실의 표시를 보류하고 검토 필요를 보여준다.
+- 완료 조건: 기존 인용 누락의 회귀 시험과 별도 새 시험에서 출처 없는 사실이 정상 결과로 표시되지 않음. 이 조건의 통과를 전체 의미 정확도 100%로 부르지 않음.
 
-The order is deliberate: a real tool-using agent and traceable public evidence are the entry. Toolkit and sandbox integration should strengthen the entry without jeopardizing the deadline.
+**B. 신고 유무와 선별 사유 검사 (A와 병렬, 45–60분)**
 
-## Continuing experiments after the one-case POC
+- `report_present`를 명시적인 boolean으로 제공한다. ‘신고 없음’ 문자열을 신고 내용으로 넣는 모호함을 없앤다.
+- Nano의 reason에 있는 신고 사실을 입력과 대조한다. 사람의 명시적 서비스 중단 신고를 모델이 숨기지 못하게 하는 규칙은 유지한다.
+- 완료 조건: 기존 무신고 오류를 회귀 검사하되, 입력 표현과 운전 상태가 다른 새 시험으로도 확인한다. 원래 실패 trace는 보존한다.
+- Nano가 통과하지 못하면 제출은 규칙 우선 경로로 설명하고 Nano는 실험 분기로 남긴다. 두 모델을 반드시 쓰기 위해 오류를 숨기지 않는다.
 
-| Experiment | First falsifiable result | Gate before a public claim |
-| --- | --- | --- |
-| System 1 stream replay | Reproduce event candidates from public time series with a rules baseline and one lightweight model candidate. | Report lead time, false alerts, missed events, and ingestion lag at the original sampling cadence. |
-| System 1 → 2 escalation | Deliver a minimal event packet with source IDs, quality flags, and an explicit reason to call Ultra. | Show an event that should escalate and one that should not; measure Ultra call count and latency. |
-| Nano decision gate | Ask typed escalation/urgency questions with a small Nemotron Nano and compare with rules on the same public replay. | Measure missed important events, false escalation, response time, cost, and incremental Ultra calls. Do not add a Jev API dependency. |
-| System 2 evaluation | Run Ultra on several public held-out incidents with unchanged tools and prompt. | Compare against search-and-summary; check citations, unknown tags, next checks, and abstention. |
-| Security enforcement | Run the investigation inside restricted OpenShell with scoped read-only tools and approved inference. | Capture an allowed read, a blocked outbound/tool request, and the effective policy. |
-| Visual evidence | Connect a licensed document/page and reviewed bbox to a claim in the UI; use the current illustrative viewer only as the interaction baseline. | Verify tag reading, bbox position, source/page identity, false highlights, and reviewer one-click traceability. |
-| Economics bridge | Feed measured identification times into the separate macro model as an experimental input. | Keep assumed MW, demand/dispatch, and recovery conversion distinct from observations; do not claim realized annual value. |
+### P1 — 처리량 근거와 비교 우위 검증
 
-The NVIDIA account's stated API limit is **40 requests/minute**. The POC paces its own hosted requests at 36/minute and retries HTTP 429 with `Retry-After` or short backoff. Run evaluations with one worker unless a shared account-level limiter is added; other applications using the same key are outside this process's control.
+**C. 스트리밍 데이터 경로 부하 시험 (45–60분)**
 
-## Delivery milestones
+- 합성 50,000개 태그 × 10Hz를 집계 계층까지 재생한다. 전체 raw 값을 Nano 또는 Ultra에 넣지 않는다.
+- 입력·처리 개수, 누락, p50/p95 처리 지연, 큐 깊이, 최대 메모리, 후보율을 측정한다.
+- 임시 용량 수용 기준: 5분 측정 동안 입력 계수 일치, 누락 0, 지속적인 backlog 증가 없음. 100ms 프레임보다 p95 수집 처리 지연이 긴지 보고한다. 미달이면 사용 장비·부하를 명시하고 미달 자체를 결과로 남긴다.
+- 성능용 합성 부하와 공개 사건의 모델 품질 평가를 합산하지 않는다.
 
-| Local time target | Reviewable result | Decision |
-| --- | --- | --- |
-| By 13:00 | E1 model choice and confirmed team eligibility | If no valid tool call, change model or agent loop immediately. |
-| By 16:00 | Public replay slice, tools, first end-to-end trajectory | Freeze the scenario and avoid new feature ideas. |
-| By 19:00 | Usable demo, three evaluation cases, evidence trace | Decide if NAT/OpenShell additions are stable enough to include. |
-| By 21:30 | README, run instructions, demo recording or screenshots, submission PDF draft | Freeze code and run a clean-room review. |
-| By 22:30 | One final PDF below 100 MB, accessible link, exact form text | Start team-member submissions; keep 23:59 as hard stop. |
+**D. 동일 조건의 단계별 비교 (90분 예산)**
 
-These are targets, not claims that work has been completed. Adjust after the first experiment using the current clock.
+- 선별: 동일 전처리 후보에 규칙 / Nano / 규칙+Nano를 비교한다.
+- 조사: 동일 제공 자료와 질문으로 고정 요약 / Ultra 단독 / Nano→Ultra를 비교한다. 고정 요약은 도메인에 맞춰 작성된 템플릿이라는 한계를 공개한다.
+- 평가 세트를 먼저 동결한다. 기존 3건은 개발·회귀 세트이며 수정 후 성능을 새 일반화 결과로 사용하지 않는다.
+- 우선 다른 서브스테이션의 공개 사건 2건 이상을 확보한다. 30분 안에 접근·시간경계 확인이 안 되면 확장 실패를 기록하고, 현재 결과의 범위를 유지한다. 신고가 없다고 정상 라벨을 만들지 않는다.
+- 사건별 같은 조건에서 최대 3회 실행한다. 단일 최고 결과 대신 실패를 포함한 전체 결과를 저장한다. 추론·도구 실행 시간, 요청 수, 토큰 사용량이 제공되면 함께 기록한다. 미공개 가격으로 비용을 만들어내지 않는다.
+- 자동 검사는 인용 coverage와 정확한 값·필드의 일치까지 본다. 도메인 검토는 방식 이름을 가리고 주장 지지 여부, 점검 관련성·우선순위·불필요한 점검을 판정한다. 독립 검토자가 없으면 저자 평가로 표시하며 그 사실이 없었던 것처럼 제출하지 않는다.
+- 완료 조건: 비교표가 있고 어떤 축에서 무엇이 개선·악화됐는지 설명 가능. 차이가 없거나 나쁘면 그 결론을 유지한다. 예상 점수 상승을 결과로 쓰지 않는다.
 
-## Submission package
+### P2 — 통합은 위 검증을 통과한 뒤
 
-The user-provided Google Form requests a service name, **one file up to 100 MB** (or a Word/PDF containing the repository or deployment URL), a problem statement of about 300 Korean characters, a solution description of about 500 Korean characters, NVIDIA technology stack, and optional additional URL. Name the uploaded file `NVIDIA 해커톤_팀명_프로젝트명.pdf` using the actual team and project names.
+**E. 하나의 실제 조사 경로를 NAT로 실행 (최대 60분)**
 
-The PDF should contain: one-sentence problem, one-sentence solution, a single public-data replay with source attribution, visible agent trajectory, NVIDIA components actually run, privacy boundary, reproduction steps, and links. Provide a live link only if it works for an unauthenticated judge; otherwise make the repository and recording self-contained. Never put credentials, employer/customer records, or private-only URLs in the PDF.
+- 근거 출력 계약과 고정된 사건으로 실제 모델 루프를 NAT에 연결해, 기존 Python 경로와 관측 결과가 달라지는지 확인한다.
+- 통합이 불안정하면 별도 도구 워크플로 실행 범위를 유지한다. NAT 사용 자체를 품질 상승으로 계산하지 않는다.
+- OpenShell의 전체 모델 루프 통합은 그다음이다. 현재 독립 fixture 정책 시험을 전체 경로 보호로 확대하지 않는다.
+- 당일 자동 도면 인덱싱을 경쟁력의 필수 증거로 만들지 않는다. 동일 설비의 도면과 기록, 재사용 권한이 확보된 경우에만 별도 후속 실험으로 수행한다.
 
-Before submitting, open the PDF and all links from a clean browser session, run the documented example, verify every claim against the saved trajectory, and check repository files plus Git history for sensitive material. Each team member then submits their individual application using the same agreed service identity.
+## 5. 일정과 중단 기준
 
-## Scope guard
+현재 시간에 맞춰 시작 시점을 재확인한다. 아래 시간은 작업 예산이며 완료 예측이 아니다.
 
-Do not add predictive maintenance, automatic plant control, broad document ingestion, model fine-tuning, or a multi-agent hierarchy to the preliminary demo unless the core gates above have passed and there is surplus time. The final's mission is unknown, so keep the domain tools reusable.
+| 시간대 목표 | 산출물 | 미달 시 선택 |
+|---|---|---|
+| 15:15–16:30 | A/B 출력·선별 계약, 회귀 검사 | 오류 노출 상태로 범위 축소. 문구로 해결한 척하지 않음 |
+| 16:30–17:30 | C 처리량 측정 + D 새 사건 확보 | 계산상 부하와 측정된 부하를 구분해 제출 |
+| 17:30–19:00 | D 비교 실행·실패 포함 표 | 비교 우위 미입증으로 결론 유지 |
+| 19:00–20:00 | 결과 검토, 가능하면 E | 결과가 불안정하면 새 통합 중단 |
+| 20:00 이후 | 코드·결과 동결, 마크다운 주장 검수 | 미관·추가 기능에 시간 쓰지 않음 |
+| 21:30–22:30 | 확정 문구·영상·제출 파일 재생성·접근 검수 | 팀원별 제출 시간 확보 |
+
+새 사건 확보와 출력 개선을 병렬로 진행하되 같은 파일을 여러 agent가 수정하지 않는다. **Astra는 실험 설계·합격 기준·결과 해석·주장 검토**, **Sol은 구현·재현·회귀 검사**를 맡는다. 한 계정의 합산 요청 한도 40 rpm을 넘지 않도록 hosted 실행을 직렬 조정한다.
+
+## 6. 배점 항목에 제시할 증거
+
+| 항목 | 앞세울 증거 | 하지 않을 설명 |
+|---|---|---|
+| NVIDIA 활용 심도 | 실제 모델 루프·도구 trace·역할 분리의 비교 결과 | 제품명 수로 활용 심도 주장 |
+| 실용성·산업가치 | 처리량·근거 품질·점검 평가, 현장 검증의 다음 단계 | 8시간→30분이나 MWh를 달성 성과로 제시 |
+| 완성도 | 오류를 드러내는 실제 실행, 재현·파일 접근, 입력/출력 계약 | 성공 화면만 재생하며 실시간처럼 표현 |
+| 독창성 | 산업 신호 의미·결측·근거 검증에 대한 검증 가능한 설계 | 다른 설비의 도면과 데이터를 통합된 것처럼 표시 |
+
+58점을 몇 점으로 올린다는 약속은 하지 않는다. 평가의 원인이 된 결함에 대응하는 증거를 만드는 것이 목표다.
+
+## 7. 문서와 제출 상태
+
+[마크다운 보고서](submission/REPORT.md), [피드백 검토](submission/REVIEW_RESPONSE.md), [처리량 모델](CAPACITY_MODEL.md)이 현재 검토 기준이다. 폼은 이미 Nano/NAT/OpenShell 실행을 반영했으며 ‘미반영’ 지적은 이전 버전에 해당한다. 랜딩의 과한 연결 표현과 오래된 건수도 수정했다.
+
+이전 PDF·ZIP은 스냅샷이다. 위 실험 결과와 최종 주장 검토 후에만 다시 생성한다. 팀명·2~5인 구성·개인별 신청은 여전히 미확정이며 제출 완료로 표시하지 않는다.
