@@ -63,7 +63,7 @@ class HTTPRangeReader(io.RawIOBase):
     def read(self, size: int = -1) -> bytes:
         if size < 0:
             size = self.size - self.position
-        size = min(size, self.size - self.position)
+        size = min(size, max(0, self.size - self.position))
         chunks = []
         while size:
             index = self.position // self.block_size

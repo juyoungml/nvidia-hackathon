@@ -15,7 +15,7 @@
   "events": [
     {
       "step": 1,
-      "latency_seconds": 1.07,
+      "latency_seconds": 2.39,
       "finish_reason": "tool_calls",
       "model_content": "\n\n",
       "tool_calls": [
@@ -25,7 +25,7 @@
     },
     {
       "tool": "get_recent_measurements",
-      "call_id": "call-c3c8d98f-6451-43e8-9b9f-bf2af4e959f6",
+      "call_id": "call-28235e18-fda1-4d3b-a00f-48b95eb500d2",
       "result": {
         "source_id": "PreDist-M1-substation-21-operational-data",
         "interval": "2016-12-11 15:55:00 to 2016-12-12 15:55:00",
@@ -94,7 +94,7 @@
     },
     {
       "tool": "get_prior_incidents",
-      "call_id": "call-f0791879-6311-4241-b752-17edee6e2ef1",
+      "call_id": "call-191cd477-26e7-47ed-8fe7-351cf64b6179",
       "result": {
         "records": [
           {
@@ -109,16 +109,16 @@
     },
     {
       "step": 2,
-      "latency_seconds": 1.92,
+      "latency_seconds": 1.05,
       "finish_reason": "tool_calls",
-      "model_content": "\n\n",
+      "model_content": "\n",
       "tool_calls": [
         "get_maintenance_timeline"
       ]
     },
     {
       "tool": "get_maintenance_timeline",
-      "call_id": "call-fc47cef2-f720-4d99-aa7a-90daf8100390",
+      "call_id": "call-4e564135-397d-4637-802d-457fc6b7f73e",
       "result": {
         "records": [
           {
@@ -147,12 +147,12 @@
     },
     {
       "step": 3,
-      "latency_seconds": 9.31,
+      "latency_seconds": 9.35,
       "finish_reason": "stop",
-      "model_content": "**관측된 증거**\n- 2016-12-11 15:55 ~ 2016-12-12 15:55 구간에서 2차측 난방공급온도(s_hc1_supply_temperature)는 설정값(s_hc1_supply_temperature_setpoint)을 ±2 °C 이내로 추적함(평균 편차 0.31 °C, 최대 1.6 °C, 144/144 샘플 충족) [PreDist-M1-substation-21-operational-data].\n- 동일 구간 1차측 열량계 열전력은 82–219 kW(평균 129 kW), 1차측 유량은 1,680–3,960 L/h(평균 2,351 L/h) 범위에서 변동함 [PreDist-M1-substation-21-operational-data].\n- 2016-12-06 13:12에 “not enough heat” 보고가 있었으며, 당시 실외 9 °C에서 공급온도 44 °C로 기록되고 난방곡선이 상향 조정됨 [PreDist-M1-fault-6].\n\n**증거가 확립하지 못하는 것**\n- 2차측 공급온도 센서 위치에서의 설정값 추적이 고객 실내/라디에이터까지 열이 도달했음을 증명하지 못함(2차측 유량, 밸브 개도, 실내온도 데이터 없음).\n- 1차측 열량계 유량(p_net_meter_flow)은 2차측 난방회로 유량과 다름.\n- 12월 6일 조치(난방곡선 상향)가 현재 “no heat” 민원의 근본원인을 해소했는지 알 수 없음.\n\n**엔지니어가 다음에 확인할 2–3 가지**\n1. 2차측 난방회로 유량(s_hc1_flow) 및 공급/복귀 온도 차이(ΔT) 실측값 — 열교환기 2차측 실제 열전달 확인용.\n2. 2차측 제어밸브 개도 신호 및 실내온도/라디에이터 표면온도 측정 — 고객 측 열공급 도달 여부 직접 확인용.\n3. 12월 6일 난방곡선 변경 후 제어기 파라미터 변경 이력(타임스탬프 포함) — 설정값 변경이 현재 운전점에 반영되었는지 검증용.\n\n**불확실성**\n- 2차측 유량·밸브·실내온도 데이터가 없어 고객 측 “no heat”가 2차측 분배 문제인지, 열교환기 1차측 문제인지, 제어 설정 문제인지 구분할 수 없음.\n- 12월 6일 조치 이후 현재까지의 제어기 파라미터 변경 이력이 공개되지 않아 설정값 추적 양상이 실제 제어 의도와 일치하는지 불확실함.",
+      "model_content": "**관측된 증거**\n- 2016-12-11 15:55 ~ 2016-12-12 15:55 구간에서 2차측 난방 공급온도(s_hc1_supply_temperature)는 설정값(s_hc1_supply_temperature_setpoint)을 ±2 °C 이내로 추적함(평균 편차 0.31 °C, 최대 1.6 °C, 144개 샘플 모두 2 °C 내) [PreDist-M1-substation-21-operational-data].\n- 동일 구간 1차측 열량계 열전력은 82–219 kW(평균 129 kW), 1차측 유량은 1,680–3,960 L/h(평균 2,351 L/h) [PreDist-M1-substation-21-operational-data].\n- 2016-12-06 13:12에 “난방이 충분히 따뜻하지 않음(공급온도 44 °C, 외기 9 °C)” 보고가 있었고, 난방곡선을 상향 조정함 [PreDist-M1-fault-6].\n\n**증거가 확립하지 못하는 것**\n- 2차측 공급온도 센서 위치에서의 설정값 추적만으로는 고객 실내/라디에이터까지 열이 도달했음을 증명할 수 없음(2차측 유량, 밸브 개도, 실내온도 데이터 없음) [PreDist-M1-substation-21-operational-data].\n- 1차측 열량계 유량(p_net_meter_flow)은 2차측 난방회로 유량과 다름.\n- 과거 보고(2016-12-06)와 현재 증상(“열 없음”)의 직접적 인과관계는 불명.\n\n**엔지니어가 다음에 확인할 2–3 가지**\n1. 2차측 난방회로 유량(s_hc1_flow) 및 공급/복귀 온도 차이(ΔT) 실측값 — 열교환기 2차측 실제 열수송 확인용.\n2. 2차측 제어밸브 개도 신호(s_hc1_valve_position) — 밸브가 닫혀 있거나 고착돼 유량이 차단됐는지 확인용.\n3. 고객 측 실내온도 또는 라디에이터 표면온도 측정(가능 시) — “열 없음” 체감의 객관적 근거 확보용.\n\n**불확실성**\n- 2차측 유량·밸브·실내온도 데이터가 없어 현재 “열 없음”이 2차측 유량 부족, 밸브 고장, 열교환기 오염, 또는 고객 측 배관/라디에이터 문제 중 어느 것에 기인하는지 특정할 수 없음.",
       "tool_calls": []
     }
   ],
-  "final": "**관측된 증거**\n- 2016-12-11 15:55 ~ 2016-12-12 15:55 구간에서 2차측 난방공급온도(s_hc1_supply_temperature)는 설정값(s_hc1_supply_temperature_setpoint)을 ±2 °C 이내로 추적함(평균 편차 0.31 °C, 최대 1.6 °C, 144/144 샘플 충족) [PreDist-M1-substation-21-operational-data].\n- 동일 구간 1차측 열량계 열전력은 82–219 kW(평균 129 kW), 1차측 유량은 1,680–3,960 L/h(평균 2,351 L/h) 범위에서 변동함 [PreDist-M1-substation-21-operational-data].\n- 2016-12-06 13:12에 “not enough heat” 보고가 있었으며, 당시 실외 9 °C에서 공급온도 44 °C로 기록되고 난방곡선이 상향 조정됨 [PreDist-M1-fault-6].\n\n**증거가 확립하지 못하는 것**\n- 2차측 공급온도 센서 위치에서의 설정값 추적이 고객 실내/라디에이터까지 열이 도달했음을 증명하지 못함(2차측 유량, 밸브 개도, 실내온도 데이터 없음).\n- 1차측 열량계 유량(p_net_meter_flow)은 2차측 난방회로 유량과 다름.\n- 12월 6일 조치(난방곡선 상향)가 현재 “no heat” 민원의 근본원인을 해소했는지 알 수 없음.\n\n**엔지니어가 다음에 확인할 2–3 가지**\n1. 2차측 난방회로 유량(s_hc1_flow) 및 공급/복귀 온도 차이(ΔT) 실측값 — 열교환기 2차측 실제 열전달 확인용.\n2. 2차측 제어밸브 개도 신호 및 실내온도/라디에이터 표면온도 측정 — 고객 측 열공급 도달 여부 직접 확인용.\n3. 12월 6일 난방곡선 변경 후 제어기 파라미터 변경 이력(타임스탬프 포함) — 설정값 변경이 현재 운전점에 반영되었는지 검증용.\n\n**불확실성**\n- 2차측 유량·밸브·실내온도 데이터가 없어 고객 측 “no heat”가 2차측 분배 문제인지, 열교환기 1차측 문제인지, 제어 설정 문제인지 구분할 수 없음.\n- 12월 6일 조치 이후 현재까지의 제어기 파라미터 변경 이력이 공개되지 않아 설정값 추적 양상이 실제 제어 의도와 일치하는지 불확실함.",
+  "final": "**관측된 증거**\n- 2016-12-11 15:55 ~ 2016-12-12 15:55 구간에서 2차측 난방 공급온도(s_hc1_supply_temperature)는 설정값(s_hc1_supply_temperature_setpoint)을 ±2 °C 이내로 추적함(평균 편차 0.31 °C, 최대 1.6 °C, 144개 샘플 모두 2 °C 내) [PreDist-M1-substation-21-operational-data].\n- 동일 구간 1차측 열량계 열전력은 82–219 kW(평균 129 kW), 1차측 유량은 1,680–3,960 L/h(평균 2,351 L/h) [PreDist-M1-substation-21-operational-data].\n- 2016-12-06 13:12에 “난방이 충분히 따뜻하지 않음(공급온도 44 °C, 외기 9 °C)” 보고가 있었고, 난방곡선을 상향 조정함 [PreDist-M1-fault-6].\n\n**증거가 확립하지 못하는 것**\n- 2차측 공급온도 센서 위치에서의 설정값 추적만으로는 고객 실내/라디에이터까지 열이 도달했음을 증명할 수 없음(2차측 유량, 밸브 개도, 실내온도 데이터 없음) [PreDist-M1-substation-21-operational-data].\n- 1차측 열량계 유량(p_net_meter_flow)은 2차측 난방회로 유량과 다름.\n- 과거 보고(2016-12-06)와 현재 증상(“열 없음”)의 직접적 인과관계는 불명.\n\n**엔지니어가 다음에 확인할 2–3 가지**\n1. 2차측 난방회로 유량(s_hc1_flow) 및 공급/복귀 온도 차이(ΔT) 실측값 — 열교환기 2차측 실제 열수송 확인용.\n2. 2차측 제어밸브 개도 신호(s_hc1_valve_position) — 밸브가 닫혀 있거나 고착돼 유량이 차단됐는지 확인용.\n3. 고객 측 실내온도 또는 라디에이터 표면온도 측정(가능 시) — “열 없음” 체감의 객관적 근거 확보용.\n\n**불확실성**\n- 2차측 유량·밸브·실내온도 데이터가 없어 현재 “열 없음”이 2차측 유량 부족, 밸브 고장, 열교환기 오염, 또는 고객 측 배관/라디에이터 문제 중 어느 것에 기인하는지 특정할 수 없음.",
   "note": "Held-out current report diagnosis was not read or sent to the model."
 }

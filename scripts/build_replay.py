@@ -8,7 +8,6 @@ import datetime as dt
 import json
 from pathlib import Path
 
-
 SOURCE_URL = "https://zenodo.org/records/19496480"
 REPORT_ID = "52"
 ASSET_ID = "21"
@@ -39,8 +38,9 @@ def main() -> None:
     faults = read_csv(args.source_dir / "faults.csv")
     disturbances = read_csv(args.source_dir / "disturbances.csv")
     features = read_csv(args.source_dir / "features.csv")
-    target = next(row for row in faults if row["Event ID"] == REPORT_ID)
-    assert target["substation ID"] == ASSET_ID
+    target = next((row for row in faults if row["Event ID"] == REPORT_ID), None)
+    if target is None or target["substation ID"] != ASSET_ID:
+        raise ValueError(f"expected report {REPORT_ID} for substation {ASSET_ID}")
     decision_time = timestamp(target["Report date"])
     start_time = decision_time - dt.timedelta(hours=WINDOW_HOURS)
     prior_faults = [
@@ -67,10 +67,18 @@ def main() -> None:
         for row in csv.DictReader(stream, delimiter=";"):
             when = timestamp(row["timestamp"])
             if start_time <= when <= decision_time:
-                measurements.append({
-                    "timestamp": row["timestamp"],
-                    **{name: numeric(value) for name, value in row.items() if name != "timestamp"},
-                })
+                measurements.append(
+                    {
+                        "timestamp": row["timestamp"],
+                        **{
+                            name: numeric(value)
+                            for name, value in row.items()
+                            if name != "timestamp"
+                        },
+                    }
+                )
+    if not measurements:
+        raise ValueError(f"no measurements for substation {ASSET_ID} before {decision_time}")
 
     replay = {
         "source": {
@@ -112,17 +120,25 @@ def main() -> None:
         "note": "Published report fields are retrospective; they are not a real-time ground truth at the decision time.",
     }
     args.output_dir.mkdir(parents=True, exist_ok=True)
-    (args.output_dir / "replay-52.json").write_text(json.dumps(replay, ensure_ascii=False, indent=2) + "\n")
+    (args.output_dir / "replay-52.json").write_text(
+        json.dumps(replay, ensure_ascii=False, indent=2) + "\n"
+    )
     evaluation_dir = args.output_dir.parent / "evaluation"
     evaluation_dir.mkdir(parents=True, exist_ok=True)
-    (evaluation_dir / "held-out-52.json").write_text(json.dumps(held_out, ensure_ascii=False, indent=2) + "\n")
-    print(json.dumps({
-        "case_id": replay["case_id"],
-        "measurements": len(measurements),
-        "prior_faults": len(prior_faults),
-        "prior_disturbances": len(prior_disturbances),
-        "last_measurement": measurements[-1]["timestamp"] if measurements else None,
-    }))
+    (evaluation_dir / "held-out-52.json").write_text(
+        json.dumps(held_out, ensure_ascii=False, indent=2) + "\n"
+    )
+    print(
+        json.dumps(
+            {
+                "case_id": replay["case_id"],
+                "measurements": len(measurements),
+                "prior_faults": len(prior_faults),
+                "prior_disturbances": len(prior_disturbances),
+                "last_measurement": measurements[-1]["timestamp"] if measurements else None,
+            }
+        )
+    )
 
 
 if __name__ == "__main__":
