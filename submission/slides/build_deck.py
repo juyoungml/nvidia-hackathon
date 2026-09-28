@@ -483,6 +483,22 @@ text(
 )
 page_no(s)
 
+# 5b Architecture -------------------------------------------------------------
+s = new_slide(
+    "전체 구조",
+    notes=(
+        "전체 구조를 한 장으로 보겠습니다. 왼쪽은 발전소 안의 자료, 도면, TM, WO, 트렌드입니다. "
+        "위쪽 System 1은 트렌드를 상시 감시하는 부분으로, Nemotron Nano를 쓰는 설계 단계라 점선으로 표시했습니다. "
+        "아래쪽 System 2가 오늘 데모입니다. 신고나 알람이 들어오면 Nemotron 3 Ultra가 NeMo Agent Toolkit의 읽기 전용 도구 6종으로 자료를 조회하고 대조해 점검안을 씁니다. "
+        "모든 인용은 실제 조회 기록과 연결되는지 검사한 뒤 엔지니어에게 전달되고, 결정은 엔지니어가 합니다. "
+        "모델과 도구는 OpenShell 격리 환경에서 시험했고, 전체는 현장 내부 DGX Spark에 배포하는 것을 전제로 합니다. 도면 검색용 NeMo Retriever도 계획 단계입니다."
+    ),
+)
+ARCH = ROOT / "docs/assets/architecture.png"
+if ARCH.exists():
+    s.shapes.add_picture(str(ARCH), Inches(1.9), Inches(1.7), height=Inches(5.35))
+page_no(s)
+
 # 6 System 1 requirements -----------------------------------------------------
 s = new_slide(
     "System 1이 감당할 양",

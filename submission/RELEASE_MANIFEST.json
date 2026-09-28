@@ -3,8 +3,8 @@
   "files": [
     {
       "path": "README.md",
-      "sha256": "7ce4f79ddaf5f2ab6a4a799822412760c46a2abbfcb3de18f3a18388daddbe7d",
-      "bytes": 7546
+      "sha256": "19b9eebe9fd6c4cf42ef60cbffb720e56de90a4938b5f4a4fd0ff7687d20f931",
+      "bytes": 7703
     },
     {
       "path": "data/README.md",
@@ -105,6 +105,16 @@
       "path": "docs/archive/working-brief.md",
       "sha256": "8299f56bf6cf613938416ee17871b0bed8f737b46a98ca83b60f26f811bf90e2",
       "bytes": 4499
+    },
+    {
+      "path": "docs/assets/architecture.png",
+      "sha256": "ef29586368694d20dc34c13a2517c12392da581e60850cde2615595eea16af22",
+      "bytes": 225884
+    },
+    {
+      "path": "docs/assets/architecture.svg",
+      "sha256": "7ae9ddacd5dc4d79a8fb9ab33333f567435300c3158192aecb35864f0824f572",
+      "bytes": 7899
     },
     {
       "path": "docs/capacity-model.md",
@@ -923,8 +933,8 @@
     },
     {
       "path": "scripts/serve_demo.py",
-      "sha256": "e362911b905ffb081d5d5e1815de09fabb5287c28188d1bf4e7ba1f1d5a372d4",
-      "bytes": 3883
+      "sha256": "e177299784081a91f86442a079fae0e05ff0e11604e219d3b33ccfe491f428d7",
+      "bytes": 3918
     },
     {
       "path": "submission/DEMO_SCRIPT.md",
@@ -948,13 +958,13 @@
     },
     {
       "path": "submission/build_bundle.py",
-      "sha256": "b9be0ad58593658a6168c8a5caa6c110f4f6715125e334ce5de96d2a2966e322",
-      "bytes": 14852
+      "sha256": "a9044f0f7e0a66b3e1c3949b8150b7405148fc342268d3c67889fb4529af5751",
+      "bytes": 14959
     },
     {
       "path": "submission/slides/Plant_Reliability_Agent_submission.pptx",
-      "sha256": "451502ed5be5f72aada665efd13ba435beb38b606bf109600d806a07fa30ee03",
-      "bytes": 299189
+      "sha256": "4f447cf6f8083cb8388178bbf681b43576a8f92009f818d3095fbe4d5c7feb66",
+      "bytes": 517559
     },
     {
       "path": "submission/slides/VALIDATION.md",
@@ -963,8 +973,8 @@
     },
     {
       "path": "submission/slides/build_deck.py",
-      "sha256": "c580db7fa57471099f1defa94072da0e829aa499debca60484fa08a146def209",
-      "bytes": 32686
+      "sha256": "0a8f98fb5692a717eb833d0c48130cbf95ec16adfb2ada44dd1c48e9e0e9e088",
+      "bytes": 33846
     },
     {
       "path": "tests/test_claude_code.py",
@@ -1082,6 +1092,11 @@
       "bytes": 1676
     },
     {
+      "path": "web/assets/architecture.svg",
+      "sha256": "7ae9ddacd5dc4d79a8fb9ab33333f567435300c3158192aecb35864f0824f572",
+      "bytes": 7899
+    },
+    {
       "path": "web/assets/doe-steam-figure-1.png",
       "sha256": "7763d7db4dfc7e77dc2314d98b09fed230f7e226b01b7598fea03ef26ba9936a",
       "bytes": 109683
@@ -1133,8 +1148,8 @@
     },
     {
       "path": "web/index.html",
-      "sha256": "3c2d0b023834f89175f7b4f00dd3d8edeaa0a69c3a13c4c547f3c1efa47f3b83",
-      "bytes": 26211
+      "sha256": "9af9ea0ae292ec2623d38052239c2c21493dadacc4e560ef49321552fc308722",
+      "bytes": 26816
     },
     {
       "path": "web/investigation.css",

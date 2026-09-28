@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" font-family="'Apple SD Gothic Neo','Noto Sans KR',sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#62736A"/></marker>
+    <marker id="ao" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#D06B3D"/></marker>
+    <style>
+      .t{font-size:20px;font-weight:700;fill:#172B27}
+      .s{font-size:15px;fill:#62736A}
+      .nv{font-size:14px;font-weight:700;fill:#5A8F00}
+      .h{font-size:17px;font-weight:700;fill:#244E41}
+      .impl{fill:#FFFFFF;stroke:#244E41;stroke-width:1.5}
+      .plan{fill:#FFFFFF;stroke:#62736A;stroke-width:1.5;stroke-dasharray:7 5}
+      .nvb{fill:#FFFFFF;stroke:#76B900;stroke-width:2.5}
+      .nvp{fill:#FFFFFF;stroke:#76B900;stroke-width:2.5;stroke-dasharray:7 5}
+      .ln{stroke:#62736A;stroke-width:1.8;fill:none}
+      .lnd{stroke:#62736A;stroke-width:1.8;fill:none;stroke-dasharray:6 5}
+      .lo{stroke:#D06B3D;stroke-width:2.2;fill:none}
+    </style>
+  </defs>
+  <rect width="1600" height="900" fill="#FBF9F4"/>
+
+  <!-- title + legend -->
+  <text x="40" y="58" font-size="28" font-weight="700" fill="#172B27">Plant Reliability Agent · 전체 구조</text>
+  <rect x="1010" y="40" width="30" height="20" rx="4" class="nvb"/><text x="1050" y="56" class="s">NVIDIA 기술</text>
+  <rect x="1175" y="40" width="30" height="20" rx="4" class="impl"/><text x="1215" y="56" class="s">구현·데모</text>
+  <rect x="1325" y="40" width="30" height="20" rx="4" class="plan"/><text x="1365" y="56" class="s">설계·계획 (점선)</text>
+
+  <!-- outer boundary -->
+  <rect x="24" y="86" width="1552" height="756" rx="16" fill="none" stroke="#BFC8BF" stroke-width="2"/>
+  <text x="44" y="116" class="h">현장 내부 배포 · DGX Spark (Ultra 기준 3~4대 추정)</text>
+
+  <!-- left: sources -->
+  <text x="60" y="160" font-size="16" font-weight="700" fill="#62736A">현장 데이터 (발전소 내부)</text>
+  <rect x="60" y="180" width="260" height="100" rx="10" class="impl"/>
+  <text x="80" y="220" class="t">트렌드</text><text x="80" y="250" class="s">센서 시계열 · 5만 신호 × 100 ms</text>
+  <rect x="60" y="380" width="260" height="100" rx="10" class="impl"/>
+  <text x="80" y="420" class="t">도면 문서</text><text x="80" y="450" class="s">P&amp;ID · 로직 다이어그램</text>
+  <rect x="60" y="510" width="260" height="100" rx="10" class="impl"/>
+  <text x="80" y="550" class="t">TM</text><text x="80" y="580" class="s">기술 메모 · 과거 이상 신고</text>
+  <rect x="60" y="640" width="260" height="100" rx="10" class="impl"/>
+  <text x="80" y="680" class="t">WO</text><text x="80" y="710" class="s">작업 지시 · 정비 기록</text>
+
+  <!-- source bus -->
+  <path d="M320,230 H540" class="ln"/>
+  <path d="M540,230 H598" class="lnd" marker-end="url(#a)"/>
+  <path d="M540,230 V675" class="ln"/>
+  <path d="M320,430 H343" class="lnd"/>
+  <path d="M522,430 H540" class="lnd"/>
+  <path d="M320,560 H540" class="ln"/>
+  <path d="M320,690 H540" class="ln"/>
+  <path d="M540,675 H856" class="ln" marker-end="url(#a)"/>
+  <text x="580" y="664" class="s">읽기 전용 조회</text>
+
+  <!-- NeMo Retriever (plan) -->
+  <rect x="343" y="395" width="179" height="70" rx="10" class="nvp"/>
+  <text x="357" y="424" font-size="16" font-weight="700" fill="#172B27">NeMo Retriever</text>
+  <text x="357" y="449" font-size="13" fill="#62736A">도면·문서 검색 · 계획</text>
+
+  <!-- System 1 lane (plan) -->
+  <rect x="560" y="130" width="1000" height="175" rx="14" fill="none" stroke="#62736A" stroke-width="1.5" stroke-dasharray="8 6"/>
+  <text x="580" y="160" class="h">System 1 · 상시 감시</text>
+  <rect x="770" y="144" width="96" height="24" rx="12" style="fill:#F1EEE6"/>
+  <text x="818" y="161" font-size="13" fill="#62736A" text-anchor="middle">설계·계획</text>
+  <rect x="600" y="185" width="260" height="90" rx="10" class="plan"/>
+  <text x="620" y="222" class="t">시계열 전처리</text><text x="620" y="252" class="s">요약 · 이상 후보</text>
+  <rect x="920" y="185" width="260" height="90" rx="10" class="nvp"/>
+  <text x="940" y="214" class="nv">NVIDIA</text>
+  <text x="940" y="238" class="t">Nemotron Nano</text><text x="940" y="262" class="s">후보 선별 · 우선순위</text>
+  <rect x="1240" y="185" width="280" height="90" rx="10" class="plan"/>
+  <text x="1260" y="222" class="t">알람 / 조사 요청</text><text x="1260" y="252" class="s">엔지니어 · System 2로</text>
+  <path d="M860,230 H916" class="lnd" marker-end="url(#a)"/>
+  <path d="M1180,230 H1236" class="lnd" marker-end="url(#a)"/>
+
+  <!-- alarm -> System 2 input -->
+  <path d="M1380,275 V322 H745 V431" stroke="#D06B3D" stroke-width="2" fill="none" stroke-dasharray="6 5" marker-end="url(#ao)"/>
+  <text x="737" y="418" font-size="13" fill="#D06B3D" text-anchor="end">System 1 알람 (계획)</text>
+
+  <!-- System 2 lane (implemented) -->
+  <rect x="560" y="340" width="1000" height="475" rx="14" fill="none" stroke="#244E41" stroke-width="2"/>
+  <text x="580" y="372" class="h">System 2 · 원인 조사</text>
+  <rect x="765" y="356" width="96" height="24" rx="12" fill="#244E41"/>
+  <text x="813" y="373" font-size="13" fill="#FFFFFF" font-weight="700" text-anchor="middle">구현·데모</text>
+
+  <rect x="600" y="435" width="200" height="90" rx="10" class="impl"/>
+  <text x="618" y="468" class="t">입력</text>
+  <text x="618" y="493" font-size="14" fill="#62736A">신고 또는 System 1</text>
+  <text x="618" y="513" font-size="14" fill="#62736A">알람 + 시각</text>
+  <path d="M800,480 H856" class="lo" marker-end="url(#ao)"/>
+
+  <!-- OpenShell boundary -->
+  <rect x="830" y="400" width="440" height="395" rx="12" fill="none" stroke="#76B900" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="846" y="784" font-size="14" font-weight="700" fill="#5A8F00">OpenShell 격리 실행 (시험 완료)</text>
+
+  <rect x="860" y="420" width="380" height="120" rx="10" class="nvb"/>
+  <text x="880" y="448" class="nv">NVIDIA NIM</text>
+  <text x="880" y="478" font-size="22" font-weight="700" fill="#172B27">Nemotron 3 Ultra</text>
+  <text x="880" y="514" class="s">읽을 자료 선택 · 대조 · 점검안 작성</text>
+
+  <path d="M1015,542 V606" class="lo" marker-end="url(#ao)"/>
+  <path d="M1085,608 V544" class="ln" marker-end="url(#a)"/>
+  <text x="1005" y="580" font-size="13" fill="#D06B3D" text-anchor="end">도구 호출</text>
+  <text x="1097" y="580" font-size="13" fill="#62736A">조회 결과</text>
+
+  <rect x="860" y="610" width="380" height="130" rx="10" class="nvb"/>
+  <text x="880" y="638" class="nv">NeMo Agent Toolkit</text>
+  <text x="880" y="665" class="t">읽기 전용 도구 6종</text>
+  <text x="880" y="693" class="s">계측 · 센서 정의 · 과거 신고</text>
+  <text x="880" y="717" class="s">정비 이력 · 편차 구간 · 시간 창</text>
+
+  <path d="M1240,480 H1296" class="lo" marker-end="url(#ao)"/>
+  <rect x="1300" y="420" width="230" height="120" rx="10" class="impl"/>
+  <text x="1318" y="470" class="t">근거 연결 검사</text>
+  <text x="1318" y="500" font-size="14" fill="#62736A">인용 = 실제 조회 기록</text>
+
+  <path d="M1415,540 V606" class="lo" marker-end="url(#ao)"/>
+  <rect x="1300" y="610" width="230" height="120" rx="10" fill="#244E41"/>
+  <text x="1318" y="660" font-size="20" font-weight="700" fill="#FFFFFF">엔지니어</text>
+  <text x="1318" y="690" font-size="15" fill="#DDE7E1">검토 · 결정</text>
+
+  <!-- footnote -->
+  <text x="40" y="876" font-size="14" fill="#62736A">현재 데모: 공개 PreDist v2 지역난방 데이터 (계측·신고·정비 기록). 도면 연결·System 1은 설계 단계.</text>
+</svg>

@@ -31,6 +31,8 @@ python3 scripts/serve_demo.py --port 8771
 
 ## 구조
 
+![전체 구조: 현장 데이터(도면·TM·WO·트렌드), System 1 상시 감시(계획), System 2 원인 조사(구현)](docs/assets/architecture.png)
+
 ```text
  설비 계측 ──> [System 1: 상시 감시]  (계획: Nemotron Nano)
                      │ 이상 신고 / 경보
