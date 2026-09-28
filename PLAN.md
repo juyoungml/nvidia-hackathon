@@ -45,6 +45,8 @@ Planning date: 2026-09-28 KST. Deadline: **23:59 KST today**. Keep at least one 
 
 The order is deliberate: a real tool-using agent and traceable public evidence are the entry. Toolkit and sandbox integration should strengthen the entry without jeopardizing the deadline.
 
+The NVIDIA account's stated API limit is **40 requests/minute**. The POC paces its own hosted requests at 36/minute and retries HTTP 429 with `Retry-After` or short backoff. Run evaluations with one worker unless a shared account-level limiter is added; other applications using the same key are outside this process's control.
+
 ## Delivery milestones
 
 | Local time target | Reviewable result | Decision |

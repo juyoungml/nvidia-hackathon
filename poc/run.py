@@ -13,13 +13,17 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
 from check_nvidia import load_key  # noqa: E402
+
+from poc.rate_limit import RequestPacer, retry_delay_seconds  # noqa: E402
 
 BACKEND = os.environ.get("POC_BACKEND", "nvidia")
 DEFAULT_MODEL = "nemotron-3-nano:4b" if BACKEND == "ollama" else "nvidia/nemotron-3-ultra-550b-a55b"
 MODEL = os.environ.get("NVIDIA_MODEL", DEFAULT_MODEL)
 ENDPOINT = "https://integrate.api.nvidia.com/v1/chat/completions"
+NVIDIA_PACER = RequestPacer()
 REPLAY = json.loads((ROOT / "data/replay-52.json").read_text())
 TOOLS = [
     {
@@ -174,13 +178,19 @@ def call_model(messages: list[dict], key: str | None) -> tuple[dict, float]:
         headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
     )
     start = time.monotonic()
-    try:
-        with urllib.request.urlopen(request, timeout=90) as response:
-            result = json.load(response)
-    except urllib.error.HTTPError as error:
-        raise RuntimeError(
-            f"NVIDIA API HTTP {error.code}: {error.read(500).decode(errors='replace')}"
-        ) from error
+    for attempt in range(3):
+        NVIDIA_PACER.wait()
+        try:
+            with urllib.request.urlopen(request, timeout=90) as response:
+                result = json.load(response)
+            break
+        except urllib.error.HTTPError as error:
+            if error.code == 429 and attempt < 2:
+                time.sleep(retry_delay_seconds(error.headers.get("Retry-After"), attempt))
+                continue
+            raise RuntimeError(
+                f"NVIDIA API HTTP {error.code}: {error.read(500).decode(errors='replace')}"
+            ) from error
     return result["choices"][0], round(time.monotonic() - start, 2)
 
 
