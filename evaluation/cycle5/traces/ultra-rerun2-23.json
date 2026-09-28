@@ -1,0 +1,113 @@
+{
+  "method": "live-system2-plan-first-handoff-v2",
+  "case_id": "PreDist-M1-fault-23",
+  "model": "nvidia/nemotron-3-ultra-550b-a55b",
+  "corpus_sha256": "a37412e5e40b6cc1ec513ddea1d0a8112ef561f4b1d716b453866c2fc0eed2b4",
+  "file_sha256": {
+    "case.json": "002a0f4e28c5946cc8fd4276ecea668f2c3e7b5d816f4a17b4d7ccd7d70f8ac9",
+    "fact_catalog.json": "582e1fb7f9626091e1c0d2cf8e0edbc6d484a8258b1a4e00962a5081fa2209ed",
+    "plan_schema.json": "5e4b7bb7065b302f3257f722f182503569baf0eaf222b1bb16bb44008bddb344",
+    "source_manifest.json": "c5baa61a87b61faf943439abcdf7021cd3cf9039a177864262ddd786ae97b57e",
+    "task.json": "546476b3c6b2519f1790a3022db46d0105174c357e92888e920d0786195eb2dd",
+    "temporal/episodes.json": "0f70159cb0dd831021bdc2b1548f8950d49949b98515af5e7cd3ad146150b542",
+    "temporal/window-fields.json": "0f98d104433d57d3105e0851f525685ea7a6a4a613f7952731e92fe3ad688dab",
+    "tools/get_maintenance_timeline.json": "09650c8c89ef87df5527b83ad93343993a3fd5a303d9616bae54804fe907cd22",
+    "tools/get_prior_incidents.json": "3bb2ab95690a58940a4aa7b021c61a4f7c9b65d5339b5dbe9278885f2992a9c5",
+    "tools/get_recent_measurements.json": "3f8cece1b1d597a1c42e7232e5917fa0eb5af7dbacb8d5881b11c30b5d4db918",
+    "tools/get_signal_definitions.json": "c2666f6a27fe1250d50bf2cb9641a003cd267bd8db253533712ad580aaee02da"
+  },
+  "temporal_enabled": true,
+  "read_backend": "direct",
+  "nat_version": null,
+  "planner_requests": [],
+  "tool_calls": [],
+  "finish_reason": null,
+  "source_read_state": {
+    "available_sources": [
+      {
+        "reader": "get_recent_measurements",
+        "read_state": "unread"
+      },
+      {
+        "reader": "get_prior_incidents",
+        "read_state": "unread"
+      },
+      {
+        "reader": "get_maintenance_timeline",
+        "read_state": "unread"
+      },
+      {
+        "reader": "get_signal_definitions",
+        "read_state": "unread"
+      },
+      {
+        "reader": "get_temporal_episodes",
+        "file": "temporal/episodes.json",
+        "read_state": "unread"
+      },
+      {
+        "reader": "query_measurement_window",
+        "file": "temporal/window-fields.json",
+        "read_state": "unread",
+        "max_rows_per_query": 24
+      }
+    ]
+  },
+  "temporal_read_state": {
+    "get_temporal_episodes": false,
+    "query_measurement_window": false
+  },
+  "evidence": {
+    "schema_version": 1,
+    "case_id": "PreDist-M1-fault-23",
+    "decision_time": "2020-01-20 12:57:00",
+    "sources": [
+      {
+        "id": "PreDist-M1-fault-23-problem-only",
+        "kind": "customer_report"
+      }
+    ],
+    "facts": [
+      {
+        "id": "F-25f5ecc448ee",
+        "source_id": "PreDist-M1-fault-23-problem-only",
+        "source_field": "problem",
+        "interval": "2020-01-20 12:57:00",
+        "value": "not enough heat",
+        "unit": "",
+        "text": "Reported problem: not enough heat (2020-01-20 12:57:00)"
+      }
+    ]
+  },
+  "native_schema": null,
+  "final_request": null,
+  "final_response": null,
+  "raw_plan": null,
+  "parsed_plan": null,
+  "assembled_selection": null,
+  "derived_observations": null,
+  "validation": {
+    "status": "invalid",
+    "error_type": "RuntimeError",
+    "reason": "NVIDIA API HTTP 429"
+  },
+  "review_flags": [],
+  "display": {
+    "status": "withheld",
+    "reason": "NVIDIA API HTTP 429",
+    "observations": [],
+    "limits": [],
+    "suggested_next_checks": []
+  },
+  "completeness": {
+    "status": "not_assessed",
+    "issues": []
+  },
+  "usage": [],
+  "request_seconds": 0.0,
+  "wall_seconds": 1.856,
+  "handoff_policy": "bounded_finalize_v2",
+  "investigation_budget_exhausted": false,
+  "review_notes": [],
+  "cycle5_started_at": "2026-09-28T23:29:53"
+}

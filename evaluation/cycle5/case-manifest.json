@@ -1,0 +1,265 @@
+[
+  {
+    "report_id": "1",
+    "asset_id": "10",
+    "problem": "no DHW",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-1.json",
+    "sha256": "1690087670d266213ebea4bed448ac0ee96a1c8a4e02aaa98fe532705e4bcde2"
+  },
+  {
+    "report_id": "3",
+    "asset_id": "12",
+    "problem": "no heat",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-3.json",
+    "sha256": "dfcec27501a20fa65b0d0386f3642631d2d6101a863fc687a91ff8ce823dc827"
+  },
+  {
+    "report_id": "5",
+    "asset_id": "11",
+    "problem": "no heat",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-5.json",
+    "sha256": "8bbd2f8123d8ed4ef30c52d3352320146035fa9006a4d54dfbb3330072e740b7"
+  },
+  {
+    "report_id": "6",
+    "asset_id": "21",
+    "problem": "not enough heat",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-6.json",
+    "sha256": "3db9e2762bef251e331a6e1bff021c91e18a56ffaabfb35f8fdf08427512a886"
+  },
+  {
+    "report_id": "7",
+    "asset_id": "26",
+    "problem": "no DHW",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-7.json",
+    "sha256": "9531f1deb9f2f836ed37bc087d51789c12ef9f2b6993fa8cd679de6ef931b56a"
+  },
+  {
+    "report_id": "10",
+    "asset_id": "30",
+    "problem": "leakage",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-10.json",
+    "sha256": "1f5b4efb9f33c7cd0b9acdc36e61d6edd5408976dcf22d9e70317af3fc87fb66"
+  },
+  {
+    "report_id": "11",
+    "asset_id": "4",
+    "problem": "no heat",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-11.json",
+    "sha256": "0e96d9b54922405b8804aaf8e34bb72c7eb674a850d3d57355fe9679524ef2b6"
+  },
+  {
+    "report_id": "13",
+    "asset_id": "24",
+    "problem": "not enough heat",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-13.json",
+    "sha256": "0c561bf20ca1397ca8c2bee8caaf60a4bea617973b32ee00d16c1fb44915c6a9"
+  },
+  {
+    "report_id": "15",
+    "asset_id": "29",
+    "problem": "no heat",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-15.json",
+    "sha256": "1dd9b39f359eff7683c6e706dc0a027da35993800b4444b7fd3c84462048f805"
+  },
+  {
+    "report_id": "20",
+    "asset_id": "11",
+    "problem": "no DHW",
+    "status": "ineligible",
+    "reason": "ineligible: 14 samples or empty hc1 fields"
+  },
+  {
+    "report_id": "23",
+    "asset_id": "27",
+    "problem": "not enough heat",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-23.json",
+    "sha256": "59b6d4ef7c758932931c5f33c9035c3e8435e1ac65411cb344f2067d8b5693ea"
+  },
+  {
+    "report_id": "24",
+    "asset_id": "13",
+    "problem": "noise",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-24.json",
+    "sha256": "649bd205db8bed1270894c2ebf9a303f116afd37590ed87e7ba2c52c2993043e"
+  },
+  {
+    "report_id": "29",
+    "asset_id": "17",
+    "problem": "no heat",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-29.json",
+    "sha256": "a29987118e365d51ecc0cc1c00c673e11477fc2d3717847e4d13f1d41fac72fd"
+  },
+  {
+    "report_id": "32",
+    "asset_id": "21",
+    "problem": "not enough heat",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-32.json",
+    "sha256": "5bfc5b6464e83b3d5ec68e0eb7f40f853b42c3be820f9f22867d27c64fac8efd"
+  },
+  {
+    "report_id": "34",
+    "asset_id": "20",
+    "problem": "other",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-34.json",
+    "sha256": "5f0b9e59140388c0323cd7ed0805ba3c9f040af8c362367179273639af3f8fa7"
+  },
+  {
+    "report_id": "36",
+    "asset_id": "7",
+    "problem": "not enough heat",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-36.json",
+    "sha256": "7b491f4ff2e6140a9b60d1ba74b55f3007cb7bb39d48b72699adc3627cf5eb3c"
+  },
+  {
+    "report_id": "37",
+    "asset_id": "19",
+    "problem": "no heat",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-37.json",
+    "sha256": "4cdc6b00c5726b39d632cedd9dbea5ca4ccc713cad32bbdc49db248aa450a93b"
+  },
+  {
+    "report_id": "38",
+    "asset_id": "24",
+    "problem": "not enough heat",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-38.json",
+    "sha256": "3cf79d7d65c4b9119e63e37ac96f79a18bc1003d5d0cc387a31ec9002a5fd33c"
+  },
+  {
+    "report_id": "40",
+    "asset_id": "24",
+    "problem": "leakage",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-40.json",
+    "sha256": "567e8158fa5a245dcd3d389bbabccd7f8847832a89cd133d0ed71bcee58c2e7c"
+  },
+  {
+    "report_id": "44",
+    "asset_id": "8",
+    "problem": "no DHW",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-44.json",
+    "sha256": "f7e74ac14bd9cbc0f88c1fbb497fdd3736097fa819e9b1c0922ecb5b10581bb8"
+  },
+  {
+    "report_id": "45",
+    "asset_id": "31",
+    "problem": "leakage",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-45.json",
+    "sha256": "137344669011a518d60ce934e50aa5fce6daf0f0502bd8f62acd7ad2201a1530"
+  },
+  {
+    "report_id": "47",
+    "asset_id": "28",
+    "problem": "no heat",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-47.json",
+    "sha256": "f469a4dec03f98215b9f1628c74f1008d289168bab88ac4e196c6216f296c792"
+  },
+  {
+    "report_id": "49",
+    "asset_id": "18",
+    "problem": "no DHW",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-49.json",
+    "sha256": "ed471aec203db9b363cd49057ee9d74432ad5de3640b846d3d2556a1a5a50b2d"
+  },
+  {
+    "report_id": "52",
+    "asset_id": "21",
+    "problem": "no heat",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-52.json",
+    "sha256": "7267ca3f9c57a4849804275237c5245b7dd7565aea49785aa478969b6f214ecf"
+  },
+  {
+    "report_id": "53",
+    "asset_id": "13",
+    "problem": "no DHW",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-53.json",
+    "sha256": "5d1468fec1bab2d065f6ab632af7b2bd8440e3daf84afc8e9fbd6d1d4cccfca7"
+  },
+  {
+    "report_id": "57",
+    "asset_id": "9",
+    "problem": "no heat",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-57.json",
+    "sha256": "a7c2a236fe0f674cdd3833e72859fdb42193f981223eb67168f0997d2b9f3e87"
+  },
+  {
+    "report_id": "60",
+    "asset_id": "4",
+    "problem": "no heat",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-60.json",
+    "sha256": "7af7ff96cb6035b25ae65b9d47650f035c6cdf7c302784a00417b94efa162d84"
+  },
+  {
+    "report_id": "62",
+    "asset_id": "21",
+    "problem": "not enough heat",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-62.json",
+    "sha256": "2b9e9f564d8c21c3ef34ed15a9f481fbff5fce9f802b16f2334b50f91c5074dc"
+  },
+  {
+    "report_id": "63",
+    "asset_id": "7",
+    "problem": "not enough heat",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-63.json",
+    "sha256": "42c17586736b1c4621e1fce462dd01d5c1b04285ffff90b975d71271c2c92c13"
+  },
+  {
+    "report_id": "64",
+    "asset_id": "6",
+    "problem": "other",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-64.json",
+    "sha256": "014762c68f655ec4f54133680dad9b0e5ec9dc3d32ff1668fd1b55b310cd67f4"
+  },
+  {
+    "report_id": "65",
+    "asset_id": "11",
+    "problem": "leakage",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-65.json",
+    "sha256": "1d7b406fb2d3dcfd4b8f4bcc46bbd166adbc28def5e3f8b1603fe73d6724487f"
+  },
+  {
+    "report_id": "67",
+    "asset_id": "7",
+    "problem": "no DHW",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-67.json",
+    "sha256": "c794348eb4311a0e1a484d1cb0b2852e2cb379406ecf4f755e7a524f2d392be4"
+  },
+  {
+    "report_id": "69",
+    "asset_id": "26",
+    "problem": "no heat",
+    "status": "eligible",
+    "path": "evaluation/cycle5/cases/case-69.json",
+    "sha256": "433e11f8b3b021d9bc52e3bde56a63a751be5777135d33ab7d29f21f630576c2"
+  }
+]

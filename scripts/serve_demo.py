@@ -32,6 +32,7 @@ PUBLIC_FILES = {
     "web/assets/system2-29.json",
     "web/assets/system2-52.json",
     "web/assets/system2-case29-trend.png",
+    "web/assets/eval-cycle5.png",
     "README.md",
     "ARCHITECTURE.md",
     "DATA_SOURCES.md",

@@ -1,0 +1,945 @@
+{
+  "method": "live-system2-plan-first-handoff-v2",
+  "case_id": "PreDist-M1-fault-69",
+  "model": "nvidia/nemotron-3-ultra-550b-a55b",
+  "corpus_sha256": "7e0840dfe3dfd5b6d769fd4fabd7167d1810c503d9f744a58ded1be4b8dbe66d",
+  "file_sha256": {
+    "case.json": "cc3b95ad856f0782ef7e1ddd68b40f0c8bca5115cf67e3a1d562f79549736d27",
+    "fact_catalog.json": "3f933acb6bd3949643809b24bda4af5bd4fd1ce0fe86f5b4625ad4c11ff5b63c",
+    "plan_schema.json": "528d3917167542e6d4e580ad7466fee0e4cb8434e237ae06b274d401d7812eff",
+    "source_manifest.json": "c5baa61a87b61faf943439abcdf7021cd3cf9039a177864262ddd786ae97b57e",
+    "task.json": "546476b3c6b2519f1790a3022db46d0105174c357e92888e920d0786195eb2dd",
+    "temporal/episodes.json": "2d5aee61ab71ea67f5eca894d18aa58d8292454c04aa1b2fcce5686fa31cf320",
+    "temporal/window-fields.json": "ad93794d634947dc9795c46837a511c14f418ce75c2c5ca90cd3326bdcfb0917",
+    "tools/get_maintenance_timeline.json": "e4b3321318ce6d9eeb5716bec2840a93dc722ccab3731c01836e822bf179cf33",
+    "tools/get_prior_incidents.json": "3bb2ab95690a58940a4aa7b021c61a4f7c9b65d5339b5dbe9278885f2992a9c5",
+    "tools/get_recent_measurements.json": "fcce3ea21e152dc5858a37db8f727ae97ca13b6107141aa116715610c0816974",
+    "tools/get_signal_definitions.json": "c2666f6a27fe1250d50bf2cb9641a003cd267bd8db253533712ad580aaee02da"
+  },
+  "temporal_enabled": true,
+  "read_backend": "direct",
+  "nat_version": null,
+  "planner_requests": [
+    {
+      "request_index": 1,
+      "request": {
+        "model": "nvidia/nemotron-3-ultra-550b-a55b",
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are a read-only plant investigator. Use tools to inspect the public case. Read relevant sources, including temporal episodes and a bounded raw window when making time or trend claims. Do not infer cause, fault status, or control action from gaps alone. Call finish_investigation when ready. Do not write a final plan during this stage."
+          },
+          {
+            "role": "user",
+            "content": "{\n  \"available_tools\": [\n    \"get_recent_measurements\",\n    \"get_prior_incidents\",\n    \"get_maintenance_timeline\",\n    \"get_signal_definitions\",\n    \"get_temporal_episodes\",\n    \"query_measurement_window\",\n    \"finish_investigation\"\n  ],\n  \"case\": {\n    \"asset\": {\n      \"manufacturer\": 1,\n      \"substation_id\": \"26\"\n    },\n    \"case_id\": \"PreDist-M1-fault-69\",\n    \"current_report\": {\n      \"note\": \"Only the reported problem is visible at decision time. Later diagnosis and remedy are withheld.\",\n      \"problem\": \"no heat\",\n      \"source_id\": \"PreDist-M1-fault-69-problem-only\"\n    },\n    \"decision_time\": \"2020-03-10 15:49:00\",\n    \"measurement_window\": {\n      \"end\": \"2020-03-10 15:49:00\",\n      \"source_id\": \"PreDist-M1-substation-26-operational-data\",\n      \"start\": \"2020-03-09 15:49:00\"\n    },\n    \"report_facts\": [\n      {\n        \"id\": \"F-48a9089af22a\",\n        \"interval\": \"2020-03-10 15:49:00\",\n        \"source_field\": \"problem\",\n        \"source_id\": \"PreDist-M1-fault-69-problem-only\",\n        \"text\": \"Reported problem: no heat (2020-03-10 15:49:00)\",\n        \"unit\": \"\",\n        \"value\": \"no heat\"\n      }\n    ],\n    \"source\": {\n      \"asset_type\": \"district heating substation\",\n      \"dataset\": \"PreDist v2\",\n      \"doi\": \"10.5281/zenodo.19496480\",\n      \"license\": \"CC BY 4.0\",\n      \"publisher\": \"Fraunhofer IEE / enercity Netz GmbH\",\n      \"url\": \"https://zenodo.org/records/19496480\"\n    }\n  },\n  \"task\": \"Given this asset's reported problem at decision_time, inspect the available public evidence at or before that time and propose a plan with only limit_ids and next_checks. Select 2 or 3 distinct checks. For each check, cite 1 to 4 distinct retrieved supporting fact IDs and write a nonblank rationale of at most 240 characters. The program derives displayed observations as the ordered union of supporting fact IDs (at most 12); do not write observed_fact_ids. Select only supplied limit and check IDs. Ground temporal claims in timestamped readings or explicit first/last samples; minimum and maximum summaries are not start/end readings. Do not claim a cause or operational fault from descriptive temperature gaps, and do not recommend changing controls. Return one plan JSON object.\"\n}\n"
+          }
+        ],
+        "temperature": 0,
+        "max_tokens": 1200,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        },
+        "stream": false,
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "get_recent_measurements",
+              "description": "Read the public get_recent_measurements source for this case.",
+              "parameters": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "get_prior_incidents",
+              "description": "Read the public get_prior_incidents source for this case.",
+              "parameters": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "get_maintenance_timeline",
+              "description": "Read the public get_maintenance_timeline source for this case.",
+              "parameters": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "get_signal_definitions",
+              "description": "Read the public get_signal_definitions source for this case.",
+              "parameters": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "get_temporal_episodes",
+              "description": "Read pre-decision paired supply/setpoint episodes and exact endpoints.",
+              "parameters": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "query_measurement_window",
+              "description": "Read at most 24 public measurement rows in an inclusive ISO timestamp window within the decision cutoff.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "start": {
+                    "type": "string"
+                  },
+                  "end": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "start",
+                  "end"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "finish_investigation",
+              "description": "Finish reading sources and proceed to a separate native-schema final plan.",
+              "parameters": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": false
+              }
+            }
+          }
+        ],
+        "tool_choice": "auto"
+      },
+      "response": {
+        "id": "chatcmpl-554ce811-9491-4923-9cf3-3342e354f9a7",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "content": "\n\n",
+              "tool_calls": [
+                {
+                  "id": "call-28460cb8-ce40-4237-bae8-d5934bf9eb8c",
+                  "type": "function",
+                  "function": {
+                    "name": "get_recent_measurements",
+                    "arguments": "{}"
+                  }
+                }
+              ],
+              "role": "assistant",
+              "reasoning_content": null
+            },
+            "finish_reason": "tool_calls",
+            "logprobs": null
+          }
+        ],
+        "created": 1790605647,
+        "model": "nvidia/nemotron-3-ultra-550b-a55b",
+        "service_tier": null,
+        "system_fingerprint": null,
+        "object": "chat.completion",
+        "usage": {
+          "prompt_tokens": 1358,
+          "completion_tokens": 18,
+          "total_tokens": 1376
+        }
+      },
+      "latency_seconds": 2.064
+    }
+  ],
+  "tool_calls": [
+    {
+      "name": "get_recent_measurements",
+      "call_id": "call-28460cb8-ce40-4237-bae8-d5934bf9eb8c",
+      "arguments": {},
+      "response": {
+        "result": {
+          "source_id": "PreDist-M1-substation-26-operational-data",
+          "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+          "samples": 144,
+          "last_sample_time": "2020-03-10 15:40:00",
+          "signals": {
+            "outdoor_temperature_c": {
+              "original_field": "outdoor_temperature",
+              "first": 7.99,
+              "last": 9.6,
+              "min": -0.55,
+              "max": 10.7,
+              "mean": 4.0,
+              "unit": "°C"
+            },
+            "secondary_heating_circuit_supply_temperature_c": {
+              "original_field": "s_hc1_supply_temperature",
+              "first": 23.74,
+              "last": 22.77,
+              "min": 21.44,
+              "max": 69.43,
+              "mean": 43.7,
+              "unit": "°C"
+            },
+            "secondary_heating_circuit_supply_setpoint_c": {
+              "original_field": "s_hc1_supply_temperature_setpoint",
+              "first": 10.0,
+              "last": 10.0,
+              "min": 10.0,
+              "max": 65.0,
+              "mean": 40.22,
+              "unit": "°C"
+            },
+            "primary_network_meter_heat_power_kw": {
+              "original_field": "p_net_meter_heat_power",
+              "first": 1.0,
+              "last": 0.0,
+              "min": 0.0,
+              "max": 78.1,
+              "mean": 10.19,
+              "unit": "kW"
+            },
+            "primary_network_meter_flow_l_per_hour": {
+              "original_field": "p_net_meter_flow",
+              "first": 36.0,
+              "last": 1.0,
+              "min": 0.0,
+              "max": 1256.0,
+              "mean": 174.83,
+              "unit": "l/h"
+            }
+          },
+          "secondary_heating_supply_vs_setpoint_absolute_gap_celsius": {
+            "mean": 12.26,
+            "max": 43.16,
+            "samples_within_2C": 34,
+            "sample_count": 144
+          },
+          "interpretation_limits": [
+            "This sensor's secondary supply temperature tracking its setpoint does not prove heat reached rooms.",
+            "No room/radiator temperature, secondary heat-circuit flow, valve position, or timestamped controller parameter-change record is available in this replay.",
+            "p_net_meter_flow is primary network-side flow, not customer/secondary circuit flow.",
+            "No normal operating range is provided for heat power or flow."
+          ]
+        },
+        "facts": [
+          {
+            "id": "F-aaca9381dbda",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "last_sample_time",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": "2020-03-10 15:40:00",
+            "unit": "",
+            "text": "Last measurement time: 2020-03-10 15:40:00 (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-af55bad4d500",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "samples",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 144,
+            "unit": "",
+            "text": "Measurement sample count: 144 (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-c92dadd7813d",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "signals.outdoor_temperature.first",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 7.99,
+            "unit": "°C",
+            "text": "outdoor_temperature_c first: 7.99 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-b2823f9ace35",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "signals.outdoor_temperature.last",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 9.6,
+            "unit": "°C",
+            "text": "outdoor_temperature_c last: 9.6 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-b987c6e4b014",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "signals.outdoor_temperature.max",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 10.7,
+            "unit": "°C",
+            "text": "outdoor_temperature_c max: 10.7 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-a38ea71757db",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "signals.outdoor_temperature.mean",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 4.0,
+            "unit": "°C",
+            "text": "outdoor_temperature_c mean: 4.0 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-a6d88e860b3c",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "signals.outdoor_temperature.min",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": -0.55,
+            "unit": "°C",
+            "text": "outdoor_temperature_c min: -0.55 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-88f855c7c825",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "signals.p_net_meter_flow.first",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 36.0,
+            "unit": "l/h",
+            "text": "primary_network_meter_flow_l_per_hour first: 36.0 l/h (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-5fa95c68409b",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "signals.p_net_meter_flow.last",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 1.0,
+            "unit": "l/h",
+            "text": "primary_network_meter_flow_l_per_hour last: 1.0 l/h (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-f189b14a1153",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "signals.p_net_meter_flow.max",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 1256.0,
+            "unit": "l/h",
+            "text": "primary_network_meter_flow_l_per_hour max: 1256.0 l/h (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-0f2e2be4d573",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "signals.p_net_meter_flow.mean",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 174.83,
+            "unit": "l/h",
+            "text": "primary_network_meter_flow_l_per_hour mean: 174.83 l/h (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-dba892641693",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "signals.p_net_meter_flow.min",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 0.0,
+            "unit": "l/h",
+            "text": "primary_network_meter_flow_l_per_hour min: 0.0 l/h (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-c5c5f26a7962",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "signals.p_net_meter_heat_power.first",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 1.0,
+            "unit": "kW",
+            "text": "primary_network_meter_heat_power_kw first: 1.0 kW (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-4870c53a3e90",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "signals.p_net_meter_heat_power.last",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 0.0,
+            "unit": "kW",
+            "text": "primary_network_meter_heat_power_kw last: 0.0 kW (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-8c5fa4867db5",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "signals.p_net_meter_heat_power.max",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 78.1,
+            "unit": "kW",
+            "text": "primary_network_meter_heat_power_kw max: 78.1 kW (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-b2d45678be3f",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "signals.p_net_meter_heat_power.mean",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 10.19,
+            "unit": "kW",
+            "text": "primary_network_meter_heat_power_kw mean: 10.19 kW (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-b432a506c31f",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "signals.p_net_meter_heat_power.min",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 0.0,
+            "unit": "kW",
+            "text": "primary_network_meter_heat_power_kw min: 0.0 kW (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-d8796e75586f",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "signals.s_hc1_supply_temperature.first",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 23.74,
+            "unit": "°C",
+            "text": "secondary_heating_circuit_supply_temperature_c first: 23.74 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-557cc95851d9",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "signals.s_hc1_supply_temperature.last",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 22.77,
+            "unit": "°C",
+            "text": "secondary_heating_circuit_supply_temperature_c last: 22.77 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-592dedb5c11c",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "signals.s_hc1_supply_temperature.max",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 69.43,
+            "unit": "°C",
+            "text": "secondary_heating_circuit_supply_temperature_c max: 69.43 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-58d3470b408c",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "signals.s_hc1_supply_temperature.mean",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 43.7,
+            "unit": "°C",
+            "text": "secondary_heating_circuit_supply_temperature_c mean: 43.7 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-e8bf9ef0147b",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "signals.s_hc1_supply_temperature.min",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 21.44,
+            "unit": "°C",
+            "text": "secondary_heating_circuit_supply_temperature_c min: 21.44 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-7fa63f03c5dc",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "signals.s_hc1_supply_temperature_setpoint.first",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 10.0,
+            "unit": "°C",
+            "text": "secondary_heating_circuit_supply_setpoint_c first: 10.0 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-60f266e3a424",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "signals.s_hc1_supply_temperature_setpoint.last",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 10.0,
+            "unit": "°C",
+            "text": "secondary_heating_circuit_supply_setpoint_c last: 10.0 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-bdc3888d19d3",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "signals.s_hc1_supply_temperature_setpoint.max",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 65.0,
+            "unit": "°C",
+            "text": "secondary_heating_circuit_supply_setpoint_c max: 65.0 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-2e054278de51",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "signals.s_hc1_supply_temperature_setpoint.mean",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 40.22,
+            "unit": "°C",
+            "text": "secondary_heating_circuit_supply_setpoint_c mean: 40.22 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-c28f832365c6",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "signals.s_hc1_supply_temperature_setpoint.min",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 10.0,
+            "unit": "°C",
+            "text": "secondary_heating_circuit_supply_setpoint_c min: 10.0 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-fe14e0496369",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "supply_setpoint_absolute_gap.max",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 43.16,
+            "unit": "°C",
+            "text": "Secondary supply/setpoint absolute gap max: 43.16 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-65f3d5a6958c",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "supply_setpoint_absolute_gap.mean",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 12.26,
+            "unit": "°C",
+            "text": "Secondary supply/setpoint absolute gap mean: 12.26 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-b180f7b09dea",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "supply_setpoint_absolute_gap.sample_count",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 144,
+            "unit": "",
+            "text": "Secondary supply/setpoint absolute gap sample_count: 144 (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          },
+          {
+            "id": "F-6db9609b238e",
+            "source_id": "PreDist-M1-substation-26-operational-data",
+            "source_field": "supply_setpoint_absolute_gap.samples_within_2C",
+            "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+            "value": 34,
+            "unit": "",
+            "text": "Secondary supply/setpoint absolute gap samples_within_2C: 34 (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+          }
+        ],
+        "source_manifest": {
+          "available_sources": [
+            {
+              "reader": "get_recent_measurements",
+              "read_state": "read"
+            },
+            {
+              "reader": "get_prior_incidents",
+              "read_state": "unread"
+            },
+            {
+              "reader": "get_maintenance_timeline",
+              "read_state": "unread"
+            },
+            {
+              "reader": "get_signal_definitions",
+              "read_state": "unread"
+            },
+            {
+              "reader": "get_temporal_episodes",
+              "file": "temporal/episodes.json",
+              "read_state": "unread"
+            },
+            {
+              "reader": "query_measurement_window",
+              "file": "temporal/window-fields.json",
+              "read_state": "unread",
+              "max_rows_per_query": 24
+            }
+          ]
+        }
+      },
+      "executor": "direct"
+    }
+  ],
+  "finish_reason": null,
+  "source_read_state": {
+    "available_sources": [
+      {
+        "reader": "get_recent_measurements",
+        "read_state": "read"
+      },
+      {
+        "reader": "get_prior_incidents",
+        "read_state": "unread"
+      },
+      {
+        "reader": "get_maintenance_timeline",
+        "read_state": "unread"
+      },
+      {
+        "reader": "get_signal_definitions",
+        "read_state": "unread"
+      },
+      {
+        "reader": "get_temporal_episodes",
+        "file": "temporal/episodes.json",
+        "read_state": "unread"
+      },
+      {
+        "reader": "query_measurement_window",
+        "file": "temporal/window-fields.json",
+        "read_state": "unread",
+        "max_rows_per_query": 24
+      }
+    ]
+  },
+  "temporal_read_state": {
+    "get_temporal_episodes": false,
+    "query_measurement_window": false
+  },
+  "evidence": {
+    "schema_version": 1,
+    "case_id": "PreDist-M1-fault-69",
+    "decision_time": "2020-03-10 15:49:00",
+    "sources": [
+      {
+        "id": "PreDist-M1-fault-69-problem-only",
+        "kind": "customer_report"
+      },
+      {
+        "id": "PreDist-M1-substation-26-operational-data",
+        "kind": "retrieved_public_source"
+      }
+    ],
+    "facts": [
+      {
+        "id": "F-48a9089af22a",
+        "source_id": "PreDist-M1-fault-69-problem-only",
+        "source_field": "problem",
+        "interval": "2020-03-10 15:49:00",
+        "value": "no heat",
+        "unit": "",
+        "text": "Reported problem: no heat (2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-aaca9381dbda",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "last_sample_time",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": "2020-03-10 15:40:00",
+        "unit": "",
+        "text": "Last measurement time: 2020-03-10 15:40:00 (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-af55bad4d500",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "samples",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 144,
+        "unit": "",
+        "text": "Measurement sample count: 144 (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-c92dadd7813d",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "signals.outdoor_temperature.first",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 7.99,
+        "unit": "°C",
+        "text": "outdoor_temperature_c first: 7.99 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-b2823f9ace35",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "signals.outdoor_temperature.last",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 9.6,
+        "unit": "°C",
+        "text": "outdoor_temperature_c last: 9.6 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-b987c6e4b014",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "signals.outdoor_temperature.max",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 10.7,
+        "unit": "°C",
+        "text": "outdoor_temperature_c max: 10.7 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-a38ea71757db",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "signals.outdoor_temperature.mean",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 4.0,
+        "unit": "°C",
+        "text": "outdoor_temperature_c mean: 4.0 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-a6d88e860b3c",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "signals.outdoor_temperature.min",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": -0.55,
+        "unit": "°C",
+        "text": "outdoor_temperature_c min: -0.55 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-88f855c7c825",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "signals.p_net_meter_flow.first",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 36.0,
+        "unit": "l/h",
+        "text": "primary_network_meter_flow_l_per_hour first: 36.0 l/h (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-5fa95c68409b",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "signals.p_net_meter_flow.last",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 1.0,
+        "unit": "l/h",
+        "text": "primary_network_meter_flow_l_per_hour last: 1.0 l/h (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-f189b14a1153",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "signals.p_net_meter_flow.max",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 1256.0,
+        "unit": "l/h",
+        "text": "primary_network_meter_flow_l_per_hour max: 1256.0 l/h (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-0f2e2be4d573",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "signals.p_net_meter_flow.mean",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 174.83,
+        "unit": "l/h",
+        "text": "primary_network_meter_flow_l_per_hour mean: 174.83 l/h (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-dba892641693",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "signals.p_net_meter_flow.min",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 0.0,
+        "unit": "l/h",
+        "text": "primary_network_meter_flow_l_per_hour min: 0.0 l/h (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-c5c5f26a7962",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "signals.p_net_meter_heat_power.first",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 1.0,
+        "unit": "kW",
+        "text": "primary_network_meter_heat_power_kw first: 1.0 kW (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-4870c53a3e90",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "signals.p_net_meter_heat_power.last",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 0.0,
+        "unit": "kW",
+        "text": "primary_network_meter_heat_power_kw last: 0.0 kW (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-8c5fa4867db5",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "signals.p_net_meter_heat_power.max",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 78.1,
+        "unit": "kW",
+        "text": "primary_network_meter_heat_power_kw max: 78.1 kW (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-b2d45678be3f",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "signals.p_net_meter_heat_power.mean",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 10.19,
+        "unit": "kW",
+        "text": "primary_network_meter_heat_power_kw mean: 10.19 kW (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-b432a506c31f",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "signals.p_net_meter_heat_power.min",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 0.0,
+        "unit": "kW",
+        "text": "primary_network_meter_heat_power_kw min: 0.0 kW (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-d8796e75586f",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "signals.s_hc1_supply_temperature.first",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 23.74,
+        "unit": "°C",
+        "text": "secondary_heating_circuit_supply_temperature_c first: 23.74 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-557cc95851d9",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "signals.s_hc1_supply_temperature.last",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 22.77,
+        "unit": "°C",
+        "text": "secondary_heating_circuit_supply_temperature_c last: 22.77 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-592dedb5c11c",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "signals.s_hc1_supply_temperature.max",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 69.43,
+        "unit": "°C",
+        "text": "secondary_heating_circuit_supply_temperature_c max: 69.43 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-58d3470b408c",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "signals.s_hc1_supply_temperature.mean",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 43.7,
+        "unit": "°C",
+        "text": "secondary_heating_circuit_supply_temperature_c mean: 43.7 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-e8bf9ef0147b",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "signals.s_hc1_supply_temperature.min",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 21.44,
+        "unit": "°C",
+        "text": "secondary_heating_circuit_supply_temperature_c min: 21.44 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-7fa63f03c5dc",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "signals.s_hc1_supply_temperature_setpoint.first",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 10.0,
+        "unit": "°C",
+        "text": "secondary_heating_circuit_supply_setpoint_c first: 10.0 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-60f266e3a424",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "signals.s_hc1_supply_temperature_setpoint.last",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 10.0,
+        "unit": "°C",
+        "text": "secondary_heating_circuit_supply_setpoint_c last: 10.0 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-bdc3888d19d3",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "signals.s_hc1_supply_temperature_setpoint.max",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 65.0,
+        "unit": "°C",
+        "text": "secondary_heating_circuit_supply_setpoint_c max: 65.0 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-2e054278de51",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "signals.s_hc1_supply_temperature_setpoint.mean",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 40.22,
+        "unit": "°C",
+        "text": "secondary_heating_circuit_supply_setpoint_c mean: 40.22 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-c28f832365c6",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "signals.s_hc1_supply_temperature_setpoint.min",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 10.0,
+        "unit": "°C",
+        "text": "secondary_heating_circuit_supply_setpoint_c min: 10.0 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-fe14e0496369",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "supply_setpoint_absolute_gap.max",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 43.16,
+        "unit": "°C",
+        "text": "Secondary supply/setpoint absolute gap max: 43.16 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-65f3d5a6958c",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "supply_setpoint_absolute_gap.mean",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 12.26,
+        "unit": "°C",
+        "text": "Secondary supply/setpoint absolute gap mean: 12.26 °C (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-b180f7b09dea",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "supply_setpoint_absolute_gap.sample_count",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 144,
+        "unit": "",
+        "text": "Secondary supply/setpoint absolute gap sample_count: 144 (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      },
+      {
+        "id": "F-6db9609b238e",
+        "source_id": "PreDist-M1-substation-26-operational-data",
+        "source_field": "supply_setpoint_absolute_gap.samples_within_2C",
+        "interval": "2020-03-09 15:49:00 to 2020-03-10 15:49:00",
+        "value": 34,
+        "unit": "",
+        "text": "Secondary supply/setpoint absolute gap samples_within_2C: 34 (2020-03-09 15:49:00 to 2020-03-10 15:49:00)"
+      }
+    ]
+  },
+  "native_schema": null,
+  "final_request": null,
+  "final_response": null,
+  "raw_plan": null,
+  "parsed_plan": null,
+  "assembled_selection": null,
+  "derived_observations": null,
+  "validation": {
+    "status": "invalid",
+    "error_type": "RuntimeError",
+    "reason": "NVIDIA API HTTP 500"
+  },
+  "review_flags": [],
+  "display": {
+    "status": "withheld",
+    "reason": "NVIDIA API HTTP 500",
+    "observations": [],
+    "limits": [],
+    "suggested_next_checks": []
+  },
+  "completeness": {
+    "status": "not_assessed",
+    "issues": []
+  },
+  "usage": [
+    {
+      "prompt_tokens": 1358,
+      "completion_tokens": 18,
+      "total_tokens": 1376
+    }
+  ],
+  "request_seconds": 2.064,
+  "wall_seconds": 4.026,
+  "handoff_policy": "bounded_finalize_v2",
+  "investigation_budget_exhausted": false,
+  "review_notes": [],
+  "cycle5_started_at": "2026-09-28T23:27:25"
+}

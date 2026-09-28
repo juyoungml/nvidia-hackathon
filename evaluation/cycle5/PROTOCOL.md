@@ -1,0 +1,38 @@
+# Cycle 5 — breadth check over all eligible PreDist v2 manufacturer-1 reports
+
+Frozen before any cycle-5 inference, 2026-09-28 23:20 KST. Cycle 4 files and numbers are untouched; cycle 5 is a separate, larger, single-run breadth check.
+
+## Case list and selection rule (fixed before running)
+
+Rule: every manufacturer-1 fault report in PreDist v2 `faults.csv` (33 reports, all problem categories — not only heating complaints), in report-ID order, whose substation operational CSV was extracted from the public Zenodo archive (CC BY 4.0, DOI 10.5281/zenodo.19496480), with >=100 samples in the 24 h before the report date and nonempty `s_hc1_supply_temperature`, its setpoint and `p_hc1_return_temperature`.
+
+Result (`case-manifest.json`, with input SHA-256): 32 eligible cases — reports 1, 3, 5, 6, 7, 10, 11, 13, 15, 23, 24, 29, 32, 34, 36, 37, 38, 40, 44, 45, 47, 49, 52, 53, 57, 60, 62, 63, 64, 65, 67, 69. Report 20 is ineligible (14 samples in window). No case was dropped after seeing outputs.
+
+Inputs are built by `run_cycle5.py prepare` with the same window, cutoff and withholding logic as `scripts/build_holdout_cases.py` (verified identical rows/prior records to `data/replay-52.json` and `data/holdout-29.json`). Later diagnosis, remedy and fault label are not in any input.
+
+Exposure: reports 3, 5, 13, 29, 32, 37, 47, 52, 60, 62, 63 were used in earlier cycles/development; the other 21 are fresh for both arms. Results are reported for all and for the fresh subset.
+
+## Arms (same output contract as cycle 4)
+
+- Ultra: `nvidia/nemotron-3-ultra-550b-a55b`, `poc.live_investigation.run_live_case`, temporal tools on, up to 6 planning requests, handoff policy `bounded_finalize_v2` (current policy), then one native-schema final plan request. Shared thread-safe pacer at 34 rpm (account limit 40 rpm).
+- Sonnet: Claude Code + `claude-sonnet-5` via unchanged `evaluation.live_claude.run_live_claude` (restricted Read/Glob/Grep + StructuredOutput, USD 0.50 guard, 300 s timeout).
+
+Both arms receive the identical bundle from `build_live_bundle(replay, temporal_enabled=True)`. One run per arm/case, no retries, no best-of selection, no configuration changes after the first inference. Crashes are stored as run failures.
+
+## Measured
+
+Per case and arm: completed with a valid output (native plan parsed); reference/format check pass = the unchanged v2 validator inside each harness returns `validation.status == "valid"` (same checker as cycle 4, not loosened); tool-call count; wall time; budget-exhausted flag (Ultra `investigation_budget_exhausted`; Sonnet budget/timeout subtype).
+
+Not measured: diagnosis accuracy, rationale entailment, plant/economic effect. A reference/format pass is not a correct diagnosis.
+
+## Time box
+
+Runs were launched before 23:38 KST; any case without a finished trace at the reporting cutoff is reported as not completed, not dropped.
+
+## Amendment A (23:23 KST, before any rerun outcome was seen)
+
+The first Ultra pass at 6 concurrent workers hit NVIDIA HTTP 500/429 on many cases (provider failures, not semantic errors). At 23:23 the Ultra runner was restarted at 3 workers; in-flight cases without a saved trace were restarted from scratch (no output had been seen). Saved first-attempt traces are kept as the primary result. Cases whose first Ultra attempt ended in a provider HTTP error get exactly one rerun (`ultra-rerun-<id>.json`) at low concurrency if time permits; results are reported both as first-attempt and with provider-error reruns, labelled separately. No rerun is made for semantic/contract failures. Sonnet is unchanged.
+
+## Amendment B (23:30 KST)
+
+The Amendment-A rerun (2 workers, started 23:28:45) itself hit HTTP 429 within seconds on 11 of 13 cases (0–5 tool calls), i.e. the account was rate-limited, not the model failing. Those 11 cases whose rerun again ended in a provider HTTP error get one further attempt (`ultra-rerun2-<id>.json`) at 1 worker, launched before 23:38. The "Ultra with provider reruns" view uses the last attempt for a case only when every earlier attempt was a provider HTTP error; a contract/reference failure on any attempt is final. First-attempt numbers are always reported alongside.

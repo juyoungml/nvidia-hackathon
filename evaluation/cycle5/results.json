@@ -1,0 +1,2280 @@
+{
+  "cycle": "cycle5",
+  "protocol_sha256": "aab3b16c2a7434ad879c4be269c0b1eee351bf83ae7ca469055fb158b87dbb82",
+  "scope": "single run per arm/case; reference/format contract check, not diagnostic accuracy",
+  "summary": {
+    "ultra": {
+      "all": {
+        "attempted": 32,
+        "completed_runs": 32,
+        "valid_output": 15,
+        "pass": 15,
+        "pass_rate_of_completed": 0.469,
+        "provider_errors": 13,
+        "pass_rate_excluding_provider_errors": 0.789,
+        "budget_exhausted": 6,
+        "median_wall_seconds": 33.8,
+        "median_tool_calls": 6.0
+      },
+      "fresh_only": {
+        "attempted": 21,
+        "completed_runs": 21,
+        "valid_output": 11,
+        "pass": 11,
+        "pass_rate_of_completed": 0.524,
+        "provider_errors": 8,
+        "pass_rate_excluding_provider_errors": 0.846,
+        "budget_exhausted": 4,
+        "median_wall_seconds": 36.4,
+        "median_tool_calls": 6
+      }
+    },
+    "ultra_with_provider_rerun": {
+      "all": {
+        "attempted": 32,
+        "completed_runs": 32,
+        "valid_output": 16,
+        "pass": 16,
+        "pass_rate_of_completed": 0.5,
+        "provider_errors": 11,
+        "pass_rate_excluding_provider_errors": 0.762,
+        "budget_exhausted": 6,
+        "median_wall_seconds": 28.5,
+        "median_tool_calls": 5.5
+      },
+      "fresh_only": {
+        "attempted": 21,
+        "completed_runs": 21,
+        "valid_output": 12,
+        "pass": 12,
+        "pass_rate_of_completed": 0.571,
+        "provider_errors": 7,
+        "pass_rate_excluding_provider_errors": 0.857,
+        "budget_exhausted": 4,
+        "median_wall_seconds": 27.7,
+        "median_tool_calls": 6
+      }
+    },
+    "sonnet": {
+      "all": {
+        "attempted": 32,
+        "completed_runs": 32,
+        "valid_output": 32,
+        "pass": 32,
+        "pass_rate_of_completed": 1.0,
+        "provider_errors": 0,
+        "pass_rate_excluding_provider_errors": 1.0,
+        "budget_exhausted": 0,
+        "median_wall_seconds": 48.2,
+        "median_tool_calls": 11.0
+      },
+      "fresh_only": {
+        "attempted": 21,
+        "completed_runs": 21,
+        "valid_output": 21,
+        "pass": 21,
+        "pass_rate_of_completed": 1.0,
+        "provider_errors": 0,
+        "pass_rate_excluding_provider_errors": 1.0,
+        "budget_exhausted": 0,
+        "median_wall_seconds": 53.6,
+        "median_tool_calls": 11
+      }
+    }
+  },
+  "excluded": [
+    {
+      "report_id": "20",
+      "asset_id": "11",
+      "problem": "no DHW",
+      "status": "ineligible",
+      "reason": "ineligible: 14 samples or empty hc1 fields"
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "PreDist-M1-fault-1",
+      "report_id": "1",
+      "asset_id": "10",
+      "problem": "no DHW",
+      "exposure": "fresh",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-1.json",
+          "trace_sha256": "8dd73556596ebe528645dd820bd7408b8304f6f8936705685960f48c41d513d8",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 500",
+          "provider_error": true,
+          "tool_calls": 5,
+          "wall_seconds": 12.851,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-1.json",
+          "trace_sha256": "0a529f992386ba3cd5d56b3ad14ca654536e47603c30a078225f3bd88acc901e",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 14,
+          "wall_seconds": 85.131,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.34345919999999996
+        },
+        "ultra-rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun-1.json",
+          "trace_sha256": "1dabe6ba26fa6fb57742017c88c28b26080e1c578efb85ec7954840b0069cbbb",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 7,
+          "wall_seconds": 23.364,
+          "budget_exhausted": false,
+          "finish_reason": "explicit_finish_tool",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun-1.json",
+          "trace_sha256": "1dabe6ba26fa6fb57742017c88c28b26080e1c578efb85ec7954840b0069cbbb",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 7,
+          "wall_seconds": 23.364,
+          "budget_exhausted": false,
+          "finish_reason": "explicit_finish_tool",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 2
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-3",
+      "report_id": "3",
+      "asset_id": "12",
+      "problem": "no heat",
+      "exposure": "prior_exposed",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-3.json",
+          "trace_sha256": "6012bb7f9c064d5318a118932524b7ec9a0fa9786aa6d691a697c377b656643c",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 500",
+          "provider_error": true,
+          "tool_calls": 6,
+          "wall_seconds": 34.058,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-3.json",
+          "trace_sha256": "555e6e32c85db65f968bff903d52edaeda631f3a2bdb4c6dd7bd772d6056c5f0",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 37.072,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.2009534
+        },
+        "ultra-rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun-3.json",
+          "trace_sha256": "08eda88f09dc10cb3b52e19dc5b0450979e5c5b4cf8e48cf28575174554ba69e",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 4,
+          "wall_seconds": 5.564,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra-rerun2": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun2-3.json",
+          "trace_sha256": "0b43a3a5a1d5781830ca0d777a87c5e91fb86b38fbea83a2953bbac1a4717b23",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 0.22,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun2-3.json",
+          "trace_sha256": "0b43a3a5a1d5781830ca0d777a87c5e91fb86b38fbea83a2953bbac1a4717b23",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 0.22,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 3
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-5",
+      "report_id": "5",
+      "asset_id": "11",
+      "problem": "no heat",
+      "exposure": "prior_exposed",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-5.json",
+          "trace_sha256": "1a28075d32b9aceed89b202716c6928025d2021823fa2475ad55b5e9a6e58be8",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 500",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 2.14,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-5.json",
+          "trace_sha256": "058456b3bef01f388dc3a8065256151977ae8748078dc00acbbc56a2fdd6b1ae",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 37.338,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.20435899999999999
+        },
+        "ultra-rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun-5.json",
+          "trace_sha256": "49c0926e03f9d541532cd0d2e697a5a61adbaa7b94a1f278ba5c546b5675c487",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "window contains more than 24 rows",
+          "provider_error": false,
+          "tool_calls": 5,
+          "wall_seconds": 13.994,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun-5.json",
+          "trace_sha256": "49c0926e03f9d541532cd0d2e697a5a61adbaa7b94a1f278ba5c546b5675c487",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "window contains more than 24 rows",
+          "provider_error": false,
+          "tool_calls": 5,
+          "wall_seconds": 13.994,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 2
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-6",
+      "report_id": "6",
+      "asset_id": "21",
+      "problem": "not enough heat",
+      "exposure": "fresh",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-6.json",
+          "trace_sha256": "ffc558f0ac2b10a553302f22c000032b6052a708cb9c724cd7840067ff0615d8",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 8,
+          "wall_seconds": 68.969,
+          "budget_exhausted": false,
+          "finish_reason": "explicit_finish_tool",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-6.json",
+          "trace_sha256": "6188a0b9b0fb996d5139cce2794540f482929344147e99a0b2ed3f42b8fab89c",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 11,
+          "wall_seconds": 51.34,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.2388156
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-6.json",
+          "trace_sha256": "ffc558f0ac2b10a553302f22c000032b6052a708cb9c724cd7840067ff0615d8",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 8,
+          "wall_seconds": 68.969,
+          "budget_exhausted": false,
+          "finish_reason": "explicit_finish_tool",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-7",
+      "report_id": "7",
+      "asset_id": "26",
+      "problem": "no DHW",
+      "exposure": "fresh",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-7.json",
+          "trace_sha256": "f0fdd251b5ddf87c2e8506166f47a139ad36f183ff5e4b7764b654b74d5ecd22",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 122.048,
+          "budget_exhausted": true,
+          "finish_reason": "planning_cap_handoff",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-7.json",
+          "trace_sha256": "ba47a56ab30d0528438245bda2feb873163a7bd5cf47e2ef737e7d3c1d01d7a9",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 11,
+          "wall_seconds": 59.275,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.2529114
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-7.json",
+          "trace_sha256": "f0fdd251b5ddf87c2e8506166f47a139ad36f183ff5e4b7764b654b74d5ecd22",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 122.048,
+          "budget_exhausted": true,
+          "finish_reason": "planning_cap_handoff",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-10",
+      "report_id": "10",
+      "asset_id": "30",
+      "problem": "leakage",
+      "exposure": "fresh",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-10.json",
+          "trace_sha256": "d41372c5c7a6e41a9eb4bd5877145dd57b431099ada3230112f5cd1697bcb569",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 7,
+          "wall_seconds": 41.832,
+          "budget_exhausted": false,
+          "finish_reason": "explicit_finish_tool",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-10.json",
+          "trace_sha256": "c9d02de9761292f4370c58332897e4a5e9493edd0863531eb628657584f40449",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 11,
+          "wall_seconds": 34.933,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.1685066
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-10.json",
+          "trace_sha256": "d41372c5c7a6e41a9eb4bd5877145dd57b431099ada3230112f5cd1697bcb569",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 7,
+          "wall_seconds": 41.832,
+          "budget_exhausted": false,
+          "finish_reason": "explicit_finish_tool",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-11",
+      "report_id": "11",
+      "asset_id": "4",
+      "problem": "no heat",
+      "exposure": "fresh",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-11.json",
+          "trace_sha256": "90af9988108a631da5bcdf211a81245911bbf6d1dc553d2f09dac3db979fac96",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "window contains more than 24 rows",
+          "provider_error": false,
+          "tool_calls": 5,
+          "wall_seconds": 19.421,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-11.json",
+          "trace_sha256": "cb98d17a066adcee428b89264fd0ee624f0a8b70ccfca1efb8e6b4cf5f577b47",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 33.639,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.203056
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-11.json",
+          "trace_sha256": "90af9988108a631da5bcdf211a81245911bbf6d1dc553d2f09dac3db979fac96",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "window contains more than 24 rows",
+          "provider_error": false,
+          "tool_calls": 5,
+          "wall_seconds": 19.421,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-13",
+      "report_id": "13",
+      "asset_id": "24",
+      "problem": "not enough heat",
+      "exposure": "prior_exposed",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-13.json",
+          "trace_sha256": "97c4ef9041a3bdaac56c76516f9eba00b8b80a8f9251453ed78f42e90ae79d06",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 62.8,
+          "budget_exhausted": true,
+          "finish_reason": "planning_cap_handoff",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-13.json",
+          "trace_sha256": "130c95874b650da98629d9c5f4cb7348f3868be4afcff586cbcff6aa57ecd0c4",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 11,
+          "wall_seconds": 54.671,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.35420419999999997
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-13.json",
+          "trace_sha256": "97c4ef9041a3bdaac56c76516f9eba00b8b80a8f9251453ed78f42e90ae79d06",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 62.8,
+          "budget_exhausted": true,
+          "finish_reason": "planning_cap_handoff",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-15",
+      "report_id": "15",
+      "asset_id": "29",
+      "problem": "no heat",
+      "exposure": "fresh",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-15.json",
+          "trace_sha256": "8c5e5b2cbdceaa6967550141f8b826ca4dc7f697fb3adc973784c83338a79355",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 7,
+          "wall_seconds": 38.691,
+          "budget_exhausted": false,
+          "finish_reason": "explicit_finish_tool",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-15.json",
+          "trace_sha256": "fb8dfdcff8f76a5c472a5c4d4f1d13416128c2f149f2f5590233772b480d9706",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 10,
+          "wall_seconds": 46.435,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.2364642
+        },
+        "ultra-rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun-15.json",
+          "trace_sha256": "9afab4e520343107f343e2456289d40f44a2cdc3e1f40f967d45b37faa46dfc7",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 0.344,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra-rerun2": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun2-15.json",
+          "trace_sha256": "fc7854abe6d2c3216e62cae1949fbb393250fa52bbb3d2bd89a4b7c50e05cc88",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 1.674,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun2-15.json",
+          "trace_sha256": "fc7854abe6d2c3216e62cae1949fbb393250fa52bbb3d2bd89a4b7c50e05cc88",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 1.674,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 3
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-23",
+      "report_id": "23",
+      "asset_id": "27",
+      "problem": "not enough heat",
+      "exposure": "fresh",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-23.json",
+          "trace_sha256": "f5751faced9c50c7dc44c95fc461b914742724b30b804e1b88fd6c0e6bb38b41",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 500",
+          "provider_error": true,
+          "tool_calls": 3,
+          "wall_seconds": 33.576,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-23.json",
+          "trace_sha256": "0f456807d18f0ed027c815a534ae89f0efad62e806cc6f4071d375a2fbc27ac7",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 11,
+          "wall_seconds": 46.427,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.23416440000000002
+        },
+        "ultra-rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun-23.json",
+          "trace_sha256": "5305458a8964330a54f5147cb6081046cde68d5c84399fa649c7b57eaff72a86",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 1.847,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra-rerun2": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun2-23.json",
+          "trace_sha256": "5c7d6e16f1bf07abd956e3e91ba02e32bb3fc49e023abd6d785b7944e455cffe",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 1.856,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun2-23.json",
+          "trace_sha256": "5c7d6e16f1bf07abd956e3e91ba02e32bb3fc49e023abd6d785b7944e455cffe",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 1.856,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 3
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-24",
+      "report_id": "24",
+      "asset_id": "13",
+      "problem": "noise",
+      "exposure": "fresh",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-24.json",
+          "trace_sha256": "c6a0f071701735b4a68f8d392cd949d84b8c0b78fb29367bc2e4c65f17042cc7",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 7,
+          "wall_seconds": 53.326,
+          "budget_exhausted": false,
+          "finish_reason": "explicit_finish_tool",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-24.json",
+          "trace_sha256": "afc80a85e56d88a5a9b8cb592519af6ca19a60068d22c4401e5c4b5df4e06def",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 13,
+          "wall_seconds": 56.921,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.2745812
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-24.json",
+          "trace_sha256": "c6a0f071701735b4a68f8d392cd949d84b8c0b78fb29367bc2e4c65f17042cc7",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 7,
+          "wall_seconds": 53.326,
+          "budget_exhausted": false,
+          "finish_reason": "explicit_finish_tool",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-29",
+      "report_id": "29",
+      "asset_id": "17",
+      "problem": "no heat",
+      "exposure": "prior_exposed",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-29.json",
+          "trace_sha256": "8ba08485627c70a6d6409bdb339479a39a5dd5687064aeaa71aab4bbeb249c61",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 500",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 0.372,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-29.json",
+          "trace_sha256": "01228f8309134fb35962f117d6c0719851ed322de631554ac65a14f531cf3939",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 13,
+          "wall_seconds": 57.03,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.2772432
+        },
+        "ultra-rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun-29.json",
+          "trace_sha256": "aabffa6bb1af439fa2ae31ccb75da25afe415f2dabcba3d15957bdf98dae999d",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 1.445,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra-rerun2": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun2-29.json",
+          "trace_sha256": "03b4edf329690e8d40923b8c57e9403c1d73c42373a7b507740140e4fc4b4d6b",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 1.805,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun2-29.json",
+          "trace_sha256": "03b4edf329690e8d40923b8c57e9403c1d73c42373a7b507740140e4fc4b4d6b",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 1.805,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 3
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-32",
+      "report_id": "32",
+      "asset_id": "21",
+      "problem": "not enough heat",
+      "exposure": "prior_exposed",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-32.json",
+          "trace_sha256": "e73f6676d12525a010a351cd94ae220229b3faa05434f3c951a6fe591e8b4649",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 7,
+          "wall_seconds": 29.36,
+          "budget_exhausted": false,
+          "finish_reason": "explicit_finish_tool",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-32.json",
+          "trace_sha256": "f81f9575a1e4c118dbef85b2b0df4c33e0aeedf20e997e5806de38696757e92c",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 10,
+          "wall_seconds": 49.452,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.23606219999999997
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-32.json",
+          "trace_sha256": "e73f6676d12525a010a351cd94ae220229b3faa05434f3c951a6fe591e8b4649",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 7,
+          "wall_seconds": 29.36,
+          "budget_exhausted": false,
+          "finish_reason": "explicit_finish_tool",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-34",
+      "report_id": "34",
+      "asset_id": "20",
+      "problem": "other",
+      "exposure": "fresh",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-34.json",
+          "trace_sha256": "0a7c7e6497f2fa8067ae37881c7c0d57e30ab4ac050670dcba84915b4757d289",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 8,
+          "wall_seconds": 46.375,
+          "budget_exhausted": false,
+          "finish_reason": "explicit_finish_tool",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-34.json",
+          "trace_sha256": "efc7acfb7520f94bf9c1379ccc275f7324fba73e987277984cc4bae58a8adf79",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 12,
+          "wall_seconds": 37.401,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.2194414
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-34.json",
+          "trace_sha256": "0a7c7e6497f2fa8067ae37881c7c0d57e30ab4ac050670dcba84915b4757d289",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 8,
+          "wall_seconds": 46.375,
+          "budget_exhausted": false,
+          "finish_reason": "explicit_finish_tool",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-36",
+      "report_id": "36",
+      "asset_id": "7",
+      "problem": "not enough heat",
+      "exposure": "fresh",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-36.json",
+          "trace_sha256": "cc63f1d358e120c8823fb2408b556577b12115b3e0957c28ffc4e9c904ee4e9a",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 94.511,
+          "budget_exhausted": true,
+          "finish_reason": "planning_cap_handoff",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-36.json",
+          "trace_sha256": "5adde6af2bc8566f4a1873b1e2179913997535d475b77afc0e8f854d70a8ec0e",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 7,
+          "wall_seconds": 34.509,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.20583680000000001
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-36.json",
+          "trace_sha256": "cc63f1d358e120c8823fb2408b556577b12115b3e0957c28ffc4e9c904ee4e9a",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 94.511,
+          "budget_exhausted": true,
+          "finish_reason": "planning_cap_handoff",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-37",
+      "report_id": "37",
+      "asset_id": "19",
+      "problem": "no heat",
+      "exposure": "prior_exposed",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-37.json",
+          "trace_sha256": "8dc2bf240748ba5229d06585845adcdb4d240d80ddddcd6e645bb73fd4087f40",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 500",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 0.37,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-37.json",
+          "trace_sha256": "a830e15fce6d92faac91e4686954459310e4037008d852c98de30d37a8b65b68",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 11,
+          "wall_seconds": 47.436,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.2320734
+        },
+        "ultra-rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun-37.json",
+          "trace_sha256": "e72037d79c9fa4dcdf9d238b40d545e019682f18a5553d4759f34d4bfeb6741a",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 1.844,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra-rerun2": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun2-37.json",
+          "trace_sha256": "f23f611f5dd28e57dd47fd1cd732f5f36e7a11d38c6ef9726103279ef0b1a8c1",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 1.696,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun2-37.json",
+          "trace_sha256": "f23f611f5dd28e57dd47fd1cd732f5f36e7a11d38c6ef9726103279ef0b1a8c1",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 1.696,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 3
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-38",
+      "report_id": "38",
+      "asset_id": "24",
+      "problem": "not enough heat",
+      "exposure": "fresh",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-38.json",
+          "trace_sha256": "2818c3fb50016dd03b9fdd24f118a079af268f8fea084cae637b61bef7ed92d6",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 70.74,
+          "budget_exhausted": true,
+          "finish_reason": "planning_cap_handoff",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-38.json",
+          "trace_sha256": "814ba93b8ab68c3e16743a280cd1c6c9f75fc9a74e78846de6786e3974d35197",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 13,
+          "wall_seconds": 56.377,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.3441932
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-38.json",
+          "trace_sha256": "2818c3fb50016dd03b9fdd24f118a079af268f8fea084cae637b61bef7ed92d6",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 70.74,
+          "budget_exhausted": true,
+          "finish_reason": "planning_cap_handoff",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-40",
+      "report_id": "40",
+      "asset_id": "24",
+      "problem": "leakage",
+      "exposure": "fresh",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-40.json",
+          "trace_sha256": "5c83e473d92586ede18976f4d8831724a500633a2914f77f9202444e62105da3",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 500",
+          "provider_error": true,
+          "tool_calls": 5,
+          "wall_seconds": 15.595,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-40.json",
+          "trace_sha256": "59b0519f18f5f3d84838a55a043c8f84952abb8cf109ef60d78e94747e2b90c2",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 11,
+          "wall_seconds": 58.461,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.23027340000000002
+        },
+        "ultra-rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun-40.json",
+          "trace_sha256": "09f96ca99b0980dd4ef409f116170155ff3185b1ed795c09b9f8eaa4e8f8fcd5",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 3.455,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra-rerun2": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun2-40.json",
+          "trace_sha256": "1c8ebb8e279519ab8427f81ae18950cf44c83b4231e132abfab2ac5f06db1b79",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 1.677,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun2-40.json",
+          "trace_sha256": "1c8ebb8e279519ab8427f81ae18950cf44c83b4231e132abfab2ac5f06db1b79",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 1.677,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 3
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-44",
+      "report_id": "44",
+      "asset_id": "8",
+      "problem": "no DHW",
+      "exposure": "fresh",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-44.json",
+          "trace_sha256": "27f4477fb86f6ead6bdf119d0f09162e66ba8df5bc4e974e0554e4254e307da5",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 500",
+          "provider_error": true,
+          "tool_calls": 1,
+          "wall_seconds": 4.353,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-44.json",
+          "trace_sha256": "e3ff9865c3d8bfe5661f35747696b627f6b21637e60ad9e4b43ad714a41c7a81",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 12,
+          "wall_seconds": 55.654,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.3053682
+        },
+        "ultra-rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun-44.json",
+          "trace_sha256": "a97b10f85fc2244a6eb0ff35fc576df07720fde85964e907f3e68eff8233f196",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 2,
+          "wall_seconds": 9.164,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra-rerun2": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun2-44.json",
+          "trace_sha256": "295f491394537fc489052149139d81215669ee3a16a4d73817f33bf2c8585d0c",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 1.765,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun2-44.json",
+          "trace_sha256": "295f491394537fc489052149139d81215669ee3a16a4d73817f33bf2c8585d0c",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 1.765,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 3
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-45",
+      "report_id": "45",
+      "asset_id": "31",
+      "problem": "leakage",
+      "exposure": "fresh",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-45.json",
+          "trace_sha256": "1755ae53a6e385cb37e8657e3e3b9609b9f84fb80fc0bca8357d6bb55741df8f",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 7,
+          "wall_seconds": 22.937,
+          "budget_exhausted": false,
+          "finish_reason": "explicit_finish_tool",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-45.json",
+          "trace_sha256": "6d350fbe95520076a0dcacb62d1ddac3912ed1bb05ae589e0a9feb3b6126f0fb",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 11,
+          "wall_seconds": 46.671,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.2335952
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-45.json",
+          "trace_sha256": "1755ae53a6e385cb37e8657e3e3b9609b9f84fb80fc0bca8357d6bb55741df8f",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 7,
+          "wall_seconds": 22.937,
+          "budget_exhausted": false,
+          "finish_reason": "explicit_finish_tool",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-47",
+      "report_id": "47",
+      "asset_id": "28",
+      "problem": "no heat",
+      "exposure": "prior_exposed",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-47.json",
+          "trace_sha256": "9c3703c0356f40dc1d8a4d2e91e1b6a424b2a96f9a2ccbfd66b5b4fd86e5360d",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "window contains more than 24 rows",
+          "provider_error": false,
+          "tool_calls": 5,
+          "wall_seconds": 40.814,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-47.json",
+          "trace_sha256": "7ca80b21843492d90b2c91c7977db363179451272d6878b935a1c68262bc85c6",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 10,
+          "wall_seconds": 48.877,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.2228462
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-47.json",
+          "trace_sha256": "9c3703c0356f40dc1d8a4d2e91e1b6a424b2a96f9a2ccbfd66b5b4fd86e5360d",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "window contains more than 24 rows",
+          "provider_error": false,
+          "tool_calls": 5,
+          "wall_seconds": 40.814,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-49",
+      "report_id": "49",
+      "asset_id": "18",
+      "problem": "no DHW",
+      "exposure": "fresh",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-49.json",
+          "trace_sha256": "a55f3fc67461f28a4a2f5a3645daff89174a8ef1bc1e68123b2185fddbb82bd3",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 43.478,
+          "budget_exhausted": true,
+          "finish_reason": "planning_cap_handoff",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-49.json",
+          "trace_sha256": "cc1f5a37495d8dba2612e82e218847e81bf81dc4771237a17ea7f4f2ddfb1aea",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 8,
+          "wall_seconds": 53.569,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.23008720000000002
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-49.json",
+          "trace_sha256": "a55f3fc67461f28a4a2f5a3645daff89174a8ef1bc1e68123b2185fddbb82bd3",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 43.478,
+          "budget_exhausted": true,
+          "finish_reason": "planning_cap_handoff",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-52",
+      "report_id": "52",
+      "asset_id": "21",
+      "problem": "no heat",
+      "exposure": "prior_exposed",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-52.json",
+          "trace_sha256": "5c8c12df4ccbc60b7dae62ff55c6a8009f593d70edb995cf69f791d1431fd873",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 7,
+          "wall_seconds": 53.335,
+          "budget_exhausted": false,
+          "finish_reason": "explicit_finish_tool",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-52.json",
+          "trace_sha256": "7fec2ac83d3febff77305104f543d2579c89691f6d505f4a1487a73cc9a6e649",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 33.84,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.20375200000000002
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-52.json",
+          "trace_sha256": "5c8c12df4ccbc60b7dae62ff55c6a8009f593d70edb995cf69f791d1431fd873",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 7,
+          "wall_seconds": 53.335,
+          "budget_exhausted": false,
+          "finish_reason": "explicit_finish_tool",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-53",
+      "report_id": "53",
+      "asset_id": "13",
+      "problem": "no DHW",
+      "exposure": "fresh",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-53.json",
+          "trace_sha256": "dc6dc311db0c5620b3862e880f61356468bcdf6e8966de98ea5b21ce226de915",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 500",
+          "provider_error": true,
+          "tool_calls": 7,
+          "wall_seconds": 22.454,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-53.json",
+          "trace_sha256": "f530eff72c2a925900cd1857ef88514d965d02efba1699c240e29171f2eccd15",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 11,
+          "wall_seconds": 69.586,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.2703496
+        },
+        "ultra-rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun-53.json",
+          "trace_sha256": "3b4429ce4771eff39306fef7160ec24b13c0b128ef47e163170308632286be34",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 5,
+          "wall_seconds": 17.302,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra-rerun2": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun2-53.json",
+          "trace_sha256": "7ec49679510822e23d88cbe085b4f90c7188c53d9d934a8375265fcda34e3e15",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 1.812,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun2-53.json",
+          "trace_sha256": "7ec49679510822e23d88cbe085b4f90c7188c53d9d934a8375265fcda34e3e15",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 1.812,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 3
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-57",
+      "report_id": "57",
+      "asset_id": "9",
+      "problem": "no heat",
+      "exposure": "fresh",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-57.json",
+          "trace_sha256": "7c7b90c9f5f89a3d944420ece85c8581feafb5e62914fc8590ad8a755cc03232",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 7,
+          "wall_seconds": 27.689,
+          "budget_exhausted": false,
+          "finish_reason": "explicit_finish_tool",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-57.json",
+          "trace_sha256": "ee41810024d4bedc39c27fd28a629d686cf4f657cbb60524509331dbc86bf023",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 9,
+          "wall_seconds": 54.025,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.3789632
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-57.json",
+          "trace_sha256": "7c7b90c9f5f89a3d944420ece85c8581feafb5e62914fc8590ad8a755cc03232",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 7,
+          "wall_seconds": 27.689,
+          "budget_exhausted": false,
+          "finish_reason": "explicit_finish_tool",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-60",
+      "report_id": "60",
+      "asset_id": "4",
+      "problem": "no heat",
+      "exposure": "prior_exposed",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-60.json",
+          "trace_sha256": "ee99b2b9debf130f33f454cb692e332b667fb6827b9c4b30d32c0d7322669ea5",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 500",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 0.658,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-60.json",
+          "trace_sha256": "cbd5395679414786d702fdc4d63c923e29fcc8d24847a3f6fa0e90f82e9eb5e6",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 11,
+          "wall_seconds": 41.748,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.2257712
+        },
+        "ultra-rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun-60.json",
+          "trace_sha256": "d3723eea56997829db089c49593223a3c6464568b468aa1b70f57f411d29690f",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 1.91,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra-rerun2": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun2-60.json",
+          "trace_sha256": "4e070b8f3099760114fa667eafbd7fd39e134ac6f85bbed77e69d026a9f899e4",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 1.729,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun2-60.json",
+          "trace_sha256": "4e070b8f3099760114fa667eafbd7fd39e134ac6f85bbed77e69d026a9f899e4",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 1.729,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 3
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-62",
+      "report_id": "62",
+      "asset_id": "21",
+      "problem": "not enough heat",
+      "exposure": "prior_exposed",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-62.json",
+          "trace_sha256": "8566a9919da1a189c89f551024c8dc36b07f49490156aef70f2e8388358da39f",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "window contains more than 24 rows",
+          "provider_error": false,
+          "tool_calls": 5,
+          "wall_seconds": 31.009,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-62.json",
+          "trace_sha256": "b668b2aadc49b79bc675a78b08b62520792b0d75217a412a77092dd049fd5457",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 10,
+          "wall_seconds": 30.414,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.14089619999999997
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-62.json",
+          "trace_sha256": "8566a9919da1a189c89f551024c8dc36b07f49490156aef70f2e8388358da39f",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "window contains more than 24 rows",
+          "provider_error": false,
+          "tool_calls": 5,
+          "wall_seconds": 31.009,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-63",
+      "report_id": "63",
+      "asset_id": "7",
+      "problem": "not enough heat",
+      "exposure": "prior_exposed",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-63.json",
+          "trace_sha256": "7b76791caf0a065aa808a20fa40b0cffaf785404c86907a9c18fef1783290700",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 110.299,
+          "budget_exhausted": true,
+          "finish_reason": "planning_cap_handoff",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-63.json",
+          "trace_sha256": "ccec283bf030c2daadb134f695ff541e41c6b376d4421c53c935461ad20a3ca5",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 14,
+          "wall_seconds": 38.874,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.18169800000000003
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-63.json",
+          "trace_sha256": "7b76791caf0a065aa808a20fa40b0cffaf785404c86907a9c18fef1783290700",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 110.299,
+          "budget_exhausted": true,
+          "finish_reason": "planning_cap_handoff",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-64",
+      "report_id": "64",
+      "asset_id": "6",
+      "problem": "other",
+      "exposure": "fresh",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-64.json",
+          "trace_sha256": "611f98d37fc73cfab79a6e23ca19773735740fc6db5a47a6ba0b0c5a345f99d7",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "window contains more than 24 rows",
+          "provider_error": false,
+          "tool_calls": 5,
+          "wall_seconds": 45.191,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-64.json",
+          "trace_sha256": "2420703429332305d68e16d107e087d67ba4a03ea4f346f1a92da13c76c13ea9",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 12,
+          "wall_seconds": 36.898,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.2563234
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-64.json",
+          "trace_sha256": "611f98d37fc73cfab79a6e23ca19773735740fc6db5a47a6ba0b0c5a345f99d7",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "window contains more than 24 rows",
+          "provider_error": false,
+          "tool_calls": 5,
+          "wall_seconds": 45.191,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-65",
+      "report_id": "65",
+      "asset_id": "11",
+      "problem": "leakage",
+      "exposure": "fresh",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-65.json",
+          "trace_sha256": "15f15935dfdfb64d3620a4233c6d95d03a780240eaf618710cb3f36121cfd44b",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 7,
+          "wall_seconds": 36.369,
+          "budget_exhausted": false,
+          "finish_reason": "explicit_finish_tool",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-65.json",
+          "trace_sha256": "de959877c102281e3c65a1ee414c7c0caf7725cbe8537cee0d36662a7c0ed7cf",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 7,
+          "wall_seconds": 61.307,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.2352122
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-65.json",
+          "trace_sha256": "15f15935dfdfb64d3620a4233c6d95d03a780240eaf618710cb3f36121cfd44b",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 7,
+          "wall_seconds": 36.369,
+          "budget_exhausted": false,
+          "finish_reason": "explicit_finish_tool",
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-67",
+      "report_id": "67",
+      "asset_id": "7",
+      "problem": "no DHW",
+      "exposure": "fresh",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-67.json",
+          "trace_sha256": "1923e4f21782c94c03e77151800c75fd2a47f4a5e946fa49a72da8ca4dc09267",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 1,
+          "wall_seconds": 5.472,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-67.json",
+          "trace_sha256": "e65040232d51a0044eb6aceffdc67764fb077470cbb4b608b26c7e0ec5141dba",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 13,
+          "wall_seconds": 60.362,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.30499160000000003
+        },
+        "ultra-rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun-67.json",
+          "trace_sha256": "45f19be6ba57a805eead0a9a288d9531f7fa808356ae2b3e673590c097a2902c",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 1.701,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra-rerun2": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun2-67.json",
+          "trace_sha256": "b658769edc066a1dd0b251bd675aa362986bdd96552b1ee82fa9eb0d9f0838b9",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 500",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 1.934,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun2-67.json",
+          "trace_sha256": "b658769edc066a1dd0b251bd675aa362986bdd96552b1ee82fa9eb0d9f0838b9",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 500",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 1.934,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 3
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-69",
+      "report_id": "69",
+      "asset_id": "26",
+      "problem": "no heat",
+      "exposure": "fresh",
+      "arms": {
+        "ultra": {
+          "trace": "evaluation/cycle5/traces/ultra-69.json",
+          "trace_sha256": "bb5b7bdd88543107d57f69d4cfaca4755c07f4bec28c4430946e3532a0887d9f",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 500",
+          "provider_error": true,
+          "tool_calls": 1,
+          "wall_seconds": 4.026,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "sonnet": {
+          "trace": "evaluation/cycle5/traces/sonnet-69.json",
+          "trace_sha256": "4104abd71e031562be4f9d841ffd14cbcc1f04a19dc888f03747d9fe8ecae9a4",
+          "completed_with_output": true,
+          "reference_format_pass": true,
+          "validation_status": "valid",
+          "failure_reason": null,
+          "provider_error": false,
+          "tool_calls": 6,
+          "wall_seconds": 34.696,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "cost_usd": 0.213962
+        },
+        "ultra-rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun-69.json",
+          "trace_sha256": "39ed78371206b7950fe277ccb574dcb91a188cd6ab8e4e5133321a697f5a2215",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 1.63,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra-rerun2": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun2-69.json",
+          "trace_sha256": "308182e50298e1c0eb29814f0ae2875115b233b6a4729f4fc84fc6653ac5b30c",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 1.57,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null
+        },
+        "ultra_with_provider_rerun": {
+          "trace": "evaluation/cycle5/traces/ultra-rerun2-69.json",
+          "trace_sha256": "308182e50298e1c0eb29814f0ae2875115b233b6a4729f4fc84fc6653ac5b30c",
+          "completed_with_output": false,
+          "reference_format_pass": false,
+          "validation_status": "invalid",
+          "failure_reason": "NVIDIA API HTTP 429",
+          "provider_error": true,
+          "tool_calls": 0,
+          "wall_seconds": 1.57,
+          "budget_exhausted": false,
+          "finish_reason": null,
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "cost_usd": null,
+          "attempts": 3
+        }
+      }
+    }
+  ]
+}

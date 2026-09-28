@@ -1,0 +1,945 @@
+{
+  "method": "live-system2-plan-first-handoff-v2",
+  "case_id": "PreDist-M1-fault-67",
+  "model": "nvidia/nemotron-3-ultra-550b-a55b",
+  "corpus_sha256": "ba1fe2dff7ef25621d80e9ec5abc140b7d6db2718f9abce61f0ce0aeb2c39141",
+  "file_sha256": {
+    "case.json": "b222a7d5e914278eaeee5766c45738ec97e0f3221ffc20c2687c50846d281b1f",
+    "fact_catalog.json": "ed6a142f5a103bb5235ed368413c288facf526ee39537b5fdb1d870db3edf0a9",
+    "plan_schema.json": "254fac4ac809590467207600071afa81bf8bcf51b111c0e181651ea8c08a5d0f",
+    "source_manifest.json": "c5baa61a87b61faf943439abcdf7021cd3cf9039a177864262ddd786ae97b57e",
+    "task.json": "546476b3c6b2519f1790a3022db46d0105174c357e92888e920d0786195eb2dd",
+    "temporal/episodes.json": "0362b14c8e26e6c7ba64aa6879a52575e438bfda93737d3b0c6ed7ab7d5a5170",
+    "temporal/window-fields.json": "3f3fff900d39338795fef917eced7cb315ef09086e7ab51b7817bd7af42306b3",
+    "tools/get_maintenance_timeline.json": "feb739b05e307f73bece4bd4fca0f05988745a6307b426e7816d20ef0fab3eb2",
+    "tools/get_prior_incidents.json": "c369db3c3ed7a161aeddeb967071f35b700db47586f7b69be3e2a5dadbf0a5ff",
+    "tools/get_recent_measurements.json": "6b64947fe37d6ca7e3adb425f957211b3f2ca0cff6c0afece3f546b1395e3bb2",
+    "tools/get_signal_definitions.json": "c2666f6a27fe1250d50bf2cb9641a003cd267bd8db253533712ad580aaee02da"
+  },
+  "temporal_enabled": true,
+  "read_backend": "direct",
+  "nat_version": null,
+  "planner_requests": [
+    {
+      "request_index": 1,
+      "request": {
+        "model": "nvidia/nemotron-3-ultra-550b-a55b",
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are a read-only plant investigator. Use tools to inspect the public case. Read relevant sources, including temporal episodes and a bounded raw window when making time or trend claims. Do not infer cause, fault status, or control action from gaps alone. Call finish_investigation when ready. Do not write a final plan during this stage."
+          },
+          {
+            "role": "user",
+            "content": "{\n  \"available_tools\": [\n    \"get_recent_measurements\",\n    \"get_prior_incidents\",\n    \"get_maintenance_timeline\",\n    \"get_signal_definitions\",\n    \"get_temporal_episodes\",\n    \"query_measurement_window\",\n    \"finish_investigation\"\n  ],\n  \"case\": {\n    \"asset\": {\n      \"manufacturer\": 1,\n      \"substation_id\": \"7\"\n    },\n    \"case_id\": \"PreDist-M1-fault-67\",\n    \"current_report\": {\n      \"note\": \"Only the reported problem is visible at decision time. Later diagnosis and remedy are withheld.\",\n      \"problem\": \"no DHW\",\n      \"source_id\": \"PreDist-M1-fault-67-problem-only\"\n    },\n    \"decision_time\": \"2017-11-26 13:15:00\",\n    \"measurement_window\": {\n      \"end\": \"2017-11-26 13:15:00\",\n      \"source_id\": \"PreDist-M1-substation-7-operational-data\",\n      \"start\": \"2017-11-25 13:15:00\"\n    },\n    \"report_facts\": [\n      {\n        \"id\": \"F-bde228e59eff\",\n        \"interval\": \"2017-11-26 13:15:00\",\n        \"source_field\": \"problem\",\n        \"source_id\": \"PreDist-M1-fault-67-problem-only\",\n        \"text\": \"Reported problem: no DHW (2017-11-26 13:15:00)\",\n        \"unit\": \"\",\n        \"value\": \"no DHW\"\n      }\n    ],\n    \"source\": {\n      \"asset_type\": \"district heating substation\",\n      \"dataset\": \"PreDist v2\",\n      \"doi\": \"10.5281/zenodo.19496480\",\n      \"license\": \"CC BY 4.0\",\n      \"publisher\": \"Fraunhofer IEE / enercity Netz GmbH\",\n      \"url\": \"https://zenodo.org/records/19496480\"\n    }\n  },\n  \"task\": \"Given this asset's reported problem at decision_time, inspect the available public evidence at or before that time and propose a plan with only limit_ids and next_checks. Select 2 or 3 distinct checks. For each check, cite 1 to 4 distinct retrieved supporting fact IDs and write a nonblank rationale of at most 240 characters. The program derives displayed observations as the ordered union of supporting fact IDs (at most 12); do not write observed_fact_ids. Select only supplied limit and check IDs. Ground temporal claims in timestamped readings or explicit first/last samples; minimum and maximum summaries are not start/end readings. Do not claim a cause or operational fault from descriptive temperature gaps, and do not recommend changing controls. Return one plan JSON object.\"\n}\n"
+          }
+        ],
+        "temperature": 0,
+        "max_tokens": 1200,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        },
+        "stream": false,
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "get_recent_measurements",
+              "description": "Read the public get_recent_measurements source for this case.",
+              "parameters": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "get_prior_incidents",
+              "description": "Read the public get_prior_incidents source for this case.",
+              "parameters": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "get_maintenance_timeline",
+              "description": "Read the public get_maintenance_timeline source for this case.",
+              "parameters": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "get_signal_definitions",
+              "description": "Read the public get_signal_definitions source for this case.",
+              "parameters": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "get_temporal_episodes",
+              "description": "Read pre-decision paired supply/setpoint episodes and exact endpoints.",
+              "parameters": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "query_measurement_window",
+              "description": "Read at most 24 public measurement rows in an inclusive ISO timestamp window within the decision cutoff.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "start": {
+                    "type": "string"
+                  },
+                  "end": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "start",
+                  "end"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "finish_investigation",
+              "description": "Finish reading sources and proceed to a separate native-schema final plan.",
+              "parameters": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": false
+              }
+            }
+          }
+        ],
+        "tool_choice": "auto"
+      },
+      "response": {
+        "id": "chatcmpl-5e89789b-4c34-49ae-a041-093ab69e2033",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "content": "\n\n",
+              "tool_calls": [
+                {
+                  "id": "call-49bc3347-e212-4c36-93aa-6c082431ffad",
+                  "type": "function",
+                  "function": {
+                    "name": "get_recent_measurements",
+                    "arguments": "{}"
+                  }
+                }
+              ],
+              "role": "assistant",
+              "reasoning_content": null
+            },
+            "finish_reason": "tool_calls",
+            "logprobs": null
+          }
+        ],
+        "created": 1790605640,
+        "model": "nvidia/nemotron-3-ultra-550b-a55b",
+        "service_tier": null,
+        "system_fingerprint": null,
+        "object": "chat.completion",
+        "usage": {
+          "prompt_tokens": 1356,
+          "completion_tokens": 18,
+          "total_tokens": 1374
+        }
+      },
+      "latency_seconds": 5.144
+    }
+  ],
+  "tool_calls": [
+    {
+      "name": "get_recent_measurements",
+      "call_id": "call-49bc3347-e212-4c36-93aa-6c082431ffad",
+      "arguments": {},
+      "response": {
+        "result": {
+          "source_id": "PreDist-M1-substation-7-operational-data",
+          "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+          "samples": 144,
+          "last_sample_time": "2017-11-26 13:10:00",
+          "signals": {
+            "outdoor_temperature_c": {
+              "original_field": "outdoor_temperature",
+              "first": 0.95,
+              "last": 2.5,
+              "min": -4.0,
+              "max": 2.5,
+              "mean": -1.29,
+              "unit": "°C"
+            },
+            "secondary_heating_circuit_supply_temperature_c": {
+              "original_field": "s_hc1_supply_temperature",
+              "first": 49.15,
+              "last": 55.4,
+              "min": 48.3,
+              "max": 60.0,
+              "mean": 55.76,
+              "unit": "°C"
+            },
+            "secondary_heating_circuit_supply_setpoint_c": {
+              "original_field": "s_hc1_supply_temperature_setpoint",
+              "first": 48.75,
+              "last": 54.0,
+              "min": 48.7,
+              "max": 58.3,
+              "mean": 55.55,
+              "unit": "°C"
+            },
+            "primary_network_meter_heat_power_kw": {
+              "original_field": "p_net_meter_heat_power",
+              "first": 23.0,
+              "last": 46.67,
+              "min": 21.0,
+              "max": 57.0,
+              "mean": 36.08,
+              "unit": "kW"
+            },
+            "primary_network_meter_flow_l_per_hour": {
+              "original_field": "p_net_meter_flow",
+              "first": 366.33,
+              "last": 697.5,
+              "min": 347.0,
+              "max": 899.0,
+              "mean": 554.42,
+              "unit": "l/h"
+            }
+          },
+          "secondary_heating_supply_vs_setpoint_absolute_gap_celsius": {
+            "mean": 0.79,
+            "max": 2.1,
+            "samples_within_2C": 143,
+            "sample_count": 144
+          },
+          "interpretation_limits": [
+            "This sensor's secondary supply temperature tracking its setpoint does not prove heat reached rooms.",
+            "No room/radiator temperature, secondary heat-circuit flow, valve position, or timestamped controller parameter-change record is available in this replay.",
+            "p_net_meter_flow is primary network-side flow, not customer/secondary circuit flow.",
+            "No normal operating range is provided for heat power or flow."
+          ]
+        },
+        "facts": [
+          {
+            "id": "F-73169647eb42",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "last_sample_time",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": "2017-11-26 13:10:00",
+            "unit": "",
+            "text": "Last measurement time: 2017-11-26 13:10:00 (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-129762f03f47",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "samples",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 144,
+            "unit": "",
+            "text": "Measurement sample count: 144 (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-c1024eedb5e3",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "signals.outdoor_temperature.first",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 0.95,
+            "unit": "°C",
+            "text": "outdoor_temperature_c first: 0.95 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-c11728e46fb7",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "signals.outdoor_temperature.last",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 2.5,
+            "unit": "°C",
+            "text": "outdoor_temperature_c last: 2.5 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-aee1745d56b5",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "signals.outdoor_temperature.max",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 2.5,
+            "unit": "°C",
+            "text": "outdoor_temperature_c max: 2.5 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-682d8a88aea8",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "signals.outdoor_temperature.mean",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": -1.29,
+            "unit": "°C",
+            "text": "outdoor_temperature_c mean: -1.29 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-c6ea7c7b8e97",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "signals.outdoor_temperature.min",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": -4.0,
+            "unit": "°C",
+            "text": "outdoor_temperature_c min: -4.0 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-34c0b926d670",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "signals.p_net_meter_flow.first",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 366.33,
+            "unit": "l/h",
+            "text": "primary_network_meter_flow_l_per_hour first: 366.33 l/h (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-781fb9e9fd5f",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "signals.p_net_meter_flow.last",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 697.5,
+            "unit": "l/h",
+            "text": "primary_network_meter_flow_l_per_hour last: 697.5 l/h (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-99df9b17e32e",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "signals.p_net_meter_flow.max",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 899.0,
+            "unit": "l/h",
+            "text": "primary_network_meter_flow_l_per_hour max: 899.0 l/h (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-29cc2a952fea",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "signals.p_net_meter_flow.mean",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 554.42,
+            "unit": "l/h",
+            "text": "primary_network_meter_flow_l_per_hour mean: 554.42 l/h (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-e6b9fd98e747",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "signals.p_net_meter_flow.min",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 347.0,
+            "unit": "l/h",
+            "text": "primary_network_meter_flow_l_per_hour min: 347.0 l/h (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-298d7dc19ae0",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "signals.p_net_meter_heat_power.first",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 23.0,
+            "unit": "kW",
+            "text": "primary_network_meter_heat_power_kw first: 23.0 kW (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-981d679a9db5",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "signals.p_net_meter_heat_power.last",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 46.67,
+            "unit": "kW",
+            "text": "primary_network_meter_heat_power_kw last: 46.67 kW (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-8ae9555f72a0",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "signals.p_net_meter_heat_power.max",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 57.0,
+            "unit": "kW",
+            "text": "primary_network_meter_heat_power_kw max: 57.0 kW (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-7e501108e7a6",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "signals.p_net_meter_heat_power.mean",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 36.08,
+            "unit": "kW",
+            "text": "primary_network_meter_heat_power_kw mean: 36.08 kW (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-4f48eca9d2ff",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "signals.p_net_meter_heat_power.min",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 21.0,
+            "unit": "kW",
+            "text": "primary_network_meter_heat_power_kw min: 21.0 kW (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-072f73b1d2c3",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "signals.s_hc1_supply_temperature.first",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 49.15,
+            "unit": "°C",
+            "text": "secondary_heating_circuit_supply_temperature_c first: 49.15 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-2a8768b4fdff",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "signals.s_hc1_supply_temperature.last",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 55.4,
+            "unit": "°C",
+            "text": "secondary_heating_circuit_supply_temperature_c last: 55.4 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-1d79dfeb0521",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "signals.s_hc1_supply_temperature.max",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 60.0,
+            "unit": "°C",
+            "text": "secondary_heating_circuit_supply_temperature_c max: 60.0 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-b020a67daa47",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "signals.s_hc1_supply_temperature.mean",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 55.76,
+            "unit": "°C",
+            "text": "secondary_heating_circuit_supply_temperature_c mean: 55.76 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-2e88527dd0b7",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "signals.s_hc1_supply_temperature.min",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 48.3,
+            "unit": "°C",
+            "text": "secondary_heating_circuit_supply_temperature_c min: 48.3 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-aba76b59463e",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "signals.s_hc1_supply_temperature_setpoint.first",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 48.75,
+            "unit": "°C",
+            "text": "secondary_heating_circuit_supply_setpoint_c first: 48.75 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-66dc7718261b",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "signals.s_hc1_supply_temperature_setpoint.last",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 54.0,
+            "unit": "°C",
+            "text": "secondary_heating_circuit_supply_setpoint_c last: 54.0 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-b42e04230560",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "signals.s_hc1_supply_temperature_setpoint.max",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 58.3,
+            "unit": "°C",
+            "text": "secondary_heating_circuit_supply_setpoint_c max: 58.3 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-b0353310bf5b",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "signals.s_hc1_supply_temperature_setpoint.mean",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 55.55,
+            "unit": "°C",
+            "text": "secondary_heating_circuit_supply_setpoint_c mean: 55.55 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-9f657eafc994",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "signals.s_hc1_supply_temperature_setpoint.min",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 48.7,
+            "unit": "°C",
+            "text": "secondary_heating_circuit_supply_setpoint_c min: 48.7 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-66d2365cf020",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "supply_setpoint_absolute_gap.max",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 2.1,
+            "unit": "°C",
+            "text": "Secondary supply/setpoint absolute gap max: 2.1 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-db48012e430e",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "supply_setpoint_absolute_gap.mean",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 0.79,
+            "unit": "°C",
+            "text": "Secondary supply/setpoint absolute gap mean: 0.79 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-c1542632a86d",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "supply_setpoint_absolute_gap.sample_count",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 144,
+            "unit": "",
+            "text": "Secondary supply/setpoint absolute gap sample_count: 144 (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          },
+          {
+            "id": "F-dfa8a11e31a5",
+            "source_id": "PreDist-M1-substation-7-operational-data",
+            "source_field": "supply_setpoint_absolute_gap.samples_within_2C",
+            "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+            "value": 143,
+            "unit": "",
+            "text": "Secondary supply/setpoint absolute gap samples_within_2C: 143 (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+          }
+        ],
+        "source_manifest": {
+          "available_sources": [
+            {
+              "reader": "get_recent_measurements",
+              "read_state": "read"
+            },
+            {
+              "reader": "get_prior_incidents",
+              "read_state": "unread"
+            },
+            {
+              "reader": "get_maintenance_timeline",
+              "read_state": "unread"
+            },
+            {
+              "reader": "get_signal_definitions",
+              "read_state": "unread"
+            },
+            {
+              "reader": "get_temporal_episodes",
+              "file": "temporal/episodes.json",
+              "read_state": "unread"
+            },
+            {
+              "reader": "query_measurement_window",
+              "file": "temporal/window-fields.json",
+              "read_state": "unread",
+              "max_rows_per_query": 24
+            }
+          ]
+        }
+      },
+      "executor": "direct"
+    }
+  ],
+  "finish_reason": null,
+  "source_read_state": {
+    "available_sources": [
+      {
+        "reader": "get_recent_measurements",
+        "read_state": "read"
+      },
+      {
+        "reader": "get_prior_incidents",
+        "read_state": "unread"
+      },
+      {
+        "reader": "get_maintenance_timeline",
+        "read_state": "unread"
+      },
+      {
+        "reader": "get_signal_definitions",
+        "read_state": "unread"
+      },
+      {
+        "reader": "get_temporal_episodes",
+        "file": "temporal/episodes.json",
+        "read_state": "unread"
+      },
+      {
+        "reader": "query_measurement_window",
+        "file": "temporal/window-fields.json",
+        "read_state": "unread",
+        "max_rows_per_query": 24
+      }
+    ]
+  },
+  "temporal_read_state": {
+    "get_temporal_episodes": false,
+    "query_measurement_window": false
+  },
+  "evidence": {
+    "schema_version": 1,
+    "case_id": "PreDist-M1-fault-67",
+    "decision_time": "2017-11-26 13:15:00",
+    "sources": [
+      {
+        "id": "PreDist-M1-fault-67-problem-only",
+        "kind": "customer_report"
+      },
+      {
+        "id": "PreDist-M1-substation-7-operational-data",
+        "kind": "retrieved_public_source"
+      }
+    ],
+    "facts": [
+      {
+        "id": "F-bde228e59eff",
+        "source_id": "PreDist-M1-fault-67-problem-only",
+        "source_field": "problem",
+        "interval": "2017-11-26 13:15:00",
+        "value": "no DHW",
+        "unit": "",
+        "text": "Reported problem: no DHW (2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-73169647eb42",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "last_sample_time",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": "2017-11-26 13:10:00",
+        "unit": "",
+        "text": "Last measurement time: 2017-11-26 13:10:00 (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-129762f03f47",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "samples",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 144,
+        "unit": "",
+        "text": "Measurement sample count: 144 (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-c1024eedb5e3",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "signals.outdoor_temperature.first",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 0.95,
+        "unit": "°C",
+        "text": "outdoor_temperature_c first: 0.95 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-c11728e46fb7",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "signals.outdoor_temperature.last",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 2.5,
+        "unit": "°C",
+        "text": "outdoor_temperature_c last: 2.5 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-aee1745d56b5",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "signals.outdoor_temperature.max",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 2.5,
+        "unit": "°C",
+        "text": "outdoor_temperature_c max: 2.5 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-682d8a88aea8",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "signals.outdoor_temperature.mean",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": -1.29,
+        "unit": "°C",
+        "text": "outdoor_temperature_c mean: -1.29 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-c6ea7c7b8e97",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "signals.outdoor_temperature.min",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": -4.0,
+        "unit": "°C",
+        "text": "outdoor_temperature_c min: -4.0 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-34c0b926d670",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "signals.p_net_meter_flow.first",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 366.33,
+        "unit": "l/h",
+        "text": "primary_network_meter_flow_l_per_hour first: 366.33 l/h (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-781fb9e9fd5f",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "signals.p_net_meter_flow.last",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 697.5,
+        "unit": "l/h",
+        "text": "primary_network_meter_flow_l_per_hour last: 697.5 l/h (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-99df9b17e32e",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "signals.p_net_meter_flow.max",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 899.0,
+        "unit": "l/h",
+        "text": "primary_network_meter_flow_l_per_hour max: 899.0 l/h (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-29cc2a952fea",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "signals.p_net_meter_flow.mean",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 554.42,
+        "unit": "l/h",
+        "text": "primary_network_meter_flow_l_per_hour mean: 554.42 l/h (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-e6b9fd98e747",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "signals.p_net_meter_flow.min",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 347.0,
+        "unit": "l/h",
+        "text": "primary_network_meter_flow_l_per_hour min: 347.0 l/h (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-298d7dc19ae0",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "signals.p_net_meter_heat_power.first",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 23.0,
+        "unit": "kW",
+        "text": "primary_network_meter_heat_power_kw first: 23.0 kW (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-981d679a9db5",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "signals.p_net_meter_heat_power.last",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 46.67,
+        "unit": "kW",
+        "text": "primary_network_meter_heat_power_kw last: 46.67 kW (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-8ae9555f72a0",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "signals.p_net_meter_heat_power.max",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 57.0,
+        "unit": "kW",
+        "text": "primary_network_meter_heat_power_kw max: 57.0 kW (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-7e501108e7a6",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "signals.p_net_meter_heat_power.mean",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 36.08,
+        "unit": "kW",
+        "text": "primary_network_meter_heat_power_kw mean: 36.08 kW (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-4f48eca9d2ff",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "signals.p_net_meter_heat_power.min",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 21.0,
+        "unit": "kW",
+        "text": "primary_network_meter_heat_power_kw min: 21.0 kW (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-072f73b1d2c3",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "signals.s_hc1_supply_temperature.first",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 49.15,
+        "unit": "°C",
+        "text": "secondary_heating_circuit_supply_temperature_c first: 49.15 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-2a8768b4fdff",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "signals.s_hc1_supply_temperature.last",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 55.4,
+        "unit": "°C",
+        "text": "secondary_heating_circuit_supply_temperature_c last: 55.4 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-1d79dfeb0521",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "signals.s_hc1_supply_temperature.max",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 60.0,
+        "unit": "°C",
+        "text": "secondary_heating_circuit_supply_temperature_c max: 60.0 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-b020a67daa47",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "signals.s_hc1_supply_temperature.mean",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 55.76,
+        "unit": "°C",
+        "text": "secondary_heating_circuit_supply_temperature_c mean: 55.76 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-2e88527dd0b7",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "signals.s_hc1_supply_temperature.min",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 48.3,
+        "unit": "°C",
+        "text": "secondary_heating_circuit_supply_temperature_c min: 48.3 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-aba76b59463e",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "signals.s_hc1_supply_temperature_setpoint.first",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 48.75,
+        "unit": "°C",
+        "text": "secondary_heating_circuit_supply_setpoint_c first: 48.75 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-66dc7718261b",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "signals.s_hc1_supply_temperature_setpoint.last",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 54.0,
+        "unit": "°C",
+        "text": "secondary_heating_circuit_supply_setpoint_c last: 54.0 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-b42e04230560",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "signals.s_hc1_supply_temperature_setpoint.max",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 58.3,
+        "unit": "°C",
+        "text": "secondary_heating_circuit_supply_setpoint_c max: 58.3 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-b0353310bf5b",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "signals.s_hc1_supply_temperature_setpoint.mean",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 55.55,
+        "unit": "°C",
+        "text": "secondary_heating_circuit_supply_setpoint_c mean: 55.55 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-9f657eafc994",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "signals.s_hc1_supply_temperature_setpoint.min",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 48.7,
+        "unit": "°C",
+        "text": "secondary_heating_circuit_supply_setpoint_c min: 48.7 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-66d2365cf020",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "supply_setpoint_absolute_gap.max",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 2.1,
+        "unit": "°C",
+        "text": "Secondary supply/setpoint absolute gap max: 2.1 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-db48012e430e",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "supply_setpoint_absolute_gap.mean",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 0.79,
+        "unit": "°C",
+        "text": "Secondary supply/setpoint absolute gap mean: 0.79 °C (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-c1542632a86d",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "supply_setpoint_absolute_gap.sample_count",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 144,
+        "unit": "",
+        "text": "Secondary supply/setpoint absolute gap sample_count: 144 (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      },
+      {
+        "id": "F-dfa8a11e31a5",
+        "source_id": "PreDist-M1-substation-7-operational-data",
+        "source_field": "supply_setpoint_absolute_gap.samples_within_2C",
+        "interval": "2017-11-25 13:15:00 to 2017-11-26 13:15:00",
+        "value": 143,
+        "unit": "",
+        "text": "Secondary supply/setpoint absolute gap samples_within_2C: 143 (2017-11-25 13:15:00 to 2017-11-26 13:15:00)"
+      }
+    ]
+  },
+  "native_schema": null,
+  "final_request": null,
+  "final_response": null,
+  "raw_plan": null,
+  "parsed_plan": null,
+  "assembled_selection": null,
+  "derived_observations": null,
+  "validation": {
+    "status": "invalid",
+    "error_type": "RuntimeError",
+    "reason": "NVIDIA API HTTP 429"
+  },
+  "review_flags": [],
+  "display": {
+    "status": "withheld",
+    "reason": "NVIDIA API HTTP 429",
+    "observations": [],
+    "limits": [],
+    "suggested_next_checks": []
+  },
+  "completeness": {
+    "status": "not_assessed",
+    "issues": []
+  },
+  "usage": [
+    {
+      "prompt_tokens": 1356,
+      "completion_tokens": 18,
+      "total_tokens": 1374
+    }
+  ],
+  "request_seconds": 5.144,
+  "wall_seconds": 5.472,
+  "handoff_policy": "bounded_finalize_v2",
+  "investigation_budget_exhausted": false,
+  "review_notes": [],
+  "cycle5_started_at": "2026-09-28T23:27:19"
+}

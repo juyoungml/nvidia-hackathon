@@ -1,0 +1,1057 @@
+{
+  "mode": "file_agent",
+  "requested_model": "claude-sonnet-5",
+  "claude_version": "2.1.283 (Claude Code)",
+  "available_tools": [
+    "Read",
+    "Glob",
+    "Grep",
+    "StructuredOutput"
+  ],
+  "effort": "CLI default; no explicit --effort override",
+  "file_sha256": {
+    "case.json": "f6f7476bda3f2f5d76fd502aef17e1781fb15ae5baaca0baf5f04c18dcba9991",
+    "fact_catalog.json": "f304a532116a86ea7379e7047fe1f6aeb1bfad064ba579f0357b230a9106ff86",
+    "plan_schema.json": "4351ab280fbaa45cca7d2c3d449ecd52f5e367186876e82e351b3515517cdd35",
+    "source_manifest.json": "c5baa61a87b61faf943439abcdf7021cd3cf9039a177864262ddd786ae97b57e",
+    "task.json": "546476b3c6b2519f1790a3022db46d0105174c357e92888e920d0786195eb2dd",
+    "temporal/episodes.json": "4c737d41b64cb9809701d848e359f8a75ce1754deee6a5a2d48988b041cdb0e7",
+    "temporal/window-fields.json": "104ba7877227ccfd9d33f35ce661b39786509f7b1c894bec9040bf4be7d184e1",
+    "tools/get_maintenance_timeline.json": "991075b0cad05cbaee45a1f78aa274f5834e5255b2a62e7d1384c4399f650f7c",
+    "tools/get_prior_incidents.json": "55e7bcea8703a8d1afcd4bed0a5c078fb19da0ab7bf7b57e0ab5829469e59b15",
+    "tools/get_recent_measurements.json": "46b2ba3bf913349c12b27e872e039f041c7aaba631e1f03222723dd7d17233a5",
+    "tools/get_signal_definitions.json": "c2666f6a27fe1250d50bf2cb9641a003cd267bd8db253533712ad580aaee02da"
+  },
+  "json_schema_sha256": "54fa599828ad32f970d26cbc5c7e3ecbbd4c13f950c17762dc4af70e5394932b",
+  "prompt_sha256": "88f6d012c2fdecfa5338b131e42813b2ae88f6a6847e50419edd6ef48a85924f",
+  "system_prompt_sha256": null,
+  "flags": [
+    "--model",
+    "claude-sonnet-5",
+    "--safe-mode",
+    "--restricted",
+    "--strict-mcp-config",
+    "--tools",
+    "Read,Glob,Grep",
+    "--disable-slash-commands",
+    "--no-session-persistence",
+    "--permission-mode",
+    "dontAsk",
+    "--permission-prompts",
+    "none",
+    "-p",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--max-budget-usd",
+    "0.5",
+    "--json-schema",
+    "<json-schema-sha256-above>"
+  ],
+  "timeout_seconds": 300,
+  "max_budget_usd": 0.5,
+  "latency_seconds": 61.307,
+  "exit_code": 0,
+  "stdout_bytes": 186760,
+  "stderr_excerpt": "",
+  "timed_out": false,
+  "resolved_models": [
+    "claude-sonnet-5"
+  ],
+  "tool_calls": [
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/private/var/folders/q1/gfc_d9057jd7b9f82w0gw4yc0000gn/T/claude-public-case-r6nkoni_/case.json"
+      },
+      "id": "toolu_015EA7x7xW5mNaspM4t2RtTJ"
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/private/var/folders/q1/gfc_d9057jd7b9f82w0gw4yc0000gn/T/claude-public-case-r6nkoni_/task.json"
+      },
+      "id": "toolu_01Wxqq9FoqnhMRzQnrQbaCZ1"
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/private/var/folders/q1/gfc_d9057jd7b9f82w0gw4yc0000gn/T/claude-public-case-r6nkoni_/source_manifest.json"
+      },
+      "id": "toolu_01RR9BbWbBKmcSE9MKjC65HV"
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/private/var/folders/q1/gfc_d9057jd7b9f82w0gw4yc0000gn/T/claude-public-case-r6nkoni_/plan_schema.json"
+      },
+      "id": "toolu_0131KF5ETqUkvWD7d9xoZvPx"
+    },
+    {
+      "name": "Glob",
+      "input": {
+        "pattern": "tools/*.json"
+      },
+      "id": "toolu_01JdVAYb4KSJvpXsmierh7XY"
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/private/var/folders/q1/gfc_d9057jd7b9f82w0gw4yc0000gn/T/claude-public-case-r6nkoni_/fact_catalog.json"
+      },
+      "id": "toolu_01AmsmNiFyBtSNH3JJUwQGhj"
+    },
+    {
+      "name": "StructuredOutput",
+      "input": {
+        "limit_ids": [
+          "L-no-room-evidence",
+          "L-no-normal-range",
+          "L-primary-flow",
+          "L-prior-not-current",
+          "L-retrospective"
+        ],
+        "next_checks": [
+          {
+            "id": "C-maintenance",
+            "because_fact_ids": [
+              "F-5a1d11f35dcc",
+              "F-2195fc4b35e4",
+              "F-c507baa5efdb",
+              "F-092e808d758e"
+            ],
+            "rationale": "Prior fault-20 involved a safety-valve flood (thematically similar to leakage) and a fault-type disturbance on the same date; check maintenance/completion records before linking to today's report."
+          },
+          {
+            "id": "C-secondary-flow",
+            "because_fact_ids": [
+              "F-adee5c9cecc9",
+              "F-fdc336db150d",
+              "F-b1eca2b19d7b",
+              "F-3b603acb1e46"
+            ],
+            "rationale": "Only primary network meter flow is available in the window (113-371 l/h); secondary/customer circuit flow is needed to assess any leakage-related flow impact, with no stated normal range."
+          },
+          {
+            "id": "C-room-impact",
+            "because_fact_ids": [
+              "F-8470e3c8fc29",
+              "F-6690b49d5176",
+              "F-2a57009004eb",
+              "F-1bc5b051869d"
+            ],
+            "rationale": "Secondary supply temperature tracks its setpoint closely (mean gap 0.62°C, 134/144 samples within 2°C), but this does not confirm heat actually reached rooms given the leakage report."
+          }
+        ]
+      },
+      "id": "toolu_013EaYbEyUxaiLvMFwCaVyPi"
+    }
+  ],
+  "tool_results": [
+    {
+      "tool_use_id": "toolu_015EA7x7xW5mNaspM4t2RtTJ",
+      "is_error": false,
+      "content": "1\t{\n2\t  \"asset\": {\n3\t    \"manufacturer\": 1,\n4\t    \"substation_id\": \"11\"\n5\t  },\n6\t  \"case_id\": \"PreDist-M1-fault-65\",\n7\t  \"current_report\": {\n8\t    \"note\": \"Only the reported problem is visible at decision time. Later diagnosis and remedy are withheld.\",\n9\t    \"problem\": \"leakage\",\n10\t    \"source_id\": \"PreDist-M1-fault-65-problem-only\"\n11\t  },\n12\t  \"decision_time\": \"2019-01-14 11:58:00\",\n13\t  \"measurement_window\": {\n14\t    \"end\": \"2019-01-14 11:58:00\",\n15\t    \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n16\t    \"start\": \"2019-01-13 11:58:00\"\n17\t  },\n18\t  \"report_facts\": [\n19\t    {\n20\t      \"id\": \"F-9e414356dc5a\",\n21\t      \"interval\": \"2019-01-14 11:58:00\",\n22\t      \"source_field\": \"problem\",\n23\t      \"source_id\": \"PreDist-M1-fault-65-problem-only\",\n24\t      \"text\": \"Reported problem: leakage (2019-01-14 11:58:00)\",\n25\t      \"unit\": \"\",\n26\t      \"value\": \"leakage\"\n27\t    }\n28\t  ],\n29\t  \"source\": {\n30\t    \"asset_type\": \"district heating substation\",\n31\t    \"dataset\": \"PreDist v2\",\n32\t    \"doi\": \"10.5281/zenodo.19496480\",\n33\t    \"license\": \"CC BY 4.0\",\n34\t    \"publisher\": \"Fraunhofer IEE / enercity Netz GmbH\",\n35\t    \"url\": \"https://zenodo.org/records/19496480\"\n36\t  }\n37\t}\n38\t",
+      "truncated": false
+    },
+    {
+      "tool_use_id": "toolu_01Wxqq9FoqnhMRzQnrQbaCZ1",
+      "is_error": false,
+      "content": "1\t{\n2\t  \"checks_catalog\": {\n3\t    \"C-controls\": \"Review timestamped controller settings, alarms, and parameter changes with an engineer.\",\n4\t    \"C-maintenance\": \"Check maintenance records and actual completion evidence for relevant prior work.\",\n5\t    \"C-more-data\": \"Obtain missing measurements before drawing a causal conclusion.\",\n6\t    \"C-room-impact\": \"Verify affected room or radiator temperatures and the scope of the reported heating loss.\",\n7\t    \"C-secondary-flow\": \"Measure secondary heating circuit flow and compare it with the relevant design or operating range.\",\n8\t    \"C-sensor\": \"Confirm sensor identity, calibration, and timestamp alignment before interpreting a trend.\"\n9\t  },\n10\t  \"limits_catalog\": {\n11\t    \"L-no-normal-range\": \"No normal operating range is supplied for heat power or flow.\",\n12\t    \"L-no-room-evidence\": \"Supply temperature tracking its setpoint does not establish heat delivery to rooms.\",\n13\t    \"L-primary-flow\": \"Primary meter flow is not secondary/customer circuit flow.\",\n14\t    \"L-prior-not-current\": \"A prior report does not establish the cause of this event.\",\n15\t    \"L-retrospective\": \"Prior report narratives may not have been available at the decision time.\"\n16\t  },\n17\t  \"plan_policy\": \"Select 2 or 3 distinct checks, each supported by 1 to 4 retrieved fact IDs. The program derives displayed observations as the ordered union of these IDs (at most 12). Rationales are suggestions, not observed facts or causal findings.\",\n18\t  \"task\": \"Given this asset's reported problem at decision_time, inspect the available public evidence at or before that time and propose a plan with only limit_ids and next_checks. Select 2 or 3 distinct checks. For each check, cite 1 to 4 distinct retrieved supporting fact IDs and write a nonblank rationale of at most 240 characters. The program derives displayed observations as the ordered union of supporting fact IDs (at most 12); do not write observed_fact_ids. Select only supplied limit and check IDs. Ground temporal claims in timestamped readings or explicit first/last samples; minimum and maximum summaries are not start/end readings. Do not claim a cause or operational fault from descriptive temperature gaps, and do not recommend changing controls. Return one plan JSON object.\"\n19\t}\n20\t",
+      "truncated": false
+    },
+    {
+      "tool_use_id": "toolu_01RR9BbWbBKmcSE9MKjC65HV",
+      "is_error": false,
+      "content": "1\t{\n2\t  \"available_sources\": [\n3\t    {\n4\t      \"read_state\": \"unread\",\n5\t      \"reader\": \"get_recent_measurements\"\n6\t    },\n7\t    {\n8\t      \"read_state\": \"unread\",\n9\t      \"reader\": \"get_prior_incidents\"\n10\t    },\n11\t    {\n12\t      \"read_state\": \"unread\",\n13\t      \"reader\": \"get_maintenance_timeline\"\n14\t    },\n15\t    {\n16\t      \"read_state\": \"unread\",\n17\t      \"reader\": \"get_signal_definitions\"\n18\t    },\n19\t    {\n20\t      \"file\": \"temporal/episodes.json\",\n21\t      \"read_state\": \"unread\",\n22\t      \"reader\": \"get_temporal_episodes\"\n23\t    },\n24\t    {\n25\t      \"file\": \"temporal/window-fields.json\",\n26\t      \"max_rows_per_query\": 24,\n27\t      \"read_state\": \"unread\",\n28\t      \"reader\": \"query_measurement_window\"\n29\t    }\n30\t  ]\n31\t}\n32\t",
+      "truncated": false
+    },
+    {
+      "tool_use_id": "toolu_0131KF5ETqUkvWD7d9xoZvPx",
+      "is_error": false,
+      "content": "1\t{\n2\t  \"additionalProperties\": false,\n3\t  \"properties\": {\n4\t    \"limit_ids\": {\n5\t      \"items\": {\n6\t        \"enum\": [\n7\t          \"L-no-room-evidence\",\n8\t          \"L-no-normal-range\",\n9\t          \"L-primary-flow\",\n10\t          \"L-prior-not-current\",\n11\t          \"L-retrospective\"\n12\t        ],\n13\t        \"type\": \"string\"\n14\t      },\n15\t      \"type\": \"array\"\n16\t    },\n17\t    \"next_checks\": {\n18\t      \"items\": {\n19\t        \"additionalProperties\": false,\n20\t        \"properties\": {\n21\t          \"because_fact_ids\": {\n22\t            \"items\": {\n23\t              \"enum\": [\n24\t                \"F-e23273e765d4\",\n25\t                \"F-aa5d80ddc884\",\n26\t                \"F-d91c507619e5\",\n27\t                \"F-5490e9a290fb\",\n28\t                \"F-c507baa5efdb\",\n29\t                \"F-092e808d758e\",\n30\t                \"F-12b0dc3012c4\",\n31\t                \"F-96639f831019\",\n32\t                \"F-6d0582a86b46\",\n33\t                \"F-951ef835e83e\",\n34\t                \"F-09b381ec1c07\",\n35\t                \"F-dd182fff4b7e\",\n36\t                \"F-5a1d11f35dcc\",\n37\t                \"F-2195fc4b35e4\",\n38\t                \"F-ffd3deac3dc2\",\n39\t                \"F-bdfb0b36cb88\",\n40\t                \"F-56f30eaa1d88\",\n41\t                \"F-a241180f22a0\",\n42\t                \"F-9e414356dc5a\",\n43\t                \"F-1dbc66d3e170\",\n44\t                \"F-4ee782a11aec\",\n45\t                \"F-18a960fe049c\",\n46\t                \"F-b1ae5c8aa1f6\",\n47\t                \"F-46d398ec43b9\",\n48\t                \"F-cb4b56e22326\",\n49\t                \"F-93af5d872e1c\",\n50\t                \"F-adee5c9cecc9\",\n51\t                \"F-fdc336db150d\",\n52\t                \"F-b1eca2b19d7b\",\n53\t                \"F-727232a8c338\",\n54\t                \"F-3b603acb1e46\",\n55\t                \"F-9464511ba633\",\n56\t                \"F-1ffb63a51662\",\n57\t                \"F-503a44963c33\",\n58\t                \"F-067513bb847e\",\n59\t                \"F-88cac4ba82b1\",\n60\t                \"F-823ceb1bf348\",\n61\t                \"F-09d290e0b5c7\",\n62\t                \"F-c53fe7a23a94\",\n63\t                \"F-e851810ab40a\",\n64\t                \"F-e23cb6da28be\",\n65\t                \"F-8470e3c8fc29\",\n66\t                \"F-6690b49d5176\",\n67\t                \"F-bdffbb151e56\",\n68\t                \"F-0f5b2a1a6e23\",\n69\t                \"F-15723be6083c\",\n70\t                \"F-86e42e089939\",\n71\t                \"F-2a57009004eb\",\n72\t                \"F-76ed6f63d23f\",\n73\t                \"F-1bc5b051869d\",\n74\t                \"F-9fc78e625bba\",\n75\t                \"F-32a695c53978\",\n76\t                \"F-4973054dde94\",\n77\t                \"F-2fdababaaa59\",\n78\t                \"F-0ab97ffcea32\",\n79\t                \"F-34d95eb80f6f\",\n80\t                \"F-40e02ca3aeb4\",\n81\t                \"F-a012193d23d7\",\n82\t                \"F-b5ed0e8d6427\",\n83\t                \"F-e4a1700875bc\",\n84\t                \"F-761e8f8b4b9e\",\n85\t                \"F-0254400f79ff\",\n86\t                \"F-045a521b019b\",\n87\t                \"F-04cceb8aff09\",\n88\t                \"F-04e5b97a9cb1\",\n89\t                \"F-06b649e1b3cb\",\n90\t                \"F-08014f498b6a\",\n91\t                \"F-089b615c1463\",\n92\t                \"F-0a7c9128002d\",\n93\t                \"F-104fe1ba8db4\",\n94\t                \"F-149c39ac3d93\",\n95\t                \"F-157c62dfd020\",\n96\t                \"F-1663d75b19c2\",\n97\t                \"F-1677bf2953e6\",\n98\t                \"F-21dedbd93b90\",\n99\t                \"F-24c15cc6db08\",\n100\t                \"F-252547ade143\",\n101\t                \"F-25561973d7fb\",\n102\t                \"F-257de81d35ca\",\n103\t                \"F-282da17f9672\",\n104\t                \"F-289d1748fb02\",\n105\t                \"F-291b5d3d25b7\",\n106\t                \"F-29f808389e27\",\n107\t                \"F-2cfaedf1fcdd\",\n108\t                \"F-2ee1e3f20557\",\n109\t                \"F-330fa7917f1c\",\n110\t                \"F-33928b0310e5\",\n111\t                \"F-351d8db80414\",\n112\t                \"F-3963dace0f1f\",\n113\t                \"F-3e9ebb09c39e\",\n114\t                \"F-3f0e02e372db\",\n115\t                \"F-400ef9a60ea0\",\n116\t                \"F-408a682a5a0c\",\n117\t                \"F-40a249899380\",\n118\t                \"F-4230bafcfa42\",\n119\t                \"F-432edcb6f7e2\",\n120\t                \"F-439145608d20\",\n121\t                \"F-442f36b0d488\",\n122\t                \"F-44a3daede341\",\n123\t                \"F-44cf86ac80aa\",\n124\t                \"F-45a82f445c4e\",\n125\t                \"F-45c92f527c46\",\n126\t                \"F-4646449d78f1\",\n127\t                \"F-474d112619e3\",\n128\t                \"F-47694accb1d8\",\n129\t                \"F-48c87502cfe1\",\n130\t                \"F-4a54591f1b4a\",\n131\t                \"F-4a6e0ad3f4e2\",\n132\t                \"F-4b132765abbb\",\n133\t                \"F-4beea3de50e0\",\n134\t                \"F-4cb0f1f608ed\",\n135\t                \"F-4e8f48cf1b99\",\n136\t                \"F-51df769eb9cd\",\n137\t                \"F-52820da650b5\",\n138\t                \"F-537d395fa8be\",\n139\t                \"F-54375eeb38fb\",\n140\t                \"F-55d1027b8cd4\",\n141\t                \"F-5626ac39a418\",\n142\t                \"F-5c66d534ba77\",\n143\t                \"F-61985839766a\",\n144\t                \"F-61bc831aca24\",\n145\t                \"F-65af1a45fdee\",\n146\t                \"F-66846f9d0f70\",\n147\t                \"F-66ce21ab09bc\",\n148\t                \"F-67606868e025\",\n149\t                \"F-69a04ec8f7bb\",\n150\t                \"F-6d26a0e971e7\",\n151\t                \"F-6d5605e2aa0a\",\n152\t                \"F-6d6032392659\",\n153\t                \"F-6e8e59a526dd\",\n154\t                \"F-6f55be359c62\",\n155\t                \"F-7030889ed346\",\n156\t                \"F-7646ae5b868c\",\n157\t                \"F-779f816a2584\",\n158\t                \"F-7b5b5288663b\",\n159\t                \"F-7bb75af28c85\",\n160\t                \"F-7c4bbcebb410\",\n161\t                \"F-7e44e3efa766\",\n162\t                \"F-7fa9fb262188\",\n163\t                \"F-8026c6f5a97e\",\n164\t                \"F-80453e7b567b\",\n165\t                \"F-833b5242eb31\",\n166\t                \"F-871c7263d51d\",\n167\t                \"F-8b3090659a88\",\n168\t                \"F-8bf3e295f5ab\",\n169\t                \"F-8ef2f3a2e0a3\",\n170\t                \"F-8f436ecba860\",\n171\t                \"F-917e285ece61\",\n172\t                \"F-95ac4d6f2673\",\n173\t                \"F-97864ca04847\",\n174\t                \"F-9880fdccc71c\",\n175\t                \"F-99081881c00d\",\n176\t                \"F-9a4d8aa1fc31\",\n177\t                \"F-9dfe04f78baf\",\n178\t                \"F-9e8549045ef0\",\n179\t                \"F-9f9a0043548c\",\n180\t                \"F-a01bff6da07a\",\n181\t                \"F-a8ed4c12d0c8\",\n182\t                \"F-acb093003b84\",\n183\t                \"F-ace17f84e6f9\",\n184\t                \"F-afa61ec3a213\",\n185\t                \"F-b04d43110bce\",\n186\t                \"F-b216ce4ee252\",\n187\t                \"F-b348876a9255\",\n188\t                \"F-b79cfc284771\",\n189\t                \"F-b9052ccd06ac\",\n190\t                \"F-ba5369a78bce\",\n191\t                \"F-c1f384d47062\",\n192\t                \"F-c3614361267b\",\n193\t                \"F-c610896f7d4a\",\n194\t                \"F-c70a59bb52af\",\n195\t                \"F-c82483354ee2\",\n196\t                \"F-c8727849f39c\",\n197\t                \"F-cb44bb02caf7\",\n198\t                \"F-cc754b193505\",\n199\t                \"F-cfbf6fed258e\",\n200\t                \"F-cfec7f6420cd\",\n201\t                \"F-d108653e41f3\",\n202\t                \"F-d1b8777c4bfa\",\n203\t                \"F-d587a99198d8\",\n204\t                \"F-d78b59c84012\",\n205\t                \"F-d87c573b61b6\",\n206\t                \"F-d9cd536443ae\",\n207\t                \"F-dc1d0cbc0296\",\n208\t                \"F-ddc457db0555\",\n209\t                \"F-dde5cb01b4c5\",\n210\t                \"F-df191cc78d52\",\n211\t                \"F-e003323ee49b\",\n212\t                \"F-e071ec7f4caf\",\n213\t                \"F-e0d02812638a\",\n214\t                \"F-e7b19a05178b\",\n215\t                \"F-e7df7d7e38a3\",\n216\t                \"F-e8ba47602423\",\n217\t                \"F-ed1039ac3150\",\n218\t                \"F-ede2f3a46b53\",\n219\t                \"F-f0b2d9ed1dbb\",\n220\t                \"F-f4b8819d89e5\",\n221\t                \"F-f5c270831790\",\n222\t                \"F-f65c947019cb\",\n223\t                \"F-f6d05b5416fa\",\n224\t                \"F-fb30e9c8ae79\",\n225\t                \"F-fb3c85353079\",\n226\t                \"F-fb84a0613be3\",\n227\t                \"F-fcb314337f10\",\n228\t                \"F-fcd5eb9ac8f2\"\n229\t              ],\n230\t              \"type\": \"string\"\n231\t            },\n232\t            \"maxItems\": 4,\n233\t            \"minItems\": 1,\n234\t            \"type\": \"array\"\n235\t          },\n236\t          \"id\": {\n237\t            \"enum\": [\n238\t              \"C-room-impact\",\n239\t              \"C-secondary-flow\",\n240\t              \"C-controls\",\n241\t              \"C-sensor\",\n242\t              \"C-maintenance\",\n243\t              \"C-more-data\"\n244\t            ],\n245\t            \"type\": \"string\"\n246\t          },\n247\t          \"rationale\": {\n248\t            \"maxLength\": 240,\n249\t            \"minLength\": 1,\n250\t            \"type\": \"string\"\n251\t          }\n252\t        },\n253\t        \"required\": [\n254\t          \"id\",\n255\t          \"because_fact_ids\",\n256\t          \"rationale\"\n257\t        ],\n258\t        \"type\": \"object\"\n259\t      },\n260\t      \"maxItems\": 3,\n261\t      \"minItems\": 2,\n262\t      \"type\": \"array\"\n263\t    }\n264\t  },\n265\t  \"required\": [\n266\t    \"limit_ids\",\n267\t    \"next_checks\"\n268\t  ],\n269\t  \"type\": \"object\"\n270\t}\n271\t",
+      "truncated": false
+    },
+    {
+      "tool_use_id": "toolu_01JdVAYb4KSJvpXsmierh7XY",
+      "is_error": false,
+      "content": "tools/get_maintenance_timeline.json\ntools/get_prior_incidents.json\ntools/get_recent_measurements.json\ntools/get_signal_definitions.json",
+      "truncated": false
+    },
+    {
+      "tool_use_id": "toolu_01AmsmNiFyBtSNH3JJUwQGhj",
+      "is_error": false,
+      "content": "1\t{\n2\t  \"case_id\": \"PreDist-M1-fault-65\",\n3\t  \"decision_time\": \"2019-01-14 11:58:00\",\n4\t  \"facts\": [\n5\t    {\n6\t      \"id\": \"F-e23273e765d4\",\n7\t      \"interval\": null,\n8\t      \"source_field\": \"event_start\",\n9\t      \"source_id\": \"PreDist-M1-disturbance-49\",\n10\t      \"text\": \"event_start: 2014-06-23 00:00:00\",\n11\t      \"unit\": \"\",\n12\t      \"value\": \"2014-06-23 00:00:00\"\n13\t    },\n14\t    {\n15\t      \"id\": \"F-aa5d80ddc884\",\n16\t      \"interval\": null,\n17\t      \"source_field\": \"type\",\n18\t      \"source_id\": \"PreDist-M1-disturbance-49\",\n19\t      \"text\": \"type: activity\",\n20\t      \"unit\": \"\",\n21\t      \"value\": \"activity\"\n22\t    },\n23\t    {\n24\t      \"id\": \"F-d91c507619e5\",\n25\t      \"interval\": null,\n26\t      \"source_field\": \"event_start\",\n27\t      \"source_id\": \"PreDist-M1-disturbance-50\",\n28\t      \"text\": \"event_start: 2015-12-07 00:00:00\",\n29\t      \"unit\": \"\",\n30\t      \"value\": \"2015-12-07 00:00:00\"\n31\t    },\n32\t    {\n33\t      \"id\": \"F-5490e9a290fb\",\n34\t      \"interval\": null,\n35\t      \"source_field\": \"type\",\n36\t      \"source_id\": \"PreDist-M1-disturbance-50\",\n37\t      \"text\": \"type: activity\",\n38\t      \"unit\": \"\",\n39\t      \"value\": \"activity\"\n40\t    },\n41\t    {\n42\t      \"id\": \"F-c507baa5efdb\",\n43\t      \"interval\": null,\n44\t      \"source_field\": \"event_start\",\n45\t      \"source_id\": \"PreDist-M1-disturbance-51\",\n46\t      \"text\": \"event_start: 2018-07-02 10:49:00\",\n47\t      \"unit\": \"\",\n48\t      \"value\": \"2018-07-02 10:49:00\"\n49\t    },\n50\t    {\n51\t      \"id\": \"F-092e808d758e\",\n52\t      \"interval\": null,\n53\t      \"source_field\": \"type\",\n54\t      \"source_id\": \"PreDist-M1-disturbance-51\",\n55\t      \"text\": \"type: fault\",\n56\t      \"unit\": \"\",\n57\t      \"value\": \"fault\"\n58\t    },\n59\t    {\n60\t      \"id\": \"F-12b0dc3012c4\",\n61\t      \"interval\": null,\n62\t      \"source_field\": \"event_start\",\n63\t      \"source_id\": \"PreDist-M1-disturbance-52\",\n64\t      \"text\": \"event_start: 2018-07-02 15:02:04\",\n65\t      \"unit\": \"\",\n66\t      \"value\": \"2018-07-02 15:02:04\"\n67\t    },\n68\t    {\n69\t      \"id\": \"F-96639f831019\",\n70\t      \"interval\": null,\n71\t      \"source_field\": \"type\",\n72\t      \"source_id\": \"PreDist-M1-disturbance-52\",\n73\t      \"text\": \"type: task\",\n74\t      \"unit\": \"\",\n75\t      \"value\": \"task\"\n76\t    },\n77\t    {\n78\t      \"id\": \"F-6d0582a86b46\",\n79\t      \"interval\": null,\n80\t      \"source_field\": \"event_start\",\n81\t      \"source_id\": \"PreDist-M1-disturbance-53\",\n82\t      \"text\": \"event_start: 2018-11-23 08:30:00\",\n83\t      \"unit\": \"\",\n84\t      \"value\": \"2018-11-23 08:30:00\"\n85\t    },\n86\t    {\n87\t      \"id\": \"F-951ef835e83e\",\n88\t      \"interval\": null,\n89\t      \"source_field\": \"type\",\n90\t      \"source_id\": \"PreDist-M1-disturbance-53\",\n91\t      \"text\": \"type: fault\",\n92\t      \"unit\": \"\",\n93\t      \"value\": \"fault\"\n94\t    },\n95\t    {\n96\t      \"id\": \"F-09b381ec1c07\",\n97\t      \"interval\": null,\n98\t      \"source_field\": \"event_start\",\n99\t      \"source_id\": \"PreDist-M1-disturbance-54\",\n100\t      \"text\": \"event_start: 2018-11-26 05:56:59\",\n101\t      \"unit\": \"\",\n102\t      \"value\": \"2018-11-26 05:56:59\"\n103\t    },\n104\t    {\n105\t      \"id\": \"F-dd182fff4b7e\",\n106\t      \"interval\": null,\n107\t      \"source_field\": \"type\",\n108\t      \"source_id\": \"PreDist-M1-disturbance-54\",\n109\t      \"text\": \"type: task\",\n110\t      \"unit\": \"\",\n111\t      \"value\": \"task\"\n112\t    },\n113\t    {\n114\t      \"id\": \"F-5a1d11f35dcc\",\n115\t      \"interval\": null,\n116\t      \"source_field\": \"event_description\",\n117\t      \"source_id\": \"PreDist-M1-fault-20\",\n118\t      \"text\": \"event_description: Presumably, so much water was added from the other side that the safety valve on the system opened and flooded the basement.\",\n119\t      \"unit\": \"\",\n120\t      \"value\": \"Presumably, so much water was added from the other side that the safety valve on the system opened and flooded the basement.\"\n121\t    },\n122\t    {\n123\t      \"id\": \"F-2195fc4b35e4\",\n124\t      \"interval\": null,\n125\t      \"source_field\": \"problem\",\n126\t      \"source_id\": \"PreDist-M1-fault-20\",\n127\t      \"text\": \"problem: no DHW\",\n128\t      \"unit\": \"\",\n129\t      \"value\": \"no DHW\"\n130\t    },\n131\t    {\n132\t      \"id\": \"F-ffd3deac3dc2\",\n133\t      \"interval\": null,\n134\t      \"source_field\": \"report_date\",\n135\t      \"source_id\": \"PreDist-M1-fault-20\",\n136\t      \"text\": \"report_date: 2018-07-02 10:49:00\",\n137\t      \"unit\": \"\",\n138\t      \"value\": \"2018-07-02 10:49:00\"\n139\t    },\n140\t    {\n141\t      \"id\": \"F-bdfb0b36cb88\",\n142\t      \"interval\": null,\n143\t      \"source_field\": \"event_description\",\n144\t      \"source_id\": \"PreDist-M1-fault-5\",\n145\t      \"text\": \"event_description: Pump settings updated.\",\n146\t      \"unit\": \"\",\n147\t      \"value\": \"Pump settings updated.\"\n148\t    },\n149\t    {\n150\t      \"id\": \"F-56f30eaa1d88\",\n151\t      \"interval\": null,\n152\t      \"source_field\": \"problem\",\n153\t      \"source_id\": \"PreDist-M1-fault-5\",\n154\t      \"text\": \"problem: no heat\",\n155\t      \"unit\": \"\",\n156\t      \"value\": \"no heat\"\n157\t    },\n158\t    {\n159\t      \"id\": \"F-a241180f22a0\",\n160\t      \"interval\": null,\n161\t      \"source_field\": \"report_date\",\n162\t      \"source_id\": \"PreDist-M1-fault-5\",\n163\t      \"text\": \"report_date: 2018-11-23 08:30:00\",\n164\t      \"unit\": \"\",\n165\t      \"value\": \"2018-11-23 08:30:00\"\n166\t    },\n167\t    {\n168\t      \"id\": \"F-9e414356dc5a\",\n169\t      \"interval\": \"2019-01-14 11:58:00\",\n170\t      \"source_field\": \"problem\",\n171\t      \"source_id\": \"PreDist-M1-fault-65-problem-only\",\n172\t      \"text\": \"Reported problem: leakage (2019-01-14 11:58:00)\",\n173\t      \"unit\": \"\",\n174\t      \"value\": \"leakage\"\n175\t    },\n176\t    {\n177\t      \"id\": \"F-1dbc66d3e170\",\n178\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n179\t      \"source_field\": \"last_sample_time\",\n180\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n181\t      \"text\": \"Last measurement time: 2019-01-14 11:50:00 (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n182\t      \"unit\": \"\",\n183\t      \"value\": \"2019-01-14 11:50:00\"\n184\t    },\n185\t    {\n186\t      \"id\": \"F-4ee782a11aec\",\n187\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n188\t      \"source_field\": \"samples\",\n189\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n190\t      \"text\": \"Measurement sample count: 144 (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n191\t      \"unit\": \"\",\n192\t      \"value\": 144\n193\t    },\n194\t    {\n195\t      \"id\": \"F-18a960fe049c\",\n196\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n197\t      \"source_field\": \"signals.outdoor_temperature.first\",\n198\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n199\t      \"text\": \"outdoor_temperature_c first: -0.6 °C (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n200\t      \"unit\": \"°C\",\n201\t      \"value\": -0.6\n202\t    },\n203\t    {\n204\t      \"id\": \"F-b1ae5c8aa1f6\",\n205\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n206\t      \"source_field\": \"signals.outdoor_temperature.last\",\n207\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n208\t      \"text\": \"outdoor_temperature_c last: -3.5 °C (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n209\t      \"unit\": \"°C\",\n210\t      \"value\": -3.5\n211\t    },\n212\t    {\n213\t      \"id\": \"F-46d398ec43b9\",\n214\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n215\t      \"source_field\": \"signals.outdoor_temperature.max\",\n216\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n217\t      \"text\": \"outdoor_temperature_c max: 0.4 °C (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n218\t      \"unit\": \"°C\",\n219\t      \"value\": 0.4\n220\t    },\n221\t    {\n222\t      \"id\": \"F-cb4b56e22326\",\n223\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n224\t      \"source_field\": \"signals.outdoor_temperature.mean\",\n225\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n226\t      \"text\": \"outdoor_temperature_c mean: -1.91 °C (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n227\t      \"unit\": \"°C\",\n228\t      \"value\": -1.91\n229\t    },\n230\t    {\n231\t      \"id\": \"F-93af5d872e1c\",\n232\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n233\t      \"source_field\": \"signals.outdoor_temperature.min\",\n234\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n235\t      \"text\": \"outdoor_temperature_c min: -4.5 °C (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n236\t      \"unit\": \"°C\",\n237\t      \"value\": -4.5\n238\t    },\n239\t    {\n240\t      \"id\": \"F-adee5c9cecc9\",\n241\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n242\t      \"source_field\": \"signals.p_net_meter_flow.first\",\n243\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n244\t      \"text\": \"primary_network_meter_flow_l_per_hour first: 338.0 l/h (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n245\t      \"unit\": \"l/h\",\n246\t      \"value\": 338.0\n247\t    },\n248\t    {\n249\t      \"id\": \"F-fdc336db150d\",\n250\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n251\t      \"source_field\": \"signals.p_net_meter_flow.last\",\n252\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n253\t      \"text\": \"primary_network_meter_flow_l_per_hour last: 135.17 l/h (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n254\t      \"unit\": \"l/h\",\n255\t      \"value\": 135.17\n256\t    },\n257\t    {\n258\t      \"id\": \"F-b1eca2b19d7b\",\n259\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n260\t      \"source_field\": \"signals.p_net_meter_flow.max\",\n261\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n262\t      \"text\": \"primary_network_meter_flow_l_per_hour max: 371.0 l/h (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n263\t      \"unit\": \"l/h\",\n264\t      \"value\": 371.0\n265\t    },\n266\t    {\n267\t      \"id\": \"F-727232a8c338\",\n268\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n269\t      \"source_field\": \"signals.p_net_meter_flow.mean\",\n270\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n271\t      \"text\": \"primary_network_meter_flow_l_per_hour mean: 232.5 l/h (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n272\t      \"unit\": \"l/h\",\n273\t      \"value\": 232.5\n274\t    },\n275\t    {\n276\t      \"id\": \"F-3b603acb1e46\",\n277\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n278\t      \"source_field\": \"signals.p_net_meter_flow.min\",\n279\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n280\t      \"text\": \"primary_network_meter_flow_l_per_hour min: 113.0 l/h (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n281\t      \"unit\": \"l/h\",\n282\t      \"value\": 113.0\n283\t    },\n284\t    {\n285\t      \"id\": \"F-9464511ba633\",\n286\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n287\t      \"source_field\": \"signals.p_net_meter_heat_power.first\",\n288\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n289\t      \"text\": \"primary_network_meter_heat_power_kw first: 19.0 kW (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n290\t      \"unit\": \"kW\",\n291\t      \"value\": 19.0\n292\t    },\n293\t    {\n294\t      \"id\": \"F-1ffb63a51662\",\n295\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n296\t      \"source_field\": \"signals.p_net_meter_heat_power.last\",\n297\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n298\t      \"text\": \"primary_network_meter_heat_power_kw last: 9.5 kW (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n299\t      \"unit\": \"kW\",\n300\t      \"value\": 9.5\n301\t    },\n302\t    {\n303\t      \"id\": \"F-503a44963c33\",\n304\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n305\t      \"source_field\": \"signals.p_net_meter_heat_power.max\",\n306\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n307\t      \"text\": \"primary_network_meter_heat_power_kw max: 20.0 kW (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n308\t      \"unit\": \"kW\",\n309\t      \"value\": 20.0\n310\t    },\n311\t    {\n312\t      \"id\": \"F-067513bb847e\",\n313\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n314\t      \"source_field\": \"signals.p_net_meter_heat_power.mean\",\n315\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n316\t      \"text\": \"primary_network_meter_heat_power_kw mean: 14.18 kW (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n317\t      \"unit\": \"kW\",\n318\t      \"value\": 14.18\n319\t    },\n320\t    {\n321\t      \"id\": \"F-88cac4ba82b1\",\n322\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n323\t      \"source_field\": \"signals.p_net_meter_heat_power.min\",\n324\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n325\t      \"text\": \"primary_network_meter_heat_power_kw min: 8.0 kW (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n326\t      \"unit\": \"kW\",\n327\t      \"value\": 8.0\n328\t    },\n329\t    {\n330\t      \"id\": \"F-823ceb1bf348\",\n331\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n332\t      \"source_field\": \"signals.s_hc1_supply_temperature.first\",\n333\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n334\t      \"text\": \"secondary_heating_circuit_supply_temperature_c first: 51.1 °C (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n335\t      \"unit\": \"°C\",\n336\t      \"value\": 51.1\n337\t    },\n338\t    {\n339\t      \"id\": \"F-09d290e0b5c7\",\n340\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n341\t      \"source_field\": \"signals.s_hc1_supply_temperature.last\",\n342\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n343\t      \"text\": \"secondary_heating_circuit_supply_temperature_c last: 56.15 °C (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n344\t      \"unit\": \"°C\",\n345\t      \"value\": 56.15\n346\t    },\n347\t    {\n348\t      \"id\": \"F-c53fe7a23a94\",\n349\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n350\t      \"source_field\": \"signals.s_hc1_supply_temperature.max\",\n351\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n352\t      \"text\": \"secondary_heating_circuit_supply_temperature_c max: 60.1 °C (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n353\t      \"unit\": \"°C\",\n354\t      \"value\": 60.1\n355\t    },\n356\t    {\n357\t      \"id\": \"F-e851810ab40a\",\n358\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n359\t      \"source_field\": \"signals.s_hc1_supply_temperature.mean\",\n360\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n361\t      \"text\": \"secondary_heating_circuit_supply_temperature_c mean: 52.65 °C (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n362\t      \"unit\": \"°C\",\n363\t      \"value\": 52.65\n364\t    },\n365\t    {\n366\t      \"id\": \"F-e23cb6da28be\",\n367\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n368\t      \"source_field\": \"signals.s_hc1_supply_temperature.min\",\n369\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n370\t      \"text\": \"secondary_heating_circuit_supply_temperature_c min: 48.8 °C (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n371\t      \"unit\": \"°C\",\n372\t      \"value\": 48.8\n373\t    },\n374\t    {\n375\t      \"id\": \"F-8470e3c8fc29\",\n376\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n377\t      \"source_field\": \"signals.s_hc1_supply_temperature_setpoint.first\",\n378\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n379\t      \"text\": \"secondary_heating_circuit_supply_setpoint_c first: 50.8 °C (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n380\t      \"unit\": \"°C\",\n381\t      \"value\": 50.8\n382\t    },\n383\t    {\n384\t      \"id\": \"F-6690b49d5176\",\n385\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n386\t      \"source_field\": \"signals.s_hc1_supply_temperature_setpoint.last\",\n387\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n388\t      \"text\": \"secondary_heating_circuit_supply_setpoint_c last: 57.15 °C (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n389\t      \"unit\": \"°C\",\n390\t      \"value\": 57.15\n391\t    },\n392\t    {\n393\t      \"id\": \"F-bdffbb151e56\",\n394\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n395\t      \"source_field\": \"signals.s_hc1_supply_temperature_setpoint.max\",\n396\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n397\t      \"text\": \"secondary_heating_circuit_supply_setpoint_c max: 57.2 °C (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n398\t      \"unit\": \"°C\",\n399\t      \"value\": 57.2\n400\t    },\n401\t    {\n402\t      \"id\": \"F-0f5b2a1a6e23\",\n403\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n404\t      \"source_field\": \"signals.s_hc1_supply_temperature_setpoint.mean\",\n405\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n406\t      \"text\": \"secondary_heating_circuit_supply_setpoint_c mean: 52.52 °C (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n407\t      \"unit\": \"°C\",\n408\t      \"value\": 52.52\n409\t    },\n410\t    {\n411\t      \"id\": \"F-15723be6083c\",\n412\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n413\t      \"source_field\": \"signals.s_hc1_supply_temperature_setpoint.min\",\n414\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n415\t      \"text\": \"secondary_heating_circuit_supply_setpoint_c min: 50.1 °C (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n416\t      \"unit\": \"°C\",\n417\t      \"value\": 50.1\n418\t    },\n419\t    {\n420\t      \"id\": \"F-86e42e089939\",\n421\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n422\t      \"source_field\": \"supply_setpoint_absolute_gap.max\",\n423\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n424\t      \"text\": \"Secondary supply/setpoint absolute gap max: 6.1 °C (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n425\t      \"unit\": \"°C\",\n426\t      \"value\": 6.1\n427\t    },\n428\t    {\n429\t      \"id\": \"F-2a57009004eb\",\n430\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n431\t      \"source_field\": \"supply_setpoint_absolute_gap.mean\",\n432\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n433\t      \"text\": \"Secondary supply/setpoint absolute gap mean: 0.62 °C (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n434\t      \"unit\": \"°C\",\n435\t      \"value\": 0.62\n436\t    },\n437\t    {\n438\t      \"id\": \"F-76ed6f63d23f\",\n439\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n440\t      \"source_field\": \"supply_setpoint_absolute_gap.sample_count\",\n441\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n442\t      \"text\": \"Secondary supply/setpoint absolute gap sample_count: 144 (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n443\t      \"unit\": \"\",\n444\t      \"value\": 144\n445\t    },\n446\t    {\n447\t      \"id\": \"F-1bc5b051869d\",\n448\t      \"interval\": \"2019-01-13 11:58:00 to 2019-01-14 11:58:00\",\n449\t      \"source_field\": \"supply_setpoint_absolute_gap.samples_within_2C\",\n450\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n451\t      \"text\": \"Secondary supply/setpoint absolute gap samples_within_2C: 134 (2019-01-13 11:58:00 to 2019-01-14 11:58:00)\",\n452\t      \"unit\": \"\",\n453\t      \"value\": 134\n454\t    },\n455\t    {\n456\t      \"id\": \"F-9fc78e625bba\",\n457\t      \"interval\": \"2019-01-13 17:40:00 to 2019-01-13 17:40:00\",\n458\t      \"source_field\": \"temporal.episode.1\",\n459\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n460\t      \"text\": \"Episode 1, 2019-01-13 17:40:00 to 2019-01-13 17:40:00, 1 consecutive paired samples with absolute gap > 2.0 °C; first at 2019-01-13 17:40:00: secondary supply 53.4 °C, setpoint 51.0 °C, absolute gap 2.4 °C; last at 2019-01-13 17:40:00: secondary supply 53.4 °C, setpoint 51.0 °C, absolute gap 2.4 °C; peak at 2019-01-13 17:40:00: secondary supply 53.4 °C, setpoint 51.0 °C, absolute gap 2.4 °C\",\n461\t      \"unit\": \"°C\",\n462\t      \"value\": {\n463\t        \"first\": {\n464\t          \"absolute_gap_c\": 2.4,\n465\t          \"row_index\": 34,\n466\t          \"setpoint_c\": 51.0,\n467\t          \"supply_c\": 53.4,\n468\t          \"timestamp\": \"2019-01-13 17:40:00\"\n469\t        },\n470\t        \"interval\": \"2019-01-13 17:40:00 to 2019-01-13 17:40:00\",\n471\t        \"last\": {\n472\t          \"absolute_gap_c\": 2.4,\n473\t          \"row_index\": 34,\n474\t          \"setpoint_c\": 51.0,\n475\t          \"supply_c\": 53.4,\n476\t          \"timestamp\": \"2019-01-13 17:40:00\"\n477\t        },\n478\t        \"peak\": {\n479\t          \"absolute_gap_c\": 2.4,\n480\t          \"row_index\": 34,\n481\t          \"setpoint_c\": 51.0,\n482\t          \"supply_c\": 53.4,\n483\t          \"timestamp\": \"2019-01-13 17:40:00\"\n484\t        },\n485\t        \"rule\": {\n486\t          \"operator\": \">\",\n487\t          \"status\": \"descriptive prior-POC convention; not a verified operational limit\",\n488\t          \"threshold_c\": 2.0\n489\t        },\n490\t        \"sample_count\": 1\n491\t      }\n492\t    },\n493\t    {\n494\t      \"id\": \"F-32a695c53978\",\n495\t      \"interval\": \"2019-01-13 20:00:00 to 2019-01-13 20:00:00\",\n496\t      \"source_field\": \"temporal.episode.2\",\n497\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n498\t      \"text\": \"Episode 2, 2019-01-13 20:00:00 to 2019-01-13 20:00:00, 1 consecutive paired samples with absolute gap > 2.0 °C; first at 2019-01-13 20:00:00: secondary supply 49.1 °C, setpoint 51.2 °C, absolute gap 2.1 °C; last at 2019-01-13 20:00:00: secondary supply 49.1 °C, setpoint 51.2 °C, absolute gap 2.1 °C; peak at 2019-01-13 20:00:00: secondary supply 49.1 °C, setpoint 51.2 °C, absolute gap 2.1 °C\",\n499\t      \"unit\": \"°C\",\n500\t      \"value\": {\n501\t        \"first\": {\n502\t          \"absolute_gap_c\": 2.1,\n503\t          \"row_index\": 48,\n504\t          \"setpoint_c\": 51.2,\n505\t          \"supply_c\": 49.1,\n506\t          \"timestamp\": \"2019-01-13 20:00:00\"\n507\t        },\n508\t        \"interval\": \"2019-01-13 20:00:00 to 2019-01-13 20:00:00\",\n509\t        \"last\": {\n510\t          \"absolute_gap_c\": 2.1,\n511\t          \"row_index\": 48,\n512\t          \"setpoint_c\": 51.2,\n513\t          \"supply_c\": 49.1,\n514\t          \"timestamp\": \"2019-01-13 20:00:00\"\n515\t        },\n516\t        \"peak\": {\n517\t          \"absolute_gap_c\": 2.1,\n518\t          \"row_index\": 48,\n519\t          \"setpoint_c\": 51.2,\n520\t          \"supply_c\": 49.1,\n521\t          \"timestamp\": \"2019-01-13 20:00:00\"\n522\t        },\n523\t        \"rule\": {\n524\t          \"operator\": \">\",\n525\t          \"status\": \"descriptive prior-POC convention; not a verified operational limit\",\n526\t          \"threshold_c\": 2.0\n527\t        },\n528\t        \"sample_count\": 1\n529\t      }\n530\t    },\n531\t    {\n532\t      \"id\": \"F-4973054dde94\",\n533\t      \"interval\": \"2019-01-13 22:10:00 to 2019-01-13 22:10:00\",\n534\t      \"source_field\": \"temporal.episode.3\",\n535\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n536\t      \"text\": \"Episode 3, 2019-01-13 22:10:00 to 2019-01-13 22:10:00, 1 consecutive paired samples with absolute gap > 2.0 °C; first at 2019-01-13 22:10:00: secondary supply 49.2 °C, setpoint 52.2 °C, absolute gap 3.0 °C; last at 2019-01-13 22:10:00: secondary supply 49.2 °C, setpoint 52.2 °C, absolute gap 3.0 °C; peak at 2019-01-13 22:10:00: secondary supply 49.2 °C, setpoint 52.2 °C, absolute gap 3.0 °C\",\n537\t      \"unit\": \"°C\",\n538\t      \"value\": {\n539\t        \"first\": {\n540\t          \"absolute_gap_c\": 3.0,\n541\t          \"row_index\": 61,\n542\t          \"setpoint_c\": 52.2,\n543\t          \"supply_c\": 49.2,\n544\t          \"timestamp\": \"2019-01-13 22:10:00\"\n545\t        },\n546\t        \"interval\": \"2019-01-13 22:10:00 to 2019-01-13 22:10:00\",\n547\t        \"last\": {\n548\t          \"absolute_gap_c\": 3.0,\n549\t          \"row_index\": 61,\n550\t          \"setpoint_c\": 52.2,\n551\t          \"supply_c\": 49.2,\n552\t          \"timestamp\": \"2019-01-13 22:10:00\"\n553\t        },\n554\t        \"peak\": {\n555\t          \"absolute_gap_c\": 3.0,\n556\t          \"row_index\": 61,\n557\t          \"setpoint_c\": 52.2,\n558\t          \"supply_c\": 49.2,\n559\t          \"timestamp\": \"2019-01-13 22:10:00\"\n560\t        },\n561\t        \"rule\": {\n562\t          \"operator\": \">\",\n563\t          \"status\": \"descriptive prior-POC convention; not a verified operational limit\",\n564\t          \"threshold_c\": 2.0\n565\t        },\n566\t        \"sample_count\": 1\n567\t      }\n568\t    },\n569\t    {\n570\t      \"id\": \"F-2fdababaaa59\",\n571\t      \"interval\": \"2019-01-13 23:00:00 to 2019-01-13 23:00:00\",\n572\t      \"source_field\": \"temporal.episode.4\",\n573\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n574\t      \"text\": \"Episode 4, 2019-01-13 23:00:00 to 2019-01-13 23:00:00, 1 consecutive paired samples with absolute gap > 2.0 °C; first at 2019-01-13 23:00:00: secondary supply 48.8 °C, setpoint 51.6 °C, absolute gap 2.8 °C; last at 2019-01-13 23:00:00: secondary supply 48.8 °C, setpoint 51.6 °C, absolute gap 2.8 °C; peak at 2019-01-13 23:00:00: secondary supply 48.8 °C, setpoint 51.6 °C, absolute gap 2.8 °C\",\n575\t      \"unit\": \"°C\",\n576\t      \"value\": {\n577\t        \"first\": {\n578\t          \"absolute_gap_c\": 2.8,\n579\t          \"row_index\": 66,\n580\t          \"setpoint_c\": 51.6,\n581\t          \"supply_c\": 48.8,\n582\t          \"timestamp\": \"2019-01-13 23:00:00\"\n583\t        },\n584\t        \"interval\": \"2019-01-13 23:00:00 to 2019-01-13 23:00:00\",\n585\t        \"last\": {\n586\t          \"absolute_gap_c\": 2.8,\n587\t          \"row_index\": 66,\n588\t          \"setpoint_c\": 51.6,\n589\t          \"supply_c\": 48.8,\n590\t          \"timestamp\": \"2019-01-13 23:00:00\"\n591\t        },\n592\t        \"peak\": {\n593\t          \"absolute_gap_c\": 2.8,\n594\t          \"row_index\": 66,\n595\t          \"setpoint_c\": 51.6,\n596\t          \"supply_c\": 48.8,\n597\t          \"timestamp\": \"2019-01-13 23:00:00\"\n598\t        },\n599\t        \"rule\": {\n600\t          \"operator\": \">\",\n601\t          \"status\": \"descriptive prior-POC convention; not a verified operational limit\",\n602\t          \"threshold_c\": 2.0\n603\t        },\n604\t        \"sample_count\": 1\n605\t      }\n606\t    },\n607\t    {\n608\t      \"id\": \"F-0ab97ffcea32\",\n609\t      \"interval\": \"2019-01-14 00:20:00 to 2019-01-14 00:40:00\",\n610\t      \"source_field\": \"temporal.episode.5\",\n611\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n612\t      \"text\": \"Episode 5, 2019-01-14 00:20:00 to 2019-01-14 00:40:00, 3 consecutive paired samples with absolute gap > 2.0 °C; first at 2019-01-14 00:20:00: secondary supply 57.55 °C, setpoint 54.05 °C, absolute gap 3.5 °C; last at 2019-01-14 00:40:00: secondary supply 52.6 °C, setpoint 50.1 °C, absolute gap 2.5 °C; peak at 2019-01-14 00:30:00: secondary supply 60.1 °C, setpoint 54.0 °C, absolute gap 6.1 °C\",\n613\t      \"unit\": \"°C\",\n614\t      \"value\": {\n615\t        \"first\": {\n616\t          \"absolute_gap_c\": 3.5,\n617\t          \"row_index\": 74,\n618\t          \"setpoint_c\": 54.05,\n619\t          \"supply_c\": 57.55,\n620\t          \"timestamp\": \"2019-01-14 00:20:00\"\n621\t        },\n622\t        \"interval\": \"2019-01-14 00:20:00 to 2019-01-14 00:40:00\",\n623\t        \"last\": {\n624\t          \"absolute_gap_c\": 2.5,\n625\t          \"row_index\": 76,\n626\t          \"setpoint_c\": 50.1,\n627\t          \"supply_c\": 52.6,\n628\t          \"timestamp\": \"2019-01-14 00:40:00\"\n629\t        },\n630\t        \"peak\": {\n631\t          \"absolute_gap_c\": 6.1,\n632\t          \"row_index\": 75,\n633\t          \"setpoint_c\": 54.0,\n634\t          \"supply_c\": 60.1,\n635\t          \"timestamp\": \"2019-01-14 00:30:00\"\n636\t        },\n637\t        \"rule\": {\n638\t          \"operator\": \">\",\n639\t          \"status\": \"descriptive prior-POC convention; not a verified operational limit\",\n640\t          \"threshold_c\": 2.0\n641\t        },\n642\t        \"sample_count\": 3\n643\t      }\n644\t    },\n645\t    {\n646\t      \"id\": \"F-34d95eb80f6f\",\n647\t      \"interval\": \"2019-01-14 07:10:00 to 2019-01-14 07:10:00\",\n648\t      \"source_field\": \"temporal.episode.6\",\n649\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n650\t      \"text\": \"Episode 6, 2019-01-14 07:10:00 to 2019-01-14 07:10:00, 1 consecutive paired samples with absolute gap > 2.0 °C; first at 2019-01-14 07:10:00: secondary supply 52.2 °C, setpoint 54.8 °C, absolute gap 2.6 °C; last at 2019-01-14 07:10:00: secondary supply 52.2 °C, setpoint 54.8 °C, absolute gap 2.6 °C; peak at 2019-01-14 07:10:00: secondary supply 52.2 °C, setpoint 54.8 °C, absolute gap 2.6 °C\",\n651\t      \"unit\": \"°C\",\n652\t      \"value\": {\n653\t        \"first\": {\n654\t          \"absolute_gap_c\": 2.6,\n655\t          \"row_index\": 115,\n656\t          \"setpoint_c\": 54.8,\n657\t          \"supply_c\": 52.2,\n658\t          \"timestamp\": \"2019-01-14 07:10:00\"\n659\t        },\n660\t        \"interval\": \"2019-01-14 07:10:00 to 2019-01-14 07:10:00\",\n661\t        \"last\": {\n662\t          \"absolute_gap_c\": 2.6,\n663\t          \"row_index\": 115,\n664\t          \"setpoint_c\": 54.8,\n665\t          \"supply_c\": 52.2,\n666\t          \"timestamp\": \"2019-01-14 07:10:00\"\n667\t        },\n668\t        \"peak\": {\n669\t          \"absolute_gap_c\": 2.6,\n670\t          \"row_index\": 115,\n671\t          \"setpoint_c\": 54.8,\n672\t          \"supply_c\": 52.2,\n673\t          \"timestamp\": \"2019-01-14 07:10:00\"\n674\t        },\n675\t        \"rule\": {\n676\t          \"operator\": \">\",\n677\t          \"status\": \"descriptive prior-POC convention; not a verified operational limit\",\n678\t          \"threshold_c\": 2.0\n679\t        },\n680\t        \"sample_count\": 1\n681\t      }\n682\t    },\n683\t    {\n684\t      \"id\": \"F-40e02ca3aeb4\",\n685\t      \"interval\": \"2019-01-14 10:10:00 to 2019-01-14 10:10:00\",\n686\t      \"source_field\": \"temporal.episode.7\",\n687\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n688\t      \"text\": \"Episode 7, 2019-01-14 10:10:00 to 2019-01-14 10:10:00, 1 consecutive paired samples with absolute gap > 2.0 °C; first at 2019-01-14 10:10:00: secondary supply 54.3 °C, setpoint 50.6 °C, absolute gap 3.7 °C; last at 2019-01-14 10:10:00: secondary supply 54.3 °C, setpoint 50.6 °C, absolute gap 3.7 °C; peak at 2019-01-14 10:10:00: secondary supply 54.3 °C, setpoint 50.6 °C, absolute gap 3.7 °C\",\n689\t      \"unit\": \"°C\",\n690\t      \"value\": {\n691\t        \"first\": {\n692\t          \"absolute_gap_c\": 3.7,\n693\t          \"row_index\": 133,\n694\t          \"setpoint_c\": 50.6,\n695\t          \"supply_c\": 54.3,\n696\t          \"timestamp\": \"2019-01-14 10:10:00\"\n697\t        },\n698\t        \"interval\": \"2019-01-14 10:10:00 to 2019-01-14 10:10:00\",\n699\t        \"last\": {\n700\t          \"absolute_gap_c\": 3.7,\n701\t          \"row_index\": 133,\n702\t          \"setpoint_c\": 50.6,\n703\t          \"supply_c\": 54.3,\n704\t          \"timestamp\": \"2019-01-14 10:10:00\"\n705\t        },\n706\t        \"peak\": {\n707\t          \"absolute_gap_c\": 3.7,\n708\t          \"row_index\": 133,\n709\t          \"setpoint_c\": 50.6,\n710\t          \"supply_c\": 54.3,\n711\t          \"timestamp\": \"2019-01-14 10:10:00\"\n712\t        },\n713\t        \"rule\": {\n714\t          \"operator\": \">\",\n715\t          \"status\": \"descriptive prior-POC convention; not a verified operational limit\",\n716\t          \"threshold_c\": 2.0\n717\t        },\n718\t        \"sample_count\": 1\n719\t      }\n720\t    },\n721\t    {\n722\t      \"id\": \"F-a012193d23d7\",\n723\t      \"interval\": \"2019-01-14 11:10:00 to 2019-01-14 11:10:00\",\n724\t      \"source_field\": \"temporal.episode.8\",\n725\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n726\t      \"text\": \"Episode 8, 2019-01-14 11:10:00 to 2019-01-14 11:10:00, 1 consecutive paired samples with absolute gap > 2.0 °C; first at 2019-01-14 11:10:00: secondary supply 59.0 °C, setpoint 55.9 °C, absolute gap 3.1 °C; last at 2019-01-14 11:10:00: secondary supply 59.0 °C, setpoint 55.9 °C, absolute gap 3.1 °C; peak at 2019-01-14 11:10:00: secondary supply 59.0 °C, setpoint 55.9 °C, absolute gap 3.1 °C\",\n727\t      \"unit\": \"°C\",\n728\t      \"value\": {\n729\t        \"first\": {\n730\t          \"absolute_gap_c\": 3.1,\n731\t          \"row_index\": 139,\n732\t          \"setpoint_c\": 55.9,\n733\t          \"supply_c\": 59.0,\n734\t          \"timestamp\": \"2019-01-14 11:10:00\"\n735\t        },\n736\t        \"interval\": \"2019-01-14 11:10:00 to 2019-01-14 11:10:00\",\n737\t        \"last\": {\n738\t          \"absolute_gap_c\": 3.1,\n739\t          \"row_index\": 139,\n740\t          \"setpoint_c\": 55.9,\n741\t          \"supply_c\": 59.0,\n742\t          \"timestamp\": \"2019-01-14 11:10:00\"\n743\t        },\n744\t        \"peak\": {\n745\t          \"absolute_gap_c\": 3.1,\n746\t          \"row_index\": 139,\n747\t          \"setpoint_c\": 55.9,\n748\t          \"supply_c\": 59.0,\n749\t          \"timestamp\": \"2019-01-14 11:10:00\"\n750\t        },\n751\t        \"rule\": {\n752\t          \"operator\": \">\",\n753\t          \"status\": \"descriptive prior-POC convention; not a verified operational limit\",\n754\t          \"threshold_c\": 2.0\n755\t        },\n756\t        \"sample_count\": 1\n757\t      }\n758\t    },\n759\t    {\n760\t      \"id\": \"F-b5ed0e8d6427\",\n761\t      \"interval\": \"2019-01-13 12:00:00\",\n762\t      \"source_field\": \"temporal.paired_first\",\n763\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n764\t      \"text\": \"first at 2019-01-13 12:00:00: secondary supply 51.1 °C, setpoint 50.8 °C, absolute gap 0.3 °C\",\n765\t      \"unit\": \"°C\",\n766\t      \"value\": {\n767\t        \"interval\": \"2019-01-13 12:00:00\",\n768\t        \"sample\": {\n769\t          \"absolute_gap_c\": 0.3,\n770\t          \"row_index\": 0,\n771\t          \"setpoint_c\": 50.8,\n772\t          \"supply_c\": 51.1,\n773\t          \"timestamp\": \"2019-01-13 12:00:00\"\n774\t        }\n775\t      }\n776\t    },\n777\t    {\n778\t      \"id\": \"F-e4a1700875bc\",\n779\t      \"interval\": \"2019-01-14 11:50:00\",\n780\t      \"source_field\": \"temporal.paired_last\",\n781\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n782\t      \"text\": \"last at 2019-01-14 11:50:00: secondary supply 56.15 °C, setpoint 57.150000000000006 °C, absolute gap 1.000000000000006 °C\",\n783\t      \"unit\": \"°C\",\n784\t      \"value\": {\n785\t        \"interval\": \"2019-01-14 11:50:00\",\n786\t        \"sample\": {\n787\t          \"absolute_gap_c\": 1.000000000000006,\n788\t          \"row_index\": 143,\n789\t          \"setpoint_c\": 57.150000000000006,\n790\t          \"supply_c\": 56.15,\n791\t          \"timestamp\": \"2019-01-14 11:50:00\"\n792\t        }\n793\t      }\n794\t    },\n795\t    {\n796\t      \"id\": \"F-761e8f8b4b9e\",\n797\t      \"interval\": \"2019-01-14 00:30:00\",\n798\t      \"source_field\": \"temporal.paired_peak_gap\",\n799\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n800\t      \"text\": \"peak_gap at 2019-01-14 00:30:00: secondary supply 60.1 °C, setpoint 54.0 °C, absolute gap 6.1 °C\",\n801\t      \"unit\": \"°C\",\n802\t      \"value\": {\n803\t        \"interval\": \"2019-01-14 00:30:00\",\n804\t        \"sample\": {\n805\t          \"absolute_gap_c\": 6.1,\n806\t          \"row_index\": 75,\n807\t          \"setpoint_c\": 54.0,\n808\t          \"supply_c\": 60.1,\n809\t          \"timestamp\": \"2019-01-14 00:30:00\"\n810\t        }\n811\t      }\n812\t    },\n813\t    {\n814\t      \"id\": \"F-0254400f79ff\",\n815\t      \"interval\": \"2019-01-13 23:50:00\",\n816\t      \"source_field\": \"temporal.window_pair\",\n817\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n818\t      \"text\": \"Paired reading at 2019-01-13 23:50:00: secondary supply 54.95 °C, setpoint 54.400000000000006 °C, absolute gap 0.55 °C\",\n819\t      \"unit\": \"°C\",\n820\t      \"value\": {\n821\t        \"interval\": \"2019-01-13 23:50:00\",\n822\t        \"sample\": {\n823\t          \"absolute_gap_c\": 0.55,\n824\t          \"setpoint_c\": 54.400000000000006,\n825\t          \"supply_c\": 54.95,\n826\t          \"timestamp\": \"2019-01-13 23:50:00\"\n827\t        }\n828\t      }\n829\t    },\n830\t    {\n831\t      \"id\": \"F-045a521b019b\",\n832\t      \"interval\": \"2019-01-13 23:30:00\",\n833\t      \"source_field\": \"temporal.window_pair\",\n834\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n835\t      \"text\": \"Paired reading at 2019-01-13 23:30:00: secondary supply 55.4 °C, setpoint 54.9 °C, absolute gap 0.5 °C\",\n836\t      \"unit\": \"°C\",\n837\t      \"value\": {\n838\t        \"interval\": \"2019-01-13 23:30:00\",\n839\t        \"sample\": {\n840\t          \"absolute_gap_c\": 0.5,\n841\t          \"setpoint_c\": 54.9,\n842\t          \"supply_c\": 55.4,\n843\t          \"timestamp\": \"2019-01-13 23:30:00\"\n844\t        }\n845\t      }\n846\t    },\n847\t    {\n848\t      \"id\": \"F-04cceb8aff09\",\n849\t      \"interval\": \"2019-01-13 20:50:00\",\n850\t      \"source_field\": \"temporal.window_pair\",\n851\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n852\t      \"text\": \"Paired reading at 2019-01-13 20:50:00: secondary supply 50.35 °C, setpoint 50.2 °C, absolute gap 0.15 °C\",\n853\t      \"unit\": \"°C\",\n854\t      \"value\": {\n855\t        \"interval\": \"2019-01-13 20:50:00\",\n856\t        \"sample\": {\n857\t          \"absolute_gap_c\": 0.15,\n858\t          \"setpoint_c\": 50.2,\n859\t          \"supply_c\": 50.35,\n860\t          \"timestamp\": \"2019-01-13 20:50:00\"\n861\t        }\n862\t      }\n863\t    },\n864\t    {\n865\t      \"id\": \"F-04e5b97a9cb1\",\n866\t      \"interval\": \"2019-01-14 09:50:00\",\n867\t      \"source_field\": \"temporal.window_pair\",\n868\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n869\t      \"text\": \"Paired reading at 2019-01-14 09:50:00: secondary supply 53.05 °C, setpoint 53.65 °C, absolute gap 0.6 °C\",\n870\t      \"unit\": \"°C\",\n871\t      \"value\": {\n872\t        \"interval\": \"2019-01-14 09:50:00\",\n873\t        \"sample\": {\n874\t          \"absolute_gap_c\": 0.6,\n875\t          \"setpoint_c\": 53.65,\n876\t          \"supply_c\": 53.05,\n877\t          \"timestamp\": \"2019-01-14 09:50:00\"\n878\t        }\n879\t      }\n880\t    },\n881\t    {\n882\t      \"id\": \"F-06b649e1b3cb\",\n883\t      \"interval\": \"2019-01-14 08:00:00\",\n884\t      \"source_field\": \"temporal.window_pair\",\n885\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n886\t      \"text\": \"Paired reading at 2019-01-14 08:00:00: secondary supply 53.4 °C, setpoint 53.0 °C, absolute gap 0.4 °C\",\n887\t      \"unit\": \"°C\",\n888\t      \"value\": {\n889\t        \"interval\": \"2019-01-14 08:00:00\",\n890\t        \"sample\": {\n891\t          \"absolute_gap_c\": 0.4,\n892\t          \"setpoint_c\": 53.0,\n893\t          \"supply_c\": 53.4,\n894\t          \"timestamp\": \"2019-01-14 08:00:00\"\n895\t        }\n896\t      }\n897\t    },\n898\t    {\n899\t      \"id\": \"F-08014f498b6a\",\n900\t      \"interval\": \"2019-01-14 10:40:00\",\n901\t      \"source_field\": \"temporal.window_pair\",\n902\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n903\t      \"text\": \"Paired reading at 2019-01-14 10:40:00: secondary supply 55.7 °C, setpoint 55.4 °C, absolute gap 0.3 °C\",\n904\t      \"unit\": \"°C\",\n905\t      \"value\": {\n906\t        \"interval\": \"2019-01-14 10:40:00\",\n907\t        \"sample\": {\n908\t          \"absolute_gap_c\": 0.3,\n909\t          \"setpoint_c\": 55.4,\n910\t          \"supply_c\": 55.7,\n911\t          \"timestamp\": \"2019-01-14 10:40:00\"\n912\t        }\n913\t      }\n914\t    },\n915\t    {\n916\t      \"id\": \"F-089b615c1463\",\n917\t      \"interval\": \"2019-01-13 21:40:00\",\n918\t      \"source_field\": \"temporal.window_pair\",\n919\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n920\t      \"text\": \"Paired reading at 2019-01-13 21:40:00: secondary supply 53.1 °C, setpoint 52.7 °C, absolute gap 0.4 °C\",\n921\t      \"unit\": \"°C\",\n922\t      \"value\": {\n923\t        \"interval\": \"2019-01-13 21:40:00\",\n924\t        \"sample\": {\n925\t          \"absolute_gap_c\": 0.4,\n926\t          \"setpoint_c\": 52.7,\n927\t          \"supply_c\": 53.1,\n928\t          \"timestamp\": \"2019-01-13 21:40:00\"\n929\t        }\n930\t      }\n931\t    },\n932\t    {\n933\t      \"id\": \"F-0a7c9128002d\",\n934\t      \"interval\": \"2019-01-14 03:50:00\",\n935\t      \"source_field\": \"temporal.window_pair\",\n936\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n937\t      \"text\": \"Paired reading at 2019-01-14 03:50:00: secondary supply 52.4 °C, setpoint 52.4 °C, absolute gap 0.0 °C\",\n938\t      \"unit\": \"°C\",\n939\t      \"value\": {\n940\t        \"interval\": \"2019-01-14 03:50:00\",\n941\t        \"sample\": {\n942\t          \"absolute_gap_c\": 0.0,\n943\t          \"setpoint_c\": 52.4,\n944\t          \"supply_c\": 52.4,\n945\t          \"timestamp\": \"2019-01-14 03:50:00\"\n946\t        }\n947\t      }\n948\t    },\n949\t    {\n950\t      \"id\": \"F-104fe1ba8db4\",\n951\t      \"interval\": \"2019-01-14 06:30:00\",\n952\t      \"source_field\": \"temporal.window_pair\",\n953\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n954\t      \"text\": \"Paired reading at 2019-01-14 06:30:00: secondary supply 51.6 °C, setpoint 52.6 °C, absolute gap 1.0 °C\",\n955\t      \"unit\": \"°C\",\n956\t      \"value\": {\n957\t        \"interval\": \"2019-01-14 06:30:00\",\n958\t        \"sample\": {\n959\t          \"absolute_gap_c\": 1.0,\n960\t          \"setpoint_c\": 52.6,\n961\t          \"supply_c\": 51.6,\n962\t          \"timestamp\": \"2019-01-14 06:30:00\"\n963\t        }\n964\t      }\n965\t    },\n966\t    {\n967\t      \"id\": \"F-149c39ac3d93\",\n968\t      \"interval\": \"2019-01-13 14:00:00\",\n969\t      \"source_field\": \"temporal.window_pair\",\n970\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n971\t      \"text\": \"Paired reading at 2019-01-13 14:00:00: secondary supply 51.2 °C, setpoint 51.7 °C, absolute gap 0.5 °C\",\n972\t      \"unit\": \"°C\",\n973\t      \"value\": {\n974\t        \"interval\": \"2019-01-13 14:00:00\",\n975\t        \"sample\": {\n976\t          \"absolute_gap_c\": 0.5,\n977\t          \"setpoint_c\": 51.7,\n978\t          \"supply_c\": 51.2,\n979\t          \"timestamp\": \"2019-01-13 14:00:00\"\n980\t        }\n981\t      }\n982\t    },\n983\t    {\n984\t      \"id\": \"F-157c62dfd020\",\n985\t      \"interval\": \"2019-01-13 22:30:00\",\n986\t      \"source_field\": \"temporal.window_pair\",\n987\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n988\t      \"text\": \"Paired reading at 2019-01-13 22:30:00: secondary supply 51.0 °C, setpoint 52.0 °C, absolute gap 1.0 °C\",\n989\t      \"unit\": \"°C\",\n990\t      \"value\": {\n991\t        \"interval\": \"2019-01-13 22:30:00\",\n992\t        \"sample\": {\n993\t          \"absolute_gap_c\": 1.0,\n994\t          \"setpoint_c\": 52.0,\n995\t          \"supply_c\": 51.0,\n996\t          \"timestamp\": \"2019-01-13 22:30:00\"\n997\t        }\n998\t      }\n999\t    },\n1000\t    {\n1001\t      \"id\": \"F-1663d75b19c2\",\n1002\t      \"interval\": \"2019-01-13 18:10:00\",\n1003\t      \"source_field\": \"temporal.window_pair\",\n1004\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n1005\t      \"text\": \"Paired reading at 2019-01-13 18:10:00: secondary supply 51.4 °C, setpoint 51.4 °C, absolute gap 0.0 °C\",\n1006\t      \"unit\": \"°C\",\n1007\t      \"value\": {\n1008\t        \"interval\": \"2019-01-13 18:10:00\",\n1009\t        \"sample\": {\n1010\t          \"absolute_gap_c\": 0.0,\n1011\t          \"setpoint_c\": 51.4,\n1012\t          \"supply_c\": 51.4,\n1013\t          \"timestamp\": \"2019-01-13 18:10:00\"\n1014\t        }\n1015\t      }\n1016\t    },\n1017\t    {\n1018\t      \"id\": \"F-1677bf2953e6\",\n1019\t      \"interval\": \"2019-01-13 13:30:00\",\n1020\t      \"source_field\": \"temporal.window_pair\",\n1021\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n1022\t      \"text\": \"Paired reading at 2019-01-13 13:30:00: secondary supply 51.6 °C, setpoint 51.1 °C, absolute gap 0.5 °C\",\n1023\t      \"unit\": \"°C\",\n1024\t      \"value\": {\n1025\t        \"interval\": \"2019-01-13 13:30:00\",\n1026\t        \"sample\": {\n1027\t          \"absolute_gap_c\": 0.5,\n1028\t          \"setpoint_c\": 51.1,\n1029\t          \"supply_c\": 51.6,\n1030\t          \"timestamp\": \"2019-01-13 13:30:00\"\n1031\t        }\n1032\t      }\n1033\t    },\n1034\t    {\n1035\t      \"id\": \"F-21dedbd93b90\",\n1036\t      \"interval\": \"2019-01-13 17:00:00\",\n1037\t      \"source_field\": \"temporal.window_pair\",\n1038\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n1039\t      \"text\": \"Paired reading at 2019-01-13 17:00:00: secondary supply 51.7 °C, setpoint 51.7 °C, absolute gap 0.0 °C\",\n1040\t      \"unit\": \"°C\",\n1041\t      \"value\": {\n1042\t        \"interval\": \"2019-01-13 17:00:00\",\n1043\t        \"sample\": {\n1044\t          \"absolute_gap_c\": 0.0,\n1045\t          \"setpoint_c\": 51.7,\n1046\t          \"supply_c\": 51.7,\n1047\t          \"timestamp\": \"2019-01-13 17:00:00\"\n1048\t        }\n1049\t      }\n1050\t    },\n1051\t    {\n1052\t      \"id\": \"F-24c15cc6db08\",\n1053\t      \"interval\": \"2019-01-13 12:40:00\",\n1054\t      \"source_field\": \"temporal.window_pair\",\n1055\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n1056\t      \"text\": \"Paired reading at 2019-01-13 12:40:00: secondary supply 51.7 °C, setpoint 51.3 °C, absolute gap 0.4 °C\",\n1057\t      \"unit\": \"°C\",\n1058\t      \"value\": {\n1059\t        \"interval\": \"2019-01-13 12:40:00\",\n1060\t        \"sample\": {\n1061\t          \"absolute_gap_c\": 0.4,\n1062\t          \"setpoint_c\": 51.3,\n1063\t          \"supply_c\": 51.7,\n1064\t          \"timestamp\": \"2019-01-13 12:40:00\"\n1065\t        }\n1066\t      }\n1067\t    },\n1068\t    {\n1069\t      \"id\": \"F-252547ade143\",\n1070\t      \"interval\": \"2019-01-14 03:00:00\",\n1071\t      \"source_field\": \"temporal.window_pair\",\n1072\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n1073\t      \"text\": \"Paired reading at 2019-01-14 03:00:00: secondary supply 52.4 °C, setpoint 52.9 °C, absolute gap 0.5 °C\",\n1074\t      \"unit\": \"°C\",\n1075\t      \"value\": {\n1076\t        \"interval\": \"2019-01-14 03:00:00\",\n1077\t        \"sample\": {\n1078\t          \"absolute_gap_c\": 0.5,\n1079\t          \"setpoint_c\": 52.9,\n1080\t          \"supply_c\": 52.4,\n1081\t          \"timestamp\": \"2019-01-14 03:00:00\"\n1082\t        }\n1083\t      }\n1084\t    },\n1085\t    {\n1086\t      \"id\": \"F-25561973d7fb\",\n1087\t      \"interval\": \"2019-01-13 13:00:00\",\n1088\t      \"source_field\": \"temporal.window_pair\",\n1089\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n1090\t      \"text\": \"Paired reading at 2019-01-13 13:00:00: secondary supply 51.2 °C, setpoint 51.2 °C, absolute gap 0.0 °C\",\n1091\t      \"unit\": \"°C\",\n1092\t      \"value\": {\n1093\t        \"interval\": \"2019-01-13 13:00:00\",\n1094\t        \"sample\": {\n1095\t          \"absolute_gap_c\": 0.0,\n1096\t          \"setpoint_c\": 51.2,\n1097\t          \"supply_c\": 51.2,\n1098\t          \"timestamp\": \"2019-01-13 13:00:00\"\n1099\t        }\n1100\t      }\n1101\t    },\n1102\t    {\n1103\t      \"id\": \"F-257de81d35ca\",\n1104\t      \"interval\": \"2019-01-14 01:20:00\",\n1105\t      \"source_field\": \"temporal.window_pair\",\n1106\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n1107\t      \"text\": \"Paired reading at 2019-01-14 01:20:00: secondary supply 54.1 °C, setpoint 53.6 °C, absolute gap 0.5 °C\",\n1108\t      \"unit\": \"°C\",\n1109\t      \"value\": {\n1110\t        \"interval\": \"2019-01-14 01:20:00\",\n1111\t        \"sample\": {\n1112\t          \"absolute_gap_c\": 0.5,\n1113\t          \"setpoint_c\": 53.6,\n1114\t          \"supply_c\": 54.1,\n1115\t          \"timestamp\": \"2019-01-14 01:20:00\"\n1116\t        }\n1117\t      }\n1118\t    },\n1119\t    {\n1120\t      \"id\": \"F-282da17f9672\",\n1121\t      \"interval\": \"2019-01-13 17:50:00\",\n1122\t      \"source_field\": \"temporal.window_pair\",\n1123\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n1124\t      \"text\": \"Paired reading at 2019-01-13 17:50:00: secondary supply 52.2 °C, setpoint 51.0 °C, absolute gap 1.2 °C\",\n1125\t      \"unit\": \"°C\",\n1126\t      \"value\": {\n1127\t        \"interval\": \"2019-01-13 17:50:00\",\n1128\t        \"sample\": {\n1129\t          \"absolute_gap_c\": 1.2,\n1130\t          \"setpoint_c\": 51.0,\n1131\t          \"supply_c\": 52.2,\n1132\t          \"timestamp\": \"2019-01-13 17:50:00\"\n1133\t        }\n1134\t      }\n1135\t    },\n1136\t    {\n1137\t      \"id\": \"F-289d1748fb02\",\n1138\t      \"interval\": \"2019-01-13 21:30:00\",\n1139\t      \"source_field\": \"temporal.window_pair\",\n1140\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n1141\t      \"text\": \"Paired reading at 2019-01-13 21:30:00: secondary supply 51.5 °C, setpoint 51.4 °C, absolute gap 0.1 °C\",\n1142\t      \"unit\": \"°C\",\n1143\t      \"value\": {\n1144\t        \"interval\": \"2019-01-13 21:30:00\",\n1145\t        \"sample\": {\n1146\t          \"absolute_gap_c\": 0.1,\n1147\t          \"setpoint_c\": 51.4,\n1148\t          \"supply_c\": 51.5,\n1149\t          \"timestamp\": \"2019-01-13 21:30:00\"\n1150\t        }\n1151\t      }\n1152\t    },\n1153\t    {\n1154\t      \"id\": \"F-291b5d3d25b7\",\n1155\t      \"interval\": \"2019-01-13 18:50:00\",\n1156\t      \"source_field\": \"temporal.window_pair\",\n1157\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n1158\t      \"text\": \"Paired reading at 2019-01-13 18:50:00: secondary supply 52.6 °C, setpoint 52.7 °C, absolute gap 0.1 °C\",\n1159\t      \"unit\": \"°C\",\n1160\t      \"value\": {\n1161\t        \"interval\": \"2019-01-13 18:50:00\",\n1162\t        \"sample\": {\n1163\t          \"absolute_gap_c\": 0.1,\n1164\t          \"setpoint_c\": 52.7,\n1165\t          \"supply_c\": 52.6,\n1166\t          \"timestamp\": \"2019-01-13 18:50:00\"\n1167\t        }\n1168\t      }\n1169\t    },\n1170\t    {\n1171\t      \"id\": \"F-29f808389e27\",\n1172\t      \"interval\": \"2019-01-13 16:10:00\",\n1173\t      \"source_field\": \"temporal.window_pair\",\n1174\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n1175\t      \"text\": \"Paired reading at 2019-01-13 16:10:00: secondary supply 52.0 °C, setpoint 51.1 °C, absolute gap 0.9 °C\",\n1176\t      \"unit\": \"°C\",\n1177\t      \"value\": {\n1178\t        \"interval\": \"2019-01-13 16:10:00\",\n1179\t        \"sample\": {\n1180\t          \"absolute_gap_c\": 0.9,\n1181\t          \"setpoint_c\": 51.1,\n1182\t          \"supply_c\": 52.0,\n1183\t          \"timestamp\": \"2019-01-13 16:10:00\"\n1184\t        }\n1185\t      }\n1186\t    },\n1187\t    {\n1188\t      \"id\": \"F-2cfaedf1fcdd\",\n1189\t      \"interval\": \"2019-01-13 22:00:00\",\n1190\t      \"source_field\": \"temporal.window_pair\",\n1191\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n1192\t      \"text\": \"Paired reading at 2019-01-13 22:00:00: secondary supply 51.9 °C, setpoint 52.7 °C, absolute gap 0.8 °C\",\n1193\t      \"unit\": \"°C\",\n1194\t      \"value\": {\n1195\t        \"interval\": \"2019-01-13 22:00:00\",\n1196\t        \"sample\": {\n1197\t          \"absolute_gap_c\": 0.8,\n1198\t          \"setpoint_c\": 52.7,\n1199\t          \"supply_c\": 51.9,\n1200\t          \"timestamp\": \"2019-01-13 22:00:00\"\n1201\t        }\n1202\t      }\n1203\t    },\n1204\t    {\n1205\t      \"id\": \"F-2ee1e3f20557\",\n1206\t      \"interval\": \"2019-01-13 20:20:00\",\n1207\t      \"source_field\": \"temporal.window_pair\",\n1208\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n1209\t      \"text\": \"Paired reading at 2019-01-13 20:20:00: secondary supply 50.65 °C, setpoint 50.8 °C, absolute gap 0.15 °C\",\n1210\t      \"unit\": \"°C\",\n1211\t      \"value\": {\n1212\t        \"interval\": \"2019-01-13 20:20:00\",\n1213\t        \"sample\": {\n1214\t          \"absolute_gap_c\": 0.15,\n1215\t          \"setpoint_c\": 50.8,\n1216\t          \"supply_c\": 50.65,\n1217\t          \"timestamp\": \"2019-01-13 20:20:00\"\n1218\t        }\n1219\t      }\n1220\t    },\n1221\t    {\n1222\t      \"id\": \"F-330fa7917f1c\",\n1223\t      \"interval\": \"2019-01-14 11:10:00\",\n1224\t      \"source_field\": \"temporal.window_pair\",\n1225\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n1226\t      \"text\": \"Paired reading at 2019-01-14 11:10:00: secondary supply 59.0 °C, setpoint 55.9 °C, absolute gap 3.1 °C\",\n1227\t      \"unit\": \"°C\",\n1228\t      \"value\": {\n1229\t        \"interval\": \"2019-01-14 11:10:00\",\n1230\t        \"sample\": {\n1231\t          \"absolute_gap_c\": 3.1,\n1232\t          \"setpoint_c\": 55.9,\n1233\t          \"supply_c\": 59.0,\n1234\t          \"timestamp\": \"2019-01-14 11:10:00\"\n1235\t        }\n1236\t      }\n1237\t    },\n1238\t    {\n1239\t      \"id\": \"F-33928b0310e5\",\n1240\t      \"interval\": \"2019-01-14 00:30:00\",\n1241\t      \"source_field\": \"temporal.window_pair\",\n1242\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n1243\t      \"text\": \"Paired reading at 2019-01-14 00:30:00: secondary supply 60.1 °C, setpoint 54.0 °C, absolute gap 6.1 °C\",\n1244\t      \"unit\": \"°C\",\n1245\t      \"value\": {\n1246\t        \"interval\": \"2019-01-14 00:30:00\",\n1247\t        \"sample\": {\n1248\t          \"absolute_gap_c\": 6.1,\n1249\t          \"setpoint_c\": 54.0,\n1250\t          \"supply_c\": 60.1,\n1251\t          \"timestamp\": \"2019-01-14 00:30:00\"\n1252\t        }\n1253\t      }\n1254\t    },\n1255\t    {\n1256\t      \"id\": \"F-351d8db80414\",\n1257\t      \"interval\": \"2019-01-14 05:00:00\",\n1258\t      \"source_field\": \"temporal.window_pair\",\n1259\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n1260\t      \"text\": \"Paired reading at 2019-01-14 05:00:00: secondary supply 51.5 °C, setpoint 52.1 °C, absolute gap 0.6 °C\",\n1261\t      \"unit\": \"°C\",\n1262\t      \"value\": {\n1263\t        \"interval\": \"2019-01-14 05:00:00\",\n1264\t        \"sample\": {\n1265\t          \"absolute_gap_c\": 0.6,\n1266\t          \"setpoint_c\": 52.1,\n1267\t          \"supply_c\": 51.5,\n1268\t          \"timestamp\": \"2019-01-14 05:00:00\"\n1269\t        }\n1270\t      }\n1271\t    },\n1272\t    {\n1273\t      \"id\": \"F-3963dace0f1f\",\n1274\t      \"interval\": \"2019-01-14 05:20:00\",\n1275\t      \"source_field\": \"temporal.window_pair\",\n1276\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n1277\t      \"text\": \"Paired reading at 2019-01-14 05:20:00: secondary supply 52.5 °C, setpoint 52.2 °C, absolute gap 0.3 °C\",\n1278\t      \"unit\": \"°C\",\n1279\t      \"value\": {\n1280\t        \"interval\": \"2019-01-14 05:20:00\",\n1281\t        \"sample\": {\n1282\t          \"absolute_gap_c\": 0.3,\n1283\t          \"setpoint_c\": 52.2,\n1284\t          \"supply_c\": 52.5,\n1285\t          \"timestamp\": \"2019-01-14 05:20:00\"\n1286\t        }\n1287\t      }\n1288\t    },\n1289\t    {\n1290\t      \"id\": \"F-3e9ebb09c39e\",\n1291\t      \"interval\": \"2019-01-13 15:20:00\",\n1292\t      \"source_field\": \"temporal.window_pair\",\n1293\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n1294\t      \"text\": \"Paired reading at 2019-01-13 15:20:00: secondary supply 51.1 °C, setpoint 51.05 °C, absolute gap 0.05 °C\",\n1295\t      \"unit\": \"°C\",\n1296\t      \"value\": {\n1297\t        \"interval\": \"2019-01-13 15:20:00\",\n1298\t        \"sample\": {\n1299\t          \"absolute_gap_c\": 0.05,\n1300\t          \"setpoint_c\": 51.05,\n1301\t          \"supply_c\": 51.1,\n1302\t          \"timestamp\": \"2019-01-13 15:20:00\"\n1303\t        }\n1304\t      }\n1305\t    },\n1306\t    {\n1307\t      \"id\": \"F-3f0e02e372db\",\n1308\t      \"interval\": \"2019-01-14 10:10:00\",\n1309\t      \"source_field\": \"temporal.window_pair\",\n1310\t      \"source_id\": \"PreDist-M1-substation-11-operational-data\",\n1311\t      \"text\": \"Paired reading at 2019-01-14 10:10:00: secondary supply 54.3 °C, setpoint 50.6 °C, absolute gap 3.7 °C\",\n1312\t      \"unit\": \"°C\",\n1313\t      \"value\": {\n1314\t        \"interval\": \"2019-01-14 10:10:00\",\n1315\t        \"sample\": {\n1316\t          \"absolute_gap_c\": 3.7,\n1317\t          \"setpoint_c\": 50.6,",
+      "truncated": false
+    },
+    {
+      "tool_use_id": "toolu_013EaYbEyUxaiLvMFwCaVyPi",
+      "is_error": false,
+      "content": "Structured output provided successfully",
+      "truncated": false
+    }
+  ],
+  "raw_answer": "{\"limit_ids\":[\"L-no-room-evidence\",\"L-no-normal-range\",\"L-primary-flow\",\"L-prior-not-current\",\"L-retrospective\"],\"next_checks\":[{\"id\":\"C-maintenance\",\"because_fact_ids\":[\"F-5a1d11f35dcc\",\"F-2195fc4b35e4\",\"F-c507baa5efdb\",\"F-092e808d758e\"],\"rationale\":\"Prior fault-20 involved a safety-valve flood (thematically similar to leakage) and a fault-type disturbance on the same date; check maintenance/completion records before linking to today's report.\"},{\"id\":\"C-secondary-flow\",\"because_fact_ids\":[\"F-adee5c9cecc9\",\"F-fdc336db150d\",\"F-b1eca2b19d7b\",\"F-3b603acb1e46\"],\"rationale\":\"Only primary network meter flow is available in the window (113-371 l/h); secondary/customer circuit flow is needed to assess any leakage-related flow impact, with no stated normal range.\"},{\"id\":\"C-room-impact\",\"because_fact_ids\":[\"F-8470e3c8fc29\",\"F-6690b49d5176\",\"F-2a57009004eb\",\"F-1bc5b051869d\"],\"rationale\":\"Secondary supply temperature tracks its setpoint closely (mean gap 0.62°C, 134/144 samples within 2°C), but this does not confirm heat actually reached rooms given the leakage report.\"}]}",
+  "structured_output": {
+    "limit_ids": [
+      "L-no-room-evidence",
+      "L-no-normal-range",
+      "L-primary-flow",
+      "L-prior-not-current",
+      "L-retrospective"
+    ],
+    "next_checks": [
+      {
+        "id": "C-maintenance",
+        "because_fact_ids": [
+          "F-5a1d11f35dcc",
+          "F-2195fc4b35e4",
+          "F-c507baa5efdb",
+          "F-092e808d758e"
+        ],
+        "rationale": "Prior fault-20 involved a safety-valve flood (thematically similar to leakage) and a fault-type disturbance on the same date; check maintenance/completion records before linking to today's report."
+      },
+      {
+        "id": "C-secondary-flow",
+        "because_fact_ids": [
+          "F-adee5c9cecc9",
+          "F-fdc336db150d",
+          "F-b1eca2b19d7b",
+          "F-3b603acb1e46"
+        ],
+        "rationale": "Only primary network meter flow is available in the window (113-371 l/h); secondary/customer circuit flow is needed to assess any leakage-related flow impact, with no stated normal range."
+      },
+      {
+        "id": "C-room-impact",
+        "because_fact_ids": [
+          "F-8470e3c8fc29",
+          "F-6690b49d5176",
+          "F-2a57009004eb",
+          "F-1bc5b051869d"
+        ],
+        "rationale": "Secondary supply temperature tracks its setpoint closely (mean gap 0.62°C, 134/144 samples within 2°C), but this does not confirm heat actually reached rooms given the leakage report."
+      }
+    ]
+  },
+  "is_error": false,
+  "subtype": "success",
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 43509,
+    "cache_read_input_tokens": 28771,
+    "output_tokens": 5541,
+    "output_tokens_details": {
+      "thinking_tokens": 4358
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 43509,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 4876,
+        "cache_read_input_tokens": 17510,
+        "cache_creation_input_tokens": 25999,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 25999
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "total_cost_usd": 0.2352122,
+  "num_turns": 8,
+  "model_mismatch": false,
+  "unavailable_tool_calls": [],
+  "method": "restricted_file_agent_plan_first_temporal_v1",
+  "case_id": "PreDist-M1-fault-65",
+  "corpus_sha256": "9808a8acc1546098d8970163924ef3188011960fbe1bd56e070539a9dd5c27de",
+  "native_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "limit_ids",
+      "next_checks"
+    ],
+    "properties": {
+      "limit_ids": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "L-no-room-evidence",
+            "L-no-normal-range",
+            "L-primary-flow",
+            "L-prior-not-current",
+            "L-retrospective"
+          ]
+        }
+      },
+      "next_checks": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 3,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "because_fact_ids",
+            "rationale"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "enum": [
+                "C-room-impact",
+                "C-secondary-flow",
+                "C-controls",
+                "C-sensor",
+                "C-maintenance",
+                "C-more-data"
+              ]
+            },
+            "because_fact_ids": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 4,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "F-e23273e765d4",
+                  "F-aa5d80ddc884",
+                  "F-d91c507619e5",
+                  "F-5490e9a290fb",
+                  "F-c507baa5efdb",
+                  "F-092e808d758e",
+                  "F-12b0dc3012c4",
+                  "F-96639f831019",
+                  "F-6d0582a86b46",
+                  "F-951ef835e83e",
+                  "F-09b381ec1c07",
+                  "F-dd182fff4b7e",
+                  "F-5a1d11f35dcc",
+                  "F-2195fc4b35e4",
+                  "F-ffd3deac3dc2",
+                  "F-bdfb0b36cb88",
+                  "F-56f30eaa1d88",
+                  "F-a241180f22a0",
+                  "F-9e414356dc5a",
+                  "F-1dbc66d3e170",
+                  "F-4ee782a11aec",
+                  "F-18a960fe049c",
+                  "F-b1ae5c8aa1f6",
+                  "F-46d398ec43b9",
+                  "F-cb4b56e22326",
+                  "F-93af5d872e1c",
+                  "F-adee5c9cecc9",
+                  "F-fdc336db150d",
+                  "F-b1eca2b19d7b",
+                  "F-727232a8c338",
+                  "F-3b603acb1e46",
+                  "F-9464511ba633",
+                  "F-1ffb63a51662",
+                  "F-503a44963c33",
+                  "F-067513bb847e",
+                  "F-88cac4ba82b1",
+                  "F-823ceb1bf348",
+                  "F-09d290e0b5c7",
+                  "F-c53fe7a23a94",
+                  "F-e851810ab40a",
+                  "F-e23cb6da28be",
+                  "F-8470e3c8fc29",
+                  "F-6690b49d5176",
+                  "F-bdffbb151e56",
+                  "F-0f5b2a1a6e23",
+                  "F-15723be6083c",
+                  "F-86e42e089939",
+                  "F-2a57009004eb",
+                  "F-76ed6f63d23f",
+                  "F-1bc5b051869d",
+                  "F-9fc78e625bba",
+                  "F-32a695c53978",
+                  "F-4973054dde94",
+                  "F-2fdababaaa59",
+                  "F-0ab97ffcea32",
+                  "F-34d95eb80f6f",
+                  "F-40e02ca3aeb4",
+                  "F-a012193d23d7",
+                  "F-b5ed0e8d6427",
+                  "F-e4a1700875bc",
+                  "F-761e8f8b4b9e",
+                  "F-0254400f79ff",
+                  "F-045a521b019b",
+                  "F-04cceb8aff09",
+                  "F-04e5b97a9cb1",
+                  "F-06b649e1b3cb",
+                  "F-08014f498b6a",
+                  "F-089b615c1463",
+                  "F-0a7c9128002d",
+                  "F-104fe1ba8db4",
+                  "F-149c39ac3d93",
+                  "F-157c62dfd020",
+                  "F-1663d75b19c2",
+                  "F-1677bf2953e6",
+                  "F-21dedbd93b90",
+                  "F-24c15cc6db08",
+                  "F-252547ade143",
+                  "F-25561973d7fb",
+                  "F-257de81d35ca",
+                  "F-282da17f9672",
+                  "F-289d1748fb02",
+                  "F-291b5d3d25b7",
+                  "F-29f808389e27",
+                  "F-2cfaedf1fcdd",
+                  "F-2ee1e3f20557",
+                  "F-330fa7917f1c",
+                  "F-33928b0310e5",
+                  "F-351d8db80414",
+                  "F-3963dace0f1f",
+                  "F-3e9ebb09c39e",
+                  "F-3f0e02e372db",
+                  "F-400ef9a60ea0",
+                  "F-408a682a5a0c",
+                  "F-40a249899380",
+                  "F-4230bafcfa42",
+                  "F-432edcb6f7e2",
+                  "F-439145608d20",
+                  "F-442f36b0d488",
+                  "F-44a3daede341",
+                  "F-44cf86ac80aa",
+                  "F-45a82f445c4e",
+                  "F-45c92f527c46",
+                  "F-4646449d78f1",
+                  "F-474d112619e3",
+                  "F-47694accb1d8",
+                  "F-48c87502cfe1",
+                  "F-4a54591f1b4a",
+                  "F-4a6e0ad3f4e2",
+                  "F-4b132765abbb",
+                  "F-4beea3de50e0",
+                  "F-4cb0f1f608ed",
+                  "F-4e8f48cf1b99",
+                  "F-51df769eb9cd",
+                  "F-52820da650b5",
+                  "F-537d395fa8be",
+                  "F-54375eeb38fb",
+                  "F-55d1027b8cd4",
+                  "F-5626ac39a418",
+                  "F-5c66d534ba77",
+                  "F-61985839766a",
+                  "F-61bc831aca24",
+                  "F-65af1a45fdee",
+                  "F-66846f9d0f70",
+                  "F-66ce21ab09bc",
+                  "F-67606868e025",
+                  "F-69a04ec8f7bb",
+                  "F-6d26a0e971e7",
+                  "F-6d5605e2aa0a",
+                  "F-6d6032392659",
+                  "F-6e8e59a526dd",
+                  "F-6f55be359c62",
+                  "F-7030889ed346",
+                  "F-7646ae5b868c",
+                  "F-779f816a2584",
+                  "F-7b5b5288663b",
+                  "F-7bb75af28c85",
+                  "F-7c4bbcebb410",
+                  "F-7e44e3efa766",
+                  "F-7fa9fb262188",
+                  "F-8026c6f5a97e",
+                  "F-80453e7b567b",
+                  "F-833b5242eb31",
+                  "F-871c7263d51d",
+                  "F-8b3090659a88",
+                  "F-8bf3e295f5ab",
+                  "F-8ef2f3a2e0a3",
+                  "F-8f436ecba860",
+                  "F-917e285ece61",
+                  "F-95ac4d6f2673",
+                  "F-97864ca04847",
+                  "F-9880fdccc71c",
+                  "F-99081881c00d",
+                  "F-9a4d8aa1fc31",
+                  "F-9dfe04f78baf",
+                  "F-9e8549045ef0",
+                  "F-9f9a0043548c",
+                  "F-a01bff6da07a",
+                  "F-a8ed4c12d0c8",
+                  "F-acb093003b84",
+                  "F-ace17f84e6f9",
+                  "F-afa61ec3a213",
+                  "F-b04d43110bce",
+                  "F-b216ce4ee252",
+                  "F-b348876a9255",
+                  "F-b79cfc284771",
+                  "F-b9052ccd06ac",
+                  "F-ba5369a78bce",
+                  "F-c1f384d47062",
+                  "F-c3614361267b",
+                  "F-c610896f7d4a",
+                  "F-c70a59bb52af",
+                  "F-c82483354ee2",
+                  "F-c8727849f39c",
+                  "F-cb44bb02caf7",
+                  "F-cc754b193505",
+                  "F-cfbf6fed258e",
+                  "F-cfec7f6420cd",
+                  "F-d108653e41f3",
+                  "F-d1b8777c4bfa",
+                  "F-d587a99198d8",
+                  "F-d78b59c84012",
+                  "F-d87c573b61b6",
+                  "F-d9cd536443ae",
+                  "F-dc1d0cbc0296",
+                  "F-ddc457db0555",
+                  "F-dde5cb01b4c5",
+                  "F-df191cc78d52",
+                  "F-e003323ee49b",
+                  "F-e071ec7f4caf",
+                  "F-e0d02812638a",
+                  "F-e7b19a05178b",
+                  "F-e7df7d7e38a3",
+                  "F-e8ba47602423",
+                  "F-ed1039ac3150",
+                  "F-ede2f3a46b53",
+                  "F-f0b2d9ed1dbb",
+                  "F-f4b8819d89e5",
+                  "F-f5c270831790",
+                  "F-f65c947019cb",
+                  "F-f6d05b5416fa",
+                  "F-fb30e9c8ae79",
+                  "F-fb3c85353079",
+                  "F-fb84a0613be3",
+                  "F-fcb314337f10",
+                  "F-fcd5eb9ac8f2"
+                ]
+              }
+            },
+            "rationale": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 240
+            }
+          }
+        }
+      }
+    }
+  },
+  "raw_plan": "{\"limit_ids\": [\"L-no-room-evidence\", \"L-no-normal-range\", \"L-primary-flow\", \"L-prior-not-current\", \"L-retrospective\"], \"next_checks\": [{\"because_fact_ids\": [\"F-5a1d11f35dcc\", \"F-2195fc4b35e4\", \"F-c507baa5efdb\", \"F-092e808d758e\"], \"id\": \"C-maintenance\", \"rationale\": \"Prior fault-20 involved a safety-valve flood (thematically similar to leakage) and a fault-type disturbance on the same date; check maintenance/completion records before linking to today's report.\"}, {\"because_fact_ids\": [\"F-adee5c9cecc9\", \"F-fdc336db150d\", \"F-b1eca2b19d7b\", \"F-3b603acb1e46\"], \"id\": \"C-secondary-flow\", \"rationale\": \"Only primary network meter flow is available in the window (113-371 l/h); secondary/customer circuit flow is needed to assess any leakage-related flow impact, with no stated normal range.\"}, {\"because_fact_ids\": [\"F-8470e3c8fc29\", \"F-6690b49d5176\", \"F-2a57009004eb\", \"F-1bc5b051869d\"], \"id\": \"C-room-impact\", \"rationale\": \"Secondary supply temperature tracks its setpoint closely (mean gap 0.62°C, 134/144 samples within 2°C), but this does not confirm heat actually reached rooms given the leakage report.\"}]}",
+  "assembled_selection": {
+    "observed_fact_ids": [
+      "F-5a1d11f35dcc",
+      "F-2195fc4b35e4",
+      "F-c507baa5efdb",
+      "F-092e808d758e",
+      "F-adee5c9cecc9",
+      "F-fdc336db150d",
+      "F-b1eca2b19d7b",
+      "F-3b603acb1e46",
+      "F-8470e3c8fc29",
+      "F-6690b49d5176",
+      "F-2a57009004eb",
+      "F-1bc5b051869d"
+    ],
+    "limit_ids": [
+      "L-no-room-evidence",
+      "L-no-normal-range",
+      "L-primary-flow",
+      "L-prior-not-current",
+      "L-retrospective"
+    ],
+    "next_checks": [
+      {
+        "because_fact_ids": [
+          "F-5a1d11f35dcc",
+          "F-2195fc4b35e4",
+          "F-c507baa5efdb",
+          "F-092e808d758e"
+        ],
+        "id": "C-maintenance",
+        "rationale": "Prior fault-20 involved a safety-valve flood (thematically similar to leakage) and a fault-type disturbance on the same date; check maintenance/completion records before linking to today's report."
+      },
+      {
+        "because_fact_ids": [
+          "F-adee5c9cecc9",
+          "F-fdc336db150d",
+          "F-b1eca2b19d7b",
+          "F-3b603acb1e46"
+        ],
+        "id": "C-secondary-flow",
+        "rationale": "Only primary network meter flow is available in the window (113-371 l/h); secondary/customer circuit flow is needed to assess any leakage-related flow impact, with no stated normal range."
+      },
+      {
+        "because_fact_ids": [
+          "F-8470e3c8fc29",
+          "F-6690b49d5176",
+          "F-2a57009004eb",
+          "F-1bc5b051869d"
+        ],
+        "id": "C-room-impact",
+        "rationale": "Secondary supply temperature tracks its setpoint closely (mean gap 0.62°C, 134/144 samples within 2°C), but this does not confirm heat actually reached rooms given the leakage report."
+      }
+    ]
+  },
+  "validation": {
+    "status": "valid"
+  },
+  "display": {
+    "status": "reference_checked",
+    "observations": [
+      {
+        "id": "F-5a1d11f35dcc",
+        "source_id": "PreDist-M1-fault-20",
+        "source_field": "event_description",
+        "interval": null,
+        "value": "Presumably, so much water was added from the other side that the safety valve on the system opened and flooded the basement.",
+        "unit": "",
+        "text": "event_description: Presumably, so much water was added from the other side that the safety valve on the system opened and flooded the basement."
+      },
+      {
+        "id": "F-2195fc4b35e4",
+        "source_id": "PreDist-M1-fault-20",
+        "source_field": "problem",
+        "interval": null,
+        "value": "no DHW",
+        "unit": "",
+        "text": "problem: no DHW"
+      },
+      {
+        "id": "F-c507baa5efdb",
+        "source_id": "PreDist-M1-disturbance-51",
+        "source_field": "event_start",
+        "interval": null,
+        "value": "2018-07-02 10:49:00",
+        "unit": "",
+        "text": "event_start: 2018-07-02 10:49:00"
+      },
+      {
+        "id": "F-092e808d758e",
+        "source_id": "PreDist-M1-disturbance-51",
+        "source_field": "type",
+        "interval": null,
+        "value": "fault",
+        "unit": "",
+        "text": "type: fault"
+      },
+      {
+        "id": "F-adee5c9cecc9",
+        "source_id": "PreDist-M1-substation-11-operational-data",
+        "source_field": "signals.p_net_meter_flow.first",
+        "interval": "2019-01-13 11:58:00 to 2019-01-14 11:58:00",
+        "value": 338.0,
+        "unit": "l/h",
+        "text": "primary_network_meter_flow_l_per_hour first: 338.0 l/h (2019-01-13 11:58:00 to 2019-01-14 11:58:00)"
+      },
+      {
+        "id": "F-fdc336db150d",
+        "source_id": "PreDist-M1-substation-11-operational-data",
+        "source_field": "signals.p_net_meter_flow.last",
+        "interval": "2019-01-13 11:58:00 to 2019-01-14 11:58:00",
+        "value": 135.17,
+        "unit": "l/h",
+        "text": "primary_network_meter_flow_l_per_hour last: 135.17 l/h (2019-01-13 11:58:00 to 2019-01-14 11:58:00)"
+      },
+      {
+        "id": "F-b1eca2b19d7b",
+        "source_id": "PreDist-M1-substation-11-operational-data",
+        "source_field": "signals.p_net_meter_flow.max",
+        "interval": "2019-01-13 11:58:00 to 2019-01-14 11:58:00",
+        "value": 371.0,
+        "unit": "l/h",
+        "text": "primary_network_meter_flow_l_per_hour max: 371.0 l/h (2019-01-13 11:58:00 to 2019-01-14 11:58:00)"
+      },
+      {
+        "id": "F-3b603acb1e46",
+        "source_id": "PreDist-M1-substation-11-operational-data",
+        "source_field": "signals.p_net_meter_flow.min",
+        "interval": "2019-01-13 11:58:00 to 2019-01-14 11:58:00",
+        "value": 113.0,
+        "unit": "l/h",
+        "text": "primary_network_meter_flow_l_per_hour min: 113.0 l/h (2019-01-13 11:58:00 to 2019-01-14 11:58:00)"
+      },
+      {
+        "id": "F-8470e3c8fc29",
+        "source_id": "PreDist-M1-substation-11-operational-data",
+        "source_field": "signals.s_hc1_supply_temperature_setpoint.first",
+        "interval": "2019-01-13 11:58:00 to 2019-01-14 11:58:00",
+        "value": 50.8,
+        "unit": "°C",
+        "text": "secondary_heating_circuit_supply_setpoint_c first: 50.8 °C (2019-01-13 11:58:00 to 2019-01-14 11:58:00)"
+      },
+      {
+        "id": "F-6690b49d5176",
+        "source_id": "PreDist-M1-substation-11-operational-data",
+        "source_field": "signals.s_hc1_supply_temperature_setpoint.last",
+        "interval": "2019-01-13 11:58:00 to 2019-01-14 11:58:00",
+        "value": 57.15,
+        "unit": "°C",
+        "text": "secondary_heating_circuit_supply_setpoint_c last: 57.15 °C (2019-01-13 11:58:00 to 2019-01-14 11:58:00)"
+      },
+      {
+        "id": "F-2a57009004eb",
+        "source_id": "PreDist-M1-substation-11-operational-data",
+        "source_field": "supply_setpoint_absolute_gap.mean",
+        "interval": "2019-01-13 11:58:00 to 2019-01-14 11:58:00",
+        "value": 0.62,
+        "unit": "°C",
+        "text": "Secondary supply/setpoint absolute gap mean: 0.62 °C (2019-01-13 11:58:00 to 2019-01-14 11:58:00)"
+      },
+      {
+        "id": "F-1bc5b051869d",
+        "source_id": "PreDist-M1-substation-11-operational-data",
+        "source_field": "supply_setpoint_absolute_gap.samples_within_2C",
+        "interval": "2019-01-13 11:58:00 to 2019-01-14 11:58:00",
+        "value": 134,
+        "unit": "",
+        "text": "Secondary supply/setpoint absolute gap samples_within_2C: 134 (2019-01-13 11:58:00 to 2019-01-14 11:58:00)"
+      }
+    ],
+    "limits": [
+      {
+        "id": "L-no-room-evidence",
+        "text": "Supply temperature tracking its setpoint does not establish heat delivery to rooms."
+      },
+      {
+        "id": "L-no-normal-range",
+        "text": "No normal operating range is supplied for heat power or flow."
+      },
+      {
+        "id": "L-primary-flow",
+        "text": "Primary meter flow is not secondary/customer circuit flow."
+      },
+      {
+        "id": "L-prior-not-current",
+        "text": "A prior report does not establish the cause of this event."
+      },
+      {
+        "id": "L-retrospective",
+        "text": "Prior report narratives may not have been available at the decision time."
+      }
+    ],
+    "suggested_next_checks": [
+      {
+        "id": "C-maintenance",
+        "text": "Check maintenance records and actual completion evidence for relevant prior work.",
+        "because_facts": [
+          {
+            "id": "F-5a1d11f35dcc",
+            "source_id": "PreDist-M1-fault-20",
+            "source_field": "event_description",
+            "interval": null,
+            "value": "Presumably, so much water was added from the other side that the safety valve on the system opened and flooded the basement.",
+            "unit": "",
+            "text": "event_description: Presumably, so much water was added from the other side that the safety valve on the system opened and flooded the basement."
+          },
+          {
+            "id": "F-2195fc4b35e4",
+            "source_id": "PreDist-M1-fault-20",
+            "source_field": "problem",
+            "interval": null,
+            "value": "no DHW",
+            "unit": "",
+            "text": "problem: no DHW"
+          },
+          {
+            "id": "F-c507baa5efdb",
+            "source_id": "PreDist-M1-disturbance-51",
+            "source_field": "event_start",
+            "interval": null,
+            "value": "2018-07-02 10:49:00",
+            "unit": "",
+            "text": "event_start: 2018-07-02 10:49:00"
+          },
+          {
+            "id": "F-092e808d758e",
+            "source_id": "PreDist-M1-disturbance-51",
+            "source_field": "type",
+            "interval": null,
+            "value": "fault",
+            "unit": "",
+            "text": "type: fault"
+          }
+        ],
+        "model_authored_suggestion_rationale": "Prior fault-20 involved a safety-valve flood (thematically similar to leakage) and a fault-type disturbance on the same date; check maintenance/completion records before linking to today's report."
+      },
+      {
+        "id": "C-secondary-flow",
+        "text": "Measure secondary heating circuit flow and compare it with the relevant design or operating range.",
+        "because_facts": [
+          {
+            "id": "F-adee5c9cecc9",
+            "source_id": "PreDist-M1-substation-11-operational-data",
+            "source_field": "signals.p_net_meter_flow.first",
+            "interval": "2019-01-13 11:58:00 to 2019-01-14 11:58:00",
+            "value": 338.0,
+            "unit": "l/h",
+            "text": "primary_network_meter_flow_l_per_hour first: 338.0 l/h (2019-01-13 11:58:00 to 2019-01-14 11:58:00)"
+          },
+          {
+            "id": "F-fdc336db150d",
+            "source_id": "PreDist-M1-substation-11-operational-data",
+            "source_field": "signals.p_net_meter_flow.last",
+            "interval": "2019-01-13 11:58:00 to 2019-01-14 11:58:00",
+            "value": 135.17,
+            "unit": "l/h",
+            "text": "primary_network_meter_flow_l_per_hour last: 135.17 l/h (2019-01-13 11:58:00 to 2019-01-14 11:58:00)"
+          },
+          {
+            "id": "F-b1eca2b19d7b",
+            "source_id": "PreDist-M1-substation-11-operational-data",
+            "source_field": "signals.p_net_meter_flow.max",
+            "interval": "2019-01-13 11:58:00 to 2019-01-14 11:58:00",
+            "value": 371.0,
+            "unit": "l/h",
+            "text": "primary_network_meter_flow_l_per_hour max: 371.0 l/h (2019-01-13 11:58:00 to 2019-01-14 11:58:00)"
+          },
+          {
+            "id": "F-3b603acb1e46",
+            "source_id": "PreDist-M1-substation-11-operational-data",
+            "source_field": "signals.p_net_meter_flow.min",
+            "interval": "2019-01-13 11:58:00 to 2019-01-14 11:58:00",
+            "value": 113.0,
+            "unit": "l/h",
+            "text": "primary_network_meter_flow_l_per_hour min: 113.0 l/h (2019-01-13 11:58:00 to 2019-01-14 11:58:00)"
+          }
+        ],
+        "model_authored_suggestion_rationale": "Only primary network meter flow is available in the window (113-371 l/h); secondary/customer circuit flow is needed to assess any leakage-related flow impact, with no stated normal range."
+      },
+      {
+        "id": "C-room-impact",
+        "text": "Verify affected room or radiator temperatures and the scope of the reported heating loss.",
+        "because_facts": [
+          {
+            "id": "F-8470e3c8fc29",
+            "source_id": "PreDist-M1-substation-11-operational-data",
+            "source_field": "signals.s_hc1_supply_temperature_setpoint.first",
+            "interval": "2019-01-13 11:58:00 to 2019-01-14 11:58:00",
+            "value": 50.8,
+            "unit": "°C",
+            "text": "secondary_heating_circuit_supply_setpoint_c first: 50.8 °C (2019-01-13 11:58:00 to 2019-01-14 11:58:00)"
+          },
+          {
+            "id": "F-6690b49d5176",
+            "source_id": "PreDist-M1-substation-11-operational-data",
+            "source_field": "signals.s_hc1_supply_temperature_setpoint.last",
+            "interval": "2019-01-13 11:58:00 to 2019-01-14 11:58:00",
+            "value": 57.15,
+            "unit": "°C",
+            "text": "secondary_heating_circuit_supply_setpoint_c last: 57.15 °C (2019-01-13 11:58:00 to 2019-01-14 11:58:00)"
+          },
+          {
+            "id": "F-2a57009004eb",
+            "source_id": "PreDist-M1-substation-11-operational-data",
+            "source_field": "supply_setpoint_absolute_gap.mean",
+            "interval": "2019-01-13 11:58:00 to 2019-01-14 11:58:00",
+            "value": 0.62,
+            "unit": "°C",
+            "text": "Secondary supply/setpoint absolute gap mean: 0.62 °C (2019-01-13 11:58:00 to 2019-01-14 11:58:00)"
+          },
+          {
+            "id": "F-1bc5b051869d",
+            "source_id": "PreDist-M1-substation-11-operational-data",
+            "source_field": "supply_setpoint_absolute_gap.samples_within_2C",
+            "interval": "2019-01-13 11:58:00 to 2019-01-14 11:58:00",
+            "value": 134,
+            "unit": "",
+            "text": "Secondary supply/setpoint absolute gap samples_within_2C: 134 (2019-01-13 11:58:00 to 2019-01-14 11:58:00)"
+          }
+        ],
+        "model_authored_suggestion_rationale": "Secondary supply temperature tracks its setpoint closely (mean gap 0.62°C, 134/144 samples within 2°C), but this does not confirm heat actually reached rooms given the leakage report."
+      }
+    ]
+  },
+  "completeness": {
+    "status": "checked",
+    "issues": [],
+    "source_read_state": {
+      "available_sources": [
+        {
+          "reader": "get_recent_measurements",
+          "read_state": "unread"
+        },
+        {
+          "reader": "get_prior_incidents",
+          "read_state": "unread"
+        },
+        {
+          "reader": "get_maintenance_timeline",
+          "read_state": "unread"
+        },
+        {
+          "reader": "get_signal_definitions",
+          "read_state": "unread"
+        }
+      ]
+    },
+    "catalog_read_state": "read"
+  },
+  "review_flags": [
+    {
+      "code": "rationale_quantity_not_in_cited_facts",
+      "severity": "human_review",
+      "check_id": "C-room-impact",
+      "fact_ids": [
+        "F-8470e3c8fc29",
+        "F-6690b49d5176",
+        "F-2a57009004eb",
+        "F-1bc5b051869d"
+      ],
+      "quantities": [
+        "144 samples",
+        "2 °c"
+      ],
+      "note": "Numeric match is heuristic; it does not verify sensor, unit, or claim meaning."
+    }
+  ],
+  "source_read_names": [
+    "fact_catalog"
+  ],
+  "exact_model_match": true,
+  "temporal_read_names": [],
+  "visible_fact_ids": [
+    "F-0254400f79ff",
+    "F-045a521b019b",
+    "F-04cceb8aff09",
+    "F-04e5b97a9cb1",
+    "F-067513bb847e",
+    "F-06b649e1b3cb",
+    "F-08014f498b6a",
+    "F-089b615c1463",
+    "F-092e808d758e",
+    "F-09b381ec1c07",
+    "F-09d290e0b5c7",
+    "F-0a7c9128002d",
+    "F-0ab97ffcea32",
+    "F-0f5b2a1a6e23",
+    "F-104fe1ba8db4",
+    "F-12b0dc3012c4",
+    "F-149c39ac3d93",
+    "F-15723be6083c",
+    "F-157c62dfd020",
+    "F-1663d75b19c2",
+    "F-1677bf2953e6",
+    "F-18a960fe049c",
+    "F-1bc5b051869d",
+    "F-1dbc66d3e170",
+    "F-1ffb63a51662",
+    "F-2195fc4b35e4",
+    "F-21dedbd93b90",
+    "F-24c15cc6db08",
+    "F-252547ade143",
+    "F-25561973d7fb",
+    "F-257de81d35ca",
+    "F-282da17f9672",
+    "F-289d1748fb02",
+    "F-291b5d3d25b7",
+    "F-29f808389e27",
+    "F-2a57009004eb",
+    "F-2cfaedf1fcdd",
+    "F-2ee1e3f20557",
+    "F-2fdababaaa59",
+    "F-32a695c53978",
+    "F-330fa7917f1c",
+    "F-33928b0310e5",
+    "F-34d95eb80f6f",
+    "F-351d8db80414",
+    "F-3963dace0f1f",
+    "F-3b603acb1e46",
+    "F-3e9ebb09c39e",
+    "F-3f0e02e372db",
+    "F-40e02ca3aeb4",
+    "F-46d398ec43b9",
+    "F-4973054dde94",
+    "F-4ee782a11aec",
+    "F-503a44963c33",
+    "F-5490e9a290fb",
+    "F-56f30eaa1d88",
+    "F-5a1d11f35dcc",
+    "F-6690b49d5176",
+    "F-6d0582a86b46",
+    "F-727232a8c338",
+    "F-761e8f8b4b9e",
+    "F-76ed6f63d23f",
+    "F-823ceb1bf348",
+    "F-8470e3c8fc29",
+    "F-86e42e089939",
+    "F-88cac4ba82b1",
+    "F-93af5d872e1c",
+    "F-9464511ba633",
+    "F-951ef835e83e",
+    "F-96639f831019",
+    "F-9e414356dc5a",
+    "F-9fc78e625bba",
+    "F-a012193d23d7",
+    "F-a241180f22a0",
+    "F-aa5d80ddc884",
+    "F-adee5c9cecc9",
+    "F-b1ae5c8aa1f6",
+    "F-b1eca2b19d7b",
+    "F-b5ed0e8d6427",
+    "F-bdfb0b36cb88",
+    "F-bdffbb151e56",
+    "F-c507baa5efdb",
+    "F-c53fe7a23a94",
+    "F-cb4b56e22326",
+    "F-d91c507619e5",
+    "F-dd182fff4b7e",
+    "F-e23273e765d4",
+    "F-e23cb6da28be",
+    "F-e4a1700875bc",
+    "F-e851810ab40a",
+    "F-fdc336db150d",
+    "F-ffd3deac3dc2"
+  ],
+  "visibility_rule": "ID text in successful Read/Grep source result; partial-content approximation",
+  "parsed_plan": {
+    "limit_ids": [
+      "L-no-room-evidence",
+      "L-no-normal-range",
+      "L-primary-flow",
+      "L-prior-not-current",
+      "L-retrospective"
+    ],
+    "next_checks": [
+      {
+        "because_fact_ids": [
+          "F-5a1d11f35dcc",
+          "F-2195fc4b35e4",
+          "F-c507baa5efdb",
+          "F-092e808d758e"
+        ],
+        "id": "C-maintenance",
+        "rationale": "Prior fault-20 involved a safety-valve flood (thematically similar to leakage) and a fault-type disturbance on the same date; check maintenance/completion records before linking to today's report."
+      },
+      {
+        "because_fact_ids": [
+          "F-adee5c9cecc9",
+          "F-fdc336db150d",
+          "F-b1eca2b19d7b",
+          "F-3b603acb1e46"
+        ],
+        "id": "C-secondary-flow",
+        "rationale": "Only primary network meter flow is available in the window (113-371 l/h); secondary/customer circuit flow is needed to assess any leakage-related flow impact, with no stated normal range."
+      },
+      {
+        "because_fact_ids": [
+          "F-8470e3c8fc29",
+          "F-6690b49d5176",
+          "F-2a57009004eb",
+          "F-1bc5b051869d"
+        ],
+        "id": "C-room-impact",
+        "rationale": "Secondary supply temperature tracks its setpoint closely (mean gap 0.62°C, 134/144 samples within 2°C), but this does not confirm heat actually reached rooms given the leakage report."
+      }
+    ]
+  },
+  "cycle5_started_at": "2026-09-28T23:24:33"
+}

@@ -1,0 +1,113 @@
+{
+  "method": "live-system2-plan-first-handoff-v2",
+  "case_id": "PreDist-M1-fault-67",
+  "model": "nvidia/nemotron-3-ultra-550b-a55b",
+  "corpus_sha256": "ba1fe2dff7ef25621d80e9ec5abc140b7d6db2718f9abce61f0ce0aeb2c39141",
+  "file_sha256": {
+    "case.json": "b222a7d5e914278eaeee5766c45738ec97e0f3221ffc20c2687c50846d281b1f",
+    "fact_catalog.json": "ed6a142f5a103bb5235ed368413c288facf526ee39537b5fdb1d870db3edf0a9",
+    "plan_schema.json": "254fac4ac809590467207600071afa81bf8bcf51b111c0e181651ea8c08a5d0f",
+    "source_manifest.json": "c5baa61a87b61faf943439abcdf7021cd3cf9039a177864262ddd786ae97b57e",
+    "task.json": "546476b3c6b2519f1790a3022db46d0105174c357e92888e920d0786195eb2dd",
+    "temporal/episodes.json": "0362b14c8e26e6c7ba64aa6879a52575e438bfda93737d3b0c6ed7ab7d5a5170",
+    "temporal/window-fields.json": "3f3fff900d39338795fef917eced7cb315ef09086e7ab51b7817bd7af42306b3",
+    "tools/get_maintenance_timeline.json": "feb739b05e307f73bece4bd4fca0f05988745a6307b426e7816d20ef0fab3eb2",
+    "tools/get_prior_incidents.json": "c369db3c3ed7a161aeddeb967071f35b700db47586f7b69be3e2a5dadbf0a5ff",
+    "tools/get_recent_measurements.json": "6b64947fe37d6ca7e3adb425f957211b3f2ca0cff6c0afece3f546b1395e3bb2",
+    "tools/get_signal_definitions.json": "c2666f6a27fe1250d50bf2cb9641a003cd267bd8db253533712ad580aaee02da"
+  },
+  "temporal_enabled": true,
+  "read_backend": "direct",
+  "nat_version": null,
+  "planner_requests": [],
+  "tool_calls": [],
+  "finish_reason": null,
+  "source_read_state": {
+    "available_sources": [
+      {
+        "reader": "get_recent_measurements",
+        "read_state": "unread"
+      },
+      {
+        "reader": "get_prior_incidents",
+        "read_state": "unread"
+      },
+      {
+        "reader": "get_maintenance_timeline",
+        "read_state": "unread"
+      },
+      {
+        "reader": "get_signal_definitions",
+        "read_state": "unread"
+      },
+      {
+        "reader": "get_temporal_episodes",
+        "file": "temporal/episodes.json",
+        "read_state": "unread"
+      },
+      {
+        "reader": "query_measurement_window",
+        "file": "temporal/window-fields.json",
+        "read_state": "unread",
+        "max_rows_per_query": 24
+      }
+    ]
+  },
+  "temporal_read_state": {
+    "get_temporal_episodes": false,
+    "query_measurement_window": false
+  },
+  "evidence": {
+    "schema_version": 1,
+    "case_id": "PreDist-M1-fault-67",
+    "decision_time": "2017-11-26 13:15:00",
+    "sources": [
+      {
+        "id": "PreDist-M1-fault-67-problem-only",
+        "kind": "customer_report"
+      }
+    ],
+    "facts": [
+      {
+        "id": "F-bde228e59eff",
+        "source_id": "PreDist-M1-fault-67-problem-only",
+        "source_field": "problem",
+        "interval": "2017-11-26 13:15:00",
+        "value": "no DHW",
+        "unit": "",
+        "text": "Reported problem: no DHW (2017-11-26 13:15:00)"
+      }
+    ]
+  },
+  "native_schema": null,
+  "final_request": null,
+  "final_response": null,
+  "raw_plan": null,
+  "parsed_plan": null,
+  "assembled_selection": null,
+  "derived_observations": null,
+  "validation": {
+    "status": "invalid",
+    "error_type": "RuntimeError",
+    "reason": "NVIDIA API HTTP 500"
+  },
+  "review_flags": [],
+  "display": {
+    "status": "withheld",
+    "reason": "NVIDIA API HTTP 500",
+    "observations": [],
+    "limits": [],
+    "suggested_next_checks": []
+  },
+  "completeness": {
+    "status": "not_assessed",
+    "issues": []
+  },
+  "usage": [],
+  "request_seconds": 0.0,
+  "wall_seconds": 1.934,
+  "handoff_policy": "bounded_finalize_v2",
+  "investigation_budget_exhausted": false,
+  "review_notes": [],
+  "cycle5_started_at": "2026-09-28T23:30:06"
+}
