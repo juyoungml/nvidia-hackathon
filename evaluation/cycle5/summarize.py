@@ -60,7 +60,7 @@ def main() -> None:
             "exposure": "prior_exposed" if rid in PRIOR_EXPOSED else "fresh",
             "arms": {},
         }
-        for arm in ("ultra", "sonnet", "ultra-rerun", "ultra-rerun2"):
+        for arm in ("ultra", "sonnet", "ultra-rerun", "ultra-rerun2", "ultra-rerun3"):
             path = HERE / "traces" / f"{arm}-{rid}.json"
             if arm.startswith("ultra-rerun") and not path.exists():
                 continue
@@ -75,7 +75,7 @@ def main() -> None:
             }
         effective = row["arms"]["ultra"]
         attempts = 1
-        for tag in ("ultra-rerun", "ultra-rerun2"):
+        for tag in ("ultra-rerun", "ultra-rerun2", "ultra-rerun3"):
             if effective.get("provider_error") and tag in row["arms"]:
                 effective = row["arms"][tag]
                 attempts += 1

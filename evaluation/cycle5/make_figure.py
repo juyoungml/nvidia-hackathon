@@ -24,7 +24,7 @@ plt.rcParams["axes.unicode_minus"] = False
 
 ARMS = (
     ("ultra", "Ultra\n1차 시도", "#b5d77a"),
-    ("ultra_with_provider_rerun", "Ultra\n제공자 오류 재실행(최대 2회)", "#76b900"),
+    ("ultra_with_provider_rerun", "Ultra\nAPI 오류 재실행(최대 3회)", "#76b900"),
     ("sonnet", "Claude Code +\nSonnet 5", "#8a8a8a"),
 )
 

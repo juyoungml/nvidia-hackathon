@@ -12,6 +12,7 @@ import csv
 import datetime as dt
 import hashlib
 import json
+import os
 import sys
 import threading
 from concurrent.futures import ThreadPoolExecutor
@@ -181,7 +182,7 @@ def run(arm: str, report_ids: list[str], workers: int, tag: str = "") -> None:
 
     key = load_key(ROOT / ".env") if arm == "ultra" else None
     if arm == "ultra":
-        pacer = LockedPacer(rpm=34)
+        pacer = LockedPacer(rpm=int(os.environ.get("CYCLE5_RPM", "34")))
         poc_run.NVIDIA_PACER = pacer
         live.NVIDIA_PACER = pacer
 

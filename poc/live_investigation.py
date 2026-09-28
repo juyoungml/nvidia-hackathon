@@ -6,6 +6,7 @@ import argparse
 import copy
 import hashlib
 import json
+import os
 import re
 import time
 import urllib.error
@@ -263,14 +264,19 @@ def _nvidia_request(payload: dict, key: str) -> tuple[dict, float]:
         data=json.dumps(payload, ensure_ascii=False).encode(),
         headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
     )
-    NVIDIA_PACER.wait()
-    started = time.monotonic()
-    try:
-        with urllib.request.urlopen(request, timeout=90) as response:
-            body = json.load(response)
-    except urllib.error.HTTPError as error:
-        raise RuntimeError(f"NVIDIA API HTTP {error.code}") from error
-    return body, round(time.monotonic() - started, 3)
+    retries = int(os.environ.get("NVIDIA_HTTP_RETRIES", "0"))
+    for attempt in range(retries + 1):
+        NVIDIA_PACER.wait()
+        started = time.monotonic()
+        try:
+            with urllib.request.urlopen(request, timeout=90) as response:
+                body = json.load(response)
+            return body, round(time.monotonic() - started, 3)
+        except urllib.error.HTTPError as error:
+            if error.code not in (429, 500, 502, 503) or attempt == retries:
+                raise RuntimeError(f"NVIDIA API HTTP {error.code}") from error
+            time.sleep(float(error.headers.get("Retry-After") or 10 * (attempt + 1)))
+    raise AssertionError("unreachable")
 
 
 def _numeric_values(value: object) -> list[float]:

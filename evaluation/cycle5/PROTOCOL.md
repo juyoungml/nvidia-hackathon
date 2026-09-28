@@ -36,3 +36,11 @@ The first Ultra pass at 6 concurrent workers hit NVIDIA HTTP 500/429 on many cas
 ## Amendment B (23:30 KST)
 
 The Amendment-A rerun (2 workers, started 23:28:45) itself hit HTTP 429 within seconds on 11 of 13 cases (0–5 tool calls), i.e. the account was rate-limited, not the model failing. Those 11 cases whose rerun again ended in a provider HTTP error get one further attempt (`ultra-rerun2-<id>.json`) at 1 worker, launched before 23:38. The "Ultra with provider reruns" view uses the last attempt for a case only when every earlier attempt was a provider HTTP error; a contract/reference failure on any attempt is final. First-attempt numbers are always reported alongside.
+
+## Amendment C (2026-09-28 23:41 KST, written before the run)
+
+The 11 Ultra cases that never reached the model because of NVIDIA API errors (3, 15, 23, 29, 37, 40, 44, 53, 60, 67, 69) are run once more at a lower rate (2 workers, shared pacer at 20 requests/min, half the 40 rpm account limit), tagged `-rerun3`. A probe request at 23:41 returned HTTP 200. Only provider-error cases are rerun; model or contract failures are never rerun. First-attempt numbers stay reported alongside.
+
+## Amendment D (23:43 KST, written before the run)
+
+The Amendment C attempt was stopped after 6 cases: every request returned HTTP 429, and a single standalone probe request also returned 429, so the hosted endpoint was throttling independent of our rate. Those aborted attempts (all HTTP 429, no model output) are discarded. The same 11 cases are rerun with 1 worker at 12 requests/min and a transport-level retry on HTTP 429/500/502/503 (up to 4 retries, honoring Retry-After or backing off 10 s, 20 s, …) via `NVIDIA_HTTP_RETRIES=4`, tagged `-rerun3`. Retries only repeat the identical request; they never change prompts, tools or validation. Model and contract failures are still never rerun.
