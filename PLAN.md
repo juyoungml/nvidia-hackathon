@@ -45,6 +45,17 @@ Planning date: 2026-09-28 KST. Deadline: **23:59 KST today**. Keep at least one 
 
 The order is deliberate: a real tool-using agent and traceable public evidence are the entry. Toolkit and sandbox integration should strengthen the entry without jeopardizing the deadline.
 
+## Continuing experiments after the one-case POC
+
+| Experiment | First falsifiable result | Gate before a public claim |
+| --- | --- | --- |
+| System 1 stream replay | Reproduce event candidates from public time series with a rules baseline and one lightweight model candidate. | Report lead time, false alerts, missed events, and ingestion lag at the original sampling cadence. |
+| System 1 → 2 escalation | Deliver a minimal event packet with source IDs, quality flags, and an explicit reason to call Ultra. | Show an event that should escalate and one that should not; measure Ultra call count and latency. |
+| Jev decision gate | On public replay only, ask typed escalation/urgency questions and compare with rules and a local model. | Measure missed important events, false escalation, calibration, response time, and incremental Ultra calls. Access is optional; never send private events to an unapproved endpoint. |
+| System 2 evaluation | Run Ultra on several public held-out incidents with unchanged tools and prompt. | Compare against search-and-summary; check citations, unknown tags, next checks, and abstention. |
+| Security enforcement | Run the investigation inside restricted OpenShell with scoped read-only tools and approved inference. | Capture an allowed read, a blocked outbound/tool request, and the effective policy. |
+| Economics bridge | Feed measured identification times into the separate macro model as an experimental input. | Keep assumed MW, demand/dispatch, and recovery conversion distinct from observations; do not claim realized annual value. |
+
 The NVIDIA account's stated API limit is **40 requests/minute**. The POC paces its own hosted requests at 36/minute and retries HTTP 429 with `Retry-After` or short backoff. Run evaluations with one worker unless a shared account-level limiter is added; other applications using the same key are outside this process's control.
 
 ## Delivery milestones

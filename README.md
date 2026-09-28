@@ -6,6 +6,8 @@ This repository is a clean-room hackathon project. It contains only original cod
 
 The first public-data POC has run. Read [POC_RESULT.md](POC_RESULT.md) and its trace before extending the demo. See [STRATEGY.md](STRATEGY.md) for the product strategy, [DATA_SOURCES.md](DATA_SOURCES.md) for public data candidates, and [PLAN.md](PLAN.md) for the remaining experiments.
 
+The [System 1 / System 2 architecture](ARCHITECTURE.md) and [living report outline](REPORT_OUTLINE.md) track the proposed stream-to-investigation design and distinguish it from the implemented POC.
+
 The competition's online submission closes on **2026-09-28 at 23:59 KST**. Every member of a 2–5 person team must submit an individual application; one application includes the team's service portfolio.
 
 Python 3.12 and `uv` run the POC. After `uv sync --group dev`, use `uv run ruff check .`, `uv run ruff format --check .`, `uv run vulture poc scripts tests --min-confidence 80`, and `uv run python -m unittest discover -s tests -v`. GitHub Actions runs the same checks on pushes and pull requests.
