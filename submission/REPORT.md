@@ -18,6 +18,9 @@ NVIDIA 스택: Nemotron 3 Ultra(NIM)가 도구를 고르고 점검안을 쓰며,
 
 ## 해법: 현장 설치형 Nemotron + DGX Spark, 두 부분 구조
 
+![전체 구조](../docs/assets/architecture.png)
+
+
 | | System 1 · 상시 감시 | System 2 · 원인 조사 |
 |---|---|---|
 | 하는 일 | 트렌드 데이터를 늘 보고 이상을 알린다 | 문제가 생기면 도면·TM·WO·트렌드를 연결해 원인 파악을 돕고, 다음 점검을 근거와 함께 제안한다 |
