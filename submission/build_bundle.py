@@ -197,7 +197,7 @@ PUBLIC_FILES = (
     "submission/SUBMISSION_GUIDE.md",
     "submission/build_bundle.py",
     "submission/slides/Plant_Reliability_Agent_submission.pptx",
-    "submission/slides/build_deck.mjs",
+    "submission/slides/build_deck.py",
     "submission/slides/VALIDATION.md",
     "scripts/export_submission_demo.py",
     "scripts/generate_public_figure.py",

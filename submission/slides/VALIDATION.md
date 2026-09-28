@@ -2,9 +2,11 @@
 
 Final presentation: `Plant_Reliability_Agent_submission.pptx`
 
-- SHA-256: `29b1f4404ddc99cace60006e08f97c3bd4da4bd6925f6273e5df0e96e5b70aa1`
-- Slides: 9, with speaker notes and an editable native PowerPoint architecture diagram on slide 5.
-- The finalizer's package integrity, slide geometry, font policy, and Artifact Tool import checks passed with no findings or warnings. Its private receipt is `.artifacts/slides/validation-final-v2.json`; the matching draft is `.artifacts/slides/candidate-final-v2.pptx`. Both draft and final PPTX have the SHA-256 above.
-- The exact final PPTX was imported again and all 9 slides were rendered to `.artifacts/slides/final-slide-01.png` through `final-slide-09.png`. The private `final-render-manifest.json` records the input SHA-256 and slide count. `final-contact-sheet.png` was built from those 9 final renders. Each rendered slide and the contact sheet were visually inspected for fit, legibility, and slide flow.
+- SHA-256: `b50c032a1b37b40831a376330a924349228eefe31288ad6204d49dfff059cdc5`
+- Slides: 9, 16:9, each with Korean speaker notes. Diagrams (district heating, agent result, architecture, NVIDIA roles) are native, editable PowerPoint shapes.
+- 2026-09-28 rebuild: the deck was rebuilt from scratch by `build_deck.py` with python-pptx (`uv run --with python-pptx python submission/slides/build_deck.py`). The earlier `build_deck.mjs` is superseded and no longer matches the deck.
+- The deck was rendered to PDF with LibreOffice (`soffice --headless --convert-to pdf`) and every slide was rasterized and visually checked for overflow, overlap and wrapping. It was not opened in Microsoft PowerPoint or Keynote.
 
-These are structural and visual checks. The deck was not opened in Microsoft PowerPoint, and they do not establish engineering diagnosis accuracy or field performance.
+Slides: 1 표지 · 2 문제 · 3 30초 배경(지역난방) · 4 실제 신고(사례 29) · 5 에이전트가 한 일 · 6 구조 · 7 NVIDIA 기술이 맡은 일 · 8 솔직한 결과 · 9 다음 단계
+
+These are structural and visual checks. They do not establish diagnosis accuracy or field performance.
