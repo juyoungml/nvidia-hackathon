@@ -209,7 +209,7 @@ def _tool_specs(temporal_enabled: bool) -> list[dict]:
                     "type": "function",
                     "function": {
                         "name": "query_measurement_window",
-                        "description": "Read at most 24 public measurement rows in an inclusive ISO timestamp window within the decision cutoff.",
+                        "description": "Read public measurement rows in an inclusive ISO timestamp window within the decision cutoff. At most 24 rows are returned; a longer window is clipped to its latest 24 rows and the result reports the clip.",
                         "parameters": {
                             "type": "object",
                             "properties": {"start": {"type": "string"}, "end": {"type": "string"}},

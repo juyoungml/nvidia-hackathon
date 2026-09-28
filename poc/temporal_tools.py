@@ -85,7 +85,11 @@ def permitted_window_fields(replay: dict) -> dict:
 
 
 def query_window(replay: dict, *, start: str, end: str) -> dict:
-    """Read at most 24 inclusive source rows within the decision cutoff."""
+    """Read at most 24 inclusive source rows within the decision cutoff.
+
+    A longer request is clipped to the 24 rows closest to its end, i.e. the
+    readings nearest the decision time, and the result says so explicitly.
+    """
     lower, upper = permitted_bounds(replay)
     requested_start, requested_end = _timestamp(start), _timestamp(end)
     if not lower <= requested_start <= requested_end <= upper:
@@ -95,17 +99,29 @@ def query_window(replay: dict, *, start: str, end: str) -> dict:
         for row in permitted_window_fields(replay)["rows"]
         if requested_start <= _timestamp(row["timestamp"]) <= requested_end
     ]
-    if len(rows) > MAX_WINDOW_ROWS:
-        raise ValueError(f"window contains more than {MAX_WINDOW_ROWS} rows")
-    return {
+    matched = len(rows)
+    clipped = matched > MAX_WINDOW_ROWS
+    if clipped:
+        rows = rows[-MAX_WINDOW_ROWS:]
+    result = {
         "case_id": replay["case_id"],
         "source_id": replay["measurement_window"]["source_id"],
-        "start": start,
+        "start": rows[0]["timestamp"] if clipped else start,
         "end": end,
         "fields": list(WINDOW_FIELDS),
         "rows": rows,
         "row_count": len(rows),
     }
+    if clipped:
+        result["clipped"] = {
+            "requested_start": start,
+            "requested_end": end,
+            "matched_rows": matched,
+            "returned_rows": len(rows),
+            "note": f"Request matched {matched} rows; returned the latest {MAX_WINDOW_ROWS}. "
+            "Query an earlier window to read older rows.",
+        }
+    return result
 
 
 def temporal_episodes(replay: dict) -> dict:

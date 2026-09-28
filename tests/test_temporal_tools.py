@@ -25,16 +25,17 @@ class TemporalToolTests(unittest.TestCase):
     def setUpClass(cls) -> None:
         cls.replay = json.loads((ROOT / "data/replay-52.json").read_text())
 
-    def test_window_rejects_cutoff_and_oversize(self) -> None:
+    def test_window_rejects_cutoff_and_clips_oversize(self) -> None:
         replay = self.replay
         with self.assertRaisesRegex(ValueError, "cutoff"):
             query_window(replay, start=replay["measurement_window"]["start"], end="2099-01-01")
-        with self.assertRaisesRegex(ValueError, str(MAX_WINDOW_ROWS)):
-            query_window(
-                replay,
-                start=replay["measurement_window"]["start"],
-                end=replay["measurement_window"]["end"],
-            )
+        oversize = query_window(
+            replay,
+            start=replay["measurement_window"]["start"],
+            end=replay["measurement_window"]["end"],
+        )
+        self.assertEqual(oversize["row_count"], MAX_WINDOW_ROWS)
+        self.assertIn("clipped", oversize)
         with self.assertRaisesRegex(ValueError, "ISO"):
             query_window(replay, start="not-a-date", end=replay["measurement_window"]["end"])
 
@@ -53,6 +54,28 @@ class TemporalToolTests(unittest.TestCase):
                 replay["prior_disturbances"].append(value)
             with self.subTest(field=field), self.assertRaisesRegex(ValueError, "decision|window"):
                 validate_public_replay(replay)
+
+    def test_long_window_is_clipped_to_latest_rows(self) -> None:
+        full = permitted_window_fields(self.replay)
+        self.assertGreater(len(full["rows"]), 24)
+        start, end = full["rows"][0]["timestamp"], full["rows"][-1]["timestamp"]
+        result = query_window(self.replay, start=start, end=end)
+        self.assertEqual(result["row_count"], 24)
+        self.assertEqual(result["rows"], full["rows"][-24:])
+        self.assertEqual(result["start"], full["rows"][-24]["timestamp"])
+        self.assertEqual(result["clipped"]["requested_start"], start)
+        self.assertEqual(result["clipped"]["matched_rows"], len(full["rows"]))
+        self.assertTrue(
+            {fact["id"] for fact in window_facts(result)}
+            <= {fact["id"] for fact in window_facts(full)}
+        )
+
+    def test_short_window_is_not_marked_clipped(self) -> None:
+        full = permitted_window_fields(self.replay)
+        result = query_window(
+            self.replay, start=full["rows"][0]["timestamp"], end=full["rows"][2]["timestamp"]
+        )
+        self.assertNotIn("clipped", result)
 
     def test_query_facts_are_subset_of_full_public_window(self) -> None:
         full = permitted_window_fields(self.replay)
