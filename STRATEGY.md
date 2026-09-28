@@ -8,7 +8,7 @@
 
 The current product story is the [System 1 / System 2 architecture](ARCHITECTURE.md): continuous, low-cost event selection followed by bounded high-capability investigation. The [living report outline](REPORT_OUTLINE.md) ties those stages to identification time and separate economic assumptions. The architecture is proposed; only the public-data System 2 POC has run.
 
-Within System 1, TypeSafe AI's Jev is an **optional public-data experiment for typed escalation decisions**. It is not the stream detector or a deployed security control. Private production requires a local or separately approved decision route; the current hosted Jev service must not receive company/customer event data.
+Within System 1, a small local Nemotron Nano or rules make narrow, typed escalation decisions. TypeSafe AI's Jev is inspiration for this fast-decision pattern, not an API dependency. The Nano-to-Ultra handoff must justify its additional complexity with measured detection, routing, cost, and time outcomes.
 
 이 전략은 [해커톤 소개](https://fastcampus.co.kr/NVIDIA_hackathon)의 “계획·도구 호출·산업 문제 해결” 요구와 [AI Day Seoul](https://www.nvidia.com/ko-kr/ai-days/)의 에이전틱 AI, 피지컬 AI, 안전한 배포 주제에 맞춘 가설이다. 실제 구현·평가로 확인한 것만 제출 문안에 쓴다.
 

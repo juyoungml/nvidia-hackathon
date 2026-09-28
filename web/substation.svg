@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Illustrative district heating substation</title>
+  <desc id="desc">Primary network on the left, heat exchanger in the center, secondary heating circuit and radiator on the right.</desc>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#e7eef0" stroke-width="1"/></pattern>
+    <marker id="arrowHot" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#df7456"/></marker>
+    <marker id="arrowCold" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#5a9db9"/></marker>
+  </defs>
+  <rect width="1200" height="700" fill="#f9fbfa"/>
+  <rect width="1200" height="700" fill="url(#grid)"/>
+  <text x="65" y="125" fill="#71838b" font-family="Arial,sans-serif" font-size="20" font-weight="700" letter-spacing="2">PRIMARY NETWORK</text>
+  <text x="700" y="635" fill="#71838b" font-family="Arial,sans-serif" font-size="20" font-weight="700" letter-spacing="2">SECONDARY HEATING CIRCUIT</text>
+  <line x1="55" y1="270" x2="478" y2="270" stroke="#df7456" stroke-width="14" stroke-linecap="round" marker-end="url(#arrowHot)"/>
+  <line x1="478" y1="465" x2="55" y2="465" stroke="#5a9db9" stroke-width="14" stroke-linecap="round" marker-end="url(#arrowCold)"/>
+  <text x="70" y="247" fill="#a95844" font-family="Arial,sans-serif" font-size="18" font-weight="700">HEAT SUPPLY</text>
+  <text x="70" y="503" fill="#477f99" font-family="Arial,sans-serif" font-size="18" font-weight="700">RETURN</text>
+  <rect x="205" y="237" width="120" height="66" rx="13" fill="#ffffff" stroke="#95aab0" stroke-width="3"/>
+  <circle cx="247" cy="270" r="18" fill="#e8f2f2" stroke="#66868f" stroke-width="3"/>
+  <path d="M239 270h16M247 262v16" stroke="#66868f" stroke-width="2"/>
+  <text x="273" y="275" fill="#526b73" font-family="Arial,sans-serif" font-size="16" font-weight="700">METER</text>
+  <rect x="478" y="205" width="190" height="330" rx="22" fill="#ffffff" stroke="#97aab0" stroke-width="4"/>
+  <path d="M500 235l145 268M500 502l145-267" stroke="#a8b9bc" stroke-width="8" stroke-linecap="round"/>
+  <path d="M525 235l120 220M525 500l120-220" stroke="#dde7e8" stroke-width="6"/>
+  <text x="573" y="370" text-anchor="middle" fill="#526b73" font-family="Arial,sans-serif" font-size="17" font-weight="700">HX-21</text>
+  <text x="573" y="395" text-anchor="middle" fill="#70868d" font-family="Arial,sans-serif" font-size="15">HEAT EXCHANGER</text>
+  <line x1="668" y1="270" x2="1015" y2="270" stroke="#df7456" stroke-width="14" stroke-linecap="round" marker-end="url(#arrowHot)"/>
+  <line x1="1015" y1="465" x2="668" y2="465" stroke="#5a9db9" stroke-width="14" stroke-linecap="round" marker-end="url(#arrowCold)"/>
+  <circle cx="735" cy="270" r="22" fill="#ffffff" stroke="#66868f" stroke-width="4"/>
+  <path d="M735 248v-34" stroke="#66868f" stroke-width="3"/>
+  <circle cx="735" cy="205" r="8" fill="#df7456"/>
+  <text x="695" y="175" fill="#526b73" font-family="Arial,sans-serif" font-size="17" font-weight="700">TT-21</text>
+  <path d="M835 247l30 23-30 23zM895 247l-30 23 30 23z" fill="#ffffff" stroke="#7a9097" stroke-width="4" stroke-linejoin="round"/>
+  <line x1="865" y1="247" x2="865" y2="198" stroke="#7a9097" stroke-width="4"/>
+  <circle cx="865" cy="187" r="13" fill="#ffffff" stroke="#7a9097" stroke-width="4"/>
+  <text x="829" y="325" fill="#526b73" font-family="Arial,sans-serif" font-size="16" font-weight="700">V-21</text>
+  <rect x="804" y="80" width="168" height="81" rx="14" fill="#ffffff" stroke="#a0b2b7" stroke-width="3"/>
+  <text x="888" y="115" text-anchor="middle" fill="#526b73" font-family="Arial,sans-serif" font-size="17" font-weight="700">CONTROLLER</text>
+  <text x="888" y="141" text-anchor="middle" fill="#82969c" font-family="Arial,sans-serif" font-size="14">heating curve</text>
+  <path d="M888 161v20h-23" fill="none" stroke="#a0b2b7" stroke-width="3" stroke-dasharray="7 6"/>
+  <circle cx="810" cy="465" r="38" fill="#ffffff" stroke="#7a9eb0" stroke-width="4"/>
+  <path d="M790 478l20-31 20 31z" fill="#dcecf0" stroke="#7a9eb0" stroke-width="3"/>
+  <text x="785" y="531" fill="#526b73" font-family="Arial,sans-serif" font-size="16" font-weight="700">P-21</text>
+  <rect x="1015" y="204" width="115" height="330" rx="12" fill="#ffffff" stroke="#9caeb2" stroke-width="4"/>
+  <g stroke="#a7b8bc" stroke-width="5"><line x1="1038" y1="224" x2="1038" y2="514"/><line x1="1060" y1="224" x2="1060" y2="514"/><line x1="1082" y1="224" x2="1082" y2="514"/><line x1="1104" y1="224" x2="1104" y2="514"/></g>
+  <text x="1073" y="571" text-anchor="middle" fill="#526b73" font-family="Arial,sans-serif" font-size="17" font-weight="700">CUSTOMER SIDE</text>
+  <text x="1073" y="596" text-anchor="middle" fill="#81959b" font-family="Arial,sans-serif" font-size="15">radiators / rooms</text>
+  <text x="70" y="635" fill="#93a5aa" font-family="Arial,sans-serif" font-size="15">ILLUSTRATIVE SCHEMATIC · NOT A SOURCE DRAWING</text>
+</svg>
