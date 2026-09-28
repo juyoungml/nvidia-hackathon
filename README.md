@@ -55,6 +55,8 @@ node --check web/investigation.js
 
 ## 자료와 제출
 
+내용 검토는 [마크다운 보고서](submission/REPORT.md)와 [심사 피드백 검토](submission/REVIEW_RESPONSE.md)를 기준으로 합니다. 기존 PDF·ZIP은 이전 검토본이며, 내용 확정 후 재생성해야 합니다.
+
 - [공개 데이터 출처](data/README.md) / [이미지·도면 출처](web/assets/SOURCES.md)
 - [전략](STRATEGY.md) / [현재 계획](PLAN.md) / [아키텍처](ARCHITECTURE.md)
 - [폼 초안](submission/FORM_DRAFT.md) / [2분 발표 동선](submission/DEMO_SCRIPT.md)
