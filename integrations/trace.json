@@ -1,0 +1,21 @@
+{
+  "toolkit": "nvidia-nat",
+  "toolkit_version": "1.8.0",
+  "execution": "deterministic registered-tool workflow; no LLM inference",
+  "case_id": "PreDist-M1-fault-52",
+  "decision_time": "2016-12-12 15:55:00",
+  "tool_calls": [
+    "get_recent_measurements",
+    "get_prior_incidents",
+    "get_maintenance_timeline"
+  ],
+  "tool_result_sha256": "6d27290042d0f83afd1d2cfbad40245d200568b8c030269b4962016bb164e1bc",
+  "source_ids": [
+    "PreDist-M1-disturbance-112",
+    "PreDist-M1-disturbance-113",
+    "PreDist-M1-disturbance-114",
+    "PreDist-M1-disturbance-115",
+    "PreDist-M1-fault-6",
+    "PreDist-M1-substation-21-operational-data"
+  ]
+}

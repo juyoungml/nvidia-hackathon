@@ -1,3 +1,9 @@
+# Current result checkpoint — 2026-09-28
+
+The current evidence is [evaluation/results/README.md](evaluation/results/README.md) and its preserved trace set: three actual PreDist complaints on the same substation and two separately labeled derived probes. Local Nano schema-v2 triage and hosted Ultra run end to end. The three real complaints all escalated, just as the keyword rule did. The no-report probe produced an invented service-loss rationale, so Nano's incremental value is not established. Citation coverage is incomplete: case 52 omits the measurement source and case 32 omits the current complaint source. No undefined tags in the four investigation answers does not imply full grounding.
+
+NAT 1.8.0 executed a separate deterministic replay of three registered public tools. [OpenShell 0.1.2](integrations/openshell-README.md) enforced allowed reading and denied file read/write/direct TCP in an isolated public-fixture test. Neither result means the full model pipeline runs under NAT or OpenShell. The original one-case notes below are preserved as history; latest results supersede their completion status.
+
 # POC result — public energy-equipment incident replay
 
 ## 검토용 요약

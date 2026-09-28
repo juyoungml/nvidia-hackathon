@@ -1,0 +1,34 @@
+{
+  "date_utc": "2026-09-28",
+  "scope": "Public PreDist case 52 runtime availability and gate probes; no credentials or private data",
+  "endpoint_checks": [
+    {
+      "model": "nvidia/nemotron-3-nano-30b-a3b",
+      "result": "HTTP 410 Gone",
+      "note": "NVIDIA API documentation listed this ID, but the hosted endpoint rejected it"
+    },
+    {
+      "model": "nvidia/nemotron-nano-3-30b-a3b",
+      "result": "HTTP 404 Not Found",
+      "note": "This ID appeared in the account's live /v1/models listing but chat completion failed"
+    },
+    {
+      "model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
+      "result": "HTTP 503 Service Unavailable",
+      "note": "One chat completion availability probe; no inference about persistent availability"
+    }
+  ],
+  "local_nano": {
+    "model": "nemotron-3-nano:4b",
+    "runtime": "Ollama localhost",
+    "first_case_52_gate": "Correct escalation decision but invalid copied report source ID; conservative fallback recorded in ignored .artifacts trace dated 20260928T051435Z",
+    "schema_v2": "Model selects evidence kinds; runner attaches exact public source IDs deterministically",
+    "published_trace": "trace-52-pipeline.json",
+    "published_gate_validation": "valid"
+  },
+  "limits": [
+    "The current probe is a single public district-heating incident, not a measured reduction in identification time.",
+    "The published Ultra answer suggests checks and contains no undefined sensor tags; uncertainty wording still needs human review before claiming a diagnosis.",
+    "Hosted Nano availability checks were a small point-in-time probe, not a service-level test."
+  ]
+}

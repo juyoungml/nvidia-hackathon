@@ -1,5 +1,5 @@
 {
-  "case_id": "PreDist-M1-fault-52",
+  "case_id": "PreDist-M1-fault-32",
   "source": "https://zenodo.org/records/19496480",
   "not_available_to_agent": true,
   "provenance": {
@@ -10,14 +10,14 @@
       "substation_21.csv": "0e1ecfee6501845d2264b22e504819c4c709d104fdeea6a708c10c8ac7c69475"
     },
     "selection": {
-      "report_id": "52",
+      "report_id": "32",
       "asset_id": "21",
       "window_hours": 24,
       "cutoff": "measurement timestamp <= report date; prior records strictly earlier"
     }
   },
-  "report_date": "2016-12-12 15:55:00",
-  "event_description": "Optimization of controller parameters led to insufficient supply for heating. Control system reset. Air in circulation for DHW, vented.",
+  "report_date": "2019-10-19 10:38:00",
+  "event_description": "Flow temperature too low and increased to 55°C.",
   "fault_label": "Control unit: Incorrect parameterisation",
   "note": "Published report fields are retrospective; they are not a real-time ground truth at the decision time."
 }

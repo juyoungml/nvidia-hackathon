@@ -1,0 +1,75 @@
+{
+  "backend": "ollama",
+  "model": "nemotron-3-nano:4b",
+  "case_id": "PreDist-M1-derived-no-report-20161210",
+  "source": {
+    "dataset": "PreDist v2",
+    "url": "https://zenodo.org/records/19496480",
+    "doi": "10.5281/zenodo.19496480",
+    "license": "CC BY 4.0",
+    "publisher": "Fraunhofer IEE / enercity Netz GmbH",
+    "asset_type": "district heating substation"
+  },
+  "decision_time": "2016-12-10 15:55:00",
+  "triage": {
+    "model": "nemotron-3-nano:4b",
+    "schema_version": 2,
+    "backend": "ollama",
+    "input": {
+      "decision_time": "2016-12-10 15:55:00",
+      "customer_report": {
+        "problem": "No incident report is supplied for this sampled window",
+        "source_id": "PreDist-M1-derived-no-report-20161210"
+      },
+      "measurements": {
+        "source_id": "PreDist-M1-substation-21-operational-data",
+        "samples": 144,
+        "last_sample_time": "2016-12-10 15:50:00",
+        "supply_setpoint_gap": {
+          "mean": 0.36,
+          "max": 1.8,
+          "samples_within_2C": 144,
+          "sample_count": 144
+        }
+      }
+    },
+    "decision": {
+      "escalate": true,
+      "priority": "review",
+      "reason": "Service loss reported with no incident report supplied.",
+      "evidence_kinds": [
+        "customer_report",
+        "measurements"
+      ],
+      "source_ids": [
+        "PreDist-M1-derived-no-report-20161210",
+        "PreDist-M1-substation-21-operational-data"
+      ]
+    },
+    "effective_decision": {
+      "escalate": true,
+      "priority": "review",
+      "reason": "Service loss reported with no incident report supplied.",
+      "evidence_kinds": [
+        "customer_report",
+        "measurements"
+      ],
+      "source_ids": [
+        "PreDist-M1-derived-no-report-20161210",
+        "PreDist-M1-substation-21-operational-data"
+      ]
+    },
+    "validation_status": "valid",
+    "latency_seconds": 10.09,
+    "raw": "{\n  \"escalate\": true,\n  \"priority\": \"review\",\n  \"reason\": \"Service loss reported with no incident report supplied.\",\n  \"evidence_kinds\": [\"customer_report\", \"measurements\"]\n}"
+  },
+  "rules_baseline": {
+    "escalate": false,
+    "reason": "no rule trigger",
+    "rule": "service_loss_keyword_v1"
+  },
+  "events": [],
+  "final": null,
+  "undefined_signal_names": [],
+  "note": "Derived no-report gate-only probe. No Ultra call."
+}

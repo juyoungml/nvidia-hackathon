@@ -1,6 +1,6 @@
 # Public data anchors and provenance
 
-Reviewed 2026-09-28 KST. Dataset metadata and licenses below come from the publishers' own pages unless otherwise stated. **No dataset has been ingested or validated in this repository yet.**
+Reviewed 2026-09-28 KST. Dataset metadata and licenses below come from the publishers' own pages unless otherwise stated. PreDist v2 replay 52 has been ingested and executed; additional same-asset cases are being evaluated. The original candidate table below records selection-time findings, not current completion status.
 
 ## Catchphrase
 

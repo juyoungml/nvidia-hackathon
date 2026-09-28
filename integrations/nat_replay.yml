@@ -1,0 +1,6 @@
+function_groups:
+  public_replay:
+    _type: public_predist_tools
+
+workflow:
+  _type: public_predist_replay_workflow

@@ -1,0 +1,173 @@
+{
+  "backend": "nvidia",
+  "model": "nvidia/nemotron-3-ultra-550b-a55b",
+  "case_id": "PreDist-M1-derived-missing-measurements-52",
+  "source": {
+    "dataset": "PreDist v2",
+    "url": "https://zenodo.org/records/19496480",
+    "doi": "10.5281/zenodo.19496480",
+    "license": "CC BY 4.0",
+    "publisher": "Fraunhofer IEE / enercity Netz GmbH",
+    "asset_type": "district heating substation"
+  },
+  "decision_time": "2016-12-12 15:55:00",
+  "triage": {
+    "model": "nemotron-3-nano:4b",
+    "schema_version": 2,
+    "backend": "ollama",
+    "input": {
+      "decision_time": "2016-12-12 15:55:00",
+      "customer_report": {
+        "problem": "no heat",
+        "source_id": "PreDist-M1-fault-52-problem-only"
+      },
+      "measurements": {
+        "source_id": "PreDist-M1-substation-21-operational-data",
+        "samples": 0,
+        "last_sample_time": null,
+        "supply_setpoint_gap": {
+          "mean": null,
+          "max": null,
+          "samples_within_2C": 0,
+          "sample_count": 0
+        }
+      }
+    },
+    "decision": {
+      "escalate": true,
+      "priority": "review",
+      "reason": "Service loss reported with no sensor data available.",
+      "evidence_kinds": [
+        "customer_report"
+      ],
+      "source_ids": [
+        "PreDist-M1-fault-52-problem-only"
+      ]
+    },
+    "effective_decision": {
+      "escalate": true,
+      "priority": "review",
+      "reason": "Service loss reported with no sensor data available.",
+      "evidence_kinds": [
+        "customer_report"
+      ],
+      "source_ids": [
+        "PreDist-M1-fault-52-problem-only"
+      ]
+    },
+    "validation_status": "valid",
+    "latency_seconds": 3.54,
+    "raw": "{\n  \"escalate\": true,\n  \"priority\": \"review\",\n  \"reason\": \"Service loss reported with no sensor data available.\",\n  \"evidence_kinds\": [\"customer_report\"]\n}"
+  },
+  "events": [
+    {
+      "step": 1,
+      "latency_seconds": 0.95,
+      "finish_reason": "tool_calls",
+      "model_content": "\n\n",
+      "tool_calls": [
+        "get_recent_measurements",
+        "get_prior_incidents"
+      ]
+    },
+    {
+      "tool": "get_recent_measurements",
+      "call_id": "call-a87a6254-a6d3-47f7-a216-7cc6e3877d66",
+      "result": {
+        "source_id": "PreDist-M1-substation-21-operational-data",
+        "interval": "2016-12-11 15:55:00 to 2016-12-12 15:55:00",
+        "samples": 0,
+        "last_sample_time": null,
+        "signals": {
+          "outdoor_temperature_c": {
+            "original_field": "outdoor_temperature",
+            "first": null,
+            "last": null,
+            "min": null,
+            "max": null,
+            "mean": null,
+            "unit": "°C"
+          },
+          "secondary_heating_circuit_supply_temperature_c": {
+            "original_field": "s_hc1_supply_temperature",
+            "first": null,
+            "last": null,
+            "min": null,
+            "max": null,
+            "mean": null,
+            "unit": "°C"
+          },
+          "secondary_heating_circuit_supply_setpoint_c": {
+            "original_field": "s_hc1_supply_temperature_setpoint",
+            "first": null,
+            "last": null,
+            "min": null,
+            "max": null,
+            "mean": null,
+            "unit": "°C"
+          },
+          "primary_network_meter_heat_power_kw": {
+            "original_field": "p_net_meter_heat_power",
+            "first": null,
+            "last": null,
+            "min": null,
+            "max": null,
+            "mean": null,
+            "unit": "kW"
+          },
+          "primary_network_meter_flow_l_per_hour": {
+            "original_field": "p_net_meter_flow",
+            "first": null,
+            "last": null,
+            "min": null,
+            "max": null,
+            "mean": null,
+            "unit": "l/h"
+          }
+        },
+        "secondary_heating_supply_vs_setpoint_absolute_gap_celsius": {
+          "mean": null,
+          "max": null,
+          "samples_within_2C": 0,
+          "sample_count": 0
+        },
+        "interpretation_limits": [
+          "This sensor's secondary supply temperature tracking its setpoint does not prove heat reached rooms.",
+          "No room/radiator temperature, secondary heat-circuit flow, valve position, or timestamped controller parameter-change record is available in this replay.",
+          "p_net_meter_flow is primary network-side flow, not customer/secondary circuit flow.",
+          "No normal operating range is provided for heat power or flow."
+        ]
+      }
+    },
+    {
+      "tool": "get_prior_incidents",
+      "call_id": "call-d2c1dd3f-466c-4754-a8b6-df968bb32535",
+      "result": {
+        "records": [
+          {
+            "source_id": "PreDist-M1-fault-6",
+            "report_date": "2016-12-06 13:12:00",
+            "problem": "not enough heat",
+            "event_description": "The heaters are not getting warm enough. Supply temperature is 44°C at 9°C outdoor temperature. Heating curve increased."
+          }
+        ],
+        "note": "Only reports dated before this incident are available."
+      }
+    },
+    {
+      "step": 2,
+      "latency_seconds": 11.37,
+      "finish_reason": "stop",
+      "model_content": "**관측된 증거 (2016-12-12 15:55:00 기준)**\n\n1. **고객 신고만 존재**: \"no heat\" 신고(PreDist-M1-fault-52-problem-only) 외에 가용 센서 데이터 없음\n2. **측정값 완전 부재**: 최근 24시간(2016-12-11 15:55 ~ 2016-12-12 15:55) 동안 모든 신호에서 샘플 0개\n   - 실외온도, 2차측 난방공급온도/세트포인트, 1차측 열량/유량 모두 null\n3. **이전 이력 1건**: 2016-12-06 \"not enough heat\" (PreDist-M1-fault-6)\n   - 당시 공급온도 44°C (실외 9°C), 난방곡선 상향 조정 기록\n   - **주의**: 이전 보고가 현재 원인을 입증하지 않음\n\n**데이터 한계**\n- 2차측 유량, 밸브 개도, 실내/라디에이터 온도, 컨트롤러 파라미터 변경 기록 없음\n- 1차측 유량(p_net_meter_flow)은 고객측/2차측 유량과 다름\n- 열량/유량의 정상 운전 범위 미제공\n- 2°C 추적 갭은 2차측 공급온도와 세트포인트 간 비교만 의미\n\n**엔지니어 현장 확인 사항 (2~3가지)**\n1. **서브스테이션 전원 및 통신 상태**: 데이터 로거/컨트롤러 전원, 네트워크 연결, 센서 배선 점검\n2. **1차측 차단밸브 및 스트레이너**: 공급/복귀 측 차단밸브 개도 확인, 스트레이너 막힘 여부 육안 점검\n3. **2차측 펌프 및 혼합밸브 구동**: 펌프 운전 상태(소음, 진동, 전류), 혼합밸브 액추에이터 동작 확인\n\n**불확실성**\n- 센서/통신 장애인지 실제 열공급 중단인지 구별 불가\n- 이전 \"not enough heat\" 조치(난방곡선 변경)가 현재 상황과 무관할 수 있음\n- 실내 온도 하강 지속 시간, DHW 영향 여부 미확인",
+      "tool_calls": []
+    }
+  ],
+  "final": "**관측된 증거 (2016-12-12 15:55:00 기준)**\n\n1. **고객 신고만 존재**: \"no heat\" 신고(PreDist-M1-fault-52-problem-only) 외에 가용 센서 데이터 없음\n2. **측정값 완전 부재**: 최근 24시간(2016-12-11 15:55 ~ 2016-12-12 15:55) 동안 모든 신호에서 샘플 0개\n   - 실외온도, 2차측 난방공급온도/세트포인트, 1차측 열량/유량 모두 null\n3. **이전 이력 1건**: 2016-12-06 \"not enough heat\" (PreDist-M1-fault-6)\n   - 당시 공급온도 44°C (실외 9°C), 난방곡선 상향 조정 기록\n   - **주의**: 이전 보고가 현재 원인을 입증하지 않음\n\n**데이터 한계**\n- 2차측 유량, 밸브 개도, 실내/라디에이터 온도, 컨트롤러 파라미터 변경 기록 없음\n- 1차측 유량(p_net_meter_flow)은 고객측/2차측 유량과 다름\n- 열량/유량의 정상 운전 범위 미제공\n- 2°C 추적 갭은 2차측 공급온도와 세트포인트 간 비교만 의미\n\n**엔지니어 현장 확인 사항 (2~3가지)**\n1. **서브스테이션 전원 및 통신 상태**: 데이터 로거/컨트롤러 전원, 네트워크 연결, 센서 배선 점검\n2. **1차측 차단밸브 및 스트레이너**: 공급/복귀 측 차단밸브 개도 확인, 스트레이너 막힘 여부 육안 점검\n3. **2차측 펌프 및 혼합밸브 구동**: 펌프 운전 상태(소음, 진동, 전류), 혼합밸브 액추에이터 동작 확인\n\n**불확실성**\n- 센서/통신 장애인지 실제 열공급 중단인지 구별 불가\n- 이전 \"not enough heat\" 조치(난방곡선 변경)가 현재 상황과 무관할 수 있음\n- 실내 온도 하강 지속 시간, DHW 영향 여부 미확인",
+  "undefined_signal_names": [],
+  "note": "Held-out current diagnosis and remedy were not supplied to either model.",
+  "rules_baseline": {
+    "escalate": true,
+    "reason": "customer service-loss report",
+    "rule": "service_loss_keyword_v1"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "runtime": "NVIDIA OpenShell 0.1.2",
+  "host": "macOS arm64, Docker Desktop Engine 29.7.2",
+  "gateway": "temporary local Docker gateway, mTLS and sandbox JWT enabled",
+  "sandbox": "hack-public-4",
+  "sandbox_phase_at_test": "Ready",
+  "image_base": "ubuntu:24.04@sha256:008173c23f95b170204355c12626cb5a965d779a7e1283b09e9cffbb1bf33ca3",
+  "effective_policy_hash": "7a4234391c16b227072795bc893b04d0b7db6c7763f40ebbe6a9dcd00aa98e04",
+  "effective_policy_revision_status": "Loaded",
+  "policy": "integrations/openshell-policy.yaml",
+  "probes": [
+    {
+      "command": "cat /work/allowed/fixture.txt",
+      "exit_code": 0,
+      "output": "Public fixture: allowed read."
+    },
+    {
+      "command": "cat /work/denied/fixture.txt",
+      "exit_code": 1,
+      "output": "Permission denied"
+    },
+    {
+      "command": "bash -c 'echo changed > /work/allowed/fixture.txt'",
+      "exit_code": 1,
+      "output": "Permission denied"
+    },
+    {
+      "command": "timeout 5 bash -c 'echo probe > /dev/tcp/1.1.1.1/443'",
+      "exit_code": 1,
+      "output": "Permission denied"
+    },
+    {
+      "command": "cat /work/allowed/fixture.txt",
+      "exit_code": 0,
+      "output": "Public fixture: allowed read."
+    }
+  ],
+  "scope": "Only two public text fixtures baked into a local image; no workspace, home directory, credentials, plant data, model endpoint, or external service was mounted or attached."
+}

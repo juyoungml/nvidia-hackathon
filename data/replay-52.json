@@ -2791,6 +2791,7 @@
       "type": "fault"
     }
   ],
+  "record_availability_note": "Earlier report dates precede the decision time, but the dataset does not establish when their retrospective narratives became available to an operator.",
   "features": {
     "outdoor_temperature": {
       "description": "Outdoor temperature",
@@ -2895,6 +2896,20 @@
     "s_hc1.2_return_temperature_setpoint": {
       "description": "Sub-heat circuit 1.2 reference return temperature (primary side)",
       "unit": "°C"
+    }
+  },
+  "provenance": {
+    "source_files_sha256": {
+      "faults.csv": "8f8a4ccd400d63d162314bbc888031bc2b793ea8a75313e6bcdadee046bf7bdc",
+      "disturbances.csv": "f0085525085080cfc0deafe4095b1cee7e47266749b2ef228d479a61778cf7d8",
+      "features.csv": "388c237896ec3dfc86f7330113cab661323a385f878f10cfa99c65de51e104b9",
+      "substation_21.csv": "0e1ecfee6501845d2264b22e504819c4c709d104fdeea6a708c10c8ac7c69475"
+    },
+    "selection": {
+      "report_id": "52",
+      "asset_id": "21",
+      "window_hours": 24,
+      "cutoff": "measurement timestamp <= report date; prior records strictly earlier"
     }
   }
 }

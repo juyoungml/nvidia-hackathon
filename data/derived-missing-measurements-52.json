@@ -1,0 +1,185 @@
+{
+  "source": {
+    "dataset": "PreDist v2",
+    "url": "https://zenodo.org/records/19496480",
+    "doi": "10.5281/zenodo.19496480",
+    "license": "CC BY 4.0",
+    "publisher": "Fraunhofer IEE / enercity Netz GmbH",
+    "asset_type": "district heating substation"
+  },
+  "case_id": "PreDist-M1-derived-missing-measurements-52",
+  "asset": {
+    "manufacturer": 1,
+    "substation_id": "21"
+  },
+  "decision_time": "2016-12-12 15:55:00",
+  "current_report": {
+    "source_id": "PreDist-M1-fault-52-problem-only",
+    "problem": "no heat",
+    "note": "Only the reported problem is visible at decision time. Later diagnosis and remedy are withheld."
+  },
+  "measurement_window": {
+    "start": "2016-12-11 15:55:00",
+    "end": "2016-12-12 15:55:00",
+    "source_id": "PreDist-M1-substation-21-operational-data",
+    "rows": []
+  },
+  "prior_faults": [
+    {
+      "source_id": "PreDist-M1-fault-6",
+      "report_date": "2016-12-06 13:12:00",
+      "problem": "not enough heat",
+      "event_description": "The heaters are not getting warm enough. Supply temperature is 44°C at 9°C outdoor temperature. Heating curve increased."
+    }
+  ],
+  "prior_disturbances": [
+    {
+      "source_id": "PreDist-M1-disturbance-112",
+      "event_start": "2015-03-06 00:00:00",
+      "type": "activity"
+    },
+    {
+      "source_id": "PreDist-M1-disturbance-113",
+      "event_start": "2015-06-07 11:34:00",
+      "type": "fault"
+    },
+    {
+      "source_id": "PreDist-M1-disturbance-114",
+      "event_start": "2015-11-26 00:00:00",
+      "type": "activity"
+    },
+    {
+      "source_id": "PreDist-M1-disturbance-115",
+      "event_start": "2016-12-06 13:12:00",
+      "type": "fault"
+    }
+  ],
+  "record_availability_note": "Earlier report dates precede the decision time, but the dataset does not establish when their retrospective narratives became available to an operator.",
+  "features": {
+    "outdoor_temperature": {
+      "description": "Outdoor temperature",
+      "unit": "°C"
+    },
+    "s_hc1_supply_temperature": {
+      "description": "Heat circuit 1 flow temperature (secondary)",
+      "unit": "°C"
+    },
+    "s_hc1_supply_temperature_setpoint": {
+      "description": "Heat circuit 1 reference flow temperature (secondary)",
+      "unit": "°C"
+    },
+    "s_dhw_supply_temperature": {
+      "description": "Heat circuit 2 flow temperature (secondary)",
+      "unit": "°C"
+    },
+    "s_dhw_supply_temperature_setpoint": {
+      "description": "Heat circuit 2 reference flow temperature (secondary)",
+      "unit": "°C"
+    },
+    "p_hc1_return_temperature": {
+      "description": "Heat circuit 1 return temperature (primary side)",
+      "unit": "°C"
+    },
+    "s_dhw_upper_storage_temperature": {
+      "description": "DHW upper temperature",
+      "unit": "°C"
+    },
+    "s_dhw_lower_storage_temperature": {
+      "description": "DHW lower temperature",
+      "unit": "°C"
+    },
+    "p_net_meter_energy": {
+      "description": "Energy",
+      "unit": "kWh"
+    },
+    "p_net_meter_volume": {
+      "description": "Volume",
+      "unit": "m3"
+    },
+    "p_net_meter_heat_power": {
+      "description": "Power",
+      "unit": "kW"
+    },
+    "p_net_meter_flow": {
+      "description": "Flow",
+      "unit": "l/h"
+    },
+    "p_net_supply_temperature": {
+      "description": "Primary flow temperature",
+      "unit": "°C"
+    },
+    "p_net_return_temperature": {
+      "description": "Primary return temperature",
+      "unit": "°C"
+    },
+    "p_hc1_return_temperature_setpoint": {
+      "description": "Heat circuit 1 reference return temperature (primary side)",
+      "unit": "°C"
+    },
+    "s_dhw_upper_storage_temperature_setpoint": {
+      "description": "DHW upper temperature reference",
+      "unit": "°C"
+    },
+    "p_dhw_return_temperature_setpoint": {
+      "description": "Heat circuit 2 reference return temperature (primary side)",
+      "unit": "°C"
+    },
+    "p_dhw_return_temperature": {
+      "description": "Heat circuit 2 return temperature (primary side)",
+      "unit": "°C"
+    },
+    "s_hc1.1_supply_temperature": {
+      "description": "Sub-heat circuit 1.1 flow temperature",
+      "unit": "°C"
+    },
+    "s_hc1.2_supply_temperature": {
+      "description": "Sub-heat circuit 1.2 flow temperature",
+      "unit": "°C"
+    },
+    "s_hc1.1_return_temperature": {
+      "description": "Sub-heat circuit 1.1 return temperature (primary side)",
+      "unit": "°C"
+    },
+    "s_hc1.2_return_temperature": {
+      "description": "Sub-heat circuit 1.2 return temperature (primary side)",
+      "unit": "°C"
+    },
+    "s_hc1.1_supply_temperature_setpoint": {
+      "description": "Sub-heat circuit 1.1 reference flow temperature (secondary)",
+      "unit": "°C"
+    },
+    "s_hc1.1_return_temperature_setpoint": {
+      "description": "Sub-heat circuit 1.1 reference return temperature (primary side)",
+      "unit": "°C"
+    },
+    "s_hc1.2_supply_temperature_setpoint": {
+      "description": "Sub-heat circuit 1.2 reference flow temperature (secondary)",
+      "unit": "°C"
+    },
+    "s_hc1.2_return_temperature_setpoint": {
+      "description": "Sub-heat circuit 1.2 reference return temperature (primary side)",
+      "unit": "°C"
+    }
+  },
+  "provenance": {
+    "source_files_sha256": {
+      "faults.csv": "8f8a4ccd400d63d162314bbc888031bc2b793ea8a75313e6bcdadee046bf7bdc",
+      "disturbances.csv": "f0085525085080cfc0deafe4095b1cee7e47266749b2ef228d479a61778cf7d8",
+      "features.csv": "388c237896ec3dfc86f7330113cab661323a385f878f10cfa99c65de51e104b9",
+      "substation_21.csv": "0e1ecfee6501845d2264b22e504819c4c709d104fdeea6a708c10c8ac7c69475"
+    },
+    "selection": {
+      "report_id": "52",
+      "asset_id": "21",
+      "window_hours": 24,
+      "cutoff": "measurement timestamp <= report date; prior records strictly earlier",
+      "transformation": "remove measurement rows"
+    }
+  },
+  "derived_case": {
+    "type": "missing_measurements",
+    "published_incident": false,
+    "method": "Remove all public sensor rows from fault-52 replay; retain the complaint and earlier reports.",
+    "limitation": "This is an artificial evidence outage, not a reported data-quality event."
+  }
+}

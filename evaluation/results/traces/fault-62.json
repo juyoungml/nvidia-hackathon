@@ -1,0 +1,183 @@
+{
+  "backend": "nvidia",
+  "model": "nvidia/nemotron-3-ultra-550b-a55b",
+  "case_id": "PreDist-M1-fault-62",
+  "source": {
+    "dataset": "PreDist v2",
+    "url": "https://zenodo.org/records/19496480",
+    "doi": "10.5281/zenodo.19496480",
+    "license": "CC BY 4.0",
+    "publisher": "Fraunhofer IEE / enercity Netz GmbH",
+    "asset_type": "district heating substation"
+  },
+  "decision_time": "2019-01-21 08:17:00",
+  "triage": {
+    "model": "nemotron-3-nano:4b",
+    "schema_version": 2,
+    "backend": "ollama",
+    "input": {
+      "decision_time": "2019-01-21 08:17:00",
+      "customer_report": {
+        "problem": "not enough heat",
+        "source_id": "PreDist-M1-fault-62-problem-only"
+      },
+      "measurements": {
+        "source_id": "PreDist-M1-substation-21-operational-data",
+        "samples": 144,
+        "last_sample_time": "2019-01-21 08:10:00",
+        "supply_setpoint_gap": {
+          "mean": 0.33,
+          "max": 1.7,
+          "samples_within_2C": 144,
+          "sample_count": 144
+        }
+      }
+    },
+    "decision": {
+      "escalate": true,
+      "priority": "review",
+      "reason": "Customer reports insufficient heat despite sensor tracking target.",
+      "evidence_kinds": [
+        "customer_report",
+        "measurements"
+      ],
+      "source_ids": [
+        "PreDist-M1-fault-62-problem-only",
+        "PreDist-M1-substation-21-operational-data"
+      ]
+    },
+    "effective_decision": {
+      "escalate": true,
+      "priority": "review",
+      "reason": "Customer reports insufficient heat despite sensor tracking target.",
+      "evidence_kinds": [
+        "customer_report",
+        "measurements"
+      ],
+      "source_ids": [
+        "PreDist-M1-fault-62-problem-only",
+        "PreDist-M1-substation-21-operational-data"
+      ]
+    },
+    "validation_status": "valid",
+    "latency_seconds": 11.5,
+    "raw": "{\n  \"escalate\": true,\n  \"priority\": \"review\",\n  \"reason\": \"Customer reports insufficient heat despite sensor tracking target.\",\n  \"evidence_kinds\": [\"customer_report\", \"measurements\"]\n}"
+  },
+  "events": [
+    {
+      "step": 1,
+      "latency_seconds": 1.57,
+      "finish_reason": "tool_calls",
+      "model_content": "\n\n",
+      "tool_calls": [
+        "get_recent_measurements",
+        "get_prior_incidents"
+      ]
+    },
+    {
+      "tool": "get_recent_measurements",
+      "call_id": "call-10966ae9-a1f8-4c6a-83fb-fb1208051d59",
+      "result": {
+        "source_id": "PreDist-M1-substation-21-operational-data",
+        "interval": "2019-01-20 08:17:00 to 2019-01-21 08:17:00",
+        "samples": 144,
+        "last_sample_time": "2019-01-21 08:10:00",
+        "signals": {
+          "outdoor_temperature_c": {
+            "original_field": "outdoor_temperature",
+            "first": 4.1,
+            "last": 3.2,
+            "min": 2.6,
+            "max": 5.1,
+            "mean": 3.81,
+            "unit": "°C"
+          },
+          "secondary_heating_circuit_supply_temperature_c": {
+            "original_field": "s_hc1_supply_temperature",
+            "first": 55.9,
+            "last": 57.9,
+            "min": 46.2,
+            "max": 63.7,
+            "mean": 56.98,
+            "unit": "°C"
+          },
+          "secondary_heating_circuit_supply_setpoint_c": {
+            "original_field": "s_hc1_supply_temperature_setpoint",
+            "first": 56.05,
+            "last": 57.5,
+            "min": 47.1,
+            "max": 63.0,
+            "mean": 56.98,
+            "unit": "°C"
+          },
+          "primary_network_meter_heat_power_kw": {
+            "original_field": "p_net_meter_heat_power",
+            "first": 136.0,
+            "last": 143.0,
+            "min": 94.0,
+            "max": 175.0,
+            "mean": 140.96,
+            "unit": "kW"
+          },
+          "primary_network_meter_flow_l_per_hour": {
+            "original_field": "p_net_meter_flow",
+            "first": 2448.0,
+            "last": 2348.0,
+            "min": 1632.0,
+            "max": 2928.0,
+            "mean": 2453.06,
+            "unit": "l/h"
+          }
+        },
+        "secondary_heating_supply_vs_setpoint_absolute_gap_celsius": {
+          "mean": 0.33,
+          "max": 1.7,
+          "samples_within_2C": 144,
+          "sample_count": 144
+        },
+        "interpretation_limits": [
+          "This sensor's secondary supply temperature tracking its setpoint does not prove heat reached rooms.",
+          "No room/radiator temperature, secondary heat-circuit flow, valve position, or timestamped controller parameter-change record is available in this replay.",
+          "p_net_meter_flow is primary network-side flow, not customer/secondary circuit flow.",
+          "No normal operating range is provided for heat power or flow."
+        ]
+      }
+    },
+    {
+      "tool": "get_prior_incidents",
+      "call_id": "call-0c6ad4eb-badb-4177-ac5c-cea7844001b7",
+      "result": {
+        "records": [
+          {
+            "source_id": "PreDist-M1-fault-6",
+            "report_date": "2016-12-06 13:12:00",
+            "problem": "not enough heat",
+            "event_description": "The heaters are not getting warm enough. Supply temperature is 44°C at 9°C outdoor temperature. Heating curve increased."
+          },
+          {
+            "source_id": "PreDist-M1-fault-52",
+            "report_date": "2016-12-12 15:55:00",
+            "problem": "no heat",
+            "event_description": "Optimization of controller parameters led to insufficient supply for heating. Control system reset. Air in circulation for DHW, vented."
+          }
+        ],
+        "note": "Only reports dated before this incident are available."
+      }
+    },
+    {
+      "step": 2,
+      "latency_seconds": 15.72,
+      "finish_reason": "stop",
+      "model_content": "**관측된 증거 (2019-01-21 08:17 기준 가용 데이터)**\n\n1. **고객 신고**: \"열이 충분하지 않음\" (PreDist-M1-fault-62-problem-only)\n2. **2차측 공급온도 추적 양호**: 최근 24시간(144 샘플) 동안 `s_hc1_supply_temperature`가 설정값(`s_hc1_supply_temperature_setpoint`)을 ±2 °C 이내로 추적함\n   - 평균 편차 0.33 °C, 최대 편차 1.7 °C, 전 샘플 2 °C 이내 (PreDist-M1-substation-21-operational-data)\n   - 마지막 샘플(08:10): 실측 57.9 °C, 설정값 57.5 °C\n3. **1차측 열량/유량**: `p_net_meter_heat_power` 평균 141 kW(94–175 kW), `p_net_meter_flow` 평균 2,453 L/h(1,632–2,928 L/h) — **정상 범위 미제공**\n4. **실내/라디에이터 온도, 2차측 유량, 밸브 개도, 제어기 파라미터 변경 이력 없음**\n5. **과거 이력(2016년)**: 두 건의 \"열 부족/무열\" 보고(PreDist-M1-fault-6, -52) — 당시 조치(가열곡선 상향, 제어기 리셋/공기 배출)가 현재 원인을 입증하지는 않음\n\n**해석 한계**\n- 2차측 공급온도 추적만으로는 실내까지 열이 도달했음을 보장 못 함 (해석 한계 1번)\n- 1차측 유량(`p_net_meter_flow`)은 고객측/2차측 유량과 다름 (해석 한계 3번)\n- 열량·유량의 정상 범위 모름 (해석 한계 4번)\n\n**엔지니어가 현장에서 다음에 확인할 3가지 (진단 아님, 라우팅용)**\n1. **실내 온도 대표 지점 실측** — 고객 호실/공용부 온도계로 설정 실내온도 대비 실제값 확인\n2. **2차측 난방 회로 유량·차압·밸브 개도** — 열교환기 2차측 유량계/차압계 및 제어밸브 개도(%열림) 읽기\n3. **열교환기 1·2차측 입출구 온도 쌍** — 1차측 공급/환수, 2차측 공급/환수 동시 측정으로 열전달 온도차(ΔT) 확인\n\n**불확실성**\n- 실내단 열공급 부족이 2차측 유량 부족, 밸브 고착, 열교환기 성능 저하, 배관 에어, 제어 설정값 중 어느 것에 기인하는지 현재 데이터만으로는 특정 불가\n- 과거 조치 이력(가열곡선 변경, 제어기 리셋)이 현재 상태에 미치는 영향 불명",
+      "tool_calls": []
+    }
+  ],
+  "final": "**관측된 증거 (2019-01-21 08:17 기준 가용 데이터)**\n\n1. **고객 신고**: \"열이 충분하지 않음\" (PreDist-M1-fault-62-problem-only)\n2. **2차측 공급온도 추적 양호**: 최근 24시간(144 샘플) 동안 `s_hc1_supply_temperature`가 설정값(`s_hc1_supply_temperature_setpoint`)을 ±2 °C 이내로 추적함\n   - 평균 편차 0.33 °C, 최대 편차 1.7 °C, 전 샘플 2 °C 이내 (PreDist-M1-substation-21-operational-data)\n   - 마지막 샘플(08:10): 실측 57.9 °C, 설정값 57.5 °C\n3. **1차측 열량/유량**: `p_net_meter_heat_power` 평균 141 kW(94–175 kW), `p_net_meter_flow` 평균 2,453 L/h(1,632–2,928 L/h) — **정상 범위 미제공**\n4. **실내/라디에이터 온도, 2차측 유량, 밸브 개도, 제어기 파라미터 변경 이력 없음**\n5. **과거 이력(2016년)**: 두 건의 \"열 부족/무열\" 보고(PreDist-M1-fault-6, -52) — 당시 조치(가열곡선 상향, 제어기 리셋/공기 배출)가 현재 원인을 입증하지는 않음\n\n**해석 한계**\n- 2차측 공급온도 추적만으로는 실내까지 열이 도달했음을 보장 못 함 (해석 한계 1번)\n- 1차측 유량(`p_net_meter_flow`)은 고객측/2차측 유량과 다름 (해석 한계 3번)\n- 열량·유량의 정상 범위 모름 (해석 한계 4번)\n\n**엔지니어가 현장에서 다음에 확인할 3가지 (진단 아님, 라우팅용)**\n1. **실내 온도 대표 지점 실측** — 고객 호실/공용부 온도계로 설정 실내온도 대비 실제값 확인\n2. **2차측 난방 회로 유량·차압·밸브 개도** — 열교환기 2차측 유량계/차압계 및 제어밸브 개도(%열림) 읽기\n3. **열교환기 1·2차측 입출구 온도 쌍** — 1차측 공급/환수, 2차측 공급/환수 동시 측정으로 열전달 온도차(ΔT) 확인\n\n**불확실성**\n- 실내단 열공급 부족이 2차측 유량 부족, 밸브 고착, 열교환기 성능 저하, 배관 에어, 제어 설정값 중 어느 것에 기인하는지 현재 데이터만으로는 특정 불가\n- 과거 조치 이력(가열곡선 변경, 제어기 리셋)이 현재 상태에 미치는 영향 불명",
+  "undefined_signal_names": [],
+  "note": "Held-out current diagnosis and remedy were not supplied to either model.",
+  "rules_baseline": {
+    "escalate": true,
+    "reason": "customer service-loss report",
+    "rule": "service_loss_keyword_v1"
+  }
+}

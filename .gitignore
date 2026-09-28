@@ -15,3 +15,6 @@ private/
 customer-data/
 company-data/
 submission/drafts/
+
+# Rendered PDF QA intermediates
+/tmp/

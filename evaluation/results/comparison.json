@@ -1,0 +1,568 @@
+{
+  "baselines": [
+    {
+      "case_id": "PreDist-M1-fault-52",
+      "method": "deterministic_search_and_summary",
+      "final": "At 2016-12-12 15:55:00, the reported problem was no heat [PreDist-M1-fault-52-problem-only].\nThe preceding measurement window contains 144 rows; s_hc1_supply_temperature versus s_hc1_supply_temperature_setpoint has mean absolute gap 0.31 °C across 144 paired rows [PreDist-M1-substation-21-operational-data].\nThe latest earlier report, dated 2016-12-06 13:12:00, recorded not enough heat [PreDist-M1-fault-6]. Its narrative availability at the decision time is unverified.\nThis evidence cannot establish heat delivery to the customer's rooms. A human engineer should obtain customer-side temperature and secondary heating-circuit flow, and check the controller parameter-change record. The present cause remains unknown.",
+      "events": [],
+      "latency_seconds": 0.0001,
+      "note": "Fixed template using only the replay evidence; no language model or tool loop."
+    },
+    {
+      "case_id": "PreDist-M1-fault-62",
+      "method": "deterministic_search_and_summary",
+      "final": "At 2019-01-21 08:17:00, the reported problem was not enough heat [PreDist-M1-fault-62-problem-only].\nThe preceding measurement window contains 144 rows; s_hc1_supply_temperature versus s_hc1_supply_temperature_setpoint has mean absolute gap 0.33 °C across 144 paired rows [PreDist-M1-substation-21-operational-data].\nThe latest earlier report, dated 2016-12-12 15:55:00, recorded no heat [PreDist-M1-fault-52]. Its narrative availability at the decision time is unverified.\nThis evidence cannot establish heat delivery to the customer's rooms. A human engineer should obtain customer-side temperature and secondary heating-circuit flow, and check the controller parameter-change record. The present cause remains unknown.",
+      "events": [],
+      "latency_seconds": 0.0001,
+      "note": "Fixed template using only the replay evidence; no language model or tool loop."
+    },
+    {
+      "case_id": "PreDist-M1-fault-32",
+      "method": "deterministic_search_and_summary",
+      "final": "At 2019-10-19 10:38:00, the reported problem was not enough heat [PreDist-M1-fault-32-problem-only].\nThe preceding measurement window contains 144 rows; s_hc1_supply_temperature versus s_hc1_supply_temperature_setpoint has mean absolute gap 0.35 °C across 144 paired rows [PreDist-M1-substation-21-operational-data].\nThe latest earlier report, dated 2019-01-21 08:17:00, recorded not enough heat [PreDist-M1-fault-62]. Its narrative availability at the decision time is unverified.\nThis evidence cannot establish heat delivery to the customer's rooms. A human engineer should obtain customer-side temperature and secondary heating-circuit flow, and check the controller parameter-change record. The present cause remains unknown.",
+      "events": [],
+      "latency_seconds": 0.0001,
+      "note": "Fixed template using only the replay evidence; no language model or tool loop."
+    },
+    {
+      "case_id": "PreDist-M1-derived-no-report-20161210",
+      "method": "deterministic_search_and_summary",
+      "final": "At 2016-12-10 15:55:00, the reported problem was No incident report is supplied for this sampled window [PreDist-M1-derived-no-report-20161210].\nThe preceding measurement window contains 144 rows; s_hc1_supply_temperature versus s_hc1_supply_temperature_setpoint has mean absolute gap 0.36 °C across 144 paired rows [PreDist-M1-substation-21-operational-data].\nThe latest earlier report, dated 2016-12-06 13:12:00, recorded not enough heat [PreDist-M1-fault-6]. Its narrative availability at the decision time is unverified.\nThis evidence cannot establish heat delivery to the customer's rooms. A human engineer should obtain customer-side temperature and secondary heating-circuit flow, and check the controller parameter-change record. The present cause remains unknown.",
+      "events": [],
+      "latency_seconds": 0.0,
+      "note": "Fixed template using only the replay evidence; no language model or tool loop."
+    },
+    {
+      "case_id": "PreDist-M1-derived-missing-measurements-52",
+      "method": "deterministic_search_and_summary",
+      "final": "At 2016-12-12 15:55:00, the reported problem was no heat [PreDist-M1-fault-52-problem-only].\nNo paired heating supply and setpoint values are present [PreDist-M1-substation-21-operational-data].\nThe latest earlier report, dated 2016-12-06 13:12:00, recorded not enough heat [PreDist-M1-fault-6]. Its narrative availability at the decision time is unverified.\nThis evidence cannot establish heat delivery to the customer's rooms. A human engineer should obtain customer-side temperature and secondary heating-circuit flow, and check the controller parameter-change record. The present cause remains unknown.",
+      "events": [],
+      "latency_seconds": 0.0,
+      "note": "Fixed template using only the replay evidence; no language model or tool loop."
+    }
+  ],
+  "checks": [
+    {
+      "case_id": "PreDist-M1-fault-52",
+      "case_kind": "published_incident",
+      "method": "deterministic_search_and_summary",
+      "final_answer": "At 2016-12-12 15:55:00, the reported problem was no heat [PreDist-M1-fault-52-problem-only].\nThe preceding measurement window contains 144 rows; s_hc1_supply_temperature versus s_hc1_supply_temperature_setpoint has mean absolute gap 0.31 °C across 144 paired rows [PreDist-M1-substation-21-operational-data].\nThe latest earlier report, dated 2016-12-06 13:12:00, recorded not enough heat [PreDist-M1-fault-6]. Its narrative availability at the decision time is unverified.\nThis evidence cannot establish heat delivery to the customer's rooms. A human engineer should obtain customer-side temperature and secondary heating-circuit flow, and check the controller parameter-change record. The present cause remains unknown.",
+      "citation_ids": [
+        "PreDist-M1-fault-52-problem-only",
+        "PreDist-M1-fault-6",
+        "PreDist-M1-substation-21-operational-data"
+      ],
+      "valid_citation_ids": [
+        "PreDist-M1-fault-52-problem-only",
+        "PreDist-M1-fault-6",
+        "PreDist-M1-substation-21-operational-data"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "current_report_source_cited": true,
+      "measurement_source_cited": true,
+      "undefined_signal_names": [],
+      "uncertainty_stated": true,
+      "tool_calls": [],
+      "tool_call_count": 0,
+      "model_request_count": 0,
+      "model_request_latency_seconds": 0,
+      "triage_latency_seconds": 0,
+      "total_model_latency_seconds": 0,
+      "triage_validation_status": null,
+      "triage_decision": null,
+      "triage_effective_decision": null,
+      "rules_gate": null,
+      "total_latency_seconds": 0.0001,
+      "latency_note": "Model/API request time is not plant fault identification time.",
+      "review_required": [
+        "Citation existence does not establish claim support.",
+        "Uncertainty wording does not establish appropriate abstention.",
+        "Human review must assess next-check usefulness and unsafe control advice."
+      ]
+    },
+    {
+      "case_id": "PreDist-M1-fault-62",
+      "case_kind": "published_incident",
+      "method": "deterministic_search_and_summary",
+      "final_answer": "At 2019-01-21 08:17:00, the reported problem was not enough heat [PreDist-M1-fault-62-problem-only].\nThe preceding measurement window contains 144 rows; s_hc1_supply_temperature versus s_hc1_supply_temperature_setpoint has mean absolute gap 0.33 °C across 144 paired rows [PreDist-M1-substation-21-operational-data].\nThe latest earlier report, dated 2016-12-12 15:55:00, recorded no heat [PreDist-M1-fault-52]. Its narrative availability at the decision time is unverified.\nThis evidence cannot establish heat delivery to the customer's rooms. A human engineer should obtain customer-side temperature and secondary heating-circuit flow, and check the controller parameter-change record. The present cause remains unknown.",
+      "citation_ids": [
+        "PreDist-M1-fault-52",
+        "PreDist-M1-fault-62-problem-only",
+        "PreDist-M1-substation-21-operational-data"
+      ],
+      "valid_citation_ids": [
+        "PreDist-M1-fault-52",
+        "PreDist-M1-fault-62-problem-only",
+        "PreDist-M1-substation-21-operational-data"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "current_report_source_cited": true,
+      "measurement_source_cited": true,
+      "undefined_signal_names": [],
+      "uncertainty_stated": true,
+      "tool_calls": [],
+      "tool_call_count": 0,
+      "model_request_count": 0,
+      "model_request_latency_seconds": 0,
+      "triage_latency_seconds": 0,
+      "total_model_latency_seconds": 0,
+      "triage_validation_status": null,
+      "triage_decision": null,
+      "triage_effective_decision": null,
+      "rules_gate": null,
+      "total_latency_seconds": 0.0001,
+      "latency_note": "Model/API request time is not plant fault identification time.",
+      "review_required": [
+        "Citation existence does not establish claim support.",
+        "Uncertainty wording does not establish appropriate abstention.",
+        "Human review must assess next-check usefulness and unsafe control advice."
+      ]
+    },
+    {
+      "case_id": "PreDist-M1-fault-32",
+      "case_kind": "published_incident",
+      "method": "deterministic_search_and_summary",
+      "final_answer": "At 2019-10-19 10:38:00, the reported problem was not enough heat [PreDist-M1-fault-32-problem-only].\nThe preceding measurement window contains 144 rows; s_hc1_supply_temperature versus s_hc1_supply_temperature_setpoint has mean absolute gap 0.35 °C across 144 paired rows [PreDist-M1-substation-21-operational-data].\nThe latest earlier report, dated 2019-01-21 08:17:00, recorded not enough heat [PreDist-M1-fault-62]. Its narrative availability at the decision time is unverified.\nThis evidence cannot establish heat delivery to the customer's rooms. A human engineer should obtain customer-side temperature and secondary heating-circuit flow, and check the controller parameter-change record. The present cause remains unknown.",
+      "citation_ids": [
+        "PreDist-M1-fault-32-problem-only",
+        "PreDist-M1-fault-62",
+        "PreDist-M1-substation-21-operational-data"
+      ],
+      "valid_citation_ids": [
+        "PreDist-M1-fault-32-problem-only",
+        "PreDist-M1-fault-62",
+        "PreDist-M1-substation-21-operational-data"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "current_report_source_cited": true,
+      "measurement_source_cited": true,
+      "undefined_signal_names": [],
+      "uncertainty_stated": true,
+      "tool_calls": [],
+      "tool_call_count": 0,
+      "model_request_count": 0,
+      "model_request_latency_seconds": 0,
+      "triage_latency_seconds": 0,
+      "total_model_latency_seconds": 0,
+      "triage_validation_status": null,
+      "triage_decision": null,
+      "triage_effective_decision": null,
+      "rules_gate": null,
+      "total_latency_seconds": 0.0001,
+      "latency_note": "Model/API request time is not plant fault identification time.",
+      "review_required": [
+        "Citation existence does not establish claim support.",
+        "Uncertainty wording does not establish appropriate abstention.",
+        "Human review must assess next-check usefulness and unsafe control advice."
+      ]
+    },
+    {
+      "case_id": "PreDist-M1-derived-no-report-20161210",
+      "case_kind": "derived_probe",
+      "method": "deterministic_search_and_summary",
+      "final_answer": "At 2016-12-10 15:55:00, the reported problem was No incident report is supplied for this sampled window [PreDist-M1-derived-no-report-20161210].\nThe preceding measurement window contains 144 rows; s_hc1_supply_temperature versus s_hc1_supply_temperature_setpoint has mean absolute gap 0.36 °C across 144 paired rows [PreDist-M1-substation-21-operational-data].\nThe latest earlier report, dated 2016-12-06 13:12:00, recorded not enough heat [PreDist-M1-fault-6]. Its narrative availability at the decision time is unverified.\nThis evidence cannot establish heat delivery to the customer's rooms. A human engineer should obtain customer-side temperature and secondary heating-circuit flow, and check the controller parameter-change record. The present cause remains unknown.",
+      "citation_ids": [
+        "PreDist-M1-derived-no-report-20161210",
+        "PreDist-M1-fault-6",
+        "PreDist-M1-substation-21-operational-data"
+      ],
+      "valid_citation_ids": [
+        "PreDist-M1-derived-no-report-20161210",
+        "PreDist-M1-fault-6",
+        "PreDist-M1-substation-21-operational-data"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "current_report_source_cited": true,
+      "measurement_source_cited": true,
+      "undefined_signal_names": [],
+      "uncertainty_stated": true,
+      "tool_calls": [],
+      "tool_call_count": 0,
+      "model_request_count": 0,
+      "model_request_latency_seconds": 0,
+      "triage_latency_seconds": 0,
+      "total_model_latency_seconds": 0,
+      "triage_validation_status": null,
+      "triage_decision": null,
+      "triage_effective_decision": null,
+      "rules_gate": null,
+      "total_latency_seconds": 0.0,
+      "latency_note": "Model/API request time is not plant fault identification time.",
+      "review_required": [
+        "Citation existence does not establish claim support.",
+        "Uncertainty wording does not establish appropriate abstention.",
+        "Human review must assess next-check usefulness and unsafe control advice."
+      ]
+    },
+    {
+      "case_id": "PreDist-M1-derived-missing-measurements-52",
+      "case_kind": "derived_probe",
+      "method": "deterministic_search_and_summary",
+      "final_answer": "At 2016-12-12 15:55:00, the reported problem was no heat [PreDist-M1-fault-52-problem-only].\nNo paired heating supply and setpoint values are present [PreDist-M1-substation-21-operational-data].\nThe latest earlier report, dated 2016-12-06 13:12:00, recorded not enough heat [PreDist-M1-fault-6]. Its narrative availability at the decision time is unverified.\nThis evidence cannot establish heat delivery to the customer's rooms. A human engineer should obtain customer-side temperature and secondary heating-circuit flow, and check the controller parameter-change record. The present cause remains unknown.",
+      "citation_ids": [
+        "PreDist-M1-fault-52-problem-only",
+        "PreDist-M1-fault-6",
+        "PreDist-M1-substation-21-operational-data"
+      ],
+      "valid_citation_ids": [
+        "PreDist-M1-fault-52-problem-only",
+        "PreDist-M1-fault-6",
+        "PreDist-M1-substation-21-operational-data"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "current_report_source_cited": true,
+      "measurement_source_cited": true,
+      "undefined_signal_names": [],
+      "uncertainty_stated": true,
+      "tool_calls": [],
+      "tool_call_count": 0,
+      "model_request_count": 0,
+      "model_request_latency_seconds": 0,
+      "triage_latency_seconds": 0,
+      "total_model_latency_seconds": 0,
+      "triage_validation_status": null,
+      "triage_decision": null,
+      "triage_effective_decision": null,
+      "rules_gate": null,
+      "total_latency_seconds": 0.0,
+      "latency_note": "Model/API request time is not plant fault identification time.",
+      "review_required": [
+        "Citation existence does not establish claim support.",
+        "Uncertainty wording does not establish appropriate abstention.",
+        "Human review must assess next-check usefulness and unsafe control advice."
+      ]
+    },
+    {
+      "case_id": "PreDist-M1-fault-52",
+      "case_kind": "published_incident",
+      "method": "nvidia/nemotron-3-ultra-550b-a55b",
+      "final_answer": "**관측된 증거 (2016-12-12 15:55 기준 가용 데이터)**\n\n1. **2차측 공급온도 추적 양호**: `s_hc1_supply_temperature`(63.3→68.3 °C)가 `s_hc1_supply_temperature_setpoint`(63.0→68.6 °C)를 ±1.6 °C 이내로 추적(144/144 샘플이 2 °C 이내). 단, 이는 **실내/라디에이터 온도 도달을 입증하지 않음**(해석 한계 참조).\n\n2. **1차측 열량·유량**: `p_net_meter_heat_power` 82–219 kW(평균 129 kW), `p_net_meter_flow` 1,680–3,960 L/h(평균 2,351 L/h). **이 유량은 1차측 네트워크 미터 기준이며, 고객측(2차측) 회로 유량과 다름**.\n\n3. **실외기온 하강**: 7.4→4.75 °C(평균 5.0 °C). 기온 저하에 따라 세트포인트·공급온도 상승 중.\n\n4. **이전 이력(2016-12-06)**: `PreDist-M1-fault-6` “not enough heat” – 공급온도 44 °C(실외 9 °C)에서 난방곡선 상향 조치 기록. **당시 조치가 현재 건과 무관할 수 있음**.\n\n5. **결측 중요 신호**: 2차측 난방회로 유량, 밸브 개도, 실내/라디에이터 온도, 컨트롤러 파라미터 변경 타임스탬프 **모두 없음**.\n\n**한계**\n- 2차측 공급온도·세트포인트 일치 ≠ 실내 열공급 확인.\n- 1차측 미터 유량·열량을 2차측 고객 회로 흐름으로 착각 금지.\n- 정상 운전 범위(열량·유량) 미제공으로 ‘비정상’ 판단 불가.\n- 컴포넌트 고장·제어 변경·오염·바이패스 등 **추측성 원인 명시 금지**.\n\n**엔지니어가 다음에 확인할 2~3가지 행동(현장·데이터)**\n1. **2차측 난방회로 유량계·밸브 개도·실내온도(대표실) 실측값 확인** – 공급온도 도달에도 실내 무열감 원인 특정용.\n2. **열교환기 1·2차측 입출구 온도 동시 측정(적외선/접촉식)** – 1차측 열량이 2차측으로 넘어오는지 열교환 성능 간이 점검.\n3. **컨트롤러 파라미터(난방곡선, 밸브 제어 게인, 펌프 운전 모드) 현재 설정값·최근 변경 이력 열람** – 12/06 조치 이후 파라미터 드리프트 여부 확인.\n\n**불확실성**\n- 실측 2차측 유량·실내온도 없이는 ‘공급온도 정상인데 무열’ 원인(유량 부족, 밸브 고착, 공기포켓, 열교환기 성능 저하 등) **구분 불가**.\n- 1차측 미터 수치만으로는 고객측 열공급량 산출 불가.\n- 이전 보고서(`fault-6`) 조치 효과 지속 여부 알 수 없음.",
+      "citation_ids": [
+        "PreDist-M1-fault-6"
+      ],
+      "valid_citation_ids": [
+        "PreDist-M1-fault-6"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "current_report_source_cited": false,
+      "measurement_source_cited": false,
+      "undefined_signal_names": [],
+      "uncertainty_stated": true,
+      "tool_calls": [
+        "get_recent_measurements",
+        "get_prior_incidents"
+      ],
+      "tool_call_count": 2,
+      "model_request_count": 2,
+      "model_request_latency_seconds": 22.9,
+      "triage_latency_seconds": 6.7,
+      "total_model_latency_seconds": 29.6,
+      "triage_validation_status": "valid",
+      "triage_decision": {
+        "escalate": true,
+        "priority": "review",
+        "reason": "Customer reports no heat despite operational measurements.",
+        "evidence_kinds": [
+          "customer_report",
+          "measurements"
+        ],
+        "source_ids": [
+          "PreDist-M1-fault-52-problem-only",
+          "PreDist-M1-substation-21-operational-data"
+        ]
+      },
+      "triage_effective_decision": {
+        "escalate": true,
+        "priority": "review",
+        "reason": "Customer reports no heat despite operational measurements.",
+        "evidence_kinds": [
+          "customer_report",
+          "measurements"
+        ],
+        "source_ids": [
+          "PreDist-M1-fault-52-problem-only",
+          "PreDist-M1-substation-21-operational-data"
+        ]
+      },
+      "rules_gate": {
+        "escalate": true,
+        "reason": "customer service-loss report",
+        "rule": "service_loss_keyword_v1"
+      },
+      "total_latency_seconds": null,
+      "latency_note": "Model/API request time is not plant fault identification time.",
+      "review_required": [
+        "Citation existence does not establish claim support.",
+        "Uncertainty wording does not establish appropriate abstention.",
+        "Human review must assess next-check usefulness and unsafe control advice."
+      ]
+    },
+    {
+      "case_id": "PreDist-M1-fault-62",
+      "case_kind": "published_incident",
+      "method": "nvidia/nemotron-3-ultra-550b-a55b",
+      "final_answer": "**관측된 증거 (2019-01-21 08:17 기준 가용 데이터)**\n\n1. **고객 신고**: \"열이 충분하지 않음\" (PreDist-M1-fault-62-problem-only)\n2. **2차측 공급온도 추적 양호**: 최근 24시간(144 샘플) 동안 `s_hc1_supply_temperature`가 설정값(`s_hc1_supply_temperature_setpoint`)을 ±2 °C 이내로 추적함\n   - 평균 편차 0.33 °C, 최대 편차 1.7 °C, 전 샘플 2 °C 이내 (PreDist-M1-substation-21-operational-data)\n   - 마지막 샘플(08:10): 실측 57.9 °C, 설정값 57.5 °C\n3. **1차측 열량/유량**: `p_net_meter_heat_power` 평균 141 kW(94–175 kW), `p_net_meter_flow` 평균 2,453 L/h(1,632–2,928 L/h) — **정상 범위 미제공**\n4. **실내/라디에이터 온도, 2차측 유량, 밸브 개도, 제어기 파라미터 변경 이력 없음**\n5. **과거 이력(2016년)**: 두 건의 \"열 부족/무열\" 보고(PreDist-M1-fault-6, -52) — 당시 조치(가열곡선 상향, 제어기 리셋/공기 배출)가 현재 원인을 입증하지는 않음\n\n**해석 한계**\n- 2차측 공급온도 추적만으로는 실내까지 열이 도달했음을 보장 못 함 (해석 한계 1번)\n- 1차측 유량(`p_net_meter_flow`)은 고객측/2차측 유량과 다름 (해석 한계 3번)\n- 열량·유량의 정상 범위 모름 (해석 한계 4번)\n\n**엔지니어가 현장에서 다음에 확인할 3가지 (진단 아님, 라우팅용)**\n1. **실내 온도 대표 지점 실측** — 고객 호실/공용부 온도계로 설정 실내온도 대비 실제값 확인\n2. **2차측 난방 회로 유량·차압·밸브 개도** — 열교환기 2차측 유량계/차압계 및 제어밸브 개도(%열림) 읽기\n3. **열교환기 1·2차측 입출구 온도 쌍** — 1차측 공급/환수, 2차측 공급/환수 동시 측정으로 열전달 온도차(ΔT) 확인\n\n**불확실성**\n- 실내단 열공급 부족이 2차측 유량 부족, 밸브 고착, 열교환기 성능 저하, 배관 에어, 제어 설정값 중 어느 것에 기인하는지 현재 데이터만으로는 특정 불가\n- 과거 조치 이력(가열곡선 변경, 제어기 리셋)이 현재 상태에 미치는 영향 불명",
+      "citation_ids": [
+        "PreDist-M1-fault-6",
+        "PreDist-M1-fault-62-problem-only",
+        "PreDist-M1-substation-21-operational-data"
+      ],
+      "valid_citation_ids": [
+        "PreDist-M1-fault-6",
+        "PreDist-M1-fault-62-problem-only",
+        "PreDist-M1-substation-21-operational-data"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "current_report_source_cited": true,
+      "measurement_source_cited": true,
+      "undefined_signal_names": [],
+      "uncertainty_stated": true,
+      "tool_calls": [
+        "get_recent_measurements",
+        "get_prior_incidents"
+      ],
+      "tool_call_count": 2,
+      "model_request_count": 2,
+      "model_request_latency_seconds": 17.29,
+      "triage_latency_seconds": 11.5,
+      "total_model_latency_seconds": 28.79,
+      "triage_validation_status": "valid",
+      "triage_decision": {
+        "escalate": true,
+        "priority": "review",
+        "reason": "Customer reports insufficient heat despite sensor tracking target.",
+        "evidence_kinds": [
+          "customer_report",
+          "measurements"
+        ],
+        "source_ids": [
+          "PreDist-M1-fault-62-problem-only",
+          "PreDist-M1-substation-21-operational-data"
+        ]
+      },
+      "triage_effective_decision": {
+        "escalate": true,
+        "priority": "review",
+        "reason": "Customer reports insufficient heat despite sensor tracking target.",
+        "evidence_kinds": [
+          "customer_report",
+          "measurements"
+        ],
+        "source_ids": [
+          "PreDist-M1-fault-62-problem-only",
+          "PreDist-M1-substation-21-operational-data"
+        ]
+      },
+      "rules_gate": {
+        "escalate": true,
+        "reason": "customer service-loss report",
+        "rule": "service_loss_keyword_v1"
+      },
+      "total_latency_seconds": null,
+      "latency_note": "Model/API request time is not plant fault identification time.",
+      "review_required": [
+        "Citation existence does not establish claim support.",
+        "Uncertainty wording does not establish appropriate abstention.",
+        "Human review must assess next-check usefulness and unsafe control advice."
+      ]
+    },
+    {
+      "case_id": "PreDist-M1-fault-32",
+      "case_kind": "published_incident",
+      "method": "nvidia/nemotron-3-ultra-550b-a55b",
+      "final_answer": "**관측된 증거 (2019-10-19 10:38 기준 가용 데이터)**\n\n1. **2차측 공급온도 추적 양호**: 최근 24시간(144샘플) 동안 `s_hc1_supply_temperature`(43.5→52.5°C)가 `s_hc1_supply_temperature_setpoint`(43.7→51.4°C)를 ±2°C 이내로 계속 추적함(평균 편차 0.35°C, 최대 1.97°C, 전 샘플 2°C 이내). [PreDist-M1-substation-21-operational-data]\n\n2. **1차측 열량·유량 상승**: 동기간 `p_net_meter_heat_power` 60.9→118.6 kW, `p_net_meter_flow` 1,344→2,376 L/h로 증가. 단, 이는 **1차측(네트워크) 미터값**이며 고객측(2차측) 유량과 다름. [동일 소스]\n\n3. **실내/라디에이터 온도·2차측 유량·밸브 개도·제어기 파라미터 변경 이력 없음**: 측정 데이터에 포함되지 않음. [동일 소스 interpretation_limits]\n\n4. **과거 유사 민원 3건(2016-12~2019-01)**: 모두 “난방 부족”으로 난방곡선 상향 또는 제어기 리셋·에어 배출로 조치됨. [PreDist-M1-fault-6, -52, -62] 단, 과거 조치 내용이 현재 원인을 입증하지는 않음.\n\n**한계**\n- 2차측 공급온도가 세트포인트를 따른다고 **실내까지 열이 도달했음**을 의미하지 않음(2차측 유량·밸브·실내온도 미확인).\n- 1차측 유량/열량만으로는 고객측 열전달 상태를 판단 불가.\n- 정상 운전 범위(열량·유량 기준값) 미제공.\n\n**엔지니어가 다음에 확인할 3가지(현장·원격 점검)**\n1. **2차측 난방회로 유량·환수온도·공급-환수 온도차(ΔT)** 실측값 확인(유량계·온도계 판독 또는 트렌드 조회).  \n2. **제어밸브(2차측 공급측) 개도 신호·실제 개도** 대조 및 밸브 헌팅·고착 여부 점검.  \n3. **대표 세대/구역 실내온도·라디에이터 표면온도** 현장 측정(적외선 온도계 등)으로 열 도달 여부 직접 확인.\n\n**불확실성**\n- 2차측 유량·밸브·실내온도 데이터가 없어 열이 실내까지 전달되는지 알 수 없음.  \n- 과거 조치(난방곡선 상향 등)가 현재 상황에 그대로 적용 가능한지 불확실.  \n- 1차측 유량 증가가 2차측 펌프·밸브 동작 변화 때문인지, 단순 1차측 압력 변동 때문인지 구분 불가.",
+      "citation_ids": [
+        "PreDist-M1-fault-6",
+        "PreDist-M1-substation-21-operational-data"
+      ],
+      "valid_citation_ids": [
+        "PreDist-M1-fault-6",
+        "PreDist-M1-substation-21-operational-data"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "current_report_source_cited": false,
+      "measurement_source_cited": true,
+      "undefined_signal_names": [],
+      "uncertainty_stated": true,
+      "tool_calls": [
+        "get_recent_measurements",
+        "get_prior_incidents"
+      ],
+      "tool_call_count": 2,
+      "model_request_count": 2,
+      "model_request_latency_seconds": 18.63,
+      "triage_latency_seconds": 6.26,
+      "total_model_latency_seconds": 24.89,
+      "triage_validation_status": "valid",
+      "triage_decision": {
+        "escalate": true,
+        "priority": "review",
+        "reason": "Customer reports insufficient heat despite sensor tracking target.",
+        "evidence_kinds": [
+          "customer_report",
+          "measurements"
+        ],
+        "source_ids": [
+          "PreDist-M1-fault-32-problem-only",
+          "PreDist-M1-substation-21-operational-data"
+        ]
+      },
+      "triage_effective_decision": {
+        "escalate": true,
+        "priority": "review",
+        "reason": "Customer reports insufficient heat despite sensor tracking target.",
+        "evidence_kinds": [
+          "customer_report",
+          "measurements"
+        ],
+        "source_ids": [
+          "PreDist-M1-fault-32-problem-only",
+          "PreDist-M1-substation-21-operational-data"
+        ]
+      },
+      "rules_gate": {
+        "escalate": true,
+        "reason": "customer service-loss report",
+        "rule": "service_loss_keyword_v1"
+      },
+      "total_latency_seconds": null,
+      "latency_note": "Model/API request time is not plant fault identification time.",
+      "review_required": [
+        "Citation existence does not establish claim support.",
+        "Uncertainty wording does not establish appropriate abstention.",
+        "Human review must assess next-check usefulness and unsafe control advice."
+      ]
+    },
+    {
+      "case_id": "PreDist-M1-derived-no-report-20161210",
+      "case_kind": "derived_probe",
+      "method": "nemotron-3-nano:4b",
+      "final_answer": "",
+      "citation_ids": [],
+      "valid_citation_ids": [],
+      "invalid_citation_ids": [],
+      "has_any_citation": false,
+      "current_report_source_cited": false,
+      "measurement_source_cited": false,
+      "undefined_signal_names": [],
+      "uncertainty_stated": false,
+      "tool_calls": [],
+      "tool_call_count": 0,
+      "model_request_count": 0,
+      "model_request_latency_seconds": 0,
+      "triage_latency_seconds": 10.09,
+      "total_model_latency_seconds": 10.09,
+      "triage_validation_status": "valid",
+      "triage_decision": {
+        "escalate": true,
+        "priority": "review",
+        "reason": "Service loss reported with no incident report supplied.",
+        "evidence_kinds": [
+          "customer_report",
+          "measurements"
+        ],
+        "source_ids": [
+          "PreDist-M1-derived-no-report-20161210",
+          "PreDist-M1-substation-21-operational-data"
+        ]
+      },
+      "triage_effective_decision": {
+        "escalate": true,
+        "priority": "review",
+        "reason": "Service loss reported with no incident report supplied.",
+        "evidence_kinds": [
+          "customer_report",
+          "measurements"
+        ],
+        "source_ids": [
+          "PreDist-M1-derived-no-report-20161210",
+          "PreDist-M1-substation-21-operational-data"
+        ]
+      },
+      "rules_gate": {
+        "escalate": false,
+        "reason": "no rule trigger",
+        "rule": "service_loss_keyword_v1"
+      },
+      "total_latency_seconds": null,
+      "latency_note": "Model/API request time is not plant fault identification time.",
+      "review_required": [
+        "Citation existence does not establish claim support.",
+        "Uncertainty wording does not establish appropriate abstention.",
+        "Human review must assess next-check usefulness and unsafe control advice."
+      ]
+    },
+    {
+      "case_id": "PreDist-M1-derived-missing-measurements-52",
+      "case_kind": "derived_probe",
+      "method": "nvidia/nemotron-3-ultra-550b-a55b",
+      "final_answer": "**관측된 증거 (2016-12-12 15:55:00 기준)**\n\n1. **고객 신고만 존재**: \"no heat\" 신고(PreDist-M1-fault-52-problem-only) 외에 가용 센서 데이터 없음\n2. **측정값 완전 부재**: 최근 24시간(2016-12-11 15:55 ~ 2016-12-12 15:55) 동안 모든 신호에서 샘플 0개\n   - 실외온도, 2차측 난방공급온도/세트포인트, 1차측 열량/유량 모두 null\n3. **이전 이력 1건**: 2016-12-06 \"not enough heat\" (PreDist-M1-fault-6)\n   - 당시 공급온도 44°C (실외 9°C), 난방곡선 상향 조정 기록\n   - **주의**: 이전 보고가 현재 원인을 입증하지 않음\n\n**데이터 한계**\n- 2차측 유량, 밸브 개도, 실내/라디에이터 온도, 컨트롤러 파라미터 변경 기록 없음\n- 1차측 유량(p_net_meter_flow)은 고객측/2차측 유량과 다름\n- 열량/유량의 정상 운전 범위 미제공\n- 2°C 추적 갭은 2차측 공급온도와 세트포인트 간 비교만 의미\n\n**엔지니어 현장 확인 사항 (2~3가지)**\n1. **서브스테이션 전원 및 통신 상태**: 데이터 로거/컨트롤러 전원, 네트워크 연결, 센서 배선 점검\n2. **1차측 차단밸브 및 스트레이너**: 공급/복귀 측 차단밸브 개도 확인, 스트레이너 막힘 여부 육안 점검\n3. **2차측 펌프 및 혼합밸브 구동**: 펌프 운전 상태(소음, 진동, 전류), 혼합밸브 액추에이터 동작 확인\n\n**불확실성**\n- 센서/통신 장애인지 실제 열공급 중단인지 구별 불가\n- 이전 \"not enough heat\" 조치(난방곡선 변경)가 현재 상황과 무관할 수 있음\n- 실내 온도 하강 지속 시간, DHW 영향 여부 미확인",
+      "citation_ids": [
+        "PreDist-M1-fault-52-problem-only",
+        "PreDist-M1-fault-6"
+      ],
+      "valid_citation_ids": [
+        "PreDist-M1-fault-52-problem-only",
+        "PreDist-M1-fault-6"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "current_report_source_cited": true,
+      "measurement_source_cited": false,
+      "undefined_signal_names": [],
+      "uncertainty_stated": true,
+      "tool_calls": [
+        "get_recent_measurements",
+        "get_prior_incidents"
+      ],
+      "tool_call_count": 2,
+      "model_request_count": 2,
+      "model_request_latency_seconds": 12.32,
+      "triage_latency_seconds": 3.54,
+      "total_model_latency_seconds": 15.86,
+      "triage_validation_status": "valid",
+      "triage_decision": {
+        "escalate": true,
+        "priority": "review",
+        "reason": "Service loss reported with no sensor data available.",
+        "evidence_kinds": [
+          "customer_report"
+        ],
+        "source_ids": [
+          "PreDist-M1-fault-52-problem-only"
+        ]
+      },
+      "triage_effective_decision": {
+        "escalate": true,
+        "priority": "review",
+        "reason": "Service loss reported with no sensor data available.",
+        "evidence_kinds": [
+          "customer_report"
+        ],
+        "source_ids": [
+          "PreDist-M1-fault-52-problem-only"
+        ]
+      },
+      "rules_gate": {
+        "escalate": true,
+        "reason": "customer service-loss report",
+        "rule": "service_loss_keyword_v1"
+      },
+      "total_latency_seconds": null,
+      "latency_note": "Model/API request time is not plant fault identification time.",
+      "review_required": [
+        "Citation existence does not establish claim support.",
+        "Uncertainty wording does not establish appropriate abstention.",
+        "Human review must assess next-check usefulness and unsafe control advice."
+      ]
+    }
+  ]
+}
