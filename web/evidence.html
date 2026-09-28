@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Plant Reliability Agent · Visual Evidence</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand-mark" aria-hidden="true">P</div>
+        <div class="brand-copy">
+          <span class="eyebrow">PLANT RELIABILITY AGENT</span>
+          <strong>Visual evidence workspace</strong>
+        </div>
+        <div class="topbar-spacer"></div>
+        <span class="environment-pill">공개 데이터 POC</span>
+        <a class="top-link" href="../POC_RESULT.md">실행 결과 보기 <span aria-hidden="true">↗</span></a>
+      </header>
+
+      <main class="workspace">
+        <aside class="case-panel" aria-label="사건과 근거 목록">
+          <div class="panel-heading">
+            <span class="section-kicker">CASE 01 · PREDIST V2</span>
+            <h1>난방 불량 신고,<br />설비 센서는 설정값 추종</h1>
+            <p>2016년 12월 12일 15:55 · 지역난방 서브스테이션 21</p>
+          </div>
+
+          <div class="case-callout">
+            <span class="callout-dot"></span>
+            <span>고객 신고 <strong>“no heat”</strong></span>
+          </div>
+
+          <div class="metric-grid">
+            <div class="metric"><span>계측 구간</span><strong>24<span>시간</span></strong></div>
+            <div class="metric"><span>공급온도 편차 평균</span><strong>0.31<span>°C</span></strong></div>
+          </div>
+
+          <div class="list-heading">
+            <h2>도면에서 확인할 위치</h2>
+            <span>6개</span>
+          </div>
+          <div class="evidence-list" id="evidence-list"></div>
+
+          <div class="sidebar-note">
+            <strong>데모 자료 경계</strong>
+            <p>계측·장애 기록은 공개 PreDist 자료입니다. 중앙 계통도와 위치 상자는 이 데모를 위해 직접 그린 예시이며 실제 설비 도면이 아닙니다.</p>
+          </div>
+        </aside>
+
+        <section class="diagram-panel" aria-label="예시 계통도와 위치 상자">
+          <div class="diagram-header">
+            <div>
+              <span class="section-kicker">ILLUSTRATIVE SCHEMATIC</span>
+              <h2>열이 어디까지 전달됐는가?</h2>
+              <p>근거 행을 선택하면 해당 지점의 bbox와 출처가 연결됩니다.</p>
+            </div>
+            <span class="drawing-state">원본 P&amp;ID 아님 · 수동 bbox</span>
+          </div>
+
+          <div class="canvas-card">
+            <div class="canvas-toolbar">
+              <span>SUBSTATION 21 · HEAT CIRCUIT 1</span>
+              <div class="legend">
+                <span><i class="legend-swatch observed"></i>공개 관측</span>
+                <span><i class="legend-swatch missing"></i>추가 확인</span>
+                <span><i class="legend-swatch context"></i>계통 맥락</span>
+              </div>
+            </div>
+            <div class="diagram-canvas" id="diagram-canvas">
+              <img src="./substation.svg" alt="지역난방 서브스테이션의 자체 제작 예시 계통도. 왼쪽에 1차 열원, 중앙에 열교환기, 오른쪽에 2차 난방 회로와 고객 측 라디에이터가 있다." />
+              <div class="bbox-layer" id="bbox-layer"></div>
+            </div>
+            <div class="canvas-caption">
+              <span>bbox 좌표: 이 SVG의 정규화된 0–1 좌표</span>
+              <span>선택 위치는 진단 결과가 아닌 근거 탐색 지점입니다.</span>
+            </div>
+          </div>
+
+          <div class="trend-card">
+            <div class="trend-title">
+              <div>
+                <span class="section-kicker">OBSERVED TREND</span>
+                <h3>2차측 난방 공급온도</h3>
+              </div>
+              <span class="trend-annotation">144개 공개 계측 · 신고 전 24시간</span>
+            </div>
+            <div id="trend-plot" class="trend-plot" aria-label="실측 공급온도와 설정값 추세 그래프"></div>
+            <div class="trend-legend"><span><i class="line-key actual"></i>실측</span><span><i class="line-key setpoint"></i>설정값</span></div>
+          </div>
+        </section>
+
+        <aside class="detail-panel" aria-live="polite" aria-label="선택한 위치의 근거">
+          <div class="detail-top">
+            <span class="section-kicker">EVIDENCE INSPECTOR</span>
+            <span id="detail-status" class="status-badge"></span>
+          </div>
+          <h2 id="detail-title"></h2>
+          <p class="detail-subtitle" id="detail-subtitle"></p>
+          <div class="detail-value" id="detail-value"></div>
+          <div class="detail-block">
+            <span class="detail-label">이 위치에서 알 수 있는 것</span>
+            <p id="detail-known"></p>
+          </div>
+          <div class="detail-block">
+            <span class="detail-label">아직 확인할 것</span>
+            <p id="detail-unknown"></p>
+          </div>
+          <div class="source-card">
+            <span>출처</span>
+            <code id="detail-source"></code>
+            <small id="detail-provenance"></small>
+          </div>
+          <div class="detail-footer">
+            <button id="outcome-toggle" type="button">사후 보고서 열기</button>
+            <p id="outcome-panel" hidden>사후 보고서에는 제어 파라미터 설정 오류와 제어기 초기화가 기록돼 있습니다. 이 내용은 신고 시점의 에이전트 입력에서 제외했습니다.</p>
+          </div>
+        </aside>
+      </main>
+    </div>
+  </body>
+</html>
