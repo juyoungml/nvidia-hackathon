@@ -12,7 +12,7 @@
 - **해법**: 현장 안에 배포할 수 있는 NVIDIA Nemotron 기반 에이전트입니다. System 1은 설비를 상시 감시하고(계획), System 2는 신고가 들어오면 필요한 자료를 골라 읽어 원인 조사 점검안을 씁니다(구현).
 - **데모**: 공개 지역난방 데이터 PreDist v2의 실제 신고로 System 2 조사를 시연합니다.
 - **결과**: 4건 비교 실험에서 근거 연결 검사 통과는 Nemotron 3 Ultra 2/4, 참고 기준인 Claude Code + Sonnet 5는 4/4입니다([상세](evaluation/cycle4/RESULTS.md)).
-  - 32건 확장 평가: Sonnet 5 32/32, Nemotron 3 Ultra 15/32 (API 연결 오류 13건 제외 시 15/19, 79%). [결과](evaluation/cycle5/RESULTS.md) · ![그림](figures/eval-cycle5.png)
+  - 32건 확장 평가: Sonnet 5 32/32, Nemotron 3 Ultra 15/32 (API 연결 오류 13건 제외 시 15/19, 79%), API 오류 재실행 후 16/32 (모델까지 도달한 21건 중 16건, 76%). 사건당 1회 실행이며 진단 정확도가 아닌 근거 연결 검사입니다. [결과](evaluation/cycle5/RESULTS.md) · ![그림](figures/eval-cycle5.png)
 
 ## 데모 보기
 
