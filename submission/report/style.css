@@ -5,10 +5,14 @@ h1+h2{font-size:12.5pt;color:#244E41;border:0;margin-top:0;font-weight:600}
 h2{font-size:14pt;margin:22pt 0 6pt;padding-bottom:4pt;border-bottom:1.5px solid #244E41;color:#172B27;break-after:avoid}
 h3{font-size:11.5pt;margin:14pt 0 4pt;color:#244E41;break-after:avoid}
 p{margin:0 0 7pt}
-table{border-collapse:collapse;width:100%;margin:6pt 0 10pt;font-size:9pt;break-inside:avoid}
+table{border-collapse:collapse;width:100%;margin:6pt 0 10pt;font-size:9pt}
+tr{break-inside:avoid}
 th{background:#EEF2EA;text-align:left}
 th,td{border:1px solid #CFD8CC;padding:4pt 6pt;vertical-align:top}
-img{max-width:100%;display:block;margin:8pt auto;break-inside:avoid}
+img{max-width:100%;max-height:78mm;width:auto;display:block;margin:6pt auto;break-inside:avoid}
+p:has(> img){margin:4pt 0}
+h2,h3{break-after:avoid}
+p{orphans:3;widows:3}
 code{font-family:Menlo,monospace;font-size:8.5pt;background:#F2F2EC;padding:0 3px;border-radius:2px}
 a{color:#244E41}
 strong{color:#172B27}
