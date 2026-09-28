@@ -209,13 +209,28 @@ text(
 text(
     s,
     1.0,
-    5.6,
+    5.0,
     11,
     0.5,
     [[("Built with ", {"color": MUTED}), ("NVIDIA Nemotron 3 Ultra", {"color": NV, "bold": True})]],
     size=20,
 )
-text(s, 1.0, 6.6, 11, 0.4, "NVIDIA Korea Agentic AI Hackathon", size=14, color=MUTED)
+text(s, 1.0, 6.75, 11, 0.4, "Team Sona · NVIDIA Korea Agentic AI Hackathon", size=14, color=MUTED)
+text(
+    s,
+    1.0,
+    5.7,
+    11.5,
+    0.8,
+    [
+        [
+            ("GitHub  ", {"bold": True, "color": GREEN}),
+            ("github.com/juyoungml/nvidia-hackathon", {}),
+        ],
+        [("Live demo  ", {"bold": True, "color": GREEN}), ("juyoung.site/nvidia-hackathon", {})],
+    ],
+    size=15,
+)
 
 # 2 Problem: downtime cost --------------------------------------------------
 s = new_slide(
@@ -976,8 +991,8 @@ text(
     6.2,
     11.7,
     0.4,
-    "데모는 저장된 실제 실행 기록을 재생합니다",
-    size=16,
+    "GitHub github.com/juyoungml/nvidia-hackathon  ·  Live demo juyoung.site/nvidia-hackathon  ·  데모는 저장된 실제 실행 기록을 재생합니다",
+    size=14,
     color=MUTED,
     align=PP_ALIGN.CENTER,
 )
