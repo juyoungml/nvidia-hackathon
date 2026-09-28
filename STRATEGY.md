@@ -6,6 +6,18 @@
 
 이 전략은 [해커톤 소개](https://fastcampus.co.kr/NVIDIA_hackathon)의 “계획·도구 호출·산업 문제 해결” 요구와 [AI Day Seoul](https://www.nvidia.com/ko-kr/ai-days/)의 에이전틱 AI, 피지컬 AI, 안전한 배포 주제에 맞춘 가설이다. 실제 구현·평가로 확인한 것만 제출 문안에 쓴다.
 
+## 예선 Top 10을 위한 심사 메시지
+
+**한 문장:** "설비 이상이 발생했을 때, Nemotron 에이전트가 여러 기록을 직접 조사하고 증거 충돌을 찾아, 엔지니어가 검토할 수 있는 근거·점검 순서·보류 사유를 만든다. 회사 자료 없이 재현 가능한 합성 사건으로 검증했다."
+
+합성 데이터는 제품의 핵심 가치가 아니다. 공개 데모가 실제 고객 데이터를 노출하지 않도록 하면서, 올바른 도구 선택·근거 인용·모순 발견·결론 보류를 객관적으로 시험하는 장치다. 무작위로 생성한 문서 수보다 **설비 상태 → 기록 → 원인 후보 → 확인 행동**의 인과관계와 사건별 정답표가 중요하다. 실데이터를 변형한 합성 자료나 실측 성과처럼 보이는 수치는 금지한다.
+
+**왜 Nemotron인가:** Nemotron이 가상 증상에서 도구를 선택하고, 결과를 비교하며, 다음 조회와 최종 답변을 결정한다. 이 능력은 모델 이름을 적는 것으로 입증되지 않는다. 동일 입력의 도구 호출 trace, 모델 ID, 실패 사례를 제출한다. NeMo Agent Toolkit은 도메인 도구의 등록·실행 흐름과 평가·프로파일링을 재현 가능하게 만들 때 가치가 있다. [공식 평가 문서](https://docs.nvidia.com/nemo/agent-toolkit/latest/workflows/evaluate.html)는 중간 단계, trajectory 평가, 지연·토큰·도구 span을 기록한다. 실제 통합 전에는 "NAT 기반"이라고 주장하지 않는다.
+
+**심사에 제시할 증거:** 90초 이내의 전체 데모, 정상·상충·근거 부족 사건의 trace, 사건별 기대 행동과 실제 행동, 출처 없는 주장 수, 필요한 도구 호출 성공률, 결론 보류 성공 여부, 민감정보·쓰기 권한 차단 결과(실행한 경우), 재현 명령과 모델/설정 버전. 작은 평가라도 동일 조건의 단순 검색+요약 기준선과 비교하면 agent의 추가 가치가 드러난다.
+
+**차별점:** 산업 도메인에서 답변의 유창함보다 조사 경로와 안전한 보류를 평가한다. 제품은 설비 제어를 자동화하지 않고 엔지니어의 판단 준비 시간을 줄인다. 실제 절감 시간·금액은 별도 현장 검증 전까지 주장하지 않는다.
+
 Last reviewed: 2026-09-28 (KST). This is a working hypothesis for the **online preliminary challenge**. The one-day final's mission will be announced on site, so this project must remain adaptable.
 
 ## Decision in one sentence

@@ -9,6 +9,20 @@
 5. 시간 여유가 있을 때만 NeMo Agent Toolkit과 NemoClaw/OpenShell 통합을 시도한다.
 6. 22:30 KST까지 제출 PDF와 링크를 검수하고 팀원별 제출을 시작한다.
 
+## 합성 사건 설계와 평가
+
+첫 사건 3개는 단순한 텍스트 변형이 아니라 서로 다른 판단을 요구해야 한다.
+
+| 사건 | 숨겨진 조건 | 기대 행동 |
+| --- | --- | --- |
+| 정상 | 과거 사건·정비 기록·기술자료가 일치 | 관련 도구를 호출하고 출처가 있는 점검 순서를 제시 |
+| 상충 | 과거 원인과 최근 조치 또는 계측 결과가 충돌 | 충돌을 명시하고 추가 확인을 요청; 단정 금지 |
+| 근거 부족 | 유사 사건 또는 기술자료가 없음 | 없는 근거를 만들지 않고 결론 보류 |
+
+각 사건에 작성자가 별도 `expected_behavior`를 두고, 결과를 가린 상태에서 모델을 실행한다. 가능하면 각 사건을 2~3회 반복하고 동일 질문에 대한 단순 검색+요약 기준선도 실행한다. 기록할 지표는 필요한 도구 호출, 근거 ID의 정확성, 모순 발견, 결론 보류, 안전 경계, 소요 시간이다. 시험 수가 적으므로 일반적인 현장 정확도나 통계적 우월성으로 해석하지 않는다.
+
+NeMo Agent Toolkit을 연결하면 [공식 `nat eval` 기능](https://docs.nvidia.com/nemo/agent-toolkit/latest/workflows/evaluate.html)으로 중간 단계와 실행 설정을 저장한다. 시간이 허락하면 trajectory 평가와 프로파일러도 켠다. 모델 평가 점수만 의존하지 않고 사건별 규칙 검사를 함께 둔다. NVIDIA NeMo Data Designer는 [처음부터 만드는 합성 데이터와 검증기](https://github.com/NVIDIA-NeMo/DataDesigner)를 지원하지만, 오늘의 3개 핵심 사건은 먼저 수작업으로 정답 구조를 고정한다.
+
 Planning date: 2026-09-28 KST. Deadline: **23:59 KST today**. Keep at least one hour of buffer for form upload, team-member applications, and link checks. The local clock was 10:49 KST when planning began; recheck time before scheduling work.
 
 ## Immediate prerequisites
