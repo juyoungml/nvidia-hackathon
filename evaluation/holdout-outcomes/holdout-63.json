@@ -1,0 +1,24 @@
+{
+  "case_id": "PreDist-M1-fault-63",
+  "source": "https://zenodo.org/records/19496480",
+  "not_available_to_agent": true,
+  "provenance": {
+    "source_files_sha256": {
+      "faults.csv": "8f8a4ccd400d63d162314bbc888031bc2b793ea8a75313e6bcdadee046bf7bdc",
+      "disturbances.csv": "f0085525085080cfc0deafe4095b1cee7e47266749b2ef228d479a61778cf7d8",
+      "features.csv": "388c237896ec3dfc86f7330113cab661323a385f878f10cfa99c65de51e104b9",
+      "substation_7.csv": "a28c066f75d4ddca3701b55ce9c358414e0008e0346638969633bda6586ea165"
+    },
+    "selection": {
+      "rule": "First two chronological manufacturer-1 reports with problem 'no heat' or 'not enough heat', outside substation 21 and on distinct substations, having >=100 prior-24-hour samples and nonempty required hc1 fields; selection fixed before model runs.",
+      "report_id": "63",
+      "asset_id": "7",
+      "window_hours": 24,
+      "cutoff": "measurement timestamp <= report date; prior records strictly earlier"
+    }
+  },
+  "report_date": "2015-03-26 07:15:00",
+  "event_description": "Control parameters updated (increased flow temperature).",
+  "fault_label": "Control unit: Incorrect parameterisation",
+  "note": "Published report fields are retrospective; they are not a real-time ground truth at the decision time."
+}

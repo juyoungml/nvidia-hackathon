@@ -1,0 +1,177 @@
+{
+  "mode": "domain_tools",
+  "requested_model": "claude-sonnet-5",
+  "claude_version": "2.1.283 (Claude Code)",
+  "available_tools": [
+    "mcp__public-domain__get_recent_measurements",
+    "mcp__public-domain__get_prior_incidents",
+    "mcp__public-domain__get_maintenance_timeline",
+    "mcp__public-domain__get_signal_definitions"
+  ],
+  "effort": "CLI default; no explicit --effort override",
+  "file_sha256": {
+    "case.json": "f38352cb47a9348fca801cab0bafaa4588b9b6a8248345efd586f52391f2eab6",
+    "fact_catalog.json": "9d8626d2e77e8cb2c9271907c934b7beebf41ac7aac36a2efa2042635a039607",
+    "response_schema.json": "4f185da1ab94a144f26c40598a7388bcadc286d6ee4ba2800613c1eff8519ede",
+    "source_manifest.json": "db0f2ce47fb0617ee8d50fe853090e75a3452a3e203a603a170e4ce018d6f5a3",
+    "tools/get_maintenance_timeline.json": "f8f6612e6759001e51761a4a9f1921232bec4d5e2e9ae2189a3e5767bc4a89a9",
+    "tools/get_prior_incidents.json": "8fd16f4858b239b6f6eaf88ad7a7cac7c6b4cd7297092929ab37de5931349b7b",
+    "tools/get_recent_measurements.json": "c42a3cb0c7efb8ebc89987c0d1f0c0b196cfe17c8795fb746267fba9a37b0def",
+    "tools/get_signal_definitions.json": "378ea1e70c4055e914ca1e264a2ed01e218f13d5794ad788715ad6ebe3ea1c4e"
+  },
+  "prompt_sha256": "84231e5d6b2d17050c94aa0f07c038a382241caed63a7d6bf73acac10662841f",
+  "system_prompt_sha256": "31c97813a7999cb0d334f8dfdd95ddd098969e43e4707eaf129d7e4db04e8f44",
+  "flags": [
+    "--model",
+    "claude-sonnet-5",
+    "--safe-mode",
+    "--restricted",
+    "--strict-mcp-config",
+    "--tools",
+    "",
+    "--disable-slash-commands",
+    "--no-session-persistence",
+    "--permission-mode",
+    "dontAsk",
+    "--permission-prompts",
+    "none",
+    "-p",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--max-budget-usd",
+    "0.5",
+    "--mcp-config",
+    "/var/folders/q1/gfc_d9057jd7b9f82w0gw4yc0000gn/T/claude-public-case-x601te4l/public-mcp-config.json",
+    "--system-prompt",
+    "<sha256-above>"
+  ],
+  "timeout_seconds": 180,
+  "max_budget_usd": 0.5,
+  "latency_seconds": 9.047,
+  "exit_code": 0,
+  "stdout_bytes": 5725,
+  "stderr_excerpt": "",
+  "timed_out": false,
+  "mcp_calls": [],
+  "mcp_call_count": 0,
+  "resolved_models": [
+    "claude-sonnet-5"
+  ],
+  "tool_calls": [],
+  "raw_answer": "```json\n{\n  \"observed_fact_ids\": [\"F-46253c9e467c\"],\n  \"limit_ids\": [\"L-no-room-evidence\", \"L-no-normal-range\", \"L-primary-flow\"],\n  \"next_checks\": [\n    {\n      \"id\": \"C-room-impact\",\n      \"because_fact_ids\": [\"F-46253c9e467c\"],\n      \"rationale\": \"The report states 'no heat' but scope and severity at affected rooms/radiators are not yet confirmed.\"\n    },\n    {\n      \"id\": \"C-secondary-flow\",\n      \"because_fact_ids\": [\"F-46253c9e467c\"],\n      \"rationale\": \"Loss of heat delivery could relate to secondary circuit flow; measured flow vs design range is needed to assess this.\"\n    },\n    {\n      \"id\": \"C-sensor\",\n      \"because_fact_ids\": [\"F-46253c9e467c\"],\n      \"rationale\": \"Before trusting any related measurement trend, confirm sensor identity and calibration to ensure readings are valid.\"\n    }\n  ]\n}\n```",
+  "is_error": false,
+  "subtype": "success",
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 2529,
+    "cache_read_input_tokens": 0,
+    "output_tokens": 350,
+    "output_tokens_details": {
+      "thinking_tokens": 0
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 2529,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 350,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 2529,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2529
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "total_cost_usd": 0.01362,
+  "num_turns": 1,
+  "unavailable_tool_calls": [],
+  "case_id": "PreDist-M1-fault-52",
+  "corpus_sha256": "76af9a2510cf2ff558112df34a9fe9e406e47d4a7e9e96266f59b1702bbdc4d2",
+  "contract_version": 2,
+  "protocol": "evaluation/SYSTEM2_PROTOCOL.md v2",
+  "source_read_names": [],
+  "single_fence_unwrapped": true,
+  "validation": {
+    "valid": true,
+    "selection": {
+      "observed_fact_ids": [
+        "F-46253c9e467c"
+      ],
+      "limit_ids": [
+        "L-no-room-evidence",
+        "L-no-normal-range",
+        "L-primary-flow"
+      ],
+      "next_checks": [
+        {
+          "id": "C-room-impact",
+          "because_fact_ids": [
+            "F-46253c9e467c"
+          ],
+          "rationale": "The report states 'no heat' but scope and severity at affected rooms/radiators are not yet confirmed."
+        },
+        {
+          "id": "C-secondary-flow",
+          "because_fact_ids": [
+            "F-46253c9e467c"
+          ],
+          "rationale": "Loss of heat delivery could relate to secondary circuit flow; measured flow vs design range is needed to assess this."
+        },
+        {
+          "id": "C-sensor",
+          "because_fact_ids": [
+            "F-46253c9e467c"
+          ],
+          "rationale": "Before trusting any related measurement trend, confirm sensor identity and calibration to ensure readings are valid."
+        }
+      ]
+    }
+  },
+  "display": {
+    "status": "withheld",
+    "reason": "available case evidence was not read sufficiently",
+    "observations": [],
+    "limits": [],
+    "suggested_next_checks": []
+  },
+  "completeness": {
+    "status": "incomplete",
+    "issues": [
+      "no_case_evidence_source_read"
+    ],
+    "source_read_state": {
+      "available_sources": [
+        {
+          "reader": "get_recent_measurements",
+          "read_state": "unread"
+        },
+        {
+          "reader": "get_prior_incidents",
+          "read_state": "unread"
+        },
+        {
+          "reader": "get_maintenance_timeline",
+          "read_state": "unread"
+        },
+        {
+          "reader": "get_signal_definitions",
+          "read_state": "unread"
+        }
+      ]
+    },
+    "catalog_read_state": "unread"
+  }
+}

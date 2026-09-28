@@ -1,0 +1,143 @@
+{
+  "mode": "file_agent",
+  "requested_model": "claude-sonnet-5",
+  "claude_version": "2.1.283 (Claude Code)",
+  "file_sha256": {
+    "case.json": "e3e2410dbd88deff8de2bf454ce440882786b87a4d297e1836eb398d80466248",
+    "fact_catalog.json": "749ca12d46c6e6b664e30aea97af3b2cc0b612d64c045a16a6bc67729008f61c",
+    "response_schema.json": "a24ca51fda11274dd006abfd82e7205919b829bdf1ee1d21eb6610da3a57b503",
+    "tools/get_maintenance_timeline.json": "8734c99f757fe7d9ad06158014897e80d6218b5b5fc99c58b61a59595ec00e9e",
+    "tools/get_prior_incidents.json": "8d36907ddc7746cd65cc3c0ed1b26a20772b571771f26e8745a42b2fc6de7ff1",
+    "tools/get_recent_measurements.json": "808c1491e6a477e615ace591b4c11be590c67ad6701090145f4642ddb92c2f76",
+    "tools/get_signal_definitions.json": "378ea1e70c4055e914ca1e264a2ed01e218f13d5794ad788715ad6ebe3ea1c4e"
+  },
+  "prompt_sha256": "f660452fff46cca1e71909ae18f4b06c4dcbf24be259f0027dc1ac81c57f7c1e",
+  "system_prompt_sha256": null,
+  "flags": [
+    "--model",
+    "claude-sonnet-5",
+    "--safe-mode",
+    "--restricted",
+    "--strict-mcp-config",
+    "--tools",
+    "Read,Glob,Grep",
+    "--disable-slash-commands",
+    "--no-session-persistence",
+    "--permission-mode",
+    "dontAsk",
+    "--permission-prompts",
+    "none",
+    "-p",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--max-budget-usd",
+    "0.5"
+  ],
+  "timeout_seconds": 180,
+  "max_budget_usd": 0.5,
+  "latency_seconds": 39.379,
+  "exit_code": 0,
+  "stdout_bytes": 69971,
+  "stderr_excerpt": "",
+  "timed_out": false,
+  "resolved_models": [
+    "claude-sonnet-5"
+  ],
+  "tool_calls": [
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/private/var/folders/q1/gfc_d9057jd7b9f82w0gw4yc0000gn/T/claude-public-case-vczg_wui/case.json"
+      },
+      "id": "toolu_01AJs3jcgpRnz2dWtHYkzZQX"
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/private/var/folders/q1/gfc_d9057jd7b9f82w0gw4yc0000gn/T/claude-public-case-vczg_wui/fact_catalog.json"
+      },
+      "id": "toolu_018ngUw1xoYJbuyfSfRQmMxb"
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/private/var/folders/q1/gfc_d9057jd7b9f82w0gw4yc0000gn/T/claude-public-case-vczg_wui/response_schema.json"
+      },
+      "id": "toolu_012dmnfXSbJSHgiAZpKH8Lrw"
+    },
+    {
+      "name": "Glob",
+      "input": {
+        "pattern": "tools/*.json"
+      },
+      "id": "toolu_01AHtXfae6Wg16k1raypysiC"
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/private/var/folders/q1/gfc_d9057jd7b9f82w0gw4yc0000gn/T/claude-public-case-vczg_wui/tools/get_signal_definitions.json"
+      },
+      "id": "toolu_01ELkirJTVF2tJFrWinGzJHE"
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/private/var/folders/q1/gfc_d9057jd7b9f82w0gw4yc0000gn/T/claude-public-case-vczg_wui/tools/get_maintenance_timeline.json"
+      },
+      "id": "toolu_01UZ8iPsipfxYdsroiXbu3bP"
+    }
+  ],
+  "raw_answer": "```json\n{\n  \"observed_fact_ids\": [\n    \"F-69316e2d375d\",\n    \"F-a687d0803fd1\",\n    \"F-c8cb3c25b2cc\",\n    \"F-55882c200281\",\n    \"F-bb7297500b84\",\n    \"F-a01df1be2631\",\n    \"F-a8c9f0b79531\",\n    \"F-d85d8d2ce493\",\n    \"F-5cc92869a719\",\n    \"F-b2a706025880\",\n    \"F-f5d1722b5f67\",\n    \"F-ae0def3e4a80\",\n    \"F-fb827920fd12\",\n    \"F-053200a22c99\",\n    \"F-8543e92b0c09\",\n    \"F-dfa23fbd5bd0\",\n    \"F-a1b3cc76411b\",\n    \"F-33ca708e0aaf\",\n    \"F-9be51bd7f6bf\",\n    \"F-e85947b2b70b\",\n    \"F-d78afb06f6f7\",\n    \"F-0a6ec9d84228\",\n    \"F-a98e3d3b2120\",\n    \"F-97ec1ee13138\",\n    \"F-8b4aa49e516a\"\n  ],\n  \"limit_ids\": [\n    \"L-no-room-evidence\",\n    \"L-primary-flow\",\n    \"L-no-normal-range\",\n    \"L-prior-not-current\",\n    \"L-retrospective\"\n  ],\n  \"next_checks\": [\n    {\n      \"id\": \"C-room-impact\",\n      \"because_fact_ids\": [\n        \"F-69316e2d375d\",\n        \"F-9be51bd7f6bf\",\n        \"F-e85947b2b70b\",\n        \"F-a98e3d3b2120\"\n      ],\n      \"rationale\": \"Secondary supply temperature stayed close to its setpoint for most of the window (mean gap 0.83 °C, 142/144 samples within 2 °C), yet the customer reported 'not enough heat'; only actual room or radiator temperatures can confirm whether heat delivery to the space was truly deficient.\"\n    },\n    {\n      \"id\": \"C-secondary-flow\",\n      \"because_fact_ids\": [\n        \"F-b2a706025880\",\n        \"F-f5d1722b5f67\",\n        \"F-d85d8d2ce493\",\n        \"F-a8c9f0b79531\"\n      ],\n      \"rationale\": \"Only primary network meter flow is available and it is explicitly not the secondary/customer circuit flow; measuring secondary flow would clarify whether the customer side actually received adequate circulation.\"\n    },\n    {\n      \"id\": \"C-maintenance\",\n      \"because_fact_ids\": [\n        \"F-97ec1ee13138\",\n        \"F-8b4aa49e516a\"\n      ],\n      \"rationale\": \"A maintenance 'activity' event is logged starting 2015-02-27, about a month before this report, with no completion or scope detail; reviewing records would show whether it is related to or fully resolved before the reported problem.\"\n    }\n  ]\n}\n```",
+  "is_error": false,
+  "subtype": "success",
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 10376,
+    "cache_read_input_tokens": 32333,
+    "output_tokens": 3554,
+    "output_tokens_details": {
+      "thinking_tokens": 1995
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 10376,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 2908,
+        "cache_read_input_tokens": 16930,
+        "cache_creation_input_tokens": 781,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 781
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "total_cost_usd": 0.0835226,
+  "num_turns": 7,
+  "case_id": "PreDist-M1-fault-63",
+  "corpus_sha256": "47d004b255127a9571c48e60ade51c89bace0e6d6359ada125c0430b6e930aaf",
+  "protocol": "evaluation/SYSTEM2_PROTOCOL.md v1",
+  "validation": {
+    "valid": false,
+    "reason": "output is not JSON"
+  },
+  "display": {
+    "status": "withheld",
+    "reason": "output is not JSON",
+    "observations": [],
+    "limits": [],
+    "suggested_next_checks": []
+  }
+}

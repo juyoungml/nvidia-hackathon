@@ -1,0 +1,150 @@
+{
+  "mode": "file_agent",
+  "requested_model": "claude-sonnet-5",
+  "claude_version": "2.1.283 (Claude Code)",
+  "file_sha256": {
+    "case.json": "f38352cb47a9348fca801cab0bafaa4588b9b6a8248345efd586f52391f2eab6",
+    "fact_catalog.json": "9d8626d2e77e8cb2c9271907c934b7beebf41ac7aac36a2efa2042635a039607",
+    "response_schema.json": "a24ca51fda11274dd006abfd82e7205919b829bdf1ee1d21eb6610da3a57b503",
+    "tools/get_maintenance_timeline.json": "f8f6612e6759001e51761a4a9f1921232bec4d5e2e9ae2189a3e5767bc4a89a9",
+    "tools/get_prior_incidents.json": "8fd16f4858b239b6f6eaf88ad7a7cac7c6b4cd7297092929ab37de5931349b7b",
+    "tools/get_recent_measurements.json": "c42a3cb0c7efb8ebc89987c0d1f0c0b196cfe17c8795fb746267fba9a37b0def",
+    "tools/get_signal_definitions.json": "378ea1e70c4055e914ca1e264a2ed01e218f13d5794ad788715ad6ebe3ea1c4e"
+  },
+  "prompt_sha256": "f660452fff46cca1e71909ae18f4b06c4dcbf24be259f0027dc1ac81c57f7c1e",
+  "system_prompt_sha256": null,
+  "flags": [
+    "--model",
+    "claude-sonnet-5",
+    "--safe-mode",
+    "--restricted",
+    "--strict-mcp-config",
+    "--tools",
+    "Read,Glob,Grep",
+    "--disable-slash-commands",
+    "--no-session-persistence",
+    "--permission-mode",
+    "dontAsk",
+    "--permission-prompts",
+    "none",
+    "-p",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--max-budget-usd",
+    "0.5"
+  ],
+  "timeout_seconds": 180,
+  "max_budget_usd": 0.5,
+  "latency_seconds": 53.164,
+  "exit_code": 0,
+  "stdout_bytes": 84972,
+  "stderr_excerpt": "",
+  "timed_out": false,
+  "resolved_models": [
+    "claude-sonnet-5"
+  ],
+  "tool_calls": [
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/private/var/folders/q1/gfc_d9057jd7b9f82w0gw4yc0000gn/T/claude-public-case-k4dmwmt7/case.json"
+      },
+      "id": "toolu_01X7yFD3F3iR8Q3xdcqSBeRY"
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/private/var/folders/q1/gfc_d9057jd7b9f82w0gw4yc0000gn/T/claude-public-case-k4dmwmt7/fact_catalog.json"
+      },
+      "id": "toolu_019hEmm3vyqnTLRJYNFvJbp1"
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/private/var/folders/q1/gfc_d9057jd7b9f82w0gw4yc0000gn/T/claude-public-case-k4dmwmt7/response_schema.json"
+      },
+      "id": "toolu_012rEc9gFyu1q646RMShRV2j"
+    },
+    {
+      "name": "Glob",
+      "input": {
+        "pattern": "tools/*.json"
+      },
+      "id": "toolu_0115gmuzr3HYmu1ii14UBjiz"
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/private/var/folders/q1/gfc_d9057jd7b9f82w0gw4yc0000gn/T/claude-public-case-k4dmwmt7/tools/get_signal_definitions.json"
+      },
+      "id": "toolu_01LJN8KsX2St6VZQr3xXS5Em"
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/private/var/folders/q1/gfc_d9057jd7b9f82w0gw4yc0000gn/T/claude-public-case-k4dmwmt7/tools/get_prior_incidents.json"
+      },
+      "id": "toolu_01M1TAJGsGRcHhuMEb88YhT3"
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/private/var/folders/q1/gfc_d9057jd7b9f82w0gw4yc0000gn/T/claude-public-case-k4dmwmt7/tools/get_maintenance_timeline.json"
+      },
+      "id": "toolu_01F64CSm2MGbn6QKgS6Gk5nP"
+    }
+  ],
+  "raw_answer": "```json\n{\n  \"observed_fact_ids\": [\n    \"F-46253c9e467c\",\n    \"F-b45e0f50730a\",\n    \"F-1e7ecd90bb5d\",\n    \"F-8db800aef261\",\n    \"F-e28ba199fb91\",\n    \"F-8b076ba6ac60\",\n    \"F-f44068d71418\",\n    \"F-925247d8c764\",\n    \"F-27e89a2c6343\",\n    \"F-59bbecd029bb\",\n    \"F-7e13b852054c\",\n    \"F-e6fb118adb6a\",\n    \"F-9d409be42c6f\",\n    \"F-9d7796c6bd97\",\n    \"F-fbb20eec0816\",\n    \"F-d24415ab0229\",\n    \"F-46734ae62b69\",\n    \"F-f17d8542063c\",\n    \"F-49c6415537c0\",\n    \"F-93b39b46d22e\",\n    \"F-626c02a2be42\",\n    \"F-e67e4656247f\",\n    \"F-d7de9712bbee\",\n    \"F-07339eea770e\",\n    \"F-9db9d7f33910\",\n    \"F-6cb8c6dda67a\",\n    \"F-428458f4c7ca\",\n    \"F-44da4aa08618\",\n    \"F-cecb8a6f47ee\",\n    \"F-1c85f00bbfb8\",\n    \"F-8e89adcec7bd\",\n    \"F-24f2f5b9ece6\",\n    \"F-d4658b929c69\",\n    \"F-1162dd37046d\",\n    \"F-534816eba1b3\",\n    \"F-8ece65de9685\",\n    \"F-b94b6c2ec90e\"\n  ],\n  \"limit_ids\": [\n    \"L-no-room-evidence\",\n    \"L-primary-flow\",\n    \"L-no-normal-range\",\n    \"L-prior-not-current\",\n    \"L-retrospective\"\n  ],\n  \"next_checks\": [\n    {\n      \"id\": \"C-room-impact\",\n      \"because_fact_ids\": [\n        \"F-46253c9e467c\",\n        \"F-e67e4656247f\",\n        \"F-cecb8a6f47ee\",\n        \"F-24f2f5b9ece6\"\n      ],\n      \"rationale\": \"The customer reports 'no heat' at decision_time, yet the secondary supply temperature tracked its setpoint within 2°C for all 144 samples in the prior 24 hours; verifying actual room/radiator temperatures is needed to reconcile the report with a supply signal that appears nominal at the substation.\"\n    },\n    {\n      \"id\": \"C-secondary-flow\",\n      \"because_fact_ids\": [\n        \"F-27e89a2c6343\",\n        \"F-59bbecd029bb\",\n        \"F-7e13b852054c\",\n        \"F-e6fb118adb6a\",\n        \"F-9d409be42c6f\"\n      ],\n      \"rationale\": \"Only primary (network-side) meter flow is available in this window; secondary/customer circuit flow, which determines heat delivery to the building, is not present and should be measured directly.\"\n    },\n    {\n      \"id\": \"C-sensor\",\n      \"because_fact_ids\": [\n        \"F-49c6415537c0\",\n        \"F-93b39b46d22e\",\n        \"F-626c02a2be42\",\n        \"F-07339eea770e\",\n        \"F-1c85f00bbfb8\"\n      ],\n      \"rationale\": \"Given the apparent conflict between a 'no heat' report and a supply temperature closely following its setpoint, confirming sensor identity, calibration, and timestamp alignment for the supply/setpoint signals is a reasonable check before drawing conclusions from the trend.\"\n    },\n    {\n      \"id\": \"C-maintenance\",\n      \"because_fact_ids\": [\n        \"F-d4658b929c69\",\n        \"F-1162dd37046d\",\n        \"F-534816eba1b3\",\n        \"F-b94b6c2ec90e\"\n      ],\n      \"rationale\": \"A similar 'not enough heat' report six days earlier (2016-12-06) noted a heating curve increase, but maintenance timeline entries only record event start times, not confirmed completion or resolution; checking actual completion evidence for that adjustment is warranted before relating it to the current report.\"\n    }\n  ]\n}\n```",
+  "is_error": false,
+  "subtype": "success",
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 15108,
+    "cache_read_input_tokens": 69951,
+    "output_tokens": 3936,
+    "output_tokens_details": {
+      "thinking_tokens": 1837
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 15108,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 1432,
+        "cache_read_input_tokens": 18926,
+        "cache_creation_input_tokens": 2561,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2561
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "total_cost_usd": 0.11380219999999999,
+  "num_turns": 8,
+  "case_id": "PreDist-M1-fault-52",
+  "corpus_sha256": "66d8d34dc18514b7e97fb399ba205f2952042d40411fc2ce9e870c9cde0433f6",
+  "protocol": "evaluation/SYSTEM2_PROTOCOL.md v1",
+  "validation": {
+    "valid": false,
+    "reason": "output is not JSON"
+  },
+  "display": {
+    "status": "withheld",
+    "reason": "output is not JSON",
+    "observations": [],
+    "limits": [],
+    "suggested_next_checks": []
+  }
+}

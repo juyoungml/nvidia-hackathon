@@ -1,0 +1,97 @@
+{
+  "protocol": "SYSTEM2_PROTOCOL.md",
+  "primary_initial_cases": [
+    {
+      "path": "data/replay-52.json",
+      "kind": "development",
+      "case_id": "PreDist-M1-fault-52",
+      "asset": {
+        "manufacturer": 1,
+        "substation_id": "21"
+      },
+      "decision_time": "2016-12-12 15:55:00",
+      "sha256": "fb859f0439dd9fe3e9d8d5fce25f28b1a689a9dca2dc433b5547bb4c18935a13"
+    },
+    {
+      "path": "data/holdout-60.json",
+      "kind": "new_asset",
+      "case_id": "PreDist-M1-fault-60",
+      "asset": {
+        "manufacturer": 1,
+        "substation_id": "4"
+      },
+      "decision_time": "2015-03-18 18:54:00",
+      "sha256": "386626fc5d13f0b92b21ad2cb6b781916ac12b534d0371cbdd60bd600770bbc2"
+    },
+    {
+      "path": "data/holdout-63.json",
+      "kind": "new_asset",
+      "case_id": "PreDist-M1-fault-63",
+      "asset": {
+        "manufacturer": 1,
+        "substation_id": "7"
+      },
+      "decision_time": "2015-03-26 07:15:00",
+      "sha256": "ee2832cbb88f2f8c59d2da5062ef2daa406bd9e1cd50744138dea74286590b42"
+    }
+  ],
+  "note": "Outcome files excluded. Additional dev/stress cases only after primary runs; no prompt edits during this comparison.",
+  "v2_cases": [
+    {
+      "path": "data/replay-52.json",
+      "kind": "development",
+      "case_id": "PreDist-M1-fault-52",
+      "asset": {
+        "manufacturer": 1,
+        "substation_id": "21"
+      },
+      "decision_time": "2016-12-12 15:55:00",
+      "sha256": "fb859f0439dd9fe3e9d8d5fce25f28b1a689a9dca2dc433b5547bb4c18935a13"
+    },
+    {
+      "path": "data/holdout-60.json",
+      "kind": "pilot_exposed",
+      "case_id": "PreDist-M1-fault-60",
+      "asset": {
+        "manufacturer": 1,
+        "substation_id": "4"
+      },
+      "decision_time": "2015-03-18 18:54:00",
+      "sha256": "386626fc5d13f0b92b21ad2cb6b781916ac12b534d0371cbdd60bd600770bbc2"
+    },
+    {
+      "path": "data/holdout-63.json",
+      "kind": "pilot_exposed",
+      "case_id": "PreDist-M1-fault-63",
+      "asset": {
+        "manufacturer": 1,
+        "substation_id": "7"
+      },
+      "decision_time": "2015-03-26 07:15:00",
+      "sha256": "ee2832cbb88f2f8c59d2da5062ef2daa406bd9e1cd50744138dea74286590b42"
+    },
+    {
+      "path": "data/holdout-3.json",
+      "kind": "fresh_asset",
+      "case_id": "PreDist-M1-fault-3",
+      "asset": {
+        "manufacturer": 1,
+        "substation_id": "12"
+      },
+      "decision_time": "2015-12-01 10:56:00",
+      "sha256": "ff9ddacc3ca44a19a347080833561a187f53521a26445209526214c3582dc0f2"
+    },
+    {
+      "path": "data/holdout-13.json",
+      "kind": "fresh_asset",
+      "case_id": "PreDist-M1-fault-13",
+      "asset": {
+        "manufacturer": 1,
+        "substation_id": "24"
+      },
+      "decision_time": "2016-01-12 12:39:00",
+      "sha256": "2f7ea3f6e18ea02076051bc46e82a3d33b08ff5bf721771178adb601add57337"
+    }
+  ],
+  "v2_note": "Frozen before v2 inference; no answer-driven prompt edits. Fresh assets3 and13 outcomes remain excluded."
+}
