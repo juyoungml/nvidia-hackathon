@@ -25,7 +25,7 @@ plt.rcParams["axes.unicode_minus"] = False
 ARMS = (
     ("ultra", "Ultra\n1차 시도", "#b5d77a"),
     ("ultra_with_provider_rerun", "Ultra\nAPI 오류 재실행", "#76b900"),
-    ("ultra-clip", "Ultra\n도구 보정 후", "#3f7d00"),
+    ("ultra_clip_with_provider_rerun", "Ultra\n도구 보정 후", "#3f7d00"),
     ("sonnet", "Claude Code +\nSonnet 5", "#8a8a8a"),
 )
 
@@ -87,7 +87,7 @@ def main() -> None:
     ]
     fig.legend(
         handles,
-        ["통과", "형식·근거 실패", "API 오류(HTTP)", "미실행"],
+        ["통과", "형식·근거 실패", "API 오류(HTTP·시간 초과)", "미실행"],
         loc="upper right",
         ncol=4,
         fontsize=8.5,

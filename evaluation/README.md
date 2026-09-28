@@ -6,7 +6,7 @@
 
 | 평가 | 규모 | 요약 | 문서 |
 |---|---|---|---|
-| **Cycle 5 (현재 기준)** | PreDist 32건, 사건당 1회 | Sonnet 5 32/32, Nemotron 3 Ultra 첫 시도 15/32 → API 오류 재실행 후 26/32 (81%), 남은 실패 6건은 모두 24행 초과 시간 창 요청 | [PROTOCOL](cycle5/PROTOCOL.md) · [RESULTS](cycle5/RESULTS.md) |
+| **Cycle 5 (현재 기준)** | PreDist 32건, 사건당 1회 | Sonnet 5 32/32, Nemotron 3 Ultra 첫 시도 15/32 → API 오류 재실행 후 26/32 (81%) → 24행 도구 보정 후 32/32, 남은 실패 6건은 모두 24행 초과 시간 창 요청 | [PROTOCOL](cycle5/PROTOCOL.md) · [RESULTS](cycle5/RESULTS.md) |
 | Cycle 4 | 4건 | 실제 조사 루프와 시점별 근거. Ultra 2/4, Sonnet 5 4/4 | [PROTOCOL](cycle4/PROTOCOL.md) · [RESULTS](cycle4/RESULTS.md) |
 | Cycle 3 | 개발/시험 분리 | 검증 피드백 한 번으로 출력을 복구할 수 있는지 시험 | [PROTOCOL](cycle3/PROTOCOL.md) · [RESULTS](cycle3/RESULTS.md) |
 | System 2 비교 v1/v2 | 파일럿 | 초기 System 2와 Claude Code + Sonnet 5 비교 | [SYSTEM2_PROTOCOL](SYSTEM2_PROTOCOL.md) · [RESULTS](system2-results/RESULTS.md) |

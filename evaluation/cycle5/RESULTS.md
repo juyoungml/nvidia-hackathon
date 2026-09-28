@@ -43,3 +43,18 @@ The 11 Ultra cases that had never reached the model were rerun with 1 worker, 12
 | Claude Code + Sonnet 5 | 32/32 | 0 | 0 | 21/21 |
 
 All 26 plans Ultra completed passed the reference check (no fabricated citations). Ultra wall times after reruns include API back-off waits and are not comparable to Sonnet's. `results.json` and `figures/eval-cycle5.png` are regenerated from all traces.
+
+
+## Update after Amendments E–F: tool fix (2026-09-29)
+
+`query_measurement_window` now clips requests longer than 24 rows to the latest 24 rows and reports the clip. All 32 cases were rerun for Ultra with the fixed tool (1 worker, 12 requests/min, HTTP retry). 30 passed on the first run, including all 6 previous failures (5, 11, 40, 47, 62, 64). Cases 13 and 15 ended with an NVIDIA API read timeout before any model output; per Amendment F they were rerun once and both passed.
+
+| Arm | Pass (32) | Fresh 21 | Provider errors | Real failures |
+|---|---:|---:|---:|---:|
+| Ultra, first attempt | 15/32 | 11/21 | 13 | 4 |
+| Ultra, API-error reruns (A–D) | 26/32 | 18/21 | 0 | 6 (all >24-row window) |
+| Ultra, tool fix (E) | 30/32 | 20/21 | 2 (read timeout) | 0 |
+| Ultra, tool fix + timeout rerun (F) | **32/32** | **21/21** | 0 | 0 |
+| Claude Code + Sonnet 5 | 32/32 | 21/21 | 0 | 0 |
+
+Caveats: the fix was designed after inspecting failures on these same 32 cases, so it needs confirmation on unseen cases. In the fixed-tool arm, 11 of 32 runs reached the planning cap and were handed to final generation (`planning_cap_handoff`) rather than declaring completion themselves; all 11 passed the reference check. Single run per case; the reference check is not diagnostic accuracy. API timeouts are now classified as provider errors in `summarize.py`. Ultra wall times include API back-off and are not comparable to Sonnet's.

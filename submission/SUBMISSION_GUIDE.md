@@ -31,7 +31,7 @@ ZIP과 manifest는 제출 시점의 스냅샷입니다. 이후 저장소 문서�
 32건 평가(사건당 1회), 통과 기준은 **근거 연결 검사**(스키마 유효 + 실제 조회한 근거 ID만 인용)이며 진단 정확도가 아닙니다.
 
 - Claude Code + Sonnet 5 (클라우드 참고 상한): 32/32
-- Nemotron 3 Ultra: 첫 시도 15/32 (NVIDIA API 오류 13건 포함) → API 오류 건 저속 재실행 후 **26/32 (81%)**, 새 사건 21건 중 18건
+- Nemotron 3 Ultra: 첫 시도 15/32 (NVIDIA API 오류 13건 포함) → API 오류 건 저속 재실행 후 26/32 (81%) → 24행 도구 보정 후 **32/32** (제출 이후 추가 실험), 새 사건 21건 중 18건
 - Ultra가 끝까지 작성한 점검안 26개는 모두 통과(근거 조작 0건). 남은 실패 6건은 모두 24행을 넘는 시간 창 요청이며, 이후 도구가 최근 24행으로 잘라 반환하도록 보완했습니다.
 
 상세: [evaluation/cycle5/RESULTS.md](../evaluation/cycle5/RESULTS.md). 이전 4건 비교는 [evaluation/cycle4/RESULTS.md](../evaluation/cycle4/RESULTS.md).

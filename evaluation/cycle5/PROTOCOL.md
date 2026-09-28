@@ -48,3 +48,7 @@ The Amendment C attempt was stopped after 6 cases: every request returned HTTP 4
 ## Amendment E — tool fix run (2026-09-29, written before the run)
 
 All 6 remaining Ultra failures were the same tool-argument error: `query_measurement_window` rejected windows longer than 24 rows. The tool now clips such a request to the latest 24 rows (nearest the decision time) and reports the clip (`clipped.requested_start`, `matched_rows`, `returned_rows`); the tool description tells the model this. This changes the tool contract for every case, so it is evaluated as a separate arm, not merged into earlier numbers: all 32 cases are run once more for Ultra with the fixed tool, tagged `-clip` (1 worker, 12 requests/min, `NVIDIA_HTTP_RETRIES=4`). The validator and prompts are otherwise unchanged. Sonnet is not rerun (it never hit the limit). Reported alongside, never replacing, the first-attempt and rerun numbers.
+
+## Amendment F (2026-09-29, written before the run)
+
+In the tool-fix run, cases 13 and 15 ended with an NVIDIA API read timeout (90 s) before any model output. As with HTTP errors, API timeouts count as provider errors and are rerun once with the same settings, tagged `-clip-rerun`. Model or contract failures are never rerun.

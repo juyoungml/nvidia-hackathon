@@ -20,7 +20,9 @@ def classify(arm: str, trace: dict) -> dict:
         tool_calls = len(trace.get("tool_calls") or [])
         exhausted = bool(trace.get("investigation_budget_exhausted"))
         wall = trace.get("wall_seconds")
-        provider_error = bool(reason and "NVIDIA API HTTP" in str(reason))
+        provider_error = bool(
+            reason and ("NVIDIA API HTTP" in str(reason) or "timed out" in str(reason))
+        )
         output = trace.get("parsed_plan") is not None
     else:
         tool_calls = len(trace.get("tool_calls") or [])
@@ -60,9 +62,17 @@ def main() -> None:
             "exposure": "prior_exposed" if rid in PRIOR_EXPOSED else "fresh",
             "arms": {},
         }
-        for arm in ("ultra", "sonnet", "ultra-rerun", "ultra-rerun2", "ultra-rerun3", "ultra-clip"):
+        for arm in (
+            "ultra",
+            "sonnet",
+            "ultra-rerun",
+            "ultra-rerun2",
+            "ultra-rerun3",
+            "ultra-clip",
+            "ultra-clip-rerun",
+        ):
             path = HERE / "traces" / f"{arm}-{rid}.json"
-            if arm.startswith("ultra-rerun") and not path.exists():
+            if arm.endswith(("rerun", "rerun2", "rerun3")) and not path.exists():
                 continue
             if not path.exists():
                 row["arms"][arm] = {"status": "not_completed_by_cutoff"}
@@ -80,6 +90,12 @@ def main() -> None:
                 effective = row["arms"][tag]
                 attempts += 1
         row["arms"]["ultra_with_provider_rerun"] = {**effective, "attempts": attempts}
+        clip = row["arms"]["ultra-clip"]
+        clip_attempts = 1
+        if clip.get("provider_error") and "ultra-clip-rerun" in row["arms"]:
+            clip = row["arms"]["ultra-clip-rerun"]
+            clip_attempts += 1
+        row["arms"]["ultra_clip_with_provider_rerun"] = {**clip, "attempts": clip_attempts}
         cases.append(row)
 
     def agg(arm: str, subset: list[dict]) -> dict:
@@ -113,7 +129,13 @@ def main() -> None:
         "scope": "single run per arm/case; reference/format contract check, not diagnostic accuracy",
         "summary": {
             arm: {"all": agg(arm, cases), "fresh_only": agg(arm, fresh)}
-            for arm in ("ultra", "ultra_with_provider_rerun", "ultra-clip", "sonnet")
+            for arm in (
+                "ultra",
+                "ultra_with_provider_rerun",
+                "ultra-clip",
+                "ultra_clip_with_provider_rerun",
+                "sonnet",
+            )
         },
         "excluded": [m for m in manifest if m["status"] != "eligible"],
         "cases": cases,
