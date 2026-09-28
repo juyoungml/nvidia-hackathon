@@ -1,0 +1,24 @@
+{
+  "case_id": "PreDist-M1-fault-47",
+  "source": "https://zenodo.org/records/19496480",
+  "not_available_to_agent": true,
+  "provenance": {
+    "source_files_sha256": {
+      "faults.csv": "8f8a4ccd400d63d162314bbc888031bc2b793ea8a75313e6bcdadee046bf7bdc",
+      "disturbances.csv": "f0085525085080cfc0deafe4095b1cee7e47266749b2ef228d479a61778cf7d8",
+      "features.csv": "388c237896ec3dfc86f7330113cab661323a385f878f10cfa99c65de51e104b9",
+      "substation_28.csv": "8f7944b1c9254d48dbe38030dbd4156c32c68599546ac2e1d9f75a31ac38c25a"
+    },
+    "selection": {
+      "rule": "First two chronological manufacturer-1 reports with problem 'no heat' or 'not enough heat', outside substations 21, 4, 7, 12, 24, 19, and 11 and on distinct substations, having >=100 prior-24-hour samples and nonempty required hc1 fields; reports 29 and 47 selected before cycle-4 inference.",
+      "report_id": "47",
+      "asset_id": "28",
+      "window_hours": 24,
+      "cutoff": "measurement timestamp <= report date; prior records strictly earlier"
+    }
+  },
+  "report_date": "2020-01-13 10:55:00",
+  "event_description": "Malfunction in the circulation pump. Heating failed. Pump was blocked and was replaced.",
+  "fault_label": "Failure of the heating circuit pump",
+  "note": "Published report fields are retrospective; they are not a real-time ground truth at the decision time."
+}

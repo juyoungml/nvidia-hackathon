@@ -1,0 +1,559 @@
+{
+  "protocol_sha256": "efc2812ccdc5e8252534cce64f6b255b71f5b124ca81206cb068e3910a8d2cef",
+  "manifest_sha256": "754012d261a34b5e386a76664328c7515b20b49706426d64a2888e89e6f4b538",
+  "scope": "four frozen pairs; contract/reference audit, not diagnostic accuracy",
+  "pairs": [
+    {
+      "case_id": "PreDist-M1-fault-52",
+      "kind": "development_exposed",
+      "corpus_sha256": "21f0904d11810d01fd1d91074784ad6c90c09744d5098b2df4d3852bd5d54bdf",
+      "arms": {
+        "domain": {
+          "trace": "evaluation/cycle4/traces/domain-52.json",
+          "trace_sha256": "288a4049a47295f37050b06bb202c2c945784418edc0a404f2eacd3f1bc10b3a",
+          "validation_status": "invalid",
+          "failure_reason": "planning stopped: planning_request_limit",
+          "display_status": "withheld",
+          "reference_closed": false,
+          "selected_fact_count": 0,
+          "support_reference_count": 0,
+          "next_check_count": 0,
+          "actual_read_names": [
+            "get_recent_measurements",
+            "get_prior_incidents",
+            "get_maintenance_timeline",
+            "get_signal_definitions",
+            "get_temporal_episodes",
+            "query_measurement_window"
+          ],
+          "temporal_read_names": [
+            "get_temporal_episodes",
+            "query_measurement_window"
+          ],
+          "wall_seconds": 20.311,
+          "request_seconds": 12.068999999999999,
+          "usage": [
+            {
+              "prompt_tokens": 1359,
+              "completion_tokens": 18,
+              "total_tokens": 1377
+            },
+            {
+              "prompt_tokens": 8115,
+              "completion_tokens": 17,
+              "total_tokens": 8132
+            },
+            {
+              "prompt_tokens": 8787,
+              "completion_tokens": 18,
+              "total_tokens": 8805
+            },
+            {
+              "prompt_tokens": 10039,
+              "completion_tokens": 16,
+              "total_tokens": 10055
+            },
+            {
+              "prompt_tokens": 10429,
+              "completion_tokens": 18,
+              "total_tokens": 10447
+            },
+            {
+              "prompt_tokens": 12401,
+              "completion_tokens": 74,
+              "total_tokens": 12475
+            }
+          ],
+          "cli_reported_cost_usd": null,
+          "review_flags": [],
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "finish_reason": "planning_request_limit",
+          "selected_temporal_fact_count": 0,
+          "failure_classification": "control_handoff_request_cap"
+        },
+        "general": {
+          "trace": "evaluation/cycle4/traces/general-52.json",
+          "trace_sha256": "536f8ad3fe2dcb9db021a962629478b537a82e59f482885fa910c659628f81a9",
+          "validation_status": "valid",
+          "failure_reason": null,
+          "display_status": "reference_checked",
+          "reference_closed": true,
+          "selected_fact_count": 12,
+          "support_reference_count": 12,
+          "next_check_count": 3,
+          "actual_read_names": [
+            "Read",
+            "Read",
+            "Read",
+            "Read",
+            "Glob",
+            "Read"
+          ],
+          "temporal_read_names": [],
+          "wall_seconds": 31.262,
+          "request_seconds": null,
+          "usage": {
+            "input_tokens": 6,
+            "cache_creation_input_tokens": 42691,
+            "cache_read_input_tokens": 28269,
+            "output_tokens": 2551,
+            "output_tokens_details": {
+              "thinking_tokens": 1441
+            },
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 42691,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "not_available",
+            "iterations": [
+              {
+                "input_tokens": 2,
+                "output_tokens": 1867,
+                "cache_read_input_tokens": 17158,
+                "cache_creation_input_tokens": 25533,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 25533
+                },
+                "type": "message"
+              }
+            ],
+            "speed": "standard"
+          },
+          "cli_reported_cost_usd": 0.2019398,
+          "review_flags": [],
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "finish_reason": null,
+          "selected_temporal_fact_count": 0,
+          "failure_classification": null
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-3",
+      "kind": "development_exposed",
+      "corpus_sha256": "7361353d80ca91c3526d0a9cdf72443cdf768d9dec9f8fa0b1f3ef4470730c14",
+      "arms": {
+        "domain": {
+          "trace": "evaluation/cycle4/traces/domain-3.json",
+          "trace_sha256": "bc28965a875591404e7eb944722242ef32c036a27d9cd82f15815495856e89b7",
+          "validation_status": "valid",
+          "failure_reason": null,
+          "display_status": "reference_checked",
+          "reference_closed": true,
+          "selected_fact_count": 9,
+          "support_reference_count": 9,
+          "next_check_count": 3,
+          "actual_read_names": [
+            "get_recent_measurements",
+            "get_signal_definitions",
+            "get_prior_incidents",
+            "get_maintenance_timeline",
+            "get_temporal_episodes",
+            "query_measurement_window",
+            "query_measurement_window"
+          ],
+          "temporal_read_names": [
+            "get_temporal_episodes",
+            "query_measurement_window"
+          ],
+          "wall_seconds": 24.173,
+          "request_seconds": 21.676000000000002,
+          "usage": [
+            {
+              "prompt_tokens": 1353,
+              "completion_tokens": 79,
+              "total_tokens": 1432
+            },
+            {
+              "prompt_tokens": 12420,
+              "completion_tokens": 74,
+              "total_tokens": 12494
+            },
+            {
+              "prompt_tokens": 14607,
+              "completion_tokens": 74,
+              "total_tokens": 14681
+            },
+            {
+              "prompt_tokens": 17147,
+              "completion_tokens": 17,
+              "total_tokens": 17164
+            },
+            {
+              "prompt_tokens": 14507,
+              "completion_tokens": 411,
+              "total_tokens": 14918
+            }
+          ],
+          "cli_reported_cost_usd": null,
+          "review_flags": [],
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "finish_reason": "explicit_finish_tool",
+          "selected_temporal_fact_count": 4,
+          "failure_classification": null
+        },
+        "general": {
+          "trace": "evaluation/cycle4/traces/general-3.json",
+          "trace_sha256": "f16b0886144f01106155586e52afb4a58df0fa02276f944de5c92667f888e208",
+          "validation_status": "valid",
+          "failure_reason": null,
+          "display_status": "reference_checked",
+          "reference_closed": true,
+          "selected_fact_count": 12,
+          "support_reference_count": 12,
+          "next_check_count": 3,
+          "actual_read_names": [
+            "Read",
+            "Read",
+            "Read",
+            "Read"
+          ],
+          "temporal_read_names": [],
+          "wall_seconds": 31.744,
+          "request_seconds": null,
+          "usage": {
+            "input_tokens": 6,
+            "cache_creation_input_tokens": 40852,
+            "cache_read_input_tokens": 49722,
+            "output_tokens": 3026,
+            "output_tokens_details": {
+              "thinking_tokens": 1476
+            },
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 40852,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "not_available",
+            "iterations": [
+              {
+                "input_tokens": 2,
+                "output_tokens": 566,
+                "cache_read_input_tokens": 38673,
+                "cache_creation_input_tokens": 2179,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2179
+                },
+                "type": "message"
+              }
+            ],
+            "speed": "standard"
+          },
+          "cli_reported_cost_usd": 0.20362439999999998,
+          "review_flags": [],
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "finish_reason": null,
+          "selected_temporal_fact_count": 1,
+          "failure_classification": null
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-29",
+      "kind": "fresh_test",
+      "corpus_sha256": "a17073c5ba9da5af60fecc9cd7974ef24f58afba94b199cabd74d57ee0ce6639",
+      "arms": {
+        "domain": {
+          "trace": "evaluation/cycle4/traces/domain-29.json",
+          "trace_sha256": "bed825b820387e336c34e9f77a95e123d6ec551e073841590ee56ec9ff85eb2e",
+          "validation_status": "valid",
+          "failure_reason": null,
+          "display_status": "reference_checked",
+          "reference_closed": true,
+          "selected_fact_count": 7,
+          "support_reference_count": 9,
+          "next_check_count": 3,
+          "actual_read_names": [
+            "get_recent_measurements",
+            "get_signal_definitions",
+            "get_prior_incidents",
+            "get_maintenance_timeline",
+            "get_temporal_episodes",
+            "query_measurement_window"
+          ],
+          "temporal_read_names": [
+            "get_temporal_episodes",
+            "query_measurement_window"
+          ],
+          "wall_seconds": 19.646,
+          "request_seconds": 16.664,
+          "usage": [
+            {
+              "prompt_tokens": 1359,
+              "completion_tokens": 79,
+              "total_tokens": 1438
+            },
+            {
+              "prompt_tokens": 20648,
+              "completion_tokens": 74,
+              "total_tokens": 20722
+            },
+            {
+              "prompt_tokens": 23867,
+              "completion_tokens": 17,
+              "total_tokens": 23884
+            },
+            {
+              "prompt_tokens": 19289,
+              "completion_tokens": 356,
+              "total_tokens": 19645
+            }
+          ],
+          "cli_reported_cost_usd": null,
+          "review_flags": [],
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "finish_reason": "explicit_finish_tool",
+          "selected_temporal_fact_count": 3,
+          "failure_classification": null
+        },
+        "general": {
+          "trace": "evaluation/cycle4/traces/general-29.json",
+          "trace_sha256": "878fe7c4f68868b2234dc12a83a17ea6d93900e37219020683534f31064becbe",
+          "validation_status": "valid",
+          "failure_reason": null,
+          "display_status": "reference_checked",
+          "reference_closed": true,
+          "selected_fact_count": 12,
+          "support_reference_count": 12,
+          "next_check_count": 3,
+          "actual_read_names": [
+            "Glob",
+            "Read",
+            "Read",
+            "Read",
+            "Read",
+            "Read",
+            "Read",
+            "Read",
+            "Read",
+            "Grep",
+            "Read"
+          ],
+          "temporal_read_names": [],
+          "wall_seconds": 59.025,
+          "request_seconds": null,
+          "usage": {
+            "input_tokens": 14,
+            "cache_creation_input_tokens": 54060,
+            "cache_read_input_tokens": 207095,
+            "output_tokens": 5262,
+            "output_tokens_details": {
+              "thinking_tokens": 2967
+            },
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 54060,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "not_available",
+            "iterations": [
+              {
+                "input_tokens": 2,
+                "output_tokens": 590,
+                "cache_read_input_tokens": 51280,
+                "cache_creation_input_tokens": 2780,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2780
+                },
+                "type": "message"
+              }
+            ],
+            "speed": "standard"
+          },
+          "cli_reported_cost_usd": 0.310307,
+          "review_flags": [],
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "finish_reason": null,
+          "selected_temporal_fact_count": 1,
+          "failure_classification": null
+        }
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-47",
+      "kind": "fresh_test",
+      "corpus_sha256": "d4b570add961a655a2d9369acc73d84bfe4bf5823d116eca954c10d25f17a65e",
+      "arms": {
+        "domain": {
+          "trace": "evaluation/cycle4/traces/domain-47.json",
+          "trace_sha256": "4d4ba8ffe5d39c2d09360cc43738e9cb0637f0657e5008f29602a92ca397c6b7",
+          "validation_status": "invalid",
+          "failure_reason": "planning stopped: planning_request_limit",
+          "display_status": "withheld",
+          "reference_closed": false,
+          "selected_fact_count": 0,
+          "support_reference_count": 0,
+          "next_check_count": 0,
+          "actual_read_names": [
+            "get_recent_measurements",
+            "get_temporal_episodes",
+            "get_prior_incidents",
+            "get_maintenance_timeline",
+            "get_signal_definitions",
+            "query_measurement_window"
+          ],
+          "temporal_read_names": [
+            "get_temporal_episodes",
+            "query_measurement_window"
+          ],
+          "wall_seconds": 35.838,
+          "request_seconds": 29.904000000000003,
+          "usage": [
+            {
+              "prompt_tokens": 1359,
+              "completion_tokens": 18,
+              "total_tokens": 1377
+            },
+            {
+              "prompt_tokens": 8139,
+              "completion_tokens": 18,
+              "total_tokens": 8157
+            },
+            {
+              "prompt_tokens": 16725,
+              "completion_tokens": 17,
+              "total_tokens": 16742
+            },
+            {
+              "prompt_tokens": 16989,
+              "completion_tokens": 18,
+              "total_tokens": 17007
+            },
+            {
+              "prompt_tokens": 17994,
+              "completion_tokens": 16,
+              "total_tokens": 18010,
+              "prompt_tokens_details": {
+                "audio_tokens": null,
+                "cached_tokens": 8640
+              }
+            },
+            {
+              "prompt_tokens": 18383,
+              "completion_tokens": 74,
+              "total_tokens": 18457,
+              "prompt_tokens_details": {
+                "audio_tokens": null,
+                "cached_tokens": 8640
+              }
+            }
+          ],
+          "cli_reported_cost_usd": null,
+          "review_flags": [],
+          "model": "nvidia/nemotron-3-ultra-550b-a55b",
+          "finish_reason": "planning_request_limit",
+          "selected_temporal_fact_count": 0,
+          "failure_classification": "control_handoff_request_cap"
+        },
+        "general": {
+          "trace": "evaluation/cycle4/traces/general-47.json",
+          "trace_sha256": "0264847b7005636b6213349646abec91d02d2b1bb666c7db387e1ead2cb5ccbb",
+          "validation_status": "valid",
+          "failure_reason": null,
+          "display_status": "reference_checked",
+          "reference_closed": true,
+          "selected_fact_count": 12,
+          "support_reference_count": 12,
+          "next_check_count": 3,
+          "actual_read_names": [
+            "Read",
+            "Read",
+            "Read",
+            "Read",
+            "Read"
+          ],
+          "temporal_read_names": [],
+          "wall_seconds": 29.754,
+          "request_seconds": null,
+          "usage": {
+            "input_tokens": 4,
+            "cache_creation_input_tokens": 42867,
+            "cache_read_input_tokens": 11097,
+            "output_tokens": 2699,
+            "output_tokens_details": {
+              "thinking_tokens": 1603
+            },
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 42867,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "not_available",
+            "iterations": [
+              {
+                "input_tokens": 2,
+                "output_tokens": 2165,
+                "cache_read_input_tokens": 11097,
+                "cache_creation_input_tokens": 31770,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 31770
+                },
+                "type": "message"
+              }
+            ],
+            "speed": "standard"
+          },
+          "cli_reported_cost_usd": 0.20068539999999999,
+          "review_flags": [],
+          "model": [
+            "claude-sonnet-5"
+          ],
+          "finish_reason": null,
+          "selected_temporal_fact_count": 7,
+          "failure_classification": null
+        }
+      }
+    }
+  ],
+  "aggregate": {
+    "domain": {
+      "reference_checked": 2,
+      "withheld": 2,
+      "reference_closed_valid": 2,
+      "temporal_read_cases": 4,
+      "wall_seconds": 99.968
+    },
+    "general": {
+      "reference_checked": 4,
+      "withheld": 0,
+      "reference_closed_valid": 4,
+      "temporal_read_cases": 0,
+      "wall_seconds": 151.785
+    }
+  },
+  "manual_review_candidates": [
+    {
+      "case_id": "PreDist-M1-fault-3",
+      "arm": "domain",
+      "check_id": "C-controls",
+      "issue": "Rationale says setpoint dropped from ~60°C at 11:00 to ~32°C by 15:30, but selected supporting facts start at 2015-11-30 14:50 and do not cite the 11:00 value. The cited episode is previous day, which the rationale omits. Review against the raw window before treating this as established."
+    }
+  ]
+}

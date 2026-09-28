@@ -1,0 +1,152 @@
+{
+  "protocol_sha256": "efc2812ccdc5e8252534cce64f6b255b71f5b124ca81206cb068e3910a8d2cef",
+  "manifest_sha256": "754012d261a34b5e386a76664328c7515b20b49706426d64a2888e89e6f4b538",
+  "pairs": [
+    {
+      "case_id": "PreDist-M1-fault-52",
+      "kind": "development_exposed",
+      "corpus_sha256": "21f0904d11810d01fd1d91074784ad6c90c09744d5098b2df4d3852bd5d54bdf",
+      "domain_validation": {
+        "status": "invalid",
+        "error_type": "ValueError",
+        "reason": "planning stopped: planning_request_limit"
+      },
+      "domain_display_status": "withheld",
+      "general_validation": {
+        "status": "valid"
+      },
+      "general_display_status": "reference_checked"
+    },
+    {
+      "case_id": "PreDist-M1-fault-3",
+      "kind": "development_exposed",
+      "corpus_sha256": "7361353d80ca91c3526d0a9cdf72443cdf768d9dec9f8fa0b1f3ef4470730c14",
+      "domain_validation": {
+        "status": "valid",
+        "selection": {
+          "observed_fact_ids": [
+            "F-ef44adf80dfa",
+            "F-b7507a067c23",
+            "F-4098c97a65e8",
+            "F-37c78c517194",
+            "F-2ff6575b4d65",
+            "F-1ed886413efb",
+            "F-e89ab81fc037",
+            "F-ccc2bdf03f71",
+            "F-f25f57f42a4e"
+          ],
+          "limit_ids": [
+            "L-no-room-evidence",
+            "L-no-normal-range"
+          ],
+          "next_checks": [
+            {
+              "id": "C-room-impact",
+              "because_fact_ids": [
+                "F-ef44adf80dfa",
+                "F-b7507a067c23",
+                "F-4098c97a65e8"
+              ],
+              "rationale": "Reported 'no heat' at 10:56 while secondary supply temperature was 33.5 °C at 10:50; need to verify actual room or radiator temperatures and scope of heating loss."
+            },
+            {
+              "id": "C-secondary-flow",
+              "because_fact_ids": [
+                "F-37c78c517194",
+                "F-2ff6575b4d65",
+                "F-1ed886413efb"
+              ],
+              "rationale": "Primary network flow ~958 l/h and heat power ~43 kW are present, but secondary circuit flow is unknown; must measure secondary flow to confirm delivery to the heating circuit."
+            },
+            {
+              "id": "C-controls",
+              "because_fact_ids": [
+                "F-e89ab81fc037",
+                "F-ccc2bdf03f71",
+                "F-f25f57f42a4e"
+              ],
+              "rationale": "Setpoint dropped from ~60 °C to ~32 °C between 11:00 and 15:30 with a 13.7 °C supply/setpoint gap at 15:00; review timestamped controller settings and parameter changes with an engineer."
+            }
+          ]
+        }
+      },
+      "domain_display_status": "reference_checked",
+      "general_validation": {
+        "status": "valid"
+      },
+      "general_display_status": "reference_checked"
+    },
+    {
+      "case_id": "PreDist-M1-fault-29",
+      "kind": "fresh_test",
+      "corpus_sha256": "a17073c5ba9da5af60fecc9cd7974ef24f58afba94b199cabd74d57ee0ce6639",
+      "domain_validation": {
+        "status": "valid",
+        "selection": {
+          "observed_fact_ids": [
+            "F-2561c2910892",
+            "F-9d94db391585",
+            "F-e09c62badaec",
+            "F-79ad1258bffd",
+            "F-7a89fa9dc1f8",
+            "F-4358be1c86b0",
+            "F-890221c11956"
+          ],
+          "limit_ids": [
+            "L-no-room-evidence",
+            "L-no-normal-range"
+          ],
+          "next_checks": [
+            {
+              "id": "C-room-impact",
+              "because_fact_ids": [
+                "F-2561c2910892",
+                "F-9d94db391585",
+                "F-e09c62badaec"
+              ],
+              "rationale": "Reported 'no heat' at 14:18 while secondary supply reads 63.9°C; must verify actual room/radiator temperatures and scope of heating loss."
+            },
+            {
+              "id": "C-secondary-flow",
+              "because_fact_ids": [
+                "F-9d94db391585",
+                "F-e09c62badaec",
+                "F-79ad1258bffd"
+              ],
+              "rationale": "Supply temperature near setpoint but outdoor temp ~10°C; need secondary circuit flow measurement to confirm heat delivery capacity."
+            },
+            {
+              "id": "C-controls",
+              "because_fact_ids": [
+                "F-7a89fa9dc1f8",
+                "F-4358be1c86b0",
+                "F-890221c11956"
+              ],
+              "rationale": "Multiple episodes show supply/setpoint gaps >2°C (up to 13.4°C); review timestamped controller settings and parameter changes with an engineer."
+            }
+          ]
+        }
+      },
+      "domain_display_status": "reference_checked",
+      "general_validation": {
+        "status": "valid"
+      },
+      "general_display_status": "reference_checked"
+    },
+    {
+      "case_id": "PreDist-M1-fault-47",
+      "kind": "fresh_test",
+      "corpus_sha256": "d4b570add961a655a2d9369acc73d84bfe4bf5823d116eca954c10d25f17a65e",
+      "domain_validation": {
+        "status": "invalid",
+        "error_type": "ValueError",
+        "reason": "planning stopped: planning_request_limit"
+      },
+      "domain_display_status": "withheld",
+      "general_validation": {
+        "status": "valid"
+      },
+      "general_display_status": "reference_checked"
+    }
+  ]
+}

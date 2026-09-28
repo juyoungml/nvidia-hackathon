@@ -37,6 +37,10 @@ PUBLIC_FILES = frozenset(
         "fact_catalog.json",
         "response_schema.json",
         "source_manifest.json",
+        "plan_schema.json",
+        "task.json",
+        "temporal/episodes.json",
+        "temporal/window-fields.json",
         "tools/get_recent_measurements.json",
         "tools/get_prior_incidents.json",
         "tools/get_maintenance_timeline.json",
@@ -128,6 +132,7 @@ def _summary(events: list[dict], result: dict) -> dict:
         "tool_calls": tool_calls,
         "tool_results": tool_results,
         "raw_answer": result.get("result"),
+        "structured_output": result.get("structured_output"),
         "is_error": result.get("is_error"),
         "subtype": result.get("subtype"),
         "usage": result.get("usage"),
@@ -154,6 +159,7 @@ def run_claude_case(
     timeout_seconds: int = 120,
     max_budget_usd: float = 0.50,
     executable: Path = CLAUDE,
+    json_schema: dict | None = None,
 ) -> dict:
     """Return an auditable comparison trace for an already-approved public case.
 
@@ -191,6 +197,13 @@ def run_claude_case(
         "--max-budget-usd",
         str(max_budget_usd),
     ]
+    schema_text = (
+        json.dumps(json_schema, ensure_ascii=False, sort_keys=True)
+        if json_schema is not None
+        else None
+    )
+    if schema_text is not None:
+        command.extend(["--json-schema", schema_text])
     hashes = {name: hashlib.sha256(body).hexdigest() for name, body in sorted(files.items())}
     with tempfile.TemporaryDirectory(prefix="claude-public-case-") as directory:
         working = Path(directory)
@@ -232,6 +245,9 @@ def run_claude_case(
                 "mode": mode,
                 "requested_model": MODEL,
                 "file_sha256": hashes,
+                "json_schema_sha256": hashlib.sha256(schema_text.encode()).hexdigest()
+                if schema_text is not None
+                else None,
                 "prompt_sha256": hashlib.sha256(prompt.encode()).hexdigest(),
                 "timeout_seconds": timeout_seconds,
                 "timed_out": True,
@@ -249,6 +265,7 @@ def run_claude_case(
         "requested_model": MODEL,
         "claude_version": _version(executable, env),
         "available_tools": ["Read", "Glob", "Grep"]
+        + (["StructuredOutput"] if schema_text is not None else [])
         if mode == "file_agent"
         else (
             [
@@ -265,13 +282,21 @@ def run_claude_case(
         ),
         "effort": "CLI default; no explicit --effort override",
         "file_sha256": hashes,
+        "json_schema_sha256": hashlib.sha256(schema_text.encode()).hexdigest()
+        if schema_text is not None
+        else None,
         "prompt_sha256": hashlib.sha256(prompt.encode()).hexdigest(),
         "system_prompt_sha256": hashlib.sha256(system_prompt.encode()).hexdigest()
         if system_prompt is not None
         else None,
-        "flags": command[1:-3] + ["--system-prompt", "<sha256-above>"]
-        if system_prompt is not None
-        else command[1:-1],
+        "flags": [
+            "<json-schema-sha256-above>"
+            if schema_text is not None and arg == schema_text
+            else "<system-prompt-sha256-above>"
+            if system_prompt is not None and arg == system_prompt
+            else arg
+            for arg in command[1:-1]
+        ],
         "timeout_seconds": timeout_seconds,
         "max_budget_usd": max_budget_usd,
         "latency_seconds": elapsed,

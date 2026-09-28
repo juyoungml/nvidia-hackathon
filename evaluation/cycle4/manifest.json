@@ -1,0 +1,77 @@
+{
+  "protocol": "evaluation/cycle4/PROTOCOL.md",
+  "cycle": "cycle4",
+  "selection_frozen_before_inference": true,
+  "fresh_selection_rule": "First two chronological manufacturer-1 'no heat' or 'not enough heat' reports outside assets 21, 4, 7, 12, 24, 19, and 11, on distinct assets, with at least 100 prior-24-hour samples and all required hc1 fields populated.",
+  "fresh_candidate_audit": [
+    {
+      "case_id": "PreDist-M1-fault-29",
+      "asset_id": "17",
+      "decision_time": "2019-01-09 14:18:00",
+      "samples": 144,
+      "complete_required_samples": 144
+    },
+    {
+      "case_id": "PreDist-M1-fault-47",
+      "asset_id": "28",
+      "decision_time": "2020-01-13 10:55:00",
+      "samples": 144,
+      "complete_required_samples": 144
+    }
+  ],
+  "cases": [
+    {
+      "path": "data/replay-52.json",
+      "kind": "development_exposed",
+      "case_id": "PreDist-M1-fault-52",
+      "asset": {
+        "manufacturer": 1,
+        "substation_id": "21"
+      },
+      "decision_time": "2016-12-12 15:55:00",
+      "sha256": "fb859f0439dd9fe3e9d8d5fce25f28b1a689a9dca2dc433b5547bb4c18935a13",
+      "public_corpus_sha256": "21f0904d11810d01fd1d91074784ad6c90c09744d5098b2df4d3852bd5d54bdf",
+      "plan_schema_sha256": "d264cb61e6cc0c5e642ee9d415d95dfa80dd3ac4b88d8aff452d7a3190ee154b"
+    },
+    {
+      "path": "data/holdout-3.json",
+      "kind": "development_exposed",
+      "case_id": "PreDist-M1-fault-3",
+      "asset": {
+        "manufacturer": 1,
+        "substation_id": "12"
+      },
+      "decision_time": "2015-12-01 10:56:00",
+      "sha256": "ff9ddacc3ca44a19a347080833561a187f53521a26445209526214c3582dc0f2",
+      "public_corpus_sha256": "7361353d80ca91c3526d0a9cdf72443cdf768d9dec9f8fa0b1f3ef4470730c14",
+      "plan_schema_sha256": "daca8e1e245656a31601edd53724f176bd2d6a1bca16bbc0bd61ddf33d3c2067"
+    },
+    {
+      "path": "data/holdout-29.json",
+      "kind": "fresh_test",
+      "case_id": "PreDist-M1-fault-29",
+      "asset": {
+        "manufacturer": 1,
+        "substation_id": "17"
+      },
+      "decision_time": "2019-01-09 14:18:00",
+      "sha256": "86bb6179a9b8eda27bb28e9b5e78d91b5722a01817a9bd322248f2781392fdb0",
+      "public_corpus_sha256": "a17073c5ba9da5af60fecc9cd7974ef24f58afba94b199cabd74d57ee0ce6639",
+      "plan_schema_sha256": "fadbcff9c7f219254228707d848f87ff804755039a5ca156279a2834fc343b2a"
+    },
+    {
+      "path": "data/holdout-47.json",
+      "kind": "fresh_test",
+      "case_id": "PreDist-M1-fault-47",
+      "asset": {
+        "manufacturer": 1,
+        "substation_id": "28"
+      },
+      "decision_time": "2020-01-13 10:55:00",
+      "sha256": "051a118e3ed055da51fb08a9f232731aec706bf6ec022328766e009aa0f69b44",
+      "public_corpus_sha256": "d4b570add961a655a2d9369acc73d84bfe4bf5823d116eca954c10d25f17a65e",
+      "plan_schema_sha256": "306a37b4cc1f1716f57303ce0a1b4119bd658f19e50a831a2d00489a203b6aeb"
+    }
+  ],
+  "outcomes_excluded": true
+}

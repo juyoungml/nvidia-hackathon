@@ -1,0 +1,67 @@
+{
+  "scope": "Post-run author heuristic audit; original traces and primary rates unchanged; not semantic accuracy",
+  "traces": [
+    {
+      "trace": "evaluation/cycle4/traces/domain-29.json",
+      "case_id": "PreDist-M1-fault-29",
+      "display_status": "reference_checked",
+      "postrun_review_flags": []
+    },
+    {
+      "trace": "evaluation/cycle4/traces/domain-3.json",
+      "case_id": "PreDist-M1-fault-3",
+      "display_status": "reference_checked",
+      "postrun_review_flags": [
+        {
+          "code": "rationale_time_not_in_cited_facts",
+          "severity": "human_review",
+          "check_id": "C-controls",
+          "fact_ids": [
+            "F-e89ab81fc037",
+            "F-ccc2bdf03f71",
+            "F-f25f57f42a4e"
+          ],
+          "times": [
+            "11:00"
+          ]
+        }
+      ]
+    },
+    {
+      "trace": "evaluation/cycle4/traces/domain-47.json",
+      "case_id": "PreDist-M1-fault-47",
+      "display_status": "withheld",
+      "postrun_review_flags": []
+    },
+    {
+      "trace": "evaluation/cycle4/traces/domain-52.json",
+      "case_id": "PreDist-M1-fault-52",
+      "display_status": "withheld",
+      "postrun_review_flags": []
+    },
+    {
+      "trace": "evaluation/cycle4/traces/general-29.json",
+      "case_id": "PreDist-M1-fault-29",
+      "display_status": "reference_checked",
+      "postrun_review_flags": []
+    },
+    {
+      "trace": "evaluation/cycle4/traces/general-3.json",
+      "case_id": "PreDist-M1-fault-3",
+      "display_status": "reference_checked",
+      "postrun_review_flags": []
+    },
+    {
+      "trace": "evaluation/cycle4/traces/general-47.json",
+      "case_id": "PreDist-M1-fault-47",
+      "display_status": "reference_checked",
+      "postrun_review_flags": []
+    },
+    {
+      "trace": "evaluation/cycle4/traces/general-52.json",
+      "case_id": "PreDist-M1-fault-52",
+      "display_status": "reference_checked",
+      "postrun_review_flags": []
+    }
+  ]
+}

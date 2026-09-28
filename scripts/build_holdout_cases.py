@@ -6,6 +6,8 @@ was fixed before its model runs: reports 60 (substation 4) and 63
 (substation 7). The next batch used reports 3 (substation 12) and 13
 (substation 24). The third batch uses reports 37 (substation 19) and 5
 (substation 11), selected from public metadata before cycle-3 inference.
+The fourth batch uses reports 29 (substation 17) and 47 (substation 28),
+selected from public metadata and verified sensor eligibility before inference.
 """
 
 from __future__ import annotations
@@ -22,6 +24,7 @@ CASES = {
     "original": (("60", "4"), ("63", "7")),
     "next": (("3", "12"), ("13", "24")),
     "third": (("37", "19"), ("5", "11")),
+    "fourth": (("29", "17"), ("47", "28")),
 }
 REQUIRED_FIELDS = (
     "s_hc1_supply_temperature",
@@ -46,6 +49,13 @@ SELECTION_RULE = {
         "'not enough heat', outside substations 21, 4, 7, 12, and 24 and on "
         "distinct substations, having >=100 prior-24-hour samples and nonempty "
         "required hc1 fields; reports 37 and 5 selected before cycle-3 inference."
+    ),
+    "fourth": (
+        "First two chronological manufacturer-1 reports with problem 'no heat' or "
+        "'not enough heat', outside substations 21, 4, 7, 12, 24, 19, and 11 "
+        "and on distinct substations, having >=100 prior-24-hour samples and "
+        "nonempty required hc1 fields; reports 29 and 47 selected before "
+        "cycle-4 inference."
     ),
 }
 

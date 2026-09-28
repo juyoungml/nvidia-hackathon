@@ -1,0 +1,108 @@
+{
+  "cycle": "cycle4",
+  "selection_frozen_before_inference": true,
+  "fresh_selection_rule": "First two chronological manufacturer-1 'no heat' or 'not enough heat' reports outside assets 21, 4, 7, 12, 24, 19, and 11, on distinct assets, with at least 100 prior-24-hour samples and all required hc1 fields populated.",
+  "fresh_candidate_audit": [
+    {
+      "case_id": "PreDist-M1-fault-29",
+      "asset_id": "17",
+      "decision_time": "2019-01-09 14:18:00",
+      "samples": 144,
+      "complete_required_samples": 144
+    },
+    {
+      "case_id": "PreDist-M1-fault-47",
+      "asset_id": "28",
+      "decision_time": "2020-01-13 10:55:00",
+      "samples": 144,
+      "complete_required_samples": 144
+    }
+  ],
+  "prior_exposed_case_ids": [
+    "PreDist-M1-fault-52",
+    "PreDist-M1-fault-62",
+    "PreDist-M1-fault-32",
+    "PreDist-M1-fault-60",
+    "PreDist-M1-fault-63",
+    "PreDist-M1-fault-3",
+    "PreDist-M1-fault-13",
+    "PreDist-M1-fault-37",
+    "PreDist-M1-fault-5"
+  ],
+  "prior_cases_exposed_note": "All earlier replay and holdout cases have been exposed in development or previous evaluation; only reports 29 and 47 are fresh for cycle 4.",
+  "cases": [
+    {
+      "path": "data/replay-52.json",
+      "kind": "development_exposed",
+      "case_id": "PreDist-M1-fault-52",
+      "asset": {
+        "manufacturer": 1,
+        "substation_id": "21"
+      },
+      "decision_time": "2016-12-12 15:55:00",
+      "sha256": "fb859f0439dd9fe3e9d8d5fce25f28b1a689a9dca2dc433b5547bb4c18935a13",
+      "public_corpus_sha256_v2": "76af9a2510cf2ff558112df34a9fe9e406e47d4a7e9e96266f59b1702bbdc4d2",
+      "measurement_count": 144,
+      "prior_fault_count": 1,
+      "prior_disturbance_count": 4
+    },
+    {
+      "path": "data/holdout-3.json",
+      "kind": "development_exposed",
+      "case_id": "PreDist-M1-fault-3",
+      "asset": {
+        "manufacturer": 1,
+        "substation_id": "12"
+      },
+      "decision_time": "2015-12-01 10:56:00",
+      "sha256": "ff9ddacc3ca44a19a347080833561a187f53521a26445209526214c3582dc0f2",
+      "public_corpus_sha256_v2": "49b557ba092370e6963c098d3e57395bad6f8a3db316b9a7ce799d8d00d3dec5",
+      "measurement_count": 144,
+      "prior_fault_count": 0,
+      "prior_disturbance_count": 2
+    },
+    {
+      "path": "data/holdout-29.json",
+      "kind": "fresh_test",
+      "case_id": "PreDist-M1-fault-29",
+      "asset": {
+        "manufacturer": 1,
+        "substation_id": "17"
+      },
+      "decision_time": "2019-01-09 14:18:00",
+      "sha256": "86bb6179a9b8eda27bb28e9b5e78d91b5722a01817a9bd322248f2781392fdb0",
+      "public_corpus_sha256_v2": "f514e3123e58e8c206b941f7313ec532a97110882175f06760d855e60eb35b90",
+      "measurement_count": 144,
+      "prior_fault_count": 0,
+      "prior_disturbance_count": 2,
+      "source_files_sha256": {
+        "faults.csv": "8f8a4ccd400d63d162314bbc888031bc2b793ea8a75313e6bcdadee046bf7bdc",
+        "disturbances.csv": "f0085525085080cfc0deafe4095b1cee7e47266749b2ef228d479a61778cf7d8",
+        "features.csv": "388c237896ec3dfc86f7330113cab661323a385f878f10cfa99c65de51e104b9",
+        "substation_17.csv": "1ab471667d9886e59276990d19552f209ea60fe40da06768b14224c902c1d165"
+      }
+    },
+    {
+      "path": "data/holdout-47.json",
+      "kind": "fresh_test",
+      "case_id": "PreDist-M1-fault-47",
+      "asset": {
+        "manufacturer": 1,
+        "substation_id": "28"
+      },
+      "decision_time": "2020-01-13 10:55:00",
+      "sha256": "051a118e3ed055da51fb08a9f232731aec706bf6ec022328766e009aa0f69b44",
+      "public_corpus_sha256_v2": "930bd6b8b36f5e1e730185b911fdbcd250691ad863de7e2004834d17e1e529e4",
+      "measurement_count": 144,
+      "prior_fault_count": 0,
+      "prior_disturbance_count": 3,
+      "source_files_sha256": {
+        "faults.csv": "8f8a4ccd400d63d162314bbc888031bc2b793ea8a75313e6bcdadee046bf7bdc",
+        "disturbances.csv": "f0085525085080cfc0deafe4095b1cee7e47266749b2ef228d479a61778cf7d8",
+        "features.csv": "388c237896ec3dfc86f7330113cab661323a385f878f10cfa99c65de51e104b9",
+        "substation_28.csv": "8f7944b1c9254d48dbe38030dbd4156c32c68599546ac2e1d9f75a31ac38c25a"
+      }
+    }
+  ],
+  "outcomes_excluded": true
+}
