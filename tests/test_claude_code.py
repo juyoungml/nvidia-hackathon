@@ -10,7 +10,13 @@ from contextlib import redirect_stderr
 from pathlib import Path
 from unittest.mock import patch
 
-from evaluation.claude_code import _source_read_names, main, run_claude_case
+from evaluation.claude_code import (
+    _source_read_names,
+    _successful_tool_calls,
+    main,
+    run_claude_case,
+    run_public_bundle,
+)
 from evaluation.domain_mcp import TOOLS, handle, load_bundle
 from poc.evidence_contract import build_case_bundle
 from poc.system2 import _tool_evidence
@@ -104,6 +110,100 @@ class ClaudeCodeRunnerTest(unittest.TestCase):
             },
         ]
         self.assertEqual(_source_read_names(calls), ["fact_catalog", "get_recent_measurements"])
+
+    def test_only_successful_reads_count_and_public_results_are_preserved(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            executable = Path(directory) / "fake-claude"
+            executable.write_text(
+                "#!/usr/bin/env python3\n"
+                "import json,sys\n"
+                "if '--version' in sys.argv: print('fake'); sys.exit()\n"
+                "for ident,path,error in [('a','fact_catalog.json',False),('b','tools/get_recent_measurements.json',True)]:\n"
+                " print(json.dumps({'type':'assistant','message':{'model':'claude-sonnet-5',"
+                " 'content':[{'type':'tool_use','id':ident,'name':'Read','input':{'file_path':path}}]}}))\n"
+                " print(json.dumps({'type':'user','message':{'content':[{'type':'tool_result',"
+                " 'tool_use_id':ident,'is_error':error,'content':'public text','secret':'drop'}]}}))\n"
+                "print(json.dumps({'type':'result','is_error':False,'result':'{}'}))\n"
+            )
+            executable.chmod(0o755)
+            trace = run_claude_case(
+                files={"fact_catalog.json": b"{}", "tools/get_recent_measurements.json": b"{}"},
+                prompt="read",
+                mode="file_agent",
+                executable=executable,
+            )
+        self.assertEqual(len(trace["tool_results"]), 2)
+        self.assertNotIn("secret", trace["tool_results"][0])
+        successful = _successful_tool_calls(trace["tool_calls"], trace["tool_results"])
+        self.assertEqual(_source_read_names(successful), ["fact_catalog"])
+
+    def test_one_invalid_attempt_receives_one_repair(self) -> None:
+        replay = json.loads(
+            (Path(__file__).resolve().parents[1] / "data/replay-52.json").read_text()
+        )
+        initial = {
+            "raw_answer": "bad",
+            "is_error": False,
+            "exit_code": 0,
+            "tool_calls": [],
+            "tool_results": [],
+        }
+        repaired = {
+            "raw_answer": "fixed",
+            "is_error": False,
+            "exit_code": 0,
+            "tool_calls": [],
+            "tool_results": [],
+        }
+        attempts = [
+            {
+                "raw_output": "bad",
+                "outer_fence_normalized": False,
+                "status": "invalid",
+                "error_type": "ValueError",
+                "reason": "output is not JSON",
+            },
+            {
+                "raw_output": "fixed",
+                "outer_fence_normalized": False,
+                "status": "valid",
+                "selection": {"observed_fact_ids": [], "limit_ids": [], "next_checks": []},
+            },
+        ]
+        with (
+            patch(
+                "evaluation.claude_code.run_claude_case", side_effect=[initial, repaired]
+            ) as model,
+            patch("poc.evidence_contract.validation_attempt", side_effect=attempts),
+            patch(
+                "poc.evidence_contract.finalize_selection",
+                return_value=({"status": "reference_checked"}, {}),
+            ),
+        ):
+            trace = run_public_bundle(
+                replay, contract_version=2, harness_policy="validate_repair_once"
+            )
+        self.assertEqual(model.call_count, 2)
+        repair_call = model.call_args.kwargs
+        self.assertIn("output is not JSON", repair_call["prompt"])
+        self.assertEqual(repair_call["files"], {})
+        self.assertEqual(repair_call["mode"], "packet")
+        repair_packet = json.loads(repair_call["prompt"])
+        self.assertTrue(
+            all(
+                fact["source_id"] == replay["current_report"]["source_id"]
+                for fact in repair_packet["evidence"]["facts"]
+            )
+        )
+        self.assertTrue(
+            all(
+                item["read_state"] == "unread"
+                for item in repair_packet["source_manifest"]["available_sources"]
+            )
+        )
+        self.assertEqual([a["status"] for a in trace["validation_attempts"]], ["invalid", "valid"])
+        self.assertEqual(trace["raw_answer"], "bad")
+        self.assertEqual(trace["raw_output_after_repair"], "fixed")
 
     def test_existing_output_refused_before_model_call(self) -> None:
         replay = Path(__file__).resolve().parents[1] / "data/replay-52.json"

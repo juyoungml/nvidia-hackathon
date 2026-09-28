@@ -1,0 +1,197 @@
+{
+  "composer_policy": "plan_first_native_schema_v1",
+  "development_only": true,
+  "timestamp_utc": "2026-09-28T08:07:32.422733+00:00",
+  "api_endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+  "api_path_version": "v1",
+  "hosted_nim_server_version": null,
+  "provenance": {
+    "case_id": "synthetic-structure-only"
+  },
+  "request": {
+    "model": "nvidia/nemotron-3-ultra-550b-a55b",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a read-only plant investigator. Select only supplied fact and catalog IDs. Rationales are suggestions, not observations or proven causes. Reply only with plan JSON matching the native schema."
+      },
+      {
+        "role": "user",
+        "content": "{\"checks_catalog\": {\"C-controls\": \"Review timestamped controller settings, alarms, and parameter changes with an engineer.\", \"C-maintenance\": \"Check maintenance records and actual completion evidence for relevant prior work.\", \"C-more-data\": \"Obtain missing measurements before drawing a causal conclusion.\", \"C-room-impact\": \"Verify affected room or radiator temperatures and the scope of the reported heating loss.\", \"C-secondary-flow\": \"Measure secondary heating circuit flow and compare it with the relevant design or operating range.\", \"C-sensor\": \"Confirm sensor identity, calibration, and timestamp alignment before interpreting a trend.\"}, \"development_composition_policy\": \"Select 2 or 3 distinct next checks. For each, select 1 to 4 distinct supporting fact IDs from the already retrieved catalog and write a rationale of at most 240 characters. Select limit IDs from the catalog. Do not output observed_fact_ids; the program will derive observations as the ordered union of your selected supporting IDs. Keep that union within 12 IDs. Do not make a root-cause conclusion or recommend changing controls. Return the plan JSON.\", \"evidence\": {\"case_id\": \"synthetic-structure-only\", \"decision_time\": \"synthetic\", \"facts\": [{\"id\": \"F-synthetic-1\", \"source_id\": \"synthetic-source\", \"text\": \"synthetic\"}, {\"id\": \"F-synthetic-2\", \"source_id\": \"synthetic-source\", \"text\": \"synthetic\"}, {\"id\": \"F-synthetic-3\", \"source_id\": \"synthetic-source\", \"text\": \"synthetic\"}], \"schema_version\": 1, \"sources\": [{\"id\": \"synthetic-source\", \"kind\": \"synthetic\"}]}, \"limits_catalog\": {\"L-no-normal-range\": \"No normal operating range is supplied for heat power or flow.\", \"L-no-room-evidence\": \"Supply temperature tracking its setpoint does not establish heat delivery to rooms.\", \"L-primary-flow\": \"Primary meter flow is not secondary/customer circuit flow.\", \"L-prior-not-current\": \"A prior report does not establish the cause of this event.\", \"L-retrospective\": \"Prior report narratives may not have been available at the decision time.\"}, \"original_task\": \"Given this asset's reported problem at decision_time, identify what the available evidence establishes, what remains unknown, and two or three justified next checks for an engineer. Do not give a final root cause or recommend changing controls. Use only the supplied public evidence; cite/select the provided fact IDs. Return the common JSON schema. Inspect available relevant sources before claiming a measurement or record is absent. Select 1 to 12 observed facts, exactly 2 or 3 checks, and cite at least one selected observation fact for each check. Use only IDs from the provided catalogs and do not repeat a check ID. Keep each model-authored rationale nonblank and at most 240 characters. Return one JSON object, optionally wrapped in a single ```json fence.\", \"plan_schema\": {\"additionalProperties\": false, \"properties\": {\"limit_ids\": {\"items\": {\"enum\": [\"L-no-room-evidence\", \"L-no-normal-range\", \"L-primary-flow\", \"L-prior-not-current\", \"L-retrospective\"], \"type\": \"string\"}, \"type\": \"array\", \"uniqueItems\": true}, \"next_checks\": {\"items\": {\"additionalProperties\": false, \"properties\": {\"because_fact_ids\": {\"items\": {\"enum\": [\"F-synthetic-1\", \"F-synthetic-2\", \"F-synthetic-3\"], \"type\": \"string\"}, \"maxItems\": 4, \"minItems\": 1, \"type\": \"array\", \"uniqueItems\": true}, \"id\": {\"enum\": [\"C-room-impact\", \"C-secondary-flow\", \"C-controls\", \"C-sensor\", \"C-maintenance\", \"C-more-data\"], \"type\": \"string\"}, \"rationale\": {\"maxLength\": 240, \"minLength\": 1, \"type\": \"string\"}}, \"required\": [\"id\", \"because_fact_ids\", \"rationale\"], \"type\": \"object\"}, \"maxItems\": 3, \"minItems\": 2, \"type\": \"array\"}}, \"required\": [\"limit_ids\", \"next_checks\"], \"type\": \"object\"}, \"source_read_state\": {\"available_sources\": [{\"read_state\": \"unread\", \"reader\": \"get_recent_measurements\"}, {\"read_state\": \"unread\", \"reader\": \"get_prior_incidents\"}, {\"read_state\": \"unread\", \"reader\": \"get_maintenance_timeline\"}, {\"read_state\": \"unread\", \"reader\": \"get_signal_definitions\"}]}}"
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1200,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "stream": false,
+    "response_format": {
+      "type": "json_schema",
+      "json_schema": {
+        "name": "grounded_check_plan",
+        "strict": true,
+        "schema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "limit_ids",
+            "next_checks"
+          ],
+          "properties": {
+            "limit_ids": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "L-no-room-evidence",
+                  "L-no-normal-range",
+                  "L-primary-flow",
+                  "L-prior-not-current",
+                  "L-retrospective"
+                ]
+              }
+            },
+            "next_checks": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 3,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "because_fact_ids",
+                  "rationale"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "enum": [
+                      "C-room-impact",
+                      "C-secondary-flow",
+                      "C-controls",
+                      "C-sensor",
+                      "C-maintenance",
+                      "C-more-data"
+                    ]
+                  },
+                  "because_fact_ids": {
+                    "type": "array",
+                    "minItems": 1,
+                    "maxItems": 4,
+                    "uniqueItems": true,
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "F-synthetic-1",
+                        "F-synthetic-2",
+                        "F-synthetic-3"
+                      ]
+                    }
+                  },
+                  "rationale": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 240
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "raw_plan": null,
+  "native_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "limit_ids",
+      "next_checks"
+    ],
+    "properties": {
+      "limit_ids": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {
+          "type": "string",
+          "enum": [
+            "L-no-room-evidence",
+            "L-no-normal-range",
+            "L-primary-flow",
+            "L-prior-not-current",
+            "L-retrospective"
+          ]
+        }
+      },
+      "next_checks": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 3,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "because_fact_ids",
+            "rationale"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "enum": [
+                "C-room-impact",
+                "C-secondary-flow",
+                "C-controls",
+                "C-sensor",
+                "C-maintenance",
+                "C-more-data"
+              ]
+            },
+            "because_fact_ids": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 4,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "F-synthetic-1",
+                  "F-synthetic-2",
+                  "F-synthetic-3"
+                ]
+              }
+            },
+            "rationale": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 240
+            }
+          }
+        }
+      }
+    }
+  },
+  "assembled_selection": null,
+  "validation": {
+    "status": "invalid",
+    "reason": "native schema request failed"
+  },
+  "completeness": {
+    "status": "not_assessed",
+    "issues": []
+  },
+  "display": {
+    "status": "withheld",
+    "reason": "native schema request failed",
+    "observations": [],
+    "limits": [],
+    "suggested_next_checks": []
+  },
+  "http_status": 400,
+  "safe_http_error": "{\"error\":{\"message\":\"ValueError: Grammar error: Unimplemented keys: [\\\"uniqueItems\\\"]\",\"type\":\"Bad Request\",\"code\":400}}",
+  "request_seconds": 0.422
+}

@@ -1,0 +1,109 @@
+{
+  "protocol": "evaluation/cycle3/PROTOCOL.md",
+  "cycle": "cycle3",
+  "selection_frozen_before_inference": true,
+  "fresh_selection_rule": "First two chronological manufacturer-1 no heat or not enough heat reports outside assets 21, 4, 7, 12, 24, on distinct assets, with at least 100 prior-24-hour samples and all required hc1 fields populated.",
+  "fresh_candidate_audit": [
+    {
+      "report_id": "37",
+      "asset_id": "19",
+      "decision_time": "2018-11-21 09:15:00",
+      "samples": 144,
+      "complete_required_samples": 144
+    },
+    {
+      "report_id": "5",
+      "asset_id": "11",
+      "decision_time": "2018-11-23 08:30:00",
+      "samples": 145,
+      "complete_required_samples": 145
+    }
+  ],
+  "cases": [
+    {
+      "path": "data/replay-52.json",
+      "kind": "development_exposed",
+      "case_id": "PreDist-M1-fault-52",
+      "asset": {
+        "manufacturer": 1,
+        "substation_id": "21"
+      },
+      "decision_time": "2016-12-12 15:55:00",
+      "sha256": "fb859f0439dd9fe3e9d8d5fce25f28b1a689a9dca2dc433b5547bb4c18935a13",
+      "public_corpus_sha256_v2": "76af9a2510cf2ff558112df34a9fe9e406e47d4a7e9e96266f59b1702bbdc4d2"
+    },
+    {
+      "path": "data/holdout-60.json",
+      "kind": "development_exposed",
+      "case_id": "PreDist-M1-fault-60",
+      "asset": {
+        "manufacturer": 1,
+        "substation_id": "4"
+      },
+      "decision_time": "2015-03-18 18:54:00",
+      "sha256": "386626fc5d13f0b92b21ad2cb6b781916ac12b534d0371cbdd60bd600770bbc2",
+      "public_corpus_sha256_v2": "fc18e33b6cfc9ee11d70dd884a45216327e72e84ac12bbd713476eeee1a8113f"
+    },
+    {
+      "path": "data/holdout-63.json",
+      "kind": "development_exposed",
+      "case_id": "PreDist-M1-fault-63",
+      "asset": {
+        "manufacturer": 1,
+        "substation_id": "7"
+      },
+      "decision_time": "2015-03-26 07:15:00",
+      "sha256": "ee2832cbb88f2f8c59d2da5062ef2daa406bd9e1cd50744138dea74286590b42",
+      "public_corpus_sha256_v2": "f12956a4d2176ad7c36c06b213b49c38abe128a8553abae7fbbbe00863080aa5"
+    },
+    {
+      "path": "data/holdout-3.json",
+      "kind": "development_exposed",
+      "case_id": "PreDist-M1-fault-3",
+      "asset": {
+        "manufacturer": 1,
+        "substation_id": "12"
+      },
+      "decision_time": "2015-12-01 10:56:00",
+      "sha256": "ff9ddacc3ca44a19a347080833561a187f53521a26445209526214c3582dc0f2",
+      "public_corpus_sha256_v2": "49b557ba092370e6963c098d3e57395bad6f8a3db316b9a7ce799d8d00d3dec5"
+    },
+    {
+      "path": "data/holdout-13.json",
+      "kind": "development_exposed",
+      "case_id": "PreDist-M1-fault-13",
+      "asset": {
+        "manufacturer": 1,
+        "substation_id": "24"
+      },
+      "decision_time": "2016-01-12 12:39:00",
+      "sha256": "2f7ea3f6e18ea02076051bc46e82a3d33b08ff5bf721771178adb601add57337",
+      "public_corpus_sha256_v2": "89ed2a1705bc37adafd8e2bf99a4c9ef86b0db90f7e1156e78d5fae3f3916048"
+    },
+    {
+      "path": "data/holdout-37.json",
+      "kind": "fresh_test",
+      "case_id": "PreDist-M1-fault-37",
+      "asset": {
+        "manufacturer": 1,
+        "substation_id": "19"
+      },
+      "decision_time": "2018-11-21 09:15:00",
+      "sha256": "ff1647f1626346096e61b6ace2712e752b2cc79db8f448fc8e1dceddf7243506",
+      "public_corpus_sha256_v2": "6cb2f8c9585c6deb382a3665b27a7e2a76f9b19e5b75f6d858924b0bf727f690"
+    },
+    {
+      "path": "data/holdout-5.json",
+      "kind": "fresh_test",
+      "case_id": "PreDist-M1-fault-5",
+      "asset": {
+        "manufacturer": 1,
+        "substation_id": "11"
+      },
+      "decision_time": "2018-11-23 08:30:00",
+      "sha256": "d87649d770736c6ebdb8ddddf236fa0d73072826b7669bf64efd5d4b1c384c9f",
+      "public_corpus_sha256_v2": "cc4efe6f6ab2963f97edf9add1850d0f7f5272e16282849e7040463d5ebf8388"
+    }
+  ],
+  "outcomes_excluded": true
+}

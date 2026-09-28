@@ -402,6 +402,28 @@ def validate_selection(raw: str, evidence: dict, *, contract_version: int = 1) -
     return selection
 
 
+def validation_attempt(raw: str, evidence: dict, *, contract_version: int = 2) -> dict:
+    """Record one unmodified candidate and the common contract's exact verdict."""
+    _, normalized = normalize_response(raw, contract_version=contract_version)
+    attempt = {"raw_output": raw, "outer_fence_normalized": normalized}
+    try:
+        selection = validate_selection(raw, evidence, contract_version=contract_version)
+    except (ValueError, KeyError, TypeError) as error:
+        attempt.update(
+            {"status": "invalid", "error_type": type(error).__name__, "reason": str(error)}
+        )
+    else:
+        attempt.update({"status": "valid", "selection": selection})
+    return attempt
+
+
+def invalid_summary_feedback(attempt: dict) -> str:
+    """Give either runtime the same bounded validation feedback for one retry."""
+    if attempt.get("status") != "invalid":
+        raise ValueError("validation feedback requires an invalid attempt")
+    return f"{attempt['error_type']}: {attempt['reason']}"
+
+
 def audit_completeness(selection: dict, *, read_names: set[str], contract_version: int = 2) -> dict:
     """Report investigation coverage separately from reference validity."""
     if contract_version != 2:

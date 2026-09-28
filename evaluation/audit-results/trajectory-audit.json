@@ -1,0 +1,278 @@
+{
+  "scope": "frozen v2 trace-level heuristic audit; no semantic accuracy or winner aggregate",
+  "arms": {
+    "D": {
+      "traces": 5,
+      "traces_by_code": {
+        "causality_review": 1,
+        "direction_needs_endpoints": 1,
+        "numeric_rationale_review": 2,
+        "output_withheld": 3,
+        "selection_overflow": 3
+      },
+      "events_by_code": {
+        "causality_review": 1,
+        "direction_needs_endpoints": 2,
+        "numeric_rationale_review": 2,
+        "output_withheld": 3,
+        "selection_overflow": 3
+      }
+    },
+    "G": {
+      "traces": 5,
+      "traces_by_code": {
+        "direction_needs_endpoints": 1,
+        "numeric_rationale_review": 4
+      },
+      "events_by_code": {
+        "direction_needs_endpoints": 1,
+        "numeric_rationale_review": 4
+      }
+    }
+  },
+  "traces": [
+    {
+      "arm": "D",
+      "case_id": "PreDist-M1-fault-13",
+      "trace": "evaluation/system2-results/v2/domain-13.json",
+      "raw_selection_parsed": true,
+      "raw_selected_fact_count": 13,
+      "display_status": "withheld",
+      "events": [
+        {
+          "code": "selection_overflow",
+          "severity": "failure",
+          "detail": "selection exceeds display bound",
+          "trace_refs": [
+            "/validation/reason",
+            "/raw_output"
+          ]
+        },
+        {
+          "code": "output_withheld",
+          "severity": "failure",
+          "detail": "selection exceeds display bound",
+          "trace_refs": [
+            "/display/status",
+            "/validation"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "D",
+      "case_id": "PreDist-M1-fault-3",
+      "trace": "evaluation/system2-results/v2/domain-3.json",
+      "raw_selection_parsed": true,
+      "raw_selected_fact_count": 12,
+      "display_status": "reference_checked",
+      "events": [
+        {
+          "code": "direction_needs_endpoints",
+          "severity": "review",
+          "detail": "Direction wording lacks selected first and last values of one field in this check's supporting facts.",
+          "trace_refs": [
+            "/validation/selection/next_checks/0/rationale",
+            "/validation/selection/next_checks/0/because_fact_ids"
+          ]
+        },
+        {
+          "code": "causality_review",
+          "severity": "review",
+          "detail": "Causal wording requires human assessment of whether it asserts an observed cause or proposes a test.",
+          "trace_refs": [
+            "/validation/selection/next_checks/1/rationale"
+          ]
+        },
+        {
+          "code": "direction_needs_endpoints",
+          "severity": "review",
+          "detail": "Direction wording lacks selected first and last values of one field in this check's supporting facts.",
+          "trace_refs": [
+            "/validation/selection/next_checks/2/rationale",
+            "/validation/selection/next_checks/2/because_fact_ids"
+          ]
+        },
+        {
+          "code": "numeric_rationale_review",
+          "severity": "review",
+          "detail": "Numeric tokens absent from linked fact values: 2, 5. Check units, arithmetic, and source context manually.",
+          "trace_refs": [
+            "/validation/selection/next_checks/2/rationale",
+            "/validation/selection/next_checks/2/because_fact_ids"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "D",
+      "case_id": "PreDist-M1-fault-52",
+      "trace": "evaluation/system2-results/v2/domain-52.json",
+      "raw_selection_parsed": true,
+      "raw_selected_fact_count": 12,
+      "display_status": "reference_checked",
+      "events": [
+        {
+          "code": "numeric_rationale_review",
+          "severity": "review",
+          "detail": "Numeric tokens absent from linked fact values: 132, 2496. Check units, arithmetic, and source context manually.",
+          "trace_refs": [
+            "/validation/selection/next_checks/1/rationale",
+            "/validation/selection/next_checks/1/because_fact_ids"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "D",
+      "case_id": "PreDist-M1-fault-60",
+      "trace": "evaluation/system2-results/v2/domain-60.json",
+      "raw_selection_parsed": true,
+      "raw_selected_fact_count": 31,
+      "display_status": "withheld",
+      "events": [
+        {
+          "code": "selection_overflow",
+          "severity": "failure",
+          "detail": "selection exceeds display bound",
+          "trace_refs": [
+            "/validation/reason",
+            "/raw_output"
+          ]
+        },
+        {
+          "code": "output_withheld",
+          "severity": "failure",
+          "detail": "selection exceeds display bound",
+          "trace_refs": [
+            "/display/status",
+            "/validation"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "D",
+      "case_id": "PreDist-M1-fault-63",
+      "trace": "evaluation/system2-results/v2/domain-63.json",
+      "raw_selection_parsed": true,
+      "raw_selected_fact_count": 30,
+      "display_status": "withheld",
+      "events": [
+        {
+          "code": "selection_overflow",
+          "severity": "failure",
+          "detail": "selection exceeds display bound",
+          "trace_refs": [
+            "/validation/reason",
+            "/raw_output"
+          ]
+        },
+        {
+          "code": "output_withheld",
+          "severity": "failure",
+          "detail": "selection exceeds display bound",
+          "trace_refs": [
+            "/display/status",
+            "/validation"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "G",
+      "case_id": "PreDist-M1-fault-13",
+      "trace": "evaluation/system2-results/v2/general-13.json",
+      "raw_selection_parsed": true,
+      "raw_selected_fact_count": 12,
+      "display_status": "reference_checked",
+      "events": [
+        {
+          "code": "numeric_rationale_review",
+          "severity": "review",
+          "detail": "Numeric tokens absent from linked fact values: 144, 2. Check units, arithmetic, and source context manually.",
+          "trace_refs": [
+            "/validation/selection/next_checks/0/rationale",
+            "/validation/selection/next_checks/0/because_fact_ids"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "G",
+      "case_id": "PreDist-M1-fault-3",
+      "trace": "evaluation/system2-results/v2/general-3.json",
+      "raw_selection_parsed": true,
+      "raw_selected_fact_count": 12,
+      "display_status": "reference_checked",
+      "events": [
+        {
+          "code": "numeric_rationale_review",
+          "severity": "review",
+          "detail": "Numeric tokens absent from linked fact values: 144, 2. Check units, arithmetic, and source context manually.",
+          "trace_refs": [
+            "/validation/selection/next_checks/0/rationale",
+            "/validation/selection/next_checks/0/because_fact_ids"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "G",
+      "case_id": "PreDist-M1-fault-52",
+      "trace": "evaluation/system2-results/v2/general-52.json",
+      "raw_selection_parsed": true,
+      "raw_selected_fact_count": 12,
+      "display_status": "reference_checked",
+      "events": [
+        {
+          "code": "numeric_rationale_review",
+          "severity": "review",
+          "detail": "Numeric tokens absent from linked fact values: 6. Check units, arithmetic, and source context manually.",
+          "trace_refs": [
+            "/validation/selection/next_checks/2/rationale",
+            "/validation/selection/next_checks/2/because_fact_ids"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "G",
+      "case_id": "PreDist-M1-fault-60",
+      "trace": "evaluation/system2-results/v2/general-60.json",
+      "raw_selection_parsed": true,
+      "raw_selected_fact_count": 12,
+      "display_status": "reference_checked",
+      "events": [
+        {
+          "code": "numeric_rationale_review",
+          "severity": "review",
+          "detail": "Numeric tokens absent from linked fact values: 144, 2. Check units, arithmetic, and source context manually.",
+          "trace_refs": [
+            "/validation/selection/next_checks/0/rationale",
+            "/validation/selection/next_checks/0/because_fact_ids"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "G",
+      "case_id": "PreDist-M1-fault-63",
+      "trace": "evaluation/system2-results/v2/general-63.json",
+      "raw_selection_parsed": true,
+      "raw_selected_fact_count": 12,
+      "display_status": "reference_checked",
+      "events": [
+        {
+          "code": "direction_needs_endpoints",
+          "severity": "review",
+          "detail": "Direction wording lacks selected first and last values of one field in this check's supporting facts.",
+          "trace_refs": [
+            "/validation/selection/next_checks/1/rationale",
+            "/validation/selection/next_checks/1/because_fact_ids"
+          ]
+        }
+      ]
+    }
+  ]
+}

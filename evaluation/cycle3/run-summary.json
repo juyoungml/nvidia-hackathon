@@ -1,0 +1,70 @@
+{
+  "protocol_sha256": "aab6926c91669782539c33e1205e6bb7095f3b4bad747b8887919e4a2cef6cd1",
+  "manifest_sha256": "5d565b96ec086d1c94a456b14736e6323a623228f38b5b87faf2b041b133e953",
+  "harness_policy": "validate_repair_once",
+  "pairs": [
+    {
+      "case_id": "PreDist-M1-fault-52",
+      "kind": "development_exposed",
+      "corpus_sha256": "76af9a2510cf2ff558112df34a9fe9e406e47d4a7e9e96266f59b1702bbdc4d2",
+      "domain_initial": "invalid",
+      "domain_final": "invalid",
+      "general_initial": "valid",
+      "general_final": "valid"
+    },
+    {
+      "case_id": "PreDist-M1-fault-60",
+      "kind": "development_exposed",
+      "corpus_sha256": "fc18e33b6cfc9ee11d70dd884a45216327e72e84ac12bbd713476eeee1a8113f",
+      "domain_initial": "valid",
+      "domain_final": "valid",
+      "general_initial": "valid",
+      "general_final": "valid"
+    },
+    {
+      "case_id": "PreDist-M1-fault-63",
+      "kind": "development_exposed",
+      "corpus_sha256": "f12956a4d2176ad7c36c06b213b49c38abe128a8553abae7fbbbe00863080aa5",
+      "domain_initial": "invalid",
+      "domain_final": "invalid",
+      "general_initial": "invalid",
+      "general_final": "valid"
+    },
+    {
+      "case_id": "PreDist-M1-fault-3",
+      "kind": "development_exposed",
+      "corpus_sha256": "49b557ba092370e6963c098d3e57395bad6f8a3db316b9a7ce799d8d00d3dec5",
+      "domain_initial": "invalid",
+      "domain_final": "invalid",
+      "general_initial": "valid",
+      "general_final": "valid"
+    },
+    {
+      "case_id": "PreDist-M1-fault-13",
+      "kind": "development_exposed",
+      "corpus_sha256": "89ed2a1705bc37adafd8e2bf99a4c9ef86b0db90f7e1156e78d5fae3f3916048",
+      "domain_initial": "valid",
+      "domain_final": "valid",
+      "general_initial": "valid",
+      "general_final": "valid"
+    },
+    {
+      "case_id": "PreDist-M1-fault-37",
+      "kind": "fresh_test",
+      "corpus_sha256": "6cb2f8c9585c6deb382a3665b27a7e2a76f9b19e5b75f6d858924b0bf727f690",
+      "domain_initial": "invalid",
+      "domain_final": "valid",
+      "general_initial": "valid",
+      "general_final": "valid"
+    },
+    {
+      "case_id": "PreDist-M1-fault-5",
+      "kind": "fresh_test",
+      "corpus_sha256": "cc4efe6f6ab2963f97edf9add1850d0f7f5272e16282849e7040463d5ebf8388",
+      "domain_initial": "invalid",
+      "domain_final": "invalid",
+      "general_initial": "valid",
+      "general_final": "valid"
+    }
+  ]
+}

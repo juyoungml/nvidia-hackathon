@@ -53,6 +53,8 @@ PUBLIC_REPLAY_NAMES = frozenset(
         "holdout-63.json",
         "holdout-3.json",
         "holdout-13.json",
+        "holdout-37.json",
+        "holdout-5.json",
     }
 )
 
@@ -83,7 +85,30 @@ def _events(stdout: str) -> tuple[list[dict], dict]:
 def _summary(events: list[dict], result: dict) -> dict:
     models = []
     tool_calls = []
+    tool_results = []
     for event in events:
+        if event.get("type") == "user":
+            for block in (event.get("message") or {}).get("content") or []:
+                if not isinstance(block, dict) or block.get("type") != "tool_result":
+                    continue
+                content = block.get("content")
+                if isinstance(content, list):
+                    content = "\n".join(
+                        item.get("text", "")
+                        for item in content
+                        if isinstance(item, dict) and item.get("type") == "text"
+                    )
+                if not isinstance(content, str):
+                    content = ""
+                tool_results.append(
+                    {
+                        "tool_use_id": block.get("tool_use_id"),
+                        "is_error": block.get("is_error") is True,
+                        "content": content[:MAX_FILE_BYTES],
+                        "truncated": len(content) > MAX_FILE_BYTES,
+                    }
+                )
+            continue
         if event.get("type") != "assistant":
             continue
         message = event.get("message") or {}
@@ -101,6 +126,7 @@ def _summary(events: list[dict], result: dict) -> dict:
     return {
         "resolved_models": models,
         "tool_calls": tool_calls,
+        "tool_results": tool_results,
         "raw_answer": result.get("result"),
         "is_error": result.get("is_error"),
         "subtype": result.get("subtype"),
@@ -108,6 +134,15 @@ def _summary(events: list[dict], result: dict) -> dict:
         "total_cost_usd": result.get("total_cost_usd"),
         "num_turns": result.get("num_turns"),
     }
+
+
+def _successful_tool_calls(tool_calls: list[dict], tool_results: list[dict]) -> list[dict]:
+    successful = {
+        result.get("tool_use_id")
+        for result in tool_results
+        if result.get("tool_use_id") and not result.get("is_error")
+    }
+    return [call for call in tool_calls if call.get("id") in successful]
 
 
 def run_claude_case(
@@ -255,6 +290,10 @@ def run_claude_case(
     try:
         events, result = _events(completed.stdout.decode("utf-8"))
         trace.update(_summary(events, result))
+        models = trace["resolved_models"]
+        trace["model_mismatch"] = bool(models) and any(
+            not str(model).startswith(MODEL) for model in models
+        )
         trace["unavailable_tool_calls"] = sorted(
             {
                 call["name"]
@@ -274,6 +313,7 @@ def run_public_bundle(
     max_budget_usd: float = 0.50,
     contract_version: int = 1,
     mode: str = "file_agent",
+    harness_policy: str = "off",
     executable: Path = CLAUDE,
 ) -> dict:
     """Run the frozen general file-agent arm and apply the common display contract."""
@@ -281,11 +321,17 @@ def run_public_bundle(
         build_case_bundle,
         build_task_packet,
         finalize_selection,
-        normalize_response,
         packet_bytes,
-        validate_selection,
+        source_manifest,
+        validation_attempt,
         withheld_display,
     )
+    from poc.system2 import HARNESS_POLICIES, REPAIR_POLICY_VERSION, build_repair_prompt
+
+    if harness_policy not in HARNESS_POLICIES:
+        raise ValueError("unknown harness policy")
+    if harness_policy != "off" and contract_version != 2:
+        raise ValueError("repair policy requires contract v2")
 
     bundle = build_case_bundle(replay, contract_version=contract_version)
     files = {name: body.encode("utf-8") for name, body in bundle["files"].items()}
@@ -319,34 +365,116 @@ def run_public_bundle(
             "corpus_sha256": bundle["corpus_sha256"],
             "contract_version": contract_version,
             "protocol": f"evaluation/SYSTEM2_PROTOCOL.md v{contract_version}",
+            "harness_policy": harness_policy,
+            "harness_policy_version": REPAIR_POLICY_VERSION if harness_policy != "off" else None,
+            "validation_attempts": [],
+            "repair": None,
         }
     )
     if contract_version == 2:
         trace["source_read_names"] = (
             sorted({call["name"] for call in trace.get("mcp_calls", [])})
             if mode == "domain_tools"
-            else _source_read_names(trace.get("tool_calls") or [])
+            else _source_read_names(
+                _successful_tool_calls(
+                    trace.get("tool_calls") or [], trace.get("tool_results") or []
+                )
+            )
         )
     raw = trace.get("raw_answer")
-    if not isinstance(raw, str) or trace.get("is_error") or trace.get("exit_code") != 0:
+    if (
+        not isinstance(raw, str)
+        or trace.get("is_error")
+        or trace.get("exit_code") != 0
+        or trace.get("model_mismatch")
+    ):
         trace["validation"] = {"valid": False, "reason": "provider or process failure"}
         trace["display"] = withheld_display("provider or process failure")
         return trace
-    try:
-        _, unwrapped = normalize_response(raw, contract_version=contract_version)
-        trace["single_fence_unwrapped"] = unwrapped
-        selection = validate_selection(raw, bundle["evidence"], contract_version=contract_version)
-    except ValueError as error:
-        trace["validation"] = {"valid": False, "reason": str(error)}
-        trace["display"] = withheld_display(str(error))
-    else:
-        trace["validation"] = {"valid": True, "selection": selection}
+    attempt = validation_attempt(raw, bundle["evidence"], contract_version=contract_version)
+    final_evidence = bundle["evidence"]
+    trace["validation_attempts"].append(attempt)
+    trace["single_fence_unwrapped"] = attempt["outer_fence_normalized"]
+    if attempt["status"] == "invalid" and harness_policy == "validate_repair_once":
+        from poc.evidence_contract import SOURCE_TOOLS
+        from poc.run import run_tool
+
+        read_names = set(trace.get("source_read_names") or [])
+        repair_sources = (
+            SOURCE_TOOLS
+            if "fact_catalog" in read_names
+            else [name for name in SOURCE_TOOLS if name in read_names]
+        )
+        packet = build_task_packet(
+            replay,
+            {name: run_tool(name, replay) for name in repair_sources},
+            contract_version=contract_version,
+        )
+        packet["source_manifest"] = source_manifest(read_names)
+        repair_prompt = build_repair_prompt(packet, attempt, contract_version=contract_version)
+        initial_cost = trace.get("total_cost_usd")
+        remaining_budget = (
+            max_budget_usd - initial_cost
+            if isinstance(initial_cost, (int, float)) and not isinstance(initial_cost, bool)
+            else max_budget_usd
+        )
+        trace["repair_budget_usd"] = max(0.0, remaining_budget)
+        if remaining_budget <= 0:
+            trace["repair"] = {"status": "skipped_budget_exhausted"}
+        else:
+            repaired = run_claude_case(
+                files={},
+                prompt=repair_prompt,
+                mode="packet",
+                system_prompt=system_prompt,
+                timeout_seconds=timeout_seconds,
+                max_budget_usd=remaining_budget,
+                executable=executable,
+            )
+            trace["repair"] = repaired
+            repaired_raw = repaired.get("raw_answer")
+            trace["raw_output_after_repair"] = repaired_raw
+            if (
+                isinstance(repaired_raw, str)
+                and not repaired.get("is_error")
+                and repaired.get("exit_code") == 0
+                and not repaired.get("model_mismatch")
+            ):
+                attempt = validation_attempt(
+                    repaired_raw, packet["evidence"], contract_version=contract_version
+                )
+                trace["validation_attempts"].append(attempt)
+                final_evidence = packet["evidence"]
+            else:
+                trace["repair"]["status"] = "provider_or_process_failure"
+    repair = trace.get("repair") or {}
+    trace["total_latency_seconds_with_repair"] = round(
+        trace.get("latency_seconds", 0) + repair.get("latency_seconds", 0), 3
+    )
+    initial_cost, repair_cost = trace.get("total_cost_usd"), repair.get("total_cost_usd")
+    trace["total_cost_usd_with_repair"] = (
+        round(initial_cost + repair_cost, 6)
+        if isinstance(initial_cost, (int, float)) and isinstance(repair_cost, (int, float))
+        else initial_cost
+        if not repair
+        else None
+    )
+    if attempt["status"] == "valid":
+        trace["validation"] = {"valid": True, "selection": attempt["selection"]}
         trace["display"], trace["completeness"] = finalize_selection(
-            selection,
-            bundle["evidence"],
+            attempt["selection"],
+            final_evidence,
             read_names=set(trace.get("source_read_names") or []),
             contract_version=contract_version,
         )
+    else:
+        reason = (
+            "repair provider or process failure"
+            if repair.get("status") == "provider_or_process_failure"
+            else attempt["reason"]
+        )
+        trace["validation"] = {"valid": False, "reason": reason}
+        trace["display"] = withheld_display(reason)
     return trace
 
 

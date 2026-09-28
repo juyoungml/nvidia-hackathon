@@ -1,0 +1,24 @@
+{
+  "case_id": "PreDist-M1-fault-37",
+  "source": "https://zenodo.org/records/19496480",
+  "not_available_to_agent": true,
+  "provenance": {
+    "source_files_sha256": {
+      "faults.csv": "8f8a4ccd400d63d162314bbc888031bc2b793ea8a75313e6bcdadee046bf7bdc",
+      "disturbances.csv": "f0085525085080cfc0deafe4095b1cee7e47266749b2ef228d479a61778cf7d8",
+      "features.csv": "388c237896ec3dfc86f7330113cab661323a385f878f10cfa99c65de51e104b9",
+      "substation_19.csv": "ddc52be3407de8f5b981debe501113b29f691d7af205ebca0a3e4665f4b1214b"
+    },
+    "selection": {
+      "rule": "First two chronological manufacturer-1 reports with problem 'no heat' or 'not enough heat', outside substations 21, 4, 7, 12, and 24 and on distinct substations, having >=100 prior-24-hour samples and nonempty required hc1 fields; reports 37 and 5 selected before cycle-3 inference.",
+      "report_id": "37",
+      "asset_id": "19",
+      "window_hours": 24,
+      "cutoff": "measurement timestamp <= report date; prior records strictly earlier"
+    }
+  },
+  "report_date": "2018-11-21 09:15:00",
+  "event_description": "Externally controlled, supply temperature limited to 55°C.",
+  "fault_label": "Control unit: Incorrect parameterisation",
+  "note": "Published report fields are retrospective; they are not a real-time ground truth at the decision time."
+}

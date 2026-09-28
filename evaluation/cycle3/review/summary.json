@@ -1,0 +1,1180 @@
+{
+  "contract_version": 2,
+  "claim_boundary": "Reference checks and execution only; no semantic accuracy or winner ranking.",
+  "pairs": [
+    {
+      "case_id": "PreDist-M1-fault-52",
+      "domain": {
+        "case_id": "PreDist-M1-fault-52",
+        "harness_policy": "validate_repair_once",
+        "corpus_sha256": "76af9a2510cf2ff558112df34a9fe9e406e47d4a7e9e96266f59b1702bbdc4d2",
+        "contract_version": 2,
+        "raw_output_present": true,
+        "raw_output_validation": "invalid",
+        "validation_reason": "invalid supporting fact ID",
+        "outer_fence_normalized": false,
+        "display_status": "withheld",
+        "accepted_display": false,
+        "reference_checked": false,
+        "withheld": true,
+        "completeness": {
+          "status": "not_assessed",
+          "issues": []
+        },
+        "tool_calls": 4,
+        "file_access_calls": null,
+        "queried_sources": [
+          "get_maintenance_timeline",
+          "get_prior_incidents",
+          "get_recent_measurements",
+          "get_signal_definitions"
+        ],
+        "queried_source_count": 4,
+        "available_source_count": 4,
+        "selected_observation_count": null,
+        "canonical_observation_source_count": null,
+        "chosen_checks_supported_fact_ids": null,
+        "wall_seconds": 32.835,
+        "model_request_seconds": 32.82,
+        "usage": null,
+        "total_cost_usd": null
+      },
+      "general": {
+        "case_id": "PreDist-M1-fault-52",
+        "harness_policy": "validate_repair_once",
+        "corpus_sha256": "76af9a2510cf2ff558112df34a9fe9e406e47d4a7e9e96266f59b1702bbdc4d2",
+        "contract_version": 2,
+        "raw_output_present": true,
+        "raw_output_validation": "valid",
+        "validation_reason": null,
+        "outer_fence_normalized": null,
+        "display_status": "reference_checked",
+        "accepted_display": true,
+        "reference_checked": true,
+        "withheld": false,
+        "completeness": {
+          "status": "checked",
+          "issues": [],
+          "source_read_state": {
+            "available_sources": [
+              {
+                "reader": "get_recent_measurements",
+                "read_state": "unread"
+              },
+              {
+                "reader": "get_prior_incidents",
+                "read_state": "unread"
+              },
+              {
+                "reader": "get_maintenance_timeline",
+                "read_state": "unread"
+              },
+              {
+                "reader": "get_signal_definitions",
+                "read_state": "read"
+              }
+            ]
+          },
+          "catalog_read_state": "read"
+        },
+        "tool_calls": 7,
+        "file_access_calls": 7,
+        "queried_sources": [
+          "get_signal_definitions"
+        ],
+        "queried_source_count": 1,
+        "available_source_count": 4,
+        "selected_observation_count": 12,
+        "canonical_observation_source_count": 4,
+        "chosen_checks_supported_fact_ids": [
+          {
+            "id": "C-room-impact",
+            "because_fact_ids": [
+              "F-46253c9e467c",
+              "F-93b39b46d22e",
+              "F-cecb8a6f47ee",
+              "F-24f2f5b9ece6"
+            ]
+          },
+          {
+            "id": "C-secondary-flow",
+            "because_fact_ids": [
+              "F-27e89a2c6343",
+              "F-46253c9e467c"
+            ]
+          },
+          {
+            "id": "C-maintenance",
+            "because_fact_ids": [
+              "F-b94b6c2ec90e",
+              "F-1162dd37046d",
+              "F-d4658b929c69"
+            ]
+          }
+        ],
+        "wall_seconds": 52.178,
+        "model_request_seconds": null,
+        "usage": {
+          "input_tokens": 8,
+          "cache_creation_input_tokens": 13829,
+          "cache_read_input_tokens": 42891,
+          "output_tokens": 4617,
+          "output_tokens_details": {
+            "thinking_tokens": 3266
+          },
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 13829,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "not_available",
+          "iterations": [
+            {
+              "input_tokens": 2,
+              "output_tokens": 3904,
+              "cache_read_input_tokens": 19678,
+              "cache_creation_input_tokens": 530,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 530
+              },
+              "type": "message"
+            }
+          ],
+          "speed": "standard"
+        },
+        "total_cost_usd": 0.11008019999999999
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-60",
+      "domain": {
+        "case_id": "PreDist-M1-fault-60",
+        "harness_policy": "validate_repair_once",
+        "corpus_sha256": "fc18e33b6cfc9ee11d70dd884a45216327e72e84ac12bbd713476eeee1a8113f",
+        "contract_version": 2,
+        "raw_output_present": true,
+        "raw_output_validation": "valid",
+        "validation_reason": null,
+        "outer_fence_normalized": false,
+        "display_status": "reference_checked",
+        "accepted_display": true,
+        "reference_checked": true,
+        "withheld": false,
+        "completeness": {
+          "status": "checked",
+          "issues": [],
+          "source_read_state": {
+            "available_sources": [
+              {
+                "reader": "get_recent_measurements",
+                "read_state": "read"
+              },
+              {
+                "reader": "get_prior_incidents",
+                "read_state": "read"
+              },
+              {
+                "reader": "get_maintenance_timeline",
+                "read_state": "read"
+              },
+              {
+                "reader": "get_signal_definitions",
+                "read_state": "read"
+              }
+            ]
+          },
+          "catalog_read_state": "unread"
+        },
+        "tool_calls": 4,
+        "file_access_calls": null,
+        "queried_sources": [
+          "get_maintenance_timeline",
+          "get_prior_incidents",
+          "get_recent_measurements",
+          "get_signal_definitions"
+        ],
+        "queried_source_count": 4,
+        "available_source_count": 4,
+        "selected_observation_count": 12,
+        "canonical_observation_source_count": 3,
+        "chosen_checks_supported_fact_ids": [
+          {
+            "id": "C-room-impact",
+            "because_fact_ids": [
+              "F-9bbe792a0045",
+              "F-405ca7eb2be8",
+              "F-a56eae412830"
+            ]
+          },
+          {
+            "id": "C-secondary-flow",
+            "because_fact_ids": [
+              "F-9bbe792a0045",
+              "F-405ca7eb2be8",
+              "F-a56eae412830"
+            ]
+          },
+          {
+            "id": "C-maintenance",
+            "because_fact_ids": [
+              "F-9bbe792a0045",
+              "F-a4068ebd07e3"
+            ]
+          }
+        ],
+        "wall_seconds": 25.061,
+        "model_request_seconds": 25.04,
+        "usage": null,
+        "total_cost_usd": null
+      },
+      "general": {
+        "case_id": "PreDist-M1-fault-60",
+        "harness_policy": "validate_repair_once",
+        "corpus_sha256": "fc18e33b6cfc9ee11d70dd884a45216327e72e84ac12bbd713476eeee1a8113f",
+        "contract_version": 2,
+        "raw_output_present": true,
+        "raw_output_validation": "valid",
+        "validation_reason": null,
+        "outer_fence_normalized": null,
+        "display_status": "reference_checked",
+        "accepted_display": true,
+        "reference_checked": true,
+        "withheld": false,
+        "completeness": {
+          "status": "checked",
+          "issues": [],
+          "source_read_state": {
+            "available_sources": [
+              {
+                "reader": "get_recent_measurements",
+                "read_state": "read"
+              },
+              {
+                "reader": "get_prior_incidents",
+                "read_state": "read"
+              },
+              {
+                "reader": "get_maintenance_timeline",
+                "read_state": "read"
+              },
+              {
+                "reader": "get_signal_definitions",
+                "read_state": "read"
+              }
+            ]
+          },
+          "catalog_read_state": "read"
+        },
+        "tool_calls": 10,
+        "file_access_calls": 10,
+        "queried_sources": [
+          "get_maintenance_timeline",
+          "get_prior_incidents",
+          "get_recent_measurements",
+          "get_signal_definitions"
+        ],
+        "queried_source_count": 4,
+        "available_source_count": 4,
+        "selected_observation_count": 12,
+        "canonical_observation_source_count": 3,
+        "chosen_checks_supported_fact_ids": [
+          {
+            "id": "C-room-impact",
+            "because_fact_ids": [
+              "F-9bbe792a0045",
+              "F-405ca7eb2be8",
+              "F-895e958010cf"
+            ]
+          },
+          {
+            "id": "C-secondary-flow",
+            "because_fact_ids": [
+              "F-e412506ba70d",
+              "F-19132f4b4712"
+            ]
+          },
+          {
+            "id": "C-maintenance",
+            "because_fact_ids": [
+              "F-a4068ebd07e3",
+              "F-4a77b8692889"
+            ]
+          }
+        ],
+        "wall_seconds": 31.788,
+        "model_request_seconds": null,
+        "usage": {
+          "input_tokens": 8,
+          "cache_creation_input_tokens": 13046,
+          "cache_read_input_tokens": 42470,
+          "output_tokens": 3415,
+          "output_tokens_details": {
+            "thinking_tokens": 1794
+          },
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 13046,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "not_available",
+          "iterations": [
+            {
+              "input_tokens": 2,
+              "output_tokens": 2404,
+              "cache_read_input_tokens": 18294,
+              "cache_creation_input_tokens": 2087,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 2087
+              },
+              "type": "message"
+            }
+          ],
+          "speed": "standard"
+        },
+        "total_cost_usd": 0.09484399999999998
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-63",
+      "domain": {
+        "case_id": "PreDist-M1-fault-63",
+        "harness_policy": "validate_repair_once",
+        "corpus_sha256": "f12956a4d2176ad7c36c06b213b49c38abe128a8553abae7fbbbe00863080aa5",
+        "contract_version": 2,
+        "raw_output_present": true,
+        "raw_output_validation": "invalid",
+        "validation_reason": "invalid supporting fact ID",
+        "outer_fence_normalized": false,
+        "display_status": "withheld",
+        "accepted_display": false,
+        "reference_checked": false,
+        "withheld": true,
+        "completeness": {
+          "status": "not_assessed",
+          "issues": []
+        },
+        "tool_calls": 4,
+        "file_access_calls": null,
+        "queried_sources": [
+          "get_maintenance_timeline",
+          "get_prior_incidents",
+          "get_recent_measurements",
+          "get_signal_definitions"
+        ],
+        "queried_source_count": 4,
+        "available_source_count": 4,
+        "selected_observation_count": null,
+        "canonical_observation_source_count": null,
+        "chosen_checks_supported_fact_ids": null,
+        "wall_seconds": 59.102,
+        "model_request_seconds": 59.08,
+        "usage": null,
+        "total_cost_usd": null
+      },
+      "general": {
+        "case_id": "PreDist-M1-fault-63",
+        "harness_policy": "validate_repair_once",
+        "corpus_sha256": "f12956a4d2176ad7c36c06b213b49c38abe128a8553abae7fbbbe00863080aa5",
+        "contract_version": 2,
+        "raw_output_present": true,
+        "raw_output_validation": "valid",
+        "validation_reason": null,
+        "outer_fence_normalized": null,
+        "display_status": "reference_checked",
+        "accepted_display": true,
+        "reference_checked": true,
+        "withheld": false,
+        "completeness": {
+          "status": "checked",
+          "issues": [],
+          "source_read_state": {
+            "available_sources": [
+              {
+                "reader": "get_recent_measurements",
+                "read_state": "read"
+              },
+              {
+                "reader": "get_prior_incidents",
+                "read_state": "read"
+              },
+              {
+                "reader": "get_maintenance_timeline",
+                "read_state": "read"
+              },
+              {
+                "reader": "get_signal_definitions",
+                "read_state": "read"
+              }
+            ]
+          },
+          "catalog_read_state": "read"
+        },
+        "tool_calls": 11,
+        "file_access_calls": 11,
+        "queried_sources": [
+          "get_maintenance_timeline",
+          "get_prior_incidents",
+          "get_recent_measurements",
+          "get_signal_definitions"
+        ],
+        "queried_source_count": 4,
+        "available_source_count": 4,
+        "selected_observation_count": 12,
+        "canonical_observation_source_count": 3,
+        "chosen_checks_supported_fact_ids": [
+          {
+            "id": "C-room-impact",
+            "because_fact_ids": [
+              "F-9be51bd7f6bf",
+              "F-46bad74a3812",
+              "F-e85947b2b70b"
+            ]
+          },
+          {
+            "id": "C-secondary-flow",
+            "because_fact_ids": [
+              "F-053200a22c99",
+              "F-dfa23fbd5bd0"
+            ]
+          },
+          {
+            "id": "C-maintenance",
+            "because_fact_ids": [
+              "F-97ec1ee13138"
+            ]
+          }
+        ],
+        "wall_seconds": 40.545,
+        "model_request_seconds": null,
+        "usage": {
+          "input_tokens": 10,
+          "cache_creation_input_tokens": 14598,
+          "cache_read_input_tokens": 62920,
+          "output_tokens": 3261,
+          "output_tokens_details": {
+            "thinking_tokens": 1332
+          },
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 14598,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "not_available",
+          "iterations": [
+            {
+              "input_tokens": 2,
+              "output_tokens": 844,
+              "cache_read_input_tokens": 20435,
+              "cache_creation_input_tokens": 1498,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 1498
+              },
+              "type": "message"
+            }
+          ],
+          "speed": "standard"
+        },
+        "total_cost_usd": 0.10360599999999999
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-3",
+      "domain": {
+        "case_id": "PreDist-M1-fault-3",
+        "harness_policy": "validate_repair_once",
+        "corpus_sha256": "49b557ba092370e6963c098d3e57395bad6f8a3db316b9a7ce799d8d00d3dec5",
+        "contract_version": 2,
+        "raw_output_present": true,
+        "raw_output_validation": "invalid",
+        "validation_reason": "invalid supporting fact ID",
+        "outer_fence_normalized": false,
+        "display_status": "withheld",
+        "accepted_display": false,
+        "reference_checked": false,
+        "withheld": true,
+        "completeness": {
+          "status": "not_assessed",
+          "issues": []
+        },
+        "tool_calls": 4,
+        "file_access_calls": null,
+        "queried_sources": [
+          "get_maintenance_timeline",
+          "get_prior_incidents",
+          "get_recent_measurements",
+          "get_signal_definitions"
+        ],
+        "queried_source_count": 4,
+        "available_source_count": 4,
+        "selected_observation_count": null,
+        "canonical_observation_source_count": null,
+        "chosen_checks_supported_fact_ids": null,
+        "wall_seconds": 57.531,
+        "model_request_seconds": 57.52,
+        "usage": null,
+        "total_cost_usd": null
+      },
+      "general": {
+        "case_id": "PreDist-M1-fault-3",
+        "harness_policy": "validate_repair_once",
+        "corpus_sha256": "49b557ba092370e6963c098d3e57395bad6f8a3db316b9a7ce799d8d00d3dec5",
+        "contract_version": 2,
+        "raw_output_present": true,
+        "raw_output_validation": "valid",
+        "validation_reason": null,
+        "outer_fence_normalized": null,
+        "display_status": "reference_checked",
+        "accepted_display": true,
+        "reference_checked": true,
+        "withheld": false,
+        "completeness": {
+          "status": "checked",
+          "issues": [],
+          "source_read_state": {
+            "available_sources": [
+              {
+                "reader": "get_recent_measurements",
+                "read_state": "unread"
+              },
+              {
+                "reader": "get_prior_incidents",
+                "read_state": "read"
+              },
+              {
+                "reader": "get_maintenance_timeline",
+                "read_state": "unread"
+              },
+              {
+                "reader": "get_signal_definitions",
+                "read_state": "read"
+              }
+            ]
+          },
+          "catalog_read_state": "read"
+        },
+        "tool_calls": 8,
+        "file_access_calls": 8,
+        "queried_sources": [
+          "get_prior_incidents",
+          "get_signal_definitions"
+        ],
+        "queried_source_count": 2,
+        "available_source_count": 4,
+        "selected_observation_count": 12,
+        "canonical_observation_source_count": 2,
+        "chosen_checks_supported_fact_ids": [
+          {
+            "id": "C-room-impact",
+            "because_fact_ids": [
+              "F-8b748d964212",
+              "F-b7507a067c23",
+              "F-ef44adf80dfa"
+            ]
+          },
+          {
+            "id": "C-secondary-flow",
+            "because_fact_ids": [
+              "F-37c78c517194",
+              "F-b7507a067c23"
+            ]
+          },
+          {
+            "id": "C-controls",
+            "because_fact_ids": [
+              "F-9c66c7e1f3c5",
+              "F-2a7e55330ddf",
+              "F-43ca19ae022d"
+            ]
+          }
+        ],
+        "wall_seconds": 42.627,
+        "model_request_seconds": null,
+        "usage": {
+          "input_tokens": 8,
+          "cache_creation_input_tokens": 11974,
+          "cache_read_input_tokens": 42762,
+          "output_tokens": 3575,
+          "output_tokens_details": {
+            "thinking_tokens": 2218
+          },
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 11974,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "not_available",
+          "iterations": [
+            {
+              "input_tokens": 2,
+              "output_tokens": 2765,
+              "cache_read_input_tokens": 18592,
+              "cache_creation_input_tokens": 717,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 717
+              },
+              "type": "message"
+            }
+          ],
+          "speed": "standard"
+        },
+        "total_cost_usd": 0.0922144
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-13",
+      "domain": {
+        "case_id": "PreDist-M1-fault-13",
+        "harness_policy": "validate_repair_once",
+        "corpus_sha256": "89ed2a1705bc37adafd8e2bf99a4c9ef86b0db90f7e1156e78d5fae3f3916048",
+        "contract_version": 2,
+        "raw_output_present": true,
+        "raw_output_validation": "valid",
+        "validation_reason": null,
+        "outer_fence_normalized": false,
+        "display_status": "reference_checked",
+        "accepted_display": true,
+        "reference_checked": true,
+        "withheld": false,
+        "completeness": {
+          "status": "checked",
+          "issues": [],
+          "source_read_state": {
+            "available_sources": [
+              {
+                "reader": "get_recent_measurements",
+                "read_state": "read"
+              },
+              {
+                "reader": "get_prior_incidents",
+                "read_state": "read"
+              },
+              {
+                "reader": "get_maintenance_timeline",
+                "read_state": "read"
+              },
+              {
+                "reader": "get_signal_definitions",
+                "read_state": "read"
+              }
+            ]
+          },
+          "catalog_read_state": "unread"
+        },
+        "tool_calls": 4,
+        "file_access_calls": null,
+        "queried_sources": [
+          "get_maintenance_timeline",
+          "get_prior_incidents",
+          "get_recent_measurements",
+          "get_signal_definitions"
+        ],
+        "queried_source_count": 4,
+        "available_source_count": 4,
+        "selected_observation_count": 12,
+        "canonical_observation_source_count": 3,
+        "chosen_checks_supported_fact_ids": [
+          {
+            "id": "C-room-impact",
+            "because_fact_ids": [
+              "F-74d2687f0f6a",
+              "F-2d9343c3f820",
+              "F-7edfef90520f"
+            ]
+          },
+          {
+            "id": "C-secondary-flow",
+            "because_fact_ids": [
+              "F-74d2687f0f6a",
+              "F-587b0e46b55e",
+              "F-e31ef65b2ab3"
+            ]
+          },
+          {
+            "id": "C-maintenance",
+            "because_fact_ids": [
+              "F-74d2687f0f6a",
+              "F-12c8e7cd8315"
+            ]
+          }
+        ],
+        "wall_seconds": 42.679,
+        "model_request_seconds": 42.67,
+        "usage": null,
+        "total_cost_usd": null
+      },
+      "general": {
+        "case_id": "PreDist-M1-fault-13",
+        "harness_policy": "validate_repair_once",
+        "corpus_sha256": "89ed2a1705bc37adafd8e2bf99a4c9ef86b0db90f7e1156e78d5fae3f3916048",
+        "contract_version": 2,
+        "raw_output_present": true,
+        "raw_output_validation": "valid",
+        "validation_reason": null,
+        "outer_fence_normalized": null,
+        "display_status": "reference_checked",
+        "accepted_display": true,
+        "reference_checked": true,
+        "withheld": false,
+        "completeness": {
+          "status": "checked",
+          "issues": [],
+          "source_read_state": {
+            "available_sources": [
+              {
+                "reader": "get_recent_measurements",
+                "read_state": "read"
+              },
+              {
+                "reader": "get_prior_incidents",
+                "read_state": "read"
+              },
+              {
+                "reader": "get_maintenance_timeline",
+                "read_state": "read"
+              },
+              {
+                "reader": "get_signal_definitions",
+                "read_state": "read"
+              }
+            ]
+          },
+          "catalog_read_state": "read"
+        },
+        "tool_calls": 10,
+        "file_access_calls": 10,
+        "queried_sources": [
+          "get_maintenance_timeline",
+          "get_prior_incidents",
+          "get_recent_measurements",
+          "get_signal_definitions"
+        ],
+        "queried_source_count": 4,
+        "available_source_count": 4,
+        "selected_observation_count": 12,
+        "canonical_observation_source_count": 3,
+        "chosen_checks_supported_fact_ids": [
+          {
+            "id": "C-room-impact",
+            "because_fact_ids": [
+              "F-587b0e46b55e",
+              "F-e31ef65b2ab3",
+              "F-25d1b55d4995"
+            ]
+          },
+          {
+            "id": "C-secondary-flow",
+            "because_fact_ids": [
+              "F-a667c2edb6fb",
+              "F-b70027084428"
+            ]
+          },
+          {
+            "id": "C-maintenance",
+            "because_fact_ids": [
+              "F-12c8e7cd8315",
+              "F-b04d38b114c2"
+            ]
+          }
+        ],
+        "wall_seconds": 31.84,
+        "model_request_seconds": null,
+        "usage": {
+          "input_tokens": 8,
+          "cache_creation_input_tokens": 13088,
+          "cache_read_input_tokens": 42488,
+          "output_tokens": 3767,
+          "output_tokens_details": {
+            "thinking_tokens": 2162
+          },
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 13088,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "not_available",
+          "iterations": [
+            {
+              "input_tokens": 2,
+              "output_tokens": 2735,
+              "cache_read_input_tokens": 18316,
+              "cache_creation_input_tokens": 2107,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 2107
+              },
+              "type": "message"
+            }
+          ],
+          "speed": "standard"
+        },
+        "total_cost_usd": 0.0985356
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-37",
+      "domain": {
+        "case_id": "PreDist-M1-fault-37",
+        "harness_policy": "validate_repair_once",
+        "corpus_sha256": "6cb2f8c9585c6deb382a3665b27a7e2a76f9b19e5b75f6d858924b0bf727f690",
+        "contract_version": 2,
+        "raw_output_present": true,
+        "raw_output_validation": "valid",
+        "validation_reason": null,
+        "outer_fence_normalized": false,
+        "display_status": "reference_checked",
+        "accepted_display": true,
+        "reference_checked": true,
+        "withheld": false,
+        "completeness": {
+          "status": "checked",
+          "issues": [],
+          "source_read_state": {
+            "available_sources": [
+              {
+                "reader": "get_recent_measurements",
+                "read_state": "read"
+              },
+              {
+                "reader": "get_prior_incidents",
+                "read_state": "read"
+              },
+              {
+                "reader": "get_maintenance_timeline",
+                "read_state": "read"
+              },
+              {
+                "reader": "get_signal_definitions",
+                "read_state": "read"
+              }
+            ]
+          },
+          "catalog_read_state": "unread"
+        },
+        "tool_calls": 4,
+        "file_access_calls": null,
+        "queried_sources": [
+          "get_maintenance_timeline",
+          "get_prior_incidents",
+          "get_recent_measurements",
+          "get_signal_definitions"
+        ],
+        "queried_source_count": 4,
+        "available_source_count": 4,
+        "selected_observation_count": 12,
+        "canonical_observation_source_count": 2,
+        "chosen_checks_supported_fact_ids": [
+          {
+            "id": "C-room-impact",
+            "because_fact_ids": [
+              "F-a4bcf4f332fc",
+              "F-60e0cfd3d785",
+              "F-2afa9fb125d4"
+            ]
+          },
+          {
+            "id": "C-secondary-flow",
+            "because_fact_ids": [
+              "F-a4bcf4f332fc",
+              "F-2e7cbf1adfb6"
+            ]
+          },
+          {
+            "id": "C-controls",
+            "because_fact_ids": [
+              "F-a4bcf4f332fc",
+              "F-adfaa143fad1",
+              "F-ec17bac45866",
+              "F-c292053f390c",
+              "F-7fbf261dc4b4"
+            ]
+          }
+        ],
+        "wall_seconds": 49.383,
+        "model_request_seconds": 49.37,
+        "usage": null,
+        "total_cost_usd": null
+      },
+      "general": {
+        "case_id": "PreDist-M1-fault-37",
+        "harness_policy": "validate_repair_once",
+        "corpus_sha256": "6cb2f8c9585c6deb382a3665b27a7e2a76f9b19e5b75f6d858924b0bf727f690",
+        "contract_version": 2,
+        "raw_output_present": true,
+        "raw_output_validation": "valid",
+        "validation_reason": null,
+        "outer_fence_normalized": null,
+        "display_status": "reference_checked",
+        "accepted_display": true,
+        "reference_checked": true,
+        "withheld": false,
+        "completeness": {
+          "status": "checked",
+          "issues": [],
+          "source_read_state": {
+            "available_sources": [
+              {
+                "reader": "get_recent_measurements",
+                "read_state": "read"
+              },
+              {
+                "reader": "get_prior_incidents",
+                "read_state": "read"
+              },
+              {
+                "reader": "get_maintenance_timeline",
+                "read_state": "read"
+              },
+              {
+                "reader": "get_signal_definitions",
+                "read_state": "read"
+              }
+            ]
+          },
+          "catalog_read_state": "read"
+        },
+        "tool_calls": 9,
+        "file_access_calls": 9,
+        "queried_sources": [
+          "get_maintenance_timeline",
+          "get_prior_incidents",
+          "get_recent_measurements",
+          "get_signal_definitions"
+        ],
+        "queried_source_count": 4,
+        "available_source_count": 4,
+        "selected_observation_count": 12,
+        "canonical_observation_source_count": 3,
+        "chosen_checks_supported_fact_ids": [
+          {
+            "id": "C-room-impact",
+            "because_fact_ids": [
+              "F-a4bcf4f332fc",
+              "F-2afa9fb125d4",
+              "F-ec17bac45866",
+              "F-c292053f390c"
+            ]
+          },
+          {
+            "id": "C-secondary-flow",
+            "because_fact_ids": [
+              "F-17954c67523c"
+            ]
+          },
+          {
+            "id": "C-maintenance",
+            "because_fact_ids": [
+              "F-c642c57143fa",
+              "F-64cbbe4fb0f0"
+            ]
+          }
+        ],
+        "wall_seconds": 34.284,
+        "model_request_seconds": null,
+        "usage": {
+          "input_tokens": 8,
+          "cache_creation_input_tokens": 12932,
+          "cache_read_input_tokens": 42173,
+          "output_tokens": 3885,
+          "output_tokens_details": {
+            "thinking_tokens": 2300
+          },
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 12932,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "not_available",
+          "iterations": [
+            {
+              "input_tokens": 2,
+              "output_tokens": 2904,
+              "cache_read_input_tokens": 18160,
+              "cache_creation_input_tokens": 2107,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 2107
+              },
+              "type": "message"
+            }
+          ],
+          "speed": "standard"
+        },
+        "total_cost_usd": 0.0990286
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-5",
+      "domain": {
+        "case_id": "PreDist-M1-fault-5",
+        "harness_policy": "validate_repair_once",
+        "corpus_sha256": "cc4efe6f6ab2963f97edf9add1850d0f7f5272e16282849e7040463d5ebf8388",
+        "contract_version": 2,
+        "raw_output_present": true,
+        "raw_output_validation": "invalid",
+        "validation_reason": "invalid supporting fact ID",
+        "outer_fence_normalized": false,
+        "display_status": "withheld",
+        "accepted_display": false,
+        "reference_checked": false,
+        "withheld": true,
+        "completeness": {
+          "status": "not_assessed",
+          "issues": []
+        },
+        "tool_calls": 4,
+        "file_access_calls": null,
+        "queried_sources": [
+          "get_maintenance_timeline",
+          "get_prior_incidents",
+          "get_recent_measurements",
+          "get_signal_definitions"
+        ],
+        "queried_source_count": 4,
+        "available_source_count": 4,
+        "selected_observation_count": null,
+        "canonical_observation_source_count": null,
+        "chosen_checks_supported_fact_ids": null,
+        "wall_seconds": 85.744,
+        "model_request_seconds": 85.74999999999999,
+        "usage": null,
+        "total_cost_usd": null
+      },
+      "general": {
+        "case_id": "PreDist-M1-fault-5",
+        "harness_policy": "validate_repair_once",
+        "corpus_sha256": "cc4efe6f6ab2963f97edf9add1850d0f7f5272e16282849e7040463d5ebf8388",
+        "contract_version": 2,
+        "raw_output_present": true,
+        "raw_output_validation": "valid",
+        "validation_reason": null,
+        "outer_fence_normalized": null,
+        "display_status": "reference_checked",
+        "accepted_display": true,
+        "reference_checked": true,
+        "withheld": false,
+        "completeness": {
+          "status": "checked",
+          "issues": [],
+          "source_read_state": {
+            "available_sources": [
+              {
+                "reader": "get_recent_measurements",
+                "read_state": "read"
+              },
+              {
+                "reader": "get_prior_incidents",
+                "read_state": "unread"
+              },
+              {
+                "reader": "get_maintenance_timeline",
+                "read_state": "unread"
+              },
+              {
+                "reader": "get_signal_definitions",
+                "read_state": "read"
+              }
+            ]
+          },
+          "catalog_read_state": "read"
+        },
+        "tool_calls": 8,
+        "file_access_calls": 8,
+        "queried_sources": [
+          "get_recent_measurements",
+          "get_signal_definitions"
+        ],
+        "queried_source_count": 2,
+        "available_source_count": 4,
+        "selected_observation_count": 12,
+        "canonical_observation_source_count": 5,
+        "chosen_checks_supported_fact_ids": [
+          {
+            "id": "C-room-impact",
+            "because_fact_ids": [
+              "F-c6c357ba15b1",
+              "F-d865185ab874",
+              "F-3845078723cc"
+            ]
+          },
+          {
+            "id": "C-secondary-flow",
+            "because_fact_ids": [
+              "F-8ed165aa72d8"
+            ]
+          },
+          {
+            "id": "C-maintenance",
+            "because_fact_ids": [
+              "F-c507baa5efdb",
+              "F-96639f831019"
+            ]
+          }
+        ],
+        "wall_seconds": 28.882,
+        "model_request_seconds": null,
+        "usage": {
+          "input_tokens": 8,
+          "cache_creation_input_tokens": 13951,
+          "cache_read_input_tokens": 43803,
+          "output_tokens": 2914,
+          "output_tokens_details": {
+            "thinking_tokens": 1572
+          },
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 13951,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "not_available",
+          "iterations": [
+            {
+              "input_tokens": 2,
+              "output_tokens": 2137,
+              "cache_read_input_tokens": 19633,
+              "cache_creation_input_tokens": 1653,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 1653
+              },
+              "type": "message"
+            }
+          ],
+          "speed": "standard"
+        },
+        "total_cost_usd": 0.0937206
+      }
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "probe_version": 1,
+  "timestamp_utc": "2026-09-28T08:01:11.000112+00:00",
+  "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+  "api_path_version": "v1",
+  "hosted_nim_server_version": null,
+  "model": "nvidia/nemotron-3-ultra-550b-a55b",
+  "documentation": [
+    "https://docs.nvidia.com/nim/large-language-models/2.0.6/day-0/get-started-nemotron-3-ultra.html",
+    "https://docs.nvidia.com/nim/large-language-models/1.14.0/structured-generation.html"
+  ],
+  "synthetic_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "items"
+    ],
+    "properties": {
+      "items": {
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 1,
+        "items": {
+          "type": "string",
+          "enum": [
+            "ALPHA"
+          ]
+        }
+      }
+    }
+  },
+  "calls": [
+    {
+      "strategy": "response_format_json_schema",
+      "request": {
+        "model": "nvidia/nemotron-3-ultra-550b-a55b",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Return exactly this JSON object: {\"items\":[\"BETA\",\"BETA\"]}. Do not change it."
+          }
+        ],
+        "temperature": 0,
+        "max_tokens": 64,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        },
+        "stream": false,
+        "response_format": {
+          "type": "json_schema",
+          "json_schema": {
+            "name": "one_allowed_item",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "items"
+              ],
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 1,
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "ALPHA"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "http_status": 200,
+      "server_header": null,
+      "returned_model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "system_fingerprint": null,
+      "finish_reason": "stop",
+      "content": "{\"items\":[\"ALPHA\"]}",
+      "schema_validation": {
+        "valid": true,
+        "reason": null
+      },
+      "latency_seconds": 1.399
+    },
+    {
+      "strategy": "guided_json",
+      "request": {
+        "model": "nvidia/nemotron-3-ultra-550b-a55b",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Return exactly this JSON object: {\"items\":[\"BETA\",\"BETA\"]}. Do not change it."
+          }
+        ],
+        "temperature": 0,
+        "max_tokens": 64,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        },
+        "stream": false,
+        "guided_json": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "items"
+          ],
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ALPHA"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "http_status": 200,
+      "server_header": null,
+      "returned_model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "system_fingerprint": null,
+      "finish_reason": "stop",
+      "content": "{\"items\":[\"ALPHA\"]}",
+      "schema_validation": {
+        "valid": true,
+        "reason": null
+      },
+      "latency_seconds": 1.007
+    }
+  ],
+  "max_api_requests": 2
+}

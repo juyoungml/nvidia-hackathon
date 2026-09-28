@@ -1,0 +1,253 @@
+{
+  "protocol": "evaluation/cycle3/PROTOCOL.md",
+  "harness_policy": "validate_repair_once",
+  "claim_boundary": "Whole-system, small selected cases; reference validity and completeness do not establish semantic accuracy or causal harness advantage.",
+  "groups": {
+    "development_exposed": {
+      "count": 5,
+      "arms": {
+        "domain": {
+          "initial_valid": 2,
+          "final_valid": 2,
+          "reference_checked": 2,
+          "repairs_attempted": 3,
+          "repairs_recovered": 0,
+          "elapsed_seconds_sum": 217.208,
+          "repair_added_seconds_sum": 47.88,
+          "reported_cost_usd_sum": null
+        },
+        "general": {
+          "initial_valid": 4,
+          "final_valid": 5,
+          "reference_checked": 5,
+          "repairs_attempted": 1,
+          "repairs_recovered": 1,
+          "elapsed_seconds_sum": 198.978,
+          "repair_added_seconds_sum": 11.86,
+          "reported_cost_usd_sum": 0.550649
+        }
+      }
+    },
+    "fresh_test": {
+      "count": 2,
+      "arms": {
+        "domain": {
+          "initial_valid": 0,
+          "final_valid": 1,
+          "reference_checked": 1,
+          "repairs_attempted": 2,
+          "repairs_recovered": 1,
+          "elapsed_seconds_sum": 135.127,
+          "repair_added_seconds_sum": 27.35,
+          "reported_cost_usd_sum": null
+        },
+        "general": {
+          "initial_valid": 2,
+          "final_valid": 2,
+          "reference_checked": 2,
+          "repairs_attempted": 0,
+          "repairs_recovered": 0,
+          "elapsed_seconds_sum": 63.166,
+          "repair_added_seconds_sum": 0,
+          "reported_cost_usd_sum": 0.192749
+        }
+      }
+    }
+  },
+  "cases": [
+    {
+      "case_id": "PreDist-M1-fault-52",
+      "kind": "development_exposed",
+      "corpus_sha256": "76af9a2510cf2ff558112df34a9fe9e406e47d4a7e9e96266f59b1702bbdc4d2",
+      "domain": {
+        "initial_valid": false,
+        "final_valid": false,
+        "repair_attempted": true,
+        "repair_recovered": false,
+        "display_status": "withheld",
+        "elapsed_seconds": 32.835,
+        "repair_added_seconds": 6.35,
+        "cost_usd": null,
+        "tool_calls": 4
+      },
+      "general": {
+        "initial_valid": true,
+        "final_valid": true,
+        "repair_attempted": false,
+        "repair_recovered": false,
+        "display_status": "reference_checked",
+        "elapsed_seconds": 52.178,
+        "repair_added_seconds": 0,
+        "cost_usd": 0.11008019999999999,
+        "tool_calls": 7
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-60",
+      "kind": "development_exposed",
+      "corpus_sha256": "fc18e33b6cfc9ee11d70dd884a45216327e72e84ac12bbd713476eeee1a8113f",
+      "domain": {
+        "initial_valid": true,
+        "final_valid": true,
+        "repair_attempted": false,
+        "repair_recovered": false,
+        "display_status": "reference_checked",
+        "elapsed_seconds": 25.061,
+        "repair_added_seconds": 0,
+        "cost_usd": null,
+        "tool_calls": 4
+      },
+      "general": {
+        "initial_valid": true,
+        "final_valid": true,
+        "repair_attempted": false,
+        "repair_recovered": false,
+        "display_status": "reference_checked",
+        "elapsed_seconds": 31.788,
+        "repair_added_seconds": 0,
+        "cost_usd": 0.09484399999999998,
+        "tool_calls": 10
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-63",
+      "kind": "development_exposed",
+      "corpus_sha256": "f12956a4d2176ad7c36c06b213b49c38abe128a8553abae7fbbbe00863080aa5",
+      "domain": {
+        "initial_valid": false,
+        "final_valid": false,
+        "repair_attempted": true,
+        "repair_recovered": false,
+        "display_status": "withheld",
+        "elapsed_seconds": 59.102,
+        "repair_added_seconds": 17.71,
+        "cost_usd": null,
+        "tool_calls": 4
+      },
+      "general": {
+        "initial_valid": false,
+        "final_valid": true,
+        "repair_attempted": true,
+        "repair_recovered": true,
+        "display_status": "reference_checked",
+        "elapsed_seconds": 40.545,
+        "repair_added_seconds": 11.86,
+        "cost_usd": 0.154975,
+        "tool_calls": 11
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-3",
+      "kind": "development_exposed",
+      "corpus_sha256": "49b557ba092370e6963c098d3e57395bad6f8a3db316b9a7ce799d8d00d3dec5",
+      "domain": {
+        "initial_valid": false,
+        "final_valid": false,
+        "repair_attempted": true,
+        "repair_recovered": false,
+        "display_status": "withheld",
+        "elapsed_seconds": 57.531,
+        "repair_added_seconds": 23.82,
+        "cost_usd": null,
+        "tool_calls": 4
+      },
+      "general": {
+        "initial_valid": true,
+        "final_valid": true,
+        "repair_attempted": false,
+        "repair_recovered": false,
+        "display_status": "reference_checked",
+        "elapsed_seconds": 42.627,
+        "repair_added_seconds": 0,
+        "cost_usd": 0.0922144,
+        "tool_calls": 8
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-13",
+      "kind": "development_exposed",
+      "corpus_sha256": "89ed2a1705bc37adafd8e2bf99a4c9ef86b0db90f7e1156e78d5fae3f3916048",
+      "domain": {
+        "initial_valid": true,
+        "final_valid": true,
+        "repair_attempted": false,
+        "repair_recovered": false,
+        "display_status": "reference_checked",
+        "elapsed_seconds": 42.679,
+        "repair_added_seconds": 0,
+        "cost_usd": null,
+        "tool_calls": 4
+      },
+      "general": {
+        "initial_valid": true,
+        "final_valid": true,
+        "repair_attempted": false,
+        "repair_recovered": false,
+        "display_status": "reference_checked",
+        "elapsed_seconds": 31.84,
+        "repair_added_seconds": 0,
+        "cost_usd": 0.0985356,
+        "tool_calls": 10
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-37",
+      "kind": "fresh_test",
+      "corpus_sha256": "6cb2f8c9585c6deb382a3665b27a7e2a76f9b19e5b75f6d858924b0bf727f690",
+      "domain": {
+        "initial_valid": false,
+        "final_valid": true,
+        "repair_attempted": true,
+        "repair_recovered": true,
+        "display_status": "reference_checked",
+        "elapsed_seconds": 49.383,
+        "repair_added_seconds": 14.11,
+        "cost_usd": null,
+        "tool_calls": 4
+      },
+      "general": {
+        "initial_valid": true,
+        "final_valid": true,
+        "repair_attempted": false,
+        "repair_recovered": false,
+        "display_status": "reference_checked",
+        "elapsed_seconds": 34.284,
+        "repair_added_seconds": 0,
+        "cost_usd": 0.0990286,
+        "tool_calls": 9
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-5",
+      "kind": "fresh_test",
+      "corpus_sha256": "cc4efe6f6ab2963f97edf9add1850d0f7f5272e16282849e7040463d5ebf8388",
+      "domain": {
+        "initial_valid": false,
+        "final_valid": false,
+        "repair_attempted": true,
+        "repair_recovered": false,
+        "display_status": "withheld",
+        "elapsed_seconds": 85.744,
+        "repair_added_seconds": 13.24,
+        "cost_usd": null,
+        "tool_calls": 4
+      },
+      "general": {
+        "initial_valid": true,
+        "final_valid": true,
+        "repair_attempted": false,
+        "repair_recovered": false,
+        "display_status": "reference_checked",
+        "elapsed_seconds": 28.882,
+        "repair_added_seconds": 0,
+        "cost_usd": 0.0937206,
+        "tool_calls": 8
+      }
+    }
+  ],
+  "elapsed_definition": {
+    "domain": "harness wall_seconds, including tool/model rounds and repair",
+    "general": "sum of Claude CLI subprocess latency_seconds for initial and repair, when applicable; excludes local bundle and version-query overhead"
+  },
+  "reported_cost_note": "Claude CLI reported USD only; unavailable domain cost is null. Missing cost values are not treated as zero in claims."
+}

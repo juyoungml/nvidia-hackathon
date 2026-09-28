@@ -104,6 +104,7 @@ def _summary(trace: dict) -> dict:
     checks = (selection or {}).get("next_checks") or [] if accepted else []
     return {
         "case_id": trace.get("case_id"),
+        "harness_policy": trace.get("harness_policy", "off"),
         "corpus_sha256": trace.get("corpus_sha256"),
         "contract_version": _contract(trace),
         "raw_output_present": _raw(trace) is not None,
@@ -125,7 +126,9 @@ def _summary(trace: dict) -> dict:
         ]
         if accepted
         else None,
-        "wall_seconds": trace.get("wall_seconds", trace.get("latency_seconds")),
+        "wall_seconds": trace.get("wall_seconds")
+        if trace.get("wall_seconds") is not None
+        else trace.get("total_latency_seconds_with_repair", trace.get("latency_seconds")),
         "model_request_seconds": trace.get("request_seconds"),
         "usage": trace.get("usage"),
         "total_cost_usd": trace.get("total_cost_usd"),
@@ -183,6 +186,8 @@ def compare_pairs(
         for field in ("case_id", "corpus_sha256"):
             if not domain.get(field) or domain.get(field) != general.get(field):
                 raise ValueError(f"pair {index}: {field} mismatch or missing")
+        if domain.get("harness_policy", "off") != general.get("harness_policy", "off"):
+            raise ValueError(f"pair {index}: harness_policy mismatch")
         if not str(domain.get("method", "")).startswith("system2-"):
             raise ValueError(f"pair {index}: domain trace method missing")
         if general.get("mode") not in {"file_agent", "packet"}:

@@ -1,0 +1,409 @@
+{
+  "composer_policy": "plan_first_native_schema_v1",
+  "development_only": true,
+  "timestamp_utc": "2026-09-28T08:08:15.347416+00:00",
+  "api_endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+  "api_path_version": "v1",
+  "hosted_nim_server_version": null,
+  "provenance": {
+    "case_id": "synthetic-structure-only"
+  },
+  "request": {
+    "model": "nvidia/nemotron-3-ultra-550b-a55b",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a read-only plant investigator. Select only supplied fact and catalog IDs. Rationales are suggestions, not observations or proven causes. Reply only with plan JSON matching the native schema."
+      },
+      {
+        "role": "user",
+        "content": "{\"checks_catalog\": {\"C-controls\": \"Review timestamped controller settings, alarms, and parameter changes with an engineer.\", \"C-maintenance\": \"Check maintenance records and actual completion evidence for relevant prior work.\", \"C-more-data\": \"Obtain missing measurements before drawing a causal conclusion.\", \"C-room-impact\": \"Verify affected room or radiator temperatures and the scope of the reported heating loss.\", \"C-secondary-flow\": \"Measure secondary heating circuit flow and compare it with the relevant design or operating range.\", \"C-sensor\": \"Confirm sensor identity, calibration, and timestamp alignment before interpreting a trend.\"}, \"development_composition_policy\": \"Select 2 or 3 distinct next checks. For each, select 1 to 4 distinct supporting fact IDs from the already retrieved catalog and write a rationale of at most 240 characters. Select limit IDs from the catalog. Do not output observed_fact_ids; the program will derive observations as the ordered union of your selected supporting IDs. Keep that union within 12 IDs. Do not make a root-cause conclusion or recommend changing controls. Return the plan JSON.\", \"evidence\": {\"case_id\": \"synthetic-structure-only\", \"decision_time\": \"synthetic\", \"facts\": [{\"id\": \"F-synthetic-1\", \"source_id\": \"synthetic-source\", \"text\": \"synthetic\"}, {\"id\": \"F-synthetic-2\", \"source_id\": \"synthetic-source\", \"text\": \"synthetic\"}, {\"id\": \"F-synthetic-3\", \"source_id\": \"synthetic-source\", \"text\": \"synthetic\"}], \"schema_version\": 1, \"sources\": [{\"id\": \"synthetic-source\", \"kind\": \"synthetic\"}]}, \"limits_catalog\": {\"L-no-normal-range\": \"No normal operating range is supplied for heat power or flow.\", \"L-no-room-evidence\": \"Supply temperature tracking its setpoint does not establish heat delivery to rooms.\", \"L-primary-flow\": \"Primary meter flow is not secondary/customer circuit flow.\", \"L-prior-not-current\": \"A prior report does not establish the cause of this event.\", \"L-retrospective\": \"Prior report narratives may not have been available at the decision time.\"}, \"original_task\": \"Given this asset's reported problem at decision_time, identify what the available evidence establishes, what remains unknown, and two or three justified next checks for an engineer. Do not give a final root cause or recommend changing controls. Use only the supplied public evidence; cite/select the provided fact IDs. Return the common JSON schema. Inspect available relevant sources before claiming a measurement or record is absent. Select 1 to 12 observed facts, exactly 2 or 3 checks, and cite at least one selected observation fact for each check. Use only IDs from the provided catalogs and do not repeat a check ID. Keep each model-authored rationale nonblank and at most 240 characters. Return one JSON object, optionally wrapped in a single ```json fence.\", \"plan_schema\": {\"additionalProperties\": false, \"properties\": {\"limit_ids\": {\"items\": {\"enum\": [\"L-no-room-evidence\", \"L-no-normal-range\", \"L-primary-flow\", \"L-prior-not-current\", \"L-retrospective\"], \"type\": \"string\"}, \"type\": \"array\"}, \"next_checks\": {\"items\": {\"additionalProperties\": false, \"properties\": {\"because_fact_ids\": {\"items\": {\"enum\": [\"F-synthetic-1\", \"F-synthetic-2\", \"F-synthetic-3\"], \"type\": \"string\"}, \"maxItems\": 4, \"minItems\": 1, \"type\": \"array\"}, \"id\": {\"enum\": [\"C-room-impact\", \"C-secondary-flow\", \"C-controls\", \"C-sensor\", \"C-maintenance\", \"C-more-data\"], \"type\": \"string\"}, \"rationale\": {\"maxLength\": 240, \"minLength\": 1, \"type\": \"string\"}}, \"required\": [\"id\", \"because_fact_ids\", \"rationale\"], \"type\": \"object\"}, \"maxItems\": 3, \"minItems\": 2, \"type\": \"array\"}}, \"required\": [\"limit_ids\", \"next_checks\"], \"type\": \"object\"}, \"source_read_state\": {\"available_sources\": [{\"read_state\": \"unread\", \"reader\": \"get_recent_measurements\"}, {\"read_state\": \"unread\", \"reader\": \"get_prior_incidents\"}, {\"read_state\": \"unread\", \"reader\": \"get_maintenance_timeline\"}, {\"read_state\": \"unread\", \"reader\": \"get_signal_definitions\"}]}}"
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1200,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "stream": false,
+    "response_format": {
+      "type": "json_schema",
+      "json_schema": {
+        "name": "grounded_check_plan",
+        "strict": true,
+        "schema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "limit_ids",
+            "next_checks"
+          ],
+          "properties": {
+            "limit_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "L-no-room-evidence",
+                  "L-no-normal-range",
+                  "L-primary-flow",
+                  "L-prior-not-current",
+                  "L-retrospective"
+                ]
+              }
+            },
+            "next_checks": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 3,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "because_fact_ids",
+                  "rationale"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "enum": [
+                      "C-room-impact",
+                      "C-secondary-flow",
+                      "C-controls",
+                      "C-sensor",
+                      "C-maintenance",
+                      "C-more-data"
+                    ]
+                  },
+                  "because_fact_ids": {
+                    "type": "array",
+                    "minItems": 1,
+                    "maxItems": 4,
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "F-synthetic-1",
+                        "F-synthetic-2",
+                        "F-synthetic-3"
+                      ]
+                    }
+                  },
+                  "rationale": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 240
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "raw_plan": "{\n  \"limit_ids\": [\n    \"L-no-room-evidence\",\n    \"L-no-normal-range\",\n    \"L-primary-flow\"\n  ],\n  \"next_checks\": [\n    {\n      \"id\": \"C-room-impact\",\n      \"because_fact_ids\": [\n        \"F-synthetic-1\",\n        \"F-synthetic-2\"\n      ],\n      \"rationale\": \"Supply temperature tracking setpoint does not confirm heat delivery to rooms; verify actual room or radiator temperatures to scope the heating loss.\"\n    },\n    {\n      \"id\": \"C-secondary-flow\",\n      \"because_fact_ids\": [\n        \"F-synthetic-2\",\n        \"F-synthetic-3\"\n      ],\n      \"rationale\": \"Primary meter flow is not secondary circuit flow; measure secondary heating circuit flow and compare with design or operating range.\"\n    },\n    {\n      \"id\": \"C-controls\",\n      \"because_fact_ids\": [\n        \"F-synthetic-1\",\n        \"F-synthetic-3\"\n      ],\n      \"rationale\": \"Review timestamped controller settings, alarms, and parameter changes with an engineer to identify any control-related contributors.\"\n    }\n  ]\n}",
+  "native_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "limit_ids",
+      "next_checks"
+    ],
+    "properties": {
+      "limit_ids": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "L-no-room-evidence",
+            "L-no-normal-range",
+            "L-primary-flow",
+            "L-prior-not-current",
+            "L-retrospective"
+          ]
+        }
+      },
+      "next_checks": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 3,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "because_fact_ids",
+            "rationale"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "enum": [
+                "C-room-impact",
+                "C-secondary-flow",
+                "C-controls",
+                "C-sensor",
+                "C-maintenance",
+                "C-more-data"
+              ]
+            },
+            "because_fact_ids": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 4,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "F-synthetic-1",
+                  "F-synthetic-2",
+                  "F-synthetic-3"
+                ]
+              }
+            },
+            "rationale": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 240
+            }
+          }
+        }
+      }
+    }
+  },
+  "assembled_selection": {
+    "observed_fact_ids": [
+      "F-synthetic-1",
+      "F-synthetic-2",
+      "F-synthetic-3"
+    ],
+    "limit_ids": [
+      "L-no-room-evidence",
+      "L-no-normal-range",
+      "L-primary-flow"
+    ],
+    "next_checks": [
+      {
+        "id": "C-room-impact",
+        "because_fact_ids": [
+          "F-synthetic-1",
+          "F-synthetic-2"
+        ],
+        "rationale": "Supply temperature tracking setpoint does not confirm heat delivery to rooms; verify actual room or radiator temperatures to scope the heating loss."
+      },
+      {
+        "id": "C-secondary-flow",
+        "because_fact_ids": [
+          "F-synthetic-2",
+          "F-synthetic-3"
+        ],
+        "rationale": "Primary meter flow is not secondary circuit flow; measure secondary heating circuit flow and compare with design or operating range."
+      },
+      {
+        "id": "C-controls",
+        "because_fact_ids": [
+          "F-synthetic-1",
+          "F-synthetic-3"
+        ],
+        "rationale": "Review timestamped controller settings, alarms, and parameter changes with an engineer to identify any control-related contributors."
+      }
+    ]
+  },
+  "validation": {
+    "status": "valid",
+    "selection": {
+      "observed_fact_ids": [
+        "F-synthetic-1",
+        "F-synthetic-2",
+        "F-synthetic-3"
+      ],
+      "limit_ids": [
+        "L-no-room-evidence",
+        "L-no-normal-range",
+        "L-primary-flow"
+      ],
+      "next_checks": [
+        {
+          "id": "C-room-impact",
+          "because_fact_ids": [
+            "F-synthetic-1",
+            "F-synthetic-2"
+          ],
+          "rationale": "Supply temperature tracking setpoint does not confirm heat delivery to rooms; verify actual room or radiator temperatures to scope the heating loss."
+        },
+        {
+          "id": "C-secondary-flow",
+          "because_fact_ids": [
+            "F-synthetic-2",
+            "F-synthetic-3"
+          ],
+          "rationale": "Primary meter flow is not secondary circuit flow; measure secondary heating circuit flow and compare with design or operating range."
+        },
+        {
+          "id": "C-controls",
+          "because_fact_ids": [
+            "F-synthetic-1",
+            "F-synthetic-3"
+          ],
+          "rationale": "Review timestamped controller settings, alarms, and parameter changes with an engineer to identify any control-related contributors."
+        }
+      ]
+    }
+  },
+  "completeness": {
+    "status": "checked",
+    "issues": [],
+    "source_read_state": {
+      "available_sources": [
+        {
+          "reader": "get_recent_measurements",
+          "read_state": "unread"
+        },
+        {
+          "reader": "get_prior_incidents",
+          "read_state": "unread"
+        },
+        {
+          "reader": "get_maintenance_timeline",
+          "read_state": "unread"
+        },
+        {
+          "reader": "get_signal_definitions",
+          "read_state": "unread"
+        }
+      ]
+    },
+    "catalog_read_state": "read"
+  },
+  "display": {
+    "status": "reference_checked",
+    "observations": [
+      {
+        "id": "F-synthetic-1",
+        "source_id": "synthetic-source",
+        "text": "synthetic"
+      },
+      {
+        "id": "F-synthetic-2",
+        "source_id": "synthetic-source",
+        "text": "synthetic"
+      },
+      {
+        "id": "F-synthetic-3",
+        "source_id": "synthetic-source",
+        "text": "synthetic"
+      }
+    ],
+    "limits": [
+      {
+        "id": "L-no-room-evidence",
+        "text": "Supply temperature tracking its setpoint does not establish heat delivery to rooms."
+      },
+      {
+        "id": "L-no-normal-range",
+        "text": "No normal operating range is supplied for heat power or flow."
+      },
+      {
+        "id": "L-primary-flow",
+        "text": "Primary meter flow is not secondary/customer circuit flow."
+      }
+    ],
+    "suggested_next_checks": [
+      {
+        "id": "C-room-impact",
+        "text": "Verify affected room or radiator temperatures and the scope of the reported heating loss.",
+        "because_facts": [
+          {
+            "id": "F-synthetic-1",
+            "source_id": "synthetic-source",
+            "text": "synthetic"
+          },
+          {
+            "id": "F-synthetic-2",
+            "source_id": "synthetic-source",
+            "text": "synthetic"
+          }
+        ],
+        "model_authored_suggestion_rationale": "Supply temperature tracking setpoint does not confirm heat delivery to rooms; verify actual room or radiator temperatures to scope the heating loss."
+      },
+      {
+        "id": "C-secondary-flow",
+        "text": "Measure secondary heating circuit flow and compare it with the relevant design or operating range.",
+        "because_facts": [
+          {
+            "id": "F-synthetic-2",
+            "source_id": "synthetic-source",
+            "text": "synthetic"
+          },
+          {
+            "id": "F-synthetic-3",
+            "source_id": "synthetic-source",
+            "text": "synthetic"
+          }
+        ],
+        "model_authored_suggestion_rationale": "Primary meter flow is not secondary circuit flow; measure secondary heating circuit flow and compare with design or operating range."
+      },
+      {
+        "id": "C-controls",
+        "text": "Review timestamped controller settings, alarms, and parameter changes with an engineer.",
+        "because_facts": [
+          {
+            "id": "F-synthetic-1",
+            "source_id": "synthetic-source",
+            "text": "synthetic"
+          },
+          {
+            "id": "F-synthetic-3",
+            "source_id": "synthetic-source",
+            "text": "synthetic"
+          }
+        ],
+        "model_authored_suggestion_rationale": "Review timestamped controller settings, alarms, and parameter changes with an engineer to identify any control-related contributors."
+      }
+    ]
+  },
+  "http_status": 200,
+  "server_header": null,
+  "returned_model": "nvidia/nemotron-3-ultra-550b-a55b",
+  "system_fingerprint": null,
+  "usage": {
+    "prompt_tokens": 1045,
+    "completion_tokens": 247,
+    "total_tokens": 1292
+  },
+  "finish_reason": "stop",
+  "parsed_plan": {
+    "limit_ids": [
+      "L-no-room-evidence",
+      "L-no-normal-range",
+      "L-primary-flow"
+    ],
+    "next_checks": [
+      {
+        "id": "C-room-impact",
+        "because_fact_ids": [
+          "F-synthetic-1",
+          "F-synthetic-2"
+        ],
+        "rationale": "Supply temperature tracking setpoint does not confirm heat delivery to rooms; verify actual room or radiator temperatures to scope the heating loss."
+      },
+      {
+        "id": "C-secondary-flow",
+        "because_fact_ids": [
+          "F-synthetic-2",
+          "F-synthetic-3"
+        ],
+        "rationale": "Primary meter flow is not secondary circuit flow; measure secondary heating circuit flow and compare with design or operating range."
+      },
+      {
+        "id": "C-controls",
+        "because_fact_ids": [
+          "F-synthetic-1",
+          "F-synthetic-3"
+        ],
+        "rationale": "Review timestamped controller settings, alarms, and parameter changes with an engineer to identify any control-related contributors."
+      }
+    ]
+  },
+  "request_seconds": 3.95
+}

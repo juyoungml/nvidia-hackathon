@@ -73,6 +73,21 @@ class ComparisonTests(unittest.TestCase):
         self.assertIsNone(summary["pairs"][0]["domain"]["usage"])
         self.assertIsNone(summary["pairs"][0]["general"]["usage"])
 
+    def test_general_wall_time_includes_repair_when_recorded(self) -> None:
+        general = _trace(domain=False)
+        general["total_latency_seconds_with_repair"] = 7.5
+        pairs = _paths(self.path, _trace(domain=True), general)
+        summary, _, _ = compare_pairs(pairs)
+        self.assertEqual(summary["pairs"][0]["general"]["wall_seconds"], 7.5)
+        self.assertEqual(summary["pairs"][0]["domain"]["wall_seconds"], 2.0)
+
+    def test_mixed_repair_policy_rejected(self) -> None:
+        general = _trace(domain=False)
+        general["harness_policy"] = "validate_repair_once"
+        pairs = _paths(self.path, _trace(domain=True), general)
+        with self.assertRaisesRegex(ValueError, "harness_policy mismatch"):
+            compare_pairs(pairs)
+
     def test_blind_review_excludes_provider_and_source_filename(self) -> None:
         domain = _trace(domain=True)
         domain["display"]["suggested_next_checks"][0]["model_authored_suggestion_rationale"] = (

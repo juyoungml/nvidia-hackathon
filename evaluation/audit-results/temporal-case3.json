@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "case_id": "PreDist-M1-fault-3",
+  "source_id": "PreDist-M1-substation-12-operational-data",
+  "source": {
+    "dataset": "PreDist v2",
+    "url": "https://zenodo.org/records/19496480",
+    "doi": "10.5281/zenodo.19496480",
+    "license": "CC BY 4.0",
+    "publisher": "Fraunhofer IEE / enercity Netz GmbH",
+    "asset_type": "district heating substation"
+  },
+  "provenance": {
+    "operational_csv": "substation_12.csv",
+    "operational_csv_sha256": "707d753902669cf3cb359e2130ab85c6af8e71346419d79932c2e071c4331789",
+    "source_selection": {
+      "rule": "First two chronological manufacturer-1 reports with problem 'no heat' or 'not enough heat', outside substations 21, 4, and 7 and on distinct substations, having >=100 prior-24-hour samples and nonempty required hc1 fields; choice of reports 3 and 13 frozen before second comparison.",
+      "report_id": "3",
+      "asset_id": "12",
+      "window_hours": 24,
+      "cutoff": "measurement timestamp <= report date; prior records strictly earlier"
+    }
+  },
+  "fields": {
+    "supply_c": "s_hc1_supply_temperature",
+    "setpoint_c": "s_hc1_supply_temperature_setpoint"
+  },
+  "window": {
+    "source_start": "2015-11-30 10:56:00",
+    "source_end": "2015-12-01 10:56:00",
+    "selected_start": "2015-11-30 10:56:00",
+    "selected_end": "2015-12-01 10:56:00",
+    "decision_cutoff": "2015-12-01 10:56:00",
+    "effective_cutoff": "2015-12-01 10:56:00",
+    "expected_sample_interval_seconds": 600
+  },
+  "gap_rule": {
+    "operator": ">",
+    "threshold_c": 2.0,
+    "status": "descriptive prior-POC convention; not a verified operational limit"
+  },
+  "counts": {
+    "source_rows": 144,
+    "selected_rows": 144,
+    "valid_paired_samples": 144,
+    "above_threshold_samples": 5,
+    "missing_or_nonfinite_pair": 0,
+    "invalid_timestamp": 0,
+    "outside_selected_window_or_after_cutoff": 0,
+    "irregular_intervals": 0
+  },
+  "paired_series": {
+    "first": {
+      "row_index": 0,
+      "timestamp": "2015-11-30 11:00:00",
+      "supply_c": 60.1,
+      "setpoint_c": 60.0,
+      "absolute_gap_c": 0.1
+    },
+    "last": {
+      "row_index": 143,
+      "timestamp": "2015-12-01 10:50:00",
+      "supply_c": 33.5,
+      "setpoint_c": 33.2,
+      "absolute_gap_c": 0.3
+    },
+    "peak_gap": {
+      "row_index": 24,
+      "timestamp": "2015-11-30 15:00:00",
+      "supply_c": 45.7,
+      "setpoint_c": 32.0,
+      "absolute_gap_c": 13.7
+    }
+  },
+  "episode_count": 1,
+  "episodes_returned": 1,
+  "episodes_truncated": false,
+  "episodes": [
+    {
+      "sample_count": 5,
+      "first": {
+        "row_index": 23,
+        "timestamp": "2015-11-30 14:50:00",
+        "supply_c": 52.75,
+        "setpoint_c": 45.9,
+        "absolute_gap_c": 6.85
+      },
+      "last": {
+        "row_index": 27,
+        "timestamp": "2015-11-30 15:30:00",
+        "supply_c": 36.5,
+        "setpoint_c": 32.0,
+        "absolute_gap_c": 4.5
+      },
+      "peak": {
+        "row_index": 24,
+        "timestamp": "2015-11-30 15:00:00",
+        "supply_c": 45.7,
+        "setpoint_c": 32.0,
+        "absolute_gap_c": 13.7
+      }
+    }
+  ],
+  "interpretation_limit": "Timing and gap at this secondary supply sensor do not establish room heat, fault, controller action, or cause. No interpolation is performed."
+}

@@ -11,8 +11,10 @@ from poc.evidence_contract import (
     audit_completeness,
     build_case_bundle,
     build_evidence,
+    invalid_summary_feedback,
     render_selection,
     validate_selection,
+    validation_attempt,
 )
 from poc.run import run_tool
 from poc.system2 import parse_args, run_system2
@@ -27,6 +29,7 @@ def replay52() -> dict:
 class EvidenceContractTests(unittest.TestCase):
     def test_cli_defaults_to_v2_and_keeps_explicit_v1(self) -> None:
         self.assertEqual(parse_args(["--replay", "case.json"]).contract_version, 2)
+        self.assertEqual(parse_args(["--replay", "case.json"]).harness_policy, "off")
         self.assertEqual(
             parse_args(["--replay", "case.json", "--contract-version", "1"]).contract_version,
             1,
@@ -229,6 +232,110 @@ class EvidenceContractTests(unittest.TestCase):
         self.assertEqual(trace["display"]["status"], "withheld")
         self.assertIn("F-invented", trace["raw_output"])
         self.assertEqual(trace["validation"]["status"], "invalid")
+        self.assertEqual(len(trace["validation_attempts"]), 1)
+        model.assert_called_once()
+
+    @patch("poc.system2.call_model")
+    def test_repair_once_preserves_both_raw_outputs_and_contract(self, model) -> None:
+        replay = replay52()
+        bundle = build_case_bundle(replay, contract_version=2)
+        facts = [fact["id"] for fact in bundle["evidence"]["facts"]]
+        invalid_raw = json.dumps(
+            {
+                "observed_fact_ids": facts[:13],
+                "limit_ids": [],
+                "next_checks": [
+                    {
+                        "id": "C-room-impact",
+                        "because_fact_ids": [facts[0]],
+                        "rationale": "Check affected rooms.",
+                    },
+                    {
+                        "id": "C-secondary-flow",
+                        "because_fact_ids": [facts[0]],
+                        "rationale": "Measure secondary flow.",
+                    },
+                ],
+            }
+        )
+        valid_raw = json.dumps(
+            {
+                "observed_fact_ids": facts[:12],
+                "limit_ids": [],
+                "next_checks": [
+                    {
+                        "id": "C-room-impact",
+                        "because_fact_ids": [facts[0]],
+                        "rationale": "Check affected rooms.",
+                    },
+                    {
+                        "id": "C-secondary-flow",
+                        "because_fact_ids": [facts[0]],
+                        "rationale": "Measure secondary flow.",
+                    },
+                ],
+            }
+        )
+        model.side_effect = [
+            ({"message": {"content": invalid_raw}}, 0.1),
+            ({"message": {"content": valid_raw}}, 0.2),
+        ]
+        trace = run_system2(
+            replay,
+            mode="packet",
+            key="fake",
+            contract_version=2,
+            harness_policy="validate_repair_once",
+        )
+        self.assertEqual(model.call_count, 2)
+        self.assertEqual(trace["raw_output"], invalid_raw)
+        self.assertEqual(trace["raw_output_after_repair"], valid_raw)
+        self.assertEqual([a["status"] for a in trace["validation_attempts"]], ["invalid", "valid"])
+        self.assertEqual(
+            trace["validation_attempts"][0]["reason"], "selection exceeds display bound"
+        )
+        self.assertEqual(trace["validation"]["status"], "valid")
+        self.assertEqual(trace["display"]["status"], "reference_checked")
+        self.assertAlmostEqual(trace["request_seconds"], 0.3)
+        self.assertEqual(trace["repair"]["latency_seconds"], 0.2)
+        self.assertIn("repair-v1", trace["method"])
+        prompt = json.loads(trace["repair"]["prompt"])
+        self.assertEqual(prompt["validation_error"], "ValueError: selection exceeds display bound")
+        self.assertEqual(prompt["evidence"], bundle["evidence"])
+        self.assertEqual(prompt["original_task"], bundle["task"])
+        self.assertEqual(prompt["response_schema"], bundle["schema"])
+
+    @patch("poc.system2.call_model")
+    def test_failed_repair_remains_withheld_and_unread_sources_stay_unread(self, model) -> None:
+        invalid_raw = "not JSON"
+        model.side_effect = [
+            ({"message": {"content": invalid_raw}}, 0.1),
+            ({"message": {"content": invalid_raw}}, 0.2),
+        ]
+        trace = run_system2(
+            replay52(),
+            mode="tools",
+            key="fake",
+            contract_version=2,
+            harness_policy="validate_repair_once",
+        )
+        self.assertEqual(model.call_count, 2)
+        self.assertEqual(trace["display"]["status"], "withheld")
+        self.assertEqual(trace["validation"]["status"], "invalid")
+        self.assertEqual(len(trace["validation_attempts"]), 2)
+        self.assertTrue(
+            all(
+                source["read_state"] == "unread"
+                for source in json.loads(trace["repair"]["prompt"])["source_manifest"][
+                    "available_sources"
+                ]
+            )
+        )
+        self.assertEqual(trace["repair"]["reason"], "ValueError: output is not JSON")
+
+    def test_shared_feedback_reports_exact_validation_error(self) -> None:
+        attempt = validation_attempt("broken", build_evidence(replay52()), contract_version=2)
+        self.assertEqual(invalid_summary_feedback(attempt), "ValueError: output is not JSON")
 
 
 if __name__ == "__main__":

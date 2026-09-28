@@ -23,10 +23,10 @@ from poc.evidence_contract import (  # noqa: E402
     build_evidence,
     build_task_packet,
     finalize_selection,
-    normalize_response,
+    invalid_summary_feedback,
     packet_bytes,
     source_manifest,
-    validate_selection,
+    validation_attempt,
     withheld_display,
 )
 from poc.run import TOOLS, ULTRA_MODEL, call_model, run_tool  # noqa: E402
@@ -40,6 +40,8 @@ SYSTEM_PROMPT = (
     "response_schema."
 )
 ALLOWED_TOOLS = {tool["function"]["name"] for tool in TOOLS}
+HARNESS_POLICIES = {"off", "validate_repair_once"}
+REPAIR_POLICY_VERSION = 1
 
 
 def _tool_evidence(replay: dict, name: str, result: dict) -> dict:
@@ -54,6 +56,32 @@ def _tool_evidence(replay: dict, name: str, result: dict) -> dict:
     }
 
 
+def build_repair_prompt(packet: dict, initial_attempt: dict, *, contract_version: int) -> str:
+    """Ask for one corrected selection using only evidence already available in the run."""
+    if initial_attempt.get("status") != "invalid":
+        raise ValueError("repair requires an invalid initial attempt")
+    return json.dumps(
+        {
+            "instruction": (
+                "Correct the previous response against the unchanged task and response schema. "
+                "Use only the supplied evidence and catalogs. Do not add facts, infer unread "
+                "sources are absent, or change the task. Return one JSON object only."
+            ),
+            "contract_version": contract_version,
+            "validation_error": invalid_summary_feedback(initial_attempt),
+            "previous_raw_output": initial_attempt["raw_output"],
+            "original_task": packet["task"],
+            "response_schema": packet["response_schema"],
+            "evidence": packet["evidence"],
+            "limits_catalog": packet["limits_catalog"],
+            "checks_catalog": packet["checks_catalog"],
+            "source_manifest": packet.get("source_manifest"),
+        },
+        ensure_ascii=False,
+        sort_keys=True,
+    )
+
+
 def run_system2(
     replay: dict,
     *,
@@ -63,16 +91,22 @@ def run_system2(
     key: str | None = None,
     max_rounds: int = 6,
     contract_version: int = 1,
+    harness_policy: str = "off",
 ) -> dict:
     started = time.monotonic()
     if mode not in {"tools", "packet"}:
         raise ValueError("mode must be tools or packet")
     if contract_version not in {1, 2}:
         raise ValueError("unknown contract version")
+    if harness_policy not in HARNESS_POLICIES:
+        raise ValueError("unknown harness policy")
     trace = {
         "schema_version": contract_version,
         "contract_version": contract_version,
-        "method": f"system2-{mode}",
+        "method": f"system2-{mode}"
+        + ("-repair-v1" if harness_policy == "validate_repair_once" else ""),
+        "harness_policy": harness_policy,
+        "harness_policy_version": REPAIR_POLICY_VERSION if harness_policy != "off" else None,
         "case_id": replay["case_id"],
         "backend": backend,
         "model": model,
@@ -85,6 +119,9 @@ def run_system2(
         "model_events": [],
         "evidence": None,
         "raw_output": None,
+        "raw_output_after_repair": None,
+        "validation_attempts": [],
+        "repair": None,
         "validation": None,
         "completeness": None,
         "display": withheld_display("run not completed"),
@@ -181,13 +218,49 @@ def run_system2(
                 raise ValueError(f"model exceeded {max_rounds} tool rounds")
             trace["evidence"] = build_evidence(replay, tool_results)
         trace["raw_output"] = raw
-        selection = validate_selection(raw, trace["evidence"], contract_version=contract_version)
-        _, normalized = normalize_response(raw, contract_version=contract_version)
-        trace["validation"] = {
-            "status": "valid",
-            "selection": selection,
-            "outer_fence_normalized": normalized,
-        }
+        attempt = validation_attempt(raw, trace["evidence"], contract_version=contract_version)
+        trace["validation_attempts"].append(attempt)
+        if attempt["status"] == "invalid" and harness_policy == "validate_repair_once":
+            repair_packet = build_task_packet(
+                replay, tool_results, contract_version=contract_version
+            )
+            prompt = build_repair_prompt(repair_packet, attempt, contract_version=contract_version)
+            trace["repair"] = {
+                "prompt": prompt,
+                "reason": invalid_summary_feedback(attempt),
+                "latency_seconds": None,
+                "finish_reason": None,
+            }
+            repaired_choice, latency = call_model(
+                [
+                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "user", "content": prompt},
+                ],
+                key,
+                backend=backend,
+                model=model,
+            )
+            trace["request_seconds"] += latency
+            trace["repair"]["latency_seconds"] = latency
+            trace["repair"]["finish_reason"] = repaired_choice.get("finish_reason")
+            trace["model_events"].append(
+                {
+                    "round": len(trace["model_events"]) + 1,
+                    "stage": "repair",
+                    "latency_seconds": latency,
+                    "finish_reason": repaired_choice.get("finish_reason"),
+                }
+            )
+            repaired_raw = repaired_choice["message"].get("content") or ""
+            trace["raw_output_after_repair"] = repaired_raw
+            attempt = validation_attempt(
+                repaired_raw, trace["evidence"], contract_version=contract_version
+            )
+            trace["validation_attempts"].append(attempt)
+        trace["validation"] = {key: value for key, value in attempt.items() if key != "raw_output"}
+        if attempt["status"] != "valid":
+            raise ValueError(attempt["reason"])
+        selection = attempt["selection"]
         reads = set(tool_results) if mode == "tools" else set(ALLOWED_TOOLS)
         trace["display"], trace["completeness"] = finalize_selection(
             selection,
@@ -196,11 +269,12 @@ def run_system2(
             contract_version=contract_version,
         )
     except (ValueError, KeyError, TypeError, RuntimeError) as error:
-        trace["validation"] = {
-            "status": "invalid",
-            "error_type": type(error).__name__,
-            "reason": str(error),
-        }
+        if trace["validation"] is None or trace["validation"]["status"] != "invalid":
+            trace["validation"] = {
+                "status": "invalid",
+                "error_type": type(error).__name__,
+                "reason": str(error),
+            }
         trace["display"] = withheld_display(str(error))
         trace["completeness"] = {"status": "not_assessed", "issues": []}
     trace["wall_seconds"] = round(time.monotonic() - started, 3)
@@ -232,6 +306,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="Evidence contract version (default: 2; use 1 to replay the pilot)",
     )
     parser.add_argument("--output-dir", type=Path, default=ROOT / ".artifacts/system2")
+    parser.add_argument("--harness-policy", choices=sorted(HARNESS_POLICIES), default="off")
     return parser.parse_args(argv)
 
 
@@ -246,6 +321,7 @@ def main() -> None:
         model=args.model,
         key=key,
         contract_version=args.contract_version,
+        harness_policy=args.harness_policy,
     )
     path = save_trace(trace, args.output_dir)
     print(

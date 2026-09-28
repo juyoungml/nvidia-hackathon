@@ -1,0 +1,83 @@
+{
+  "seed": 37,
+  "contract_version": 2,
+  "pairs": [
+    {
+      "case_id": "PreDist-M1-fault-52",
+      "A": {
+        "arm": "general",
+        "trace": "evaluation/cycle3/traces/general-52.json"
+      },
+      "B": {
+        "arm": "domain",
+        "trace": "evaluation/cycle3/traces/domain-52.json"
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-60",
+      "A": {
+        "arm": "general",
+        "trace": "evaluation/cycle3/traces/general-60.json"
+      },
+      "B": {
+        "arm": "domain",
+        "trace": "evaluation/cycle3/traces/domain-60.json"
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-63",
+      "A": {
+        "arm": "domain",
+        "trace": "evaluation/cycle3/traces/domain-63.json"
+      },
+      "B": {
+        "arm": "general",
+        "trace": "evaluation/cycle3/traces/general-63.json"
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-3",
+      "A": {
+        "arm": "domain",
+        "trace": "evaluation/cycle3/traces/domain-3.json"
+      },
+      "B": {
+        "arm": "general",
+        "trace": "evaluation/cycle3/traces/general-3.json"
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-13",
+      "A": {
+        "arm": "general",
+        "trace": "evaluation/cycle3/traces/general-13.json"
+      },
+      "B": {
+        "arm": "domain",
+        "trace": "evaluation/cycle3/traces/domain-13.json"
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-37",
+      "A": {
+        "arm": "domain",
+        "trace": "evaluation/cycle3/traces/domain-37.json"
+      },
+      "B": {
+        "arm": "general",
+        "trace": "evaluation/cycle3/traces/general-37.json"
+      }
+    },
+    {
+      "case_id": "PreDist-M1-fault-5",
+      "A": {
+        "arm": "domain",
+        "trace": "evaluation/cycle3/traces/domain-5.json"
+      },
+      "B": {
+        "arm": "general",
+        "trace": "evaluation/cycle3/traces/general-5.json"
+      }
+    }
+  ]
+}

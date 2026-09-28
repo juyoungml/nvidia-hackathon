@@ -1,0 +1,475 @@
+{
+  "scope": "stage=final trace-level heuristic audit; no semantic accuracy or winner aggregate",
+  "arms": {
+    "D": {
+      "traces": 7,
+      "traces_by_code": {
+        "causality_review": 1,
+        "direction_needs_endpoints": 1,
+        "numeric_rationale_review": 1,
+        "output_withheld": 4,
+        "reference_invalid": 4,
+        "supporting_ref_known_but_unselected": 4
+      },
+      "events_by_code": {
+        "causality_review": 1,
+        "direction_needs_endpoints": 1,
+        "numeric_rationale_review": 1,
+        "output_withheld": 4,
+        "reference_invalid": 4,
+        "supporting_ref_known_but_unselected": 7
+      }
+    },
+    "G": {
+      "traces": 7,
+      "traces_by_code": {
+        "direction_needs_endpoints": 1,
+        "numeric_rationale_review": 3,
+        "repeated_identical_tool_call": 1
+      },
+      "events_by_code": {
+        "direction_needs_endpoints": 1,
+        "numeric_rationale_review": 3,
+        "repeated_identical_tool_call": 1
+      }
+    }
+  },
+  "traces": [
+    {
+      "arm": "D",
+      "case_id": "PreDist-M1-fault-13",
+      "trace": "evaluation/cycle3/traces/domain-13.json",
+      "raw_selection_parsed": true,
+      "raw_selected_fact_count": 12,
+      "display_status": "reference_checked",
+      "supporting_reference_diagnostics": [],
+      "events": [
+        {
+          "code": "direction_needs_endpoints",
+          "severity": "review",
+          "detail": "Direction wording lacks selected first and last values of one field in this check's supporting facts.",
+          "trace_refs": [
+            "/validation/selection/next_checks/1/rationale",
+            "/validation/selection/next_checks/1/because_fact_ids"
+          ]
+        },
+        {
+          "code": "causality_review",
+          "severity": "review",
+          "detail": "Causal wording requires human assessment of whether it asserts an observed cause or proposes a test.",
+          "trace_refs": [
+            "/validation/selection/next_checks/1/rationale"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "D",
+      "case_id": "PreDist-M1-fault-3",
+      "trace": "evaluation/cycle3/traces/domain-3.json",
+      "raw_selection_parsed": true,
+      "raw_selected_fact_count": 12,
+      "display_status": "withheld",
+      "supporting_reference_diagnostics": [
+        {
+          "check_index": 1,
+          "check_id": "C-secondary-flow",
+          "subtype": "known_but_unselected",
+          "fact_ids": [
+            "F-37c78c517194",
+            "F-2ff6575b4d65"
+          ],
+          "trace_refs": [
+            "/validation_attempts/1/raw_output"
+          ]
+        },
+        {
+          "check_index": 2,
+          "check_id": "C-maintenance",
+          "subtype": "known_but_unselected",
+          "fact_ids": [
+            "F-289fc5cf4914",
+            "F-049bb1c6bbed"
+          ],
+          "trace_refs": [
+            "/validation_attempts/1/raw_output"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "code": "reference_invalid",
+          "severity": "failure",
+          "detail": "invalid supporting fact ID",
+          "trace_refs": [
+            "/validation/reason"
+          ]
+        },
+        {
+          "code": "supporting_ref_known_but_unselected",
+          "severity": "diagnostic",
+          "detail": "Check 1 supporting reference subtype: known_but_unselected; values: ['F-37c78c517194', 'F-2ff6575b4d65']",
+          "trace_refs": [
+            "/validation_attempts/1/raw_output"
+          ]
+        },
+        {
+          "code": "supporting_ref_known_but_unselected",
+          "severity": "diagnostic",
+          "detail": "Check 2 supporting reference subtype: known_but_unselected; values: ['F-289fc5cf4914', 'F-049bb1c6bbed']",
+          "trace_refs": [
+            "/validation_attempts/1/raw_output"
+          ]
+        },
+        {
+          "code": "output_withheld",
+          "severity": "failure",
+          "detail": "invalid supporting fact ID",
+          "trace_refs": [
+            "/display/status",
+            "/validation"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "D",
+      "case_id": "PreDist-M1-fault-37",
+      "trace": "evaluation/cycle3/traces/domain-37.json",
+      "raw_selection_parsed": true,
+      "raw_selected_fact_count": 12,
+      "display_status": "reference_checked",
+      "supporting_reference_diagnostics": [],
+      "events": []
+    },
+    {
+      "arm": "D",
+      "case_id": "PreDist-M1-fault-5",
+      "trace": "evaluation/cycle3/traces/domain-5.json",
+      "raw_selection_parsed": true,
+      "raw_selected_fact_count": 12,
+      "display_status": "withheld",
+      "supporting_reference_diagnostics": [
+        {
+          "check_index": 1,
+          "check_id": "C-secondary-flow",
+          "subtype": "known_but_unselected",
+          "fact_ids": [
+            "F-327c2abbdcfd",
+            "F-8ed165aa72d8",
+            "F-00c59ade0871"
+          ],
+          "trace_refs": [
+            "/validation_attempts/1/raw_output"
+          ]
+        },
+        {
+          "check_index": 2,
+          "check_id": "C-maintenance",
+          "subtype": "known_but_unselected",
+          "fact_ids": [
+            "F-c507baa5efdb",
+            "F-12b0dc3012c4"
+          ],
+          "trace_refs": [
+            "/validation_attempts/1/raw_output"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "code": "reference_invalid",
+          "severity": "failure",
+          "detail": "invalid supporting fact ID",
+          "trace_refs": [
+            "/validation/reason"
+          ]
+        },
+        {
+          "code": "supporting_ref_known_but_unselected",
+          "severity": "diagnostic",
+          "detail": "Check 1 supporting reference subtype: known_but_unselected; values: ['F-327c2abbdcfd', 'F-8ed165aa72d8', 'F-00c59ade0871']",
+          "trace_refs": [
+            "/validation_attempts/1/raw_output"
+          ]
+        },
+        {
+          "code": "supporting_ref_known_but_unselected",
+          "severity": "diagnostic",
+          "detail": "Check 2 supporting reference subtype: known_but_unselected; values: ['F-c507baa5efdb', 'F-12b0dc3012c4']",
+          "trace_refs": [
+            "/validation_attempts/1/raw_output"
+          ]
+        },
+        {
+          "code": "output_withheld",
+          "severity": "failure",
+          "detail": "invalid supporting fact ID",
+          "trace_refs": [
+            "/display/status",
+            "/validation"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "D",
+      "case_id": "PreDist-M1-fault-52",
+      "trace": "evaluation/cycle3/traces/domain-52.json",
+      "raw_selection_parsed": true,
+      "raw_selected_fact_count": 12,
+      "display_status": "withheld",
+      "supporting_reference_diagnostics": [
+        {
+          "check_index": 2,
+          "check_id": "C-maintenance",
+          "subtype": "known_but_unselected",
+          "fact_ids": [
+            "F-8ece65de9685",
+            "F-b94b6c2ec90e"
+          ],
+          "trace_refs": [
+            "/validation_attempts/1/raw_output"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "code": "reference_invalid",
+          "severity": "failure",
+          "detail": "invalid supporting fact ID",
+          "trace_refs": [
+            "/validation/reason"
+          ]
+        },
+        {
+          "code": "supporting_ref_known_but_unselected",
+          "severity": "diagnostic",
+          "detail": "Check 2 supporting reference subtype: known_but_unselected; values: ['F-8ece65de9685', 'F-b94b6c2ec90e']",
+          "trace_refs": [
+            "/validation_attempts/1/raw_output"
+          ]
+        },
+        {
+          "code": "output_withheld",
+          "severity": "failure",
+          "detail": "invalid supporting fact ID",
+          "trace_refs": [
+            "/display/status",
+            "/validation"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "D",
+      "case_id": "PreDist-M1-fault-60",
+      "trace": "evaluation/cycle3/traces/domain-60.json",
+      "raw_selection_parsed": true,
+      "raw_selected_fact_count": 12,
+      "display_status": "reference_checked",
+      "supporting_reference_diagnostics": [],
+      "events": [
+        {
+          "code": "numeric_rationale_review",
+          "severity": "review",
+          "detail": "Numeric tokens absent from linked fact values: 53.4. Check units, arithmetic, and source context manually.",
+          "trace_refs": [
+            "/validation/selection/next_checks/0/rationale",
+            "/validation/selection/next_checks/0/because_fact_ids"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "D",
+      "case_id": "PreDist-M1-fault-63",
+      "trace": "evaluation/cycle3/traces/domain-63.json",
+      "raw_selection_parsed": true,
+      "raw_selected_fact_count": 12,
+      "display_status": "withheld",
+      "supporting_reference_diagnostics": [
+        {
+          "check_index": 1,
+          "check_id": "C-secondary-flow",
+          "subtype": "known_but_unselected",
+          "fact_ids": [
+            "F-b2a706025880",
+            "F-f5d1722b5f67",
+            "F-8543e92b0c09"
+          ],
+          "trace_refs": [
+            "/validation_attempts/1/raw_output"
+          ]
+        },
+        {
+          "check_index": 2,
+          "check_id": "C-maintenance",
+          "subtype": "known_but_unselected",
+          "fact_ids": [
+            "F-97ec1ee13138",
+            "F-8b4aa49e516a"
+          ],
+          "trace_refs": [
+            "/validation_attempts/1/raw_output"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "code": "reference_invalid",
+          "severity": "failure",
+          "detail": "invalid supporting fact ID",
+          "trace_refs": [
+            "/validation/reason"
+          ]
+        },
+        {
+          "code": "supporting_ref_known_but_unselected",
+          "severity": "diagnostic",
+          "detail": "Check 1 supporting reference subtype: known_but_unselected; values: ['F-b2a706025880', 'F-f5d1722b5f67', 'F-8543e92b0c09']",
+          "trace_refs": [
+            "/validation_attempts/1/raw_output"
+          ]
+        },
+        {
+          "code": "supporting_ref_known_but_unselected",
+          "severity": "diagnostic",
+          "detail": "Check 2 supporting reference subtype: known_but_unselected; values: ['F-97ec1ee13138', 'F-8b4aa49e516a']",
+          "trace_refs": [
+            "/validation_attempts/1/raw_output"
+          ]
+        },
+        {
+          "code": "output_withheld",
+          "severity": "failure",
+          "detail": "invalid supporting fact ID",
+          "trace_refs": [
+            "/display/status",
+            "/validation"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "G",
+      "case_id": "PreDist-M1-fault-13",
+      "trace": "evaluation/cycle3/traces/general-13.json",
+      "raw_selection_parsed": true,
+      "raw_selected_fact_count": 12,
+      "display_status": "reference_checked",
+      "supporting_reference_diagnostics": [],
+      "events": [
+        {
+          "code": "numeric_rationale_review",
+          "severity": "review",
+          "detail": "Numeric tokens absent from linked fact values: 737. Check units, arithmetic, and source context manually.",
+          "trace_refs": [
+            "/validation/selection/next_checks/1/rationale",
+            "/validation/selection/next_checks/1/because_fact_ids"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "G",
+      "case_id": "PreDist-M1-fault-3",
+      "trace": "evaluation/cycle3/traces/general-3.json",
+      "raw_selection_parsed": true,
+      "raw_selected_fact_count": 12,
+      "display_status": "reference_checked",
+      "supporting_reference_diagnostics": [],
+      "events": []
+    },
+    {
+      "arm": "G",
+      "case_id": "PreDist-M1-fault-37",
+      "trace": "evaluation/cycle3/traces/general-37.json",
+      "raw_selection_parsed": true,
+      "raw_selected_fact_count": 12,
+      "display_status": "reference_checked",
+      "supporting_reference_diagnostics": [],
+      "events": []
+    },
+    {
+      "arm": "G",
+      "case_id": "PreDist-M1-fault-5",
+      "trace": "evaluation/cycle3/traces/general-5.json",
+      "raw_selection_parsed": true,
+      "raw_selected_fact_count": 12,
+      "display_status": "reference_checked",
+      "supporting_reference_diagnostics": [],
+      "events": [
+        {
+          "code": "numeric_rationale_review",
+          "severity": "review",
+          "detail": "Numeric tokens absent from linked fact values: 2018. Check units, arithmetic, and source context manually.",
+          "trace_refs": [
+            "/validation/selection/next_checks/2/rationale",
+            "/validation/selection/next_checks/2/because_fact_ids"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "G",
+      "case_id": "PreDist-M1-fault-52",
+      "trace": "evaluation/cycle3/traces/general-52.json",
+      "raw_selection_parsed": true,
+      "raw_selected_fact_count": 12,
+      "display_status": "reference_checked",
+      "supporting_reference_diagnostics": [],
+      "events": []
+    },
+    {
+      "arm": "G",
+      "case_id": "PreDist-M1-fault-60",
+      "trace": "evaluation/cycle3/traces/general-60.json",
+      "raw_selection_parsed": true,
+      "raw_selected_fact_count": 12,
+      "display_status": "reference_checked",
+      "supporting_reference_diagnostics": [],
+      "events": [
+        {
+          "code": "numeric_rationale_review",
+          "severity": "review",
+          "detail": "Numeric tokens absent from linked fact values: 47.5. Check units, arithmetic, and source context manually.",
+          "trace_refs": [
+            "/validation/selection/next_checks/0/rationale",
+            "/validation/selection/next_checks/0/because_fact_ids"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "G",
+      "case_id": "PreDist-M1-fault-63",
+      "trace": "evaluation/cycle3/traces/general-63.json",
+      "raw_selection_parsed": true,
+      "raw_selected_fact_count": 12,
+      "display_status": "reference_checked",
+      "supporting_reference_diagnostics": [],
+      "events": [
+        {
+          "code": "repeated_identical_tool_call",
+          "severity": "review",
+          "detail": "Same name and input as call 6.",
+          "trace_refs": [
+            "/tool_calls/6",
+            "/tool_calls/10"
+          ]
+        },
+        {
+          "code": "direction_needs_endpoints",
+          "severity": "review",
+          "detail": "Direction wording lacks selected first and last values of one field in this check's supporting facts.",
+          "trace_refs": [
+            "/validation/selection/next_checks/1/rationale",
+            "/validation/selection/next_checks/1/because_fact_ids"
+          ]
+        }
+      ]
+    }
+  ],
+  "stage": "final"
+}

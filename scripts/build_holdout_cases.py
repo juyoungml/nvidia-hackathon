@@ -3,8 +3,9 @@
 Extract the public manufacturer-1 CSVs named in data/README.md from the
 official PreDist v2 archive before running this script. The original batch
 was fixed before its model runs: reports 60 (substation 4) and 63
-(substation 7). After those became pilot cases, the next batch was frozen
-before its model runs: reports 3 (substation 12) and 13 (substation 24).
+(substation 7). The next batch used reports 3 (substation 12) and 13
+(substation 24). The third batch uses reports 37 (substation 19) and 5
+(substation 11), selected from public metadata before cycle-3 inference.
 """
 
 from __future__ import annotations
@@ -20,6 +21,7 @@ from build_replay import SOURCE_URL, file_sha256, numeric, read_csv, timestamp
 CASES = {
     "original": (("60", "4"), ("63", "7")),
     "next": (("3", "12"), ("13", "24")),
+    "third": (("37", "19"), ("5", "11")),
 }
 REQUIRED_FIELDS = (
     "s_hc1_supply_temperature",
@@ -38,6 +40,12 @@ SELECTION_RULE = {
         "'not enough heat', outside substations 21, 4, and 7 and on distinct "
         "substations, having >=100 prior-24-hour samples and nonempty required "
         "hc1 fields; choice of reports 3 and 13 frozen before second comparison."
+    ),
+    "third": (
+        "First two chronological manufacturer-1 reports with problem 'no heat' or "
+        "'not enough heat', outside substations 21, 4, 7, 12, and 24 and on "
+        "distinct substations, having >=100 prior-24-hour samples and nonempty "
+        "required hc1 fields; reports 37 and 5 selected before cycle-3 inference."
     ),
 }
 
